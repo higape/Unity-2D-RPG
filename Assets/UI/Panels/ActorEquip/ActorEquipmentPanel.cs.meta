@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: a522f3b8ab8ae964ca3616542d427493
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - listItemPrefab: {instanceID: 0}
+  - weaponPanelPrefab: {instanceID: 0}
+  - armorPanelPrefab: {instanceID: 0}
+  - weaponLayer: {instanceID: 0}
+  - armorLayer: {instanceID: 0}
+  - displayObject: {instanceID: 0}
+  - nameContent: {instanceID: 0}
+  - hpLabel: {instanceID: 0}
+  - hpContent: {instanceID: 0}
+  - atkLabel: {instanceID: 0}
+  - atkContent: {instanceID: 0}
+  - defLabel: {instanceID: 0}
+  - defContent: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
