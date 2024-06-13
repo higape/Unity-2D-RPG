@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b552a3e0a45688d4f86c3c46742c7563, type: 3}
+  m_Name: Duration State List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u71C3\u70E7"
+    itemName: 
+    description: 
+    type0: 1
+    type1: 1
+    elementType: 0
+    strengthIDs: 02000000
+    weaknessIDs: 02000000
+    displayObject: {fileID: 11400000, guid: b5afb13da673aa747927475b66ad5fb7, type: 2}
+  - id: 2
+    name: "\u51B0\u51BB"
+    itemName: 
+    description: 
+    type0: 1
+    type1: 1
+    elementType: 0
+    strengthIDs: 01000000
+    weaknessIDs: 01000000
+    displayObject: {fileID: 11400000, guid: 5792b30252b2a9243bfc135863c3c140, type: 2}
+  - id: 3
+    name: "\u614C\u4E71"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 1
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 11400000, guid: 7cd1fbcf06b5a9449a0c131c1eddf36f, type: 2}
+  - id: 4
+    name: "\u9B45\u60D1"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 2
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 11400000, guid: 05d1046cb7f08bc409c246bdbc1c8544, type: 2}
+  - id: 5
+    name: "\u6DF7\u4E71"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 3
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 11400000, guid: 2b583ea06b281f64f9101f7054c618e6, type: 2}
+  - id: 6
+    name: "\u9759\u9ED8"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 4
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 11400000, guid: 60d5bdeb221c9764c8d2fe46d75ee07d, type: 2}

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f60d710db7b9f4b9b5ed3f1c5ba760, type: 3}
+  m_Name: Actor Head Armor List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u8349\u5E3D"
+    hp: 1
+    atk: 0
+    def: 0
+    agi: 0
+    hit: 1
+    eva: 0
+    elementGroup:
+      Normal: 1
+      Corrosion: 1
+      Fire: 1
+      Ice: 1
+      Electricity: 1
+      Wave: 1
+      Ray: 1
+      Gas: 1
+    price: 4
+    equipable: 
+    traits: []

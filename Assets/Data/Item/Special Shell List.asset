@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48ffe0ef27e52a42a0aba39ee38ec65, type: 3}
+  m_Name: Special Shell List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u70AE\u5F391"
+    itemName: 
+    bullets: []
+    element: 0
+    scope: 8
+    attackCount: 1
+    waitTime: 0
+    effects: []
+    log: 
+    price: 0

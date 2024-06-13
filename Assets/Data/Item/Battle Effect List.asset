@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fb9e02331b1a049b75568269362076, type: 3}
+  m_Name: Battle Effect List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u4F24\u5BB3"
+    itemName: 
+    description: "\u666E\u901A\u5730\u9020\u6210\u4E00\u5B9A\u6BD4\u4F8B\u7684\u4F24\u5BB3"
+    type0: 1
+    type1: 1
+  - id: 2
+    name: "\u5E38\u6570\u4F24\u5BB3"
+    itemName: 
+    description: "\u4EE5\u56FA\u5B9A\u503C\u9020\u6210\u4F24\u5BB3"
+    type0: 1
+    type1: 2
+  - id: 3
+    name: "\u653B\u51FB\u529B\u4F24\u5BB3"
+    itemName: 
+    description: "\u4EE5\u4E00\u5B9A\u6BD4\u4F8B\u7684\u653B\u51FB\u529B\u9020\u6210\u4F24\u5BB3"
+    type0: 1
+    type1: 3
+  - id: 4
+    name: "\u7A7F\u900F\u4F24\u5BB3"
+    itemName: 
+    description: "\u65E0\u89C6\u4E00\u5B9A\u6BD4\u4F8B\u7684\u9632\u5FA1\u529B\u9020\u6210\u4F24\u5BB3"
+    type0: 1
+    type1: 4
+  - id: 5
+    name: "\u9632\u5FA1\u529B\u4F24\u5BB3"
+    itemName: 
+    description: "\u4EE5\u4E00\u5B9A\u6BD4\u4F8B\u7684\u9632\u5FA1\u529B\u9020\u6210\u4F24\u5BB3"
+    type0: 1
+    type1: 5
+  - id: 6
+    name: "\u8010\u4E45\u4F24\u5BB3"
+    itemName: 
+    description: "\u5BF9\u8010\u4E45\u5EA6\u9020\u6210\u4F24\u5BB3"
+    type0: 1
+    type1: 6
+  - id: 7
+    name: "\u6BD4\u4F8B\u6CBB\u7597"
+    itemName: 
+    description: "\u4EE5\u6BD4\u4F8B\u6062\u590D\u751F\u547D"
+    type0: 2
+    type1: 101
+  - id: 8
+    name: "\u5E38\u6570\u6CBB\u7597"
+    itemName: 
+    description: "\u4EE5\u56FA\u5B9A\u503C\u6062\u590D\u751F\u547D"
+    type0: 2
+    type1: 102
+  - id: 9
+    name: "\u7B49\u7EA7\u6CBB\u7597"
+    itemName: 
+    description: "\u4EE5\u7B49\u7EA7\u6062\u590D\u751F\u547D"
+    type0: 2
+    type1: 103
+  - id: 10
+    name: "\u590D\u6D3B/\u6BD4\u4F8B\u6CBB\u7597"
+    itemName: 
+    description: "\u4F7F\u6B7B\u8005\u590D\u6D3B\u5E76\u4EE5\u6BD4\u4F8B\u6062\u590D\u751F\u547D"
+    type0: 2
+    type1: 201
+  - id: 11
+    name: "\u590D\u6D3B/\u5E38\u6570\u6CBB\u7597"
+    itemName: 
+    description: "\u4F7F\u6B7B\u8005\u590D\u6D3B\u5E76\u4EE5\u56FA\u5B9A\u503C\u6062\u590D\u751F\u547D"
+    type0: 2
+    type1: 202
+  - id: 12
+    name: "\u590D\u6D3B/\u7B49\u7EA7\u6CBB\u7597"
+    itemName: 
+    description: "\u4F7F\u6B7B\u8005\u590D\u6D3B\u5E76\u4EE5\u7B49\u7EA7\u6062\u590D\u751F\u547D"
+    type0: 2
+    type1: 203
+  - id: 13
+    name: "\u8010\u4E45\u4FEE\u590D"
+    itemName: 
+    description: "\u4EE5\u5E38\u6570\u6062\u590D\u8010\u4E45\u5EA6"
+    type0: 2
+    type1: 302
+  - id: 14
+    name: "\u6D88\u8017\u8010\u4E45"
+    itemName: 
+    description: "\u51CF\u5C11\u6240\u4F7F\u7528\u7269\u54C1\u7684\u8010\u4E45\u5EA6"
+    type0: 3
+    type1: 1
+  - id: 15
+    name: "\u6D88\u8017\u9053\u5177"
+    itemName: 
+    description: "\u6D88\u8017\u6307\u5B9AID\u7684\u7269\u54C1"
+    type0: 3
+    type1: 2
+  - id: 16
+    name: "\u4F24\u5BB3\u6CBB\u7597"
+    itemName: 
+    description: "\u4EE5\u9020\u6210\u7684\u4F24\u5BB3\u6062\u590D\u751F\u547D"
+    type0: 4
+    type1: 1
+  - id: 17
+    name: "\u6D88\u9664\u6548\u679C"
+    itemName: 
+    description: "\u6D88\u9664\u6307\u5B9AID\u7684\u72B6\u6001"
+    type0: 5
+    type1: 1
+  - id: 18
+    name: "\u6D88\u9664\u7C7B\u578B\u6548\u679C"
+    itemName: 
+    description: "\u6D88\u9664\u6307\u5B9A\u7C7B\u578B\u7684\u72B6\u6001"
+    type0: 5
+    type1: 2
+  - id: 19
+    name: "\u6D88\u9664\u5143\u7D20\u6548\u679C"
+    itemName: 
+    description: "\u6D88\u9664\u6307\u5B9A\u5143\u7D20\u7684\u72B6\u6001"
+    type0: 5
+    type1: 3
+  - id: 20
+    name: "\u6D88\u9664\u589E\u76CA"
+    itemName: 
+    description: 
+    type0: 5
+    type1: 4
+  - id: 21
+    name: "\u6D88\u9664\u51CF\u76CA"
+    itemName: 
+    description: 
+    type0: 5
+    type1: 5
+  - id: 22
+    name: "\u9003\u8DD1"
+    itemName: 
+    description: 
+    type0: 6
+    type1: 1
+  - id: 23
+    name: "\u4FDD\u62A4"
+    itemName: 
+    description: 
+    type0: 6
+    type1: 2
+  - id: 24
+    name: "\u81EA\u6BC1"
+    itemName: 
+    description: 
+    type0: 6
+    type1: 3
+  - id: 25
+    name: "\u547C\u53EB\u5E2E\u624B"
+    itemName: 
+    description: 
+    type0: 6
+    type1: 4
+  - id: 26
+    name: "\u675F\u7F1A"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 1
+  - id: 27
+    name: "\u6DF7\u4E71"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 2
+  - id: 28
+    name: "\u9B45\u60D1"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 3
+  - id: 29
+    name: "\u6050\u614C"
+    itemName: 
+    description: 
+    type0: 7
+    type1: 4
+  - id: 30
+    name: "\u91D1\u94B1\u83B7\u53D6\u6BD4\u4F8B\u589E\u52A0"
+    itemName: 
+    description: 
+    type0: 1001
+    type1: 1
+  - id: 31
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 1
+  - id: 32
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 2
+  - id: 33
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 3
+  - id: 34
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 4
+  - id: 35
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 5
+  - id: 36
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 6
+  - id: 37
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 7
+  - id: 38
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 8
+  - id: 39
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 1001
+  - id: 40
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 1002
+  - id: 41
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 1003
+  - id: 42
+    name: 
+    itemName: 
+    description: 
+    type0: 1002
+    type1: 2001

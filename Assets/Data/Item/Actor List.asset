@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6558c25656b36c40ac0a78af618c4c2, type: 3}
+  m_Name: Actor List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u89D2\u8272A"
+    type: 1
+    exp:
+      basic: 0
+      power1: 10
+      power2: 0.8
+      power3: 0
+    hp:
+      basic: 95
+      power1: 5
+      power2: 0.1
+      power3: 0
+    atk:
+      basic: 10
+      power1: 2
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.7
+      power2: 0
+      power3: 0
+    agi:
+      basic: 5
+      power1: 2
+      power2: 0.1
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    lv: 1
+    skills:
+    - id: 1
+      count:
+        basic: 1
+        power1: 0
+        power2: 0
+        power3: 0
+    weaponIDs: 010000000000000000000000
+    armorIDs: 0000000000000000000000000000000000000000
+    battleSkin:
+      idle: {fileID: -1664743668, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
+      raiseGun: {fileID: 1581031018, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
+      liftItem: {fileID: 485759763, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
+      throwItem: {fileID: 955672907, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
+      dead: {fileID: 461887410, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
+    characterSkin: {fileID: 11400000, guid: 142934aae4a69d44b885d89526fa8429, type: 2}
+  - id: 2
+    name: "\u89D2\u8272B"
+    type: 1
+    exp:
+      basic: 0
+      power1: 10
+      power2: 0.8
+      power3: 0
+    hp:
+      basic: 95
+      power1: 5
+      power2: 0.1
+      power3: 0
+    atk:
+      basic: 10
+      power1: 2
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.7
+      power2: 0
+      power3: 0
+    agi:
+      basic: 5
+      power1: 2
+      power2: 0.1
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    lv: 1
+    skills: []
+    weaponIDs: 020000000000000000000000
+    armorIDs: 0000000000000000000000000000000000000000
+    battleSkin:
+      idle: {fileID: 1426884576, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
+      raiseGun: {fileID: -797071820, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
+      liftItem: {fileID: 251519691, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
+      throwItem: {fileID: -328086962, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
+      dead: {fileID: 2127877593, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
+    characterSkin: {fileID: 11400000, guid: e2583dc8179ff5848959b1cff9e3a18c, type: 2}
+  - id: 3
+    name: "\u89D2\u8272C"
+    type: 1
+    exp:
+      basic: 0
+      power1: 10
+      power2: 0.8
+      power3: 0
+    hp:
+      basic: 95
+      power1: 5
+      power2: 0.1
+      power3: 0
+    atk:
+      basic: 10
+      power1: 2
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.7
+      power2: 0
+      power3: 0
+    agi:
+      basic: 5
+      power1: 2
+      power2: 0.1
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    lv: 1
+    skills: []
+    weaponIDs: 030000000000000000000000
+    armorIDs: 0000000000000000000000000000000000000000
+    battleSkin:
+      idle: {fileID: -1925611698, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}
+      raiseGun: {fileID: -1067069546, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}
+      liftItem: {fileID: 1659953410, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}
+      throwItem: {fileID: 979721102, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}
+      dead: {fileID: 245805228, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}
+    characterSkin: {fileID: 11400000, guid: 07c5f9504f029f0408a8a8badffb8ec7, type: 2}

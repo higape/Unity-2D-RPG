@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b418a4fa95f6ac4bbc3c5e926a6590b, type: 3}
+  m_Name: Enemy List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u53F2\u83B1\u59C6"
+    type: 0
+    exp:
+      basic: 8
+      power1: 2
+      power2: 0
+      power3: 0
+    hp:
+      basic: 30
+      power1: 10
+      power2: 0
+      power3: 0
+    atk:
+      basic: 20
+      power1: 5
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.5
+      power2: 0
+      power3: 0
+    agi:
+      basic: 9
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    gold:
+      basic: 90
+      power1: 10
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 5
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    - usageID: 6
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
+  - id: 2
+    name: "\u55B7\u706B\u53F2\u83B1\u59C6"
+    type: 0
+    exp:
+      basic: 8
+      power1: 2
+      power2: 0
+      power3: 0
+    hp:
+      basic: 20
+      power1: 12
+      power2: 0
+      power3: 0
+    atk:
+      basic: 20
+      power1: 10
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.5
+      power2: 0
+      power3: 0
+    agi:
+      basic: 9
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    gold:
+      basic: 90
+      power1: 10
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 3
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []

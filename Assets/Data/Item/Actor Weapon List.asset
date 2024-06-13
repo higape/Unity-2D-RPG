@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e468f420bb3384eb2e47ff3aedb33b, type: 3}
+  m_Name: Actor Weapon List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: -1
+    name: "\u7A7A\u624B"
+    skinID: 1
+    usageIDs: 01000000
+    atk: 0
+    price: 0
+    equipable: 
+  - id: 1
+    name: "\u5355\u4F53\u666E\u653B\u6B66\u5668"
+    skinID: 2
+    usageIDs: 05000000
+    atk: 1
+    price: 10
+    equipable: 
+  - id: 2
+    name: "\u706B\u6B66\u5668"
+    skinID: 2
+    usageIDs: 02000000
+    atk: 5
+    price: 50
+    equipable: 
+  - id: 3
+    name: "\u51B0\u6B66\u5668"
+    skinID: 2
+    usageIDs: 04000000
+    atk: 8
+    price: 80
+    equipable: 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f73d74fb48a9b342b76a10939758eaa, type: 3}
+  m_Name: Actor Auxiliary Item List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u8F85\u52A9\u9053\u51771"
+    skinID: 0
+    usageID: 5
+    consumable: 0
+    occasion: 2
+    price: 30
+  - id: 2
+    name: "\u8F85\u52A9\u9053\u51772"
+    skinID: 0
+    usageID: 6
+    consumable: 0
+    occasion: 2
+    price: 60

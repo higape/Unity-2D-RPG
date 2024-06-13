@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09eaf09019b775e4eac2cbe01fa1ab76, type: 3}
+  m_Name: Weapon Usage List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u8FD1\u8DDD\u6253\u51FB"
+    bullets:
+    - {fileID: 11400000, guid: 79037b2da338d0b47be81c179e7afb4d, type: 2}
+    element: 0
+    scope: 8
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 2
+    name: "\u5355\u4F53\u706B\u7130"
+    bullets:
+    - {fileID: 11400000, guid: 520d3ac6209f3b44bb25ace522c3660c, type: 2}
+    element: 2
+    scope: 8
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 3
+    name: "\u5355\u4F53\u706B\u7130+\u71C3\u70E7"
+    bullets:
+    - {fileID: 11400000, guid: 520d3ac6209f3b44bb25ace522c3660c, type: 2}
+    element: 2
+    scope: 8
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    - effectID: 1
+      effectValue: 10
+      duration: 2
+      targetType: 0
+    log: 
+  - id: 4
+    name: "\u5355\u4F53\u51B0\u51BB+\u51B0\u67F1"
+    bullets:
+    - {fileID: 11400000, guid: 668bce29783dda44181bdccd796ac412, type: 2}
+    element: 3
+    scope: 8
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    - effectID: 2
+      effectValue: 10
+      duration: 2
+      targetType: 0
+    log: 
+  - id: 5
+    name: "\u5355\u4F53\u666E\u901A\u653B\u51FB"
+    bullets:
+    - {fileID: 11400000, guid: 2ea4d86e388e3d041bec1accea272c7c, type: 2}
+    element: 0
+    scope: 8
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 6
+    name: "\u5168\u4F53\u666E\u901A\u653B\u51FB\u8F7B\u5A01\u529B"
+    bullets:
+    - {fileID: 11400000, guid: 2ea4d86e388e3d041bec1accea272c7c, type: 2}
+    element: 0
+    scope: 9
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 50
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 7
+    name: "\u5355\u4F53\u6CBB\u759710"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 2
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 7
+      effectValue: 50
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 8
+    name: "\u5355\u4F53\u6CBB\u759750"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 2
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 7
+      effectValue: 50
+      duration: 0
+      targetType: 0
+    log: 

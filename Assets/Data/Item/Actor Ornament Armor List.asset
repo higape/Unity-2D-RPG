@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f60d710db7b9f4b9b5ed3f1c5ba760, type: 3}
+  m_Name: Actor Ornament Armor List
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 1
+    name: "\u5168\u80FD\u62A4\u7B26"
+    hp: 10
+    atk: 10
+    def: 10
+    agi: 10
+    hit: 10
+    eva: 10
+    elementGroup:
+      Normal: 10
+      Corrosion: 10
+      Fire: 10
+      Ice: 10
+      Electricity: 10
+      Wave: 10
+      Ray: 10
+      Gas: 10
+    price: 200
+    equipable: 
+    traits: []
