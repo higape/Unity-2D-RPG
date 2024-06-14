@@ -72,6 +72,9 @@ namespace Static
 
         public string battleVictory;
         public string battleDefeat;
+        public string escapeVictory;
+        public string escapeDefeat;
+
         public string selectQuantity;
         public string confirmBuy;
         public string promptCannotUseItemInMenu;

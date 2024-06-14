@@ -69,6 +69,7 @@ namespace Battle
 
         private void Interact()
         {
+            BattleManager.CurrentCommand = new();
             switch ((((string, string))listBox.SelectedItem).Item2)
             {
                 case "attack":
@@ -76,7 +77,7 @@ namespace Battle
                     var we = BattleManager
                         .CreateUI(weaponPanelPrefab)
                         .GetComponent<WeaponSelectionPanel>();
-                    we.Setup(CurrentActor, () => canvasGroup.alpha = 1, FinishCallback);
+                    we.Setup(CurrentActor, () => canvasGroup.alpha = 1, OnInputFinish);
                     break;
                 case "skill":
                     if (EnableSkill)
@@ -92,15 +93,39 @@ namespace Battle
                                 CurrentActor,
                                 skills,
                                 () => canvasGroup.alpha = 1,
-                                FinishCallback
+                                OnInputFinish
                             );
                         }
+                    }
+                    break;
+                case "escape":
+                    if (Random.value > 0.5f)
+                    {
+                        UIManager.StartMessage(
+                            ResourceManager.Term.escapeVictory,
+                            () =>
+                            {
+                                OnInputFinish();
+                                BattleManager.EscapeBattle();
+                            }
+                        );
+                    }
+                    else
+                    {
+                        UIManager.StartMessage(
+                            ResourceManager.Term.escapeDefeat,
+                            () =>
+                            {
+                                OnInputFinish();
+                                BattleManager.CommandInputEnd();
+                            }
+                        );
                     }
                     break;
             }
         }
 
-        private void FinishCallback()
+        private void OnInputFinish()
         {
             (CurrentActor.DisplayObject as DisplayActor).MoveToRight();
             Destroy(gameObject);

@@ -52,6 +52,8 @@ MonoBehaviour:
   controlFetter: "\u675F\u7F1A"
   battleVictory: "\u6218\u6597\u80DC\u5229"
   battleDefeat: "\u6218\u6597\u5931\u8D25"
+  escapeVictory: "\u9003\u8DD1\u6210\u529F"
+  escapeDefeat: "\u9003\u8DD1\u5931\u8D25"
   selectQuantity: "\u9009\u62E9\u6570\u91CF"
   confirmBuy: "\u786E\u5B9A\u8D2D\u4E70\uFF1F"
   promptCannotUseItemInMenu: "\u8FD9\u4E2A\u9053\u5177\u4E0D\u80FD\u5728\u83DC\u5355\u4F7F\u7528"

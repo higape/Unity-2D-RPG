@@ -137,14 +137,13 @@ namespace Battle
         {
             IsBattling = false;
 
-            //复活死亡的角色
-            foreach (var battler in Party.GetBattleActorList())
-            {
-                battler.Reborn(1);
-            }
-
             ScreenManager.FadeOut(() =>
             {
+                //复活死亡的角色
+                foreach (var battler in Party.GetBattleActorList())
+                {
+                    battler.Reborn(1);
+                }
                 SceneManager.UnloadSceneAsync("Battle");
                 ScreenManager.FadeIn(() =>
                 {
@@ -152,6 +151,11 @@ namespace Battle
                     BattleEnded.RemoveAllListeners();
                 });
             });
+        }
+
+        public static void EscapeBattle()
+        {
+            EndBattle();
         }
 
         public static Enemy[] GetEnemies() => Enemies.ToArray();
@@ -579,7 +583,6 @@ namespace Battle
                 }
 
                 (human.DisplayObject as DisplayActor).MoveToLeft();
-                CurrentCommand = new();
                 //打开指令面板
                 CreateUI(commandPanelPrefab)
                     .GetComponent<MainCommandPanel>()
