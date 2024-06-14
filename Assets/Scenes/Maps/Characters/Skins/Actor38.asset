@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7c201194ffc6e419996129d518aa5d, type: 3}
+  m_Name: Actor38
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  idleLeft: {fileID: 598539531, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  idleRight: {fileID: -155466420, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  idleUp: {fileID: -699743743, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  idleDown: {fileID: -379933988, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  walkingLeft: {fileID: -1120780494, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  walkingRight: {fileID: 597840591, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  walkingUp: {fileID: -615337506, guid: d9944296cef28ff449586c45bc07eba9, type: 3}
+  walkingDown: {fileID: -68126420, guid: d9944296cef28ff449586c45bc07eba9, type: 3}

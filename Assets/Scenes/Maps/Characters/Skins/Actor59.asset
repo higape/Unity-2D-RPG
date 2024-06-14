@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7c201194ffc6e419996129d518aa5d, type: 3}
+  m_Name: Actor59
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  idleLeft: {fileID: 1258999597, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  idleRight: {fileID: 798329009, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  idleUp: {fileID: 1070045919, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  idleDown: {fileID: 397212950, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  walkingLeft: {fileID: -1885837976, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  walkingRight: {fileID: -1092380879, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  walkingUp: {fileID: -1146346858, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
+  walkingDown: {fileID: 2118549242, guid: e1d30edc9a1b31b4a84a50af0940aaec, type: 3}
