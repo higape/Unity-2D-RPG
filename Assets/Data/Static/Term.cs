@@ -27,10 +27,21 @@ namespace Static
         public string resistance;
         public string currencyUnit;
         public string price;
+        public string sellingPrice;
         public string unitPrice;
         public string totalPrice;
         public string holdingQuantity;
         public string equippingQuantity;
+        public string consumable;
+        public string notConsume;
+        public string usedOccasion;
+        public string element;
+        public string scope;
+        public string scopeStatement;
+        public string waitTime;
+        public string round;
+        public string menu;
+        public string battle;
 
         #endregion
 
@@ -56,6 +67,39 @@ namespace Static
         public string handPart;
         public string footPart;
         public string ornamentPart;
+
+        #endregion
+
+        #region ElementType
+
+        public string elementNormal;
+        public string elementCorrosion;
+        public string elementFire;
+        public string elementIce;
+        public string elementElectricity;
+        public string elementWave;
+        public string elementRay;
+        public string elementGas;
+
+        #endregion
+
+        #region ScopeType
+
+        public string scopeSelf;
+        public string scopeOneFriend;
+        public string scopeOneFriendExcludeSelf;
+        public string scopeAllFriend;
+        public string scopeAllFriendExcludeSelf;
+        public string scopeOneDeadFriend;
+        public string scopeAllDeadFriend;
+        public string scopeOneEnemy;
+        public string scopeAllEnemy;
+        public string scopeSmallSector;
+        public string scopeBigSector;
+        public string scopeSmallRay;
+        public string scopeBigRay;
+        public string scopeSmallCircle;
+        public string scopeBigCircle;
 
         #endregion
 
@@ -119,6 +163,41 @@ namespace Static
                 BattleEffect.ControlType.Confusion => controlConfusion,
                 BattleEffect.ControlType.Fetter => controlFetter,
                 _ => " ",
+            };
+
+        public string GetText(ElementType type) =>
+            type switch
+            {
+                ElementType.Normal => elementNormal,
+                ElementType.Corrosion => elementCorrosion,
+                ElementType.Fire => elementFire,
+                ElementType.Ice => elementIce,
+                ElementType.Electricity => elementElectricity,
+                ElementType.Wave => elementWave,
+                ElementType.Ray => elementRay,
+                ElementType.Gas => elementGas,
+                _ => " "
+            };
+
+        public string GetText(UsedScope type) =>
+            type switch
+            {
+                UsedScope.Self => scopeSelf,
+                UsedScope.OneFriend => scopeOneFriend,
+                UsedScope.OneFriendExcludeSelf => scopeOneFriendExcludeSelf,
+                UsedScope.AllFriend => scopeAllFriend,
+                UsedScope.AllFriendExcludeSelf => scopeAllFriendExcludeSelf,
+                UsedScope.OneDeadFriend => scopeOneDeadFriend,
+                UsedScope.AllDeadFriend => scopeAllDeadFriend,
+                UsedScope.OneEnemy => scopeOneEnemy,
+                UsedScope.AllEnemy => scopeAllEnemy,
+                UsedScope.SmallSector => scopeSmallSector,
+                UsedScope.BigSector => scopeBigSector,
+                UsedScope.SmallRay => scopeSmallRay,
+                UsedScope.BigRay => scopeBigRay,
+                UsedScope.SmallCircle => scopeSmallCircle,
+                UsedScope.BigCircle => scopeBigCircle,
+                _ => " "
             };
 
 #if UNITY_EDITOR

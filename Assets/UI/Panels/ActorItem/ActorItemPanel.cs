@@ -18,6 +18,9 @@ namespace UI
         private ListBox itemListBox;
 
         [SerializeField]
+        private ActorUsableItemStatistic itemStatistic;
+
+        [SerializeField]
         private GameObject humanListPrefab;
 
         private MakeCommodity CurrentAction { get; set; }
@@ -50,6 +53,7 @@ namespace UI
             };
 
             itemListBox.Initialize(1, 8, RefreshItem);
+            itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
 
             typeListBox.Initialize(typeTexts.Length, 1, RefreshType, typeTexts);
             typeListBox.RegisterSelectedItemChangeCallback(OnTypeChange);
@@ -88,6 +92,18 @@ namespace UI
                     break;
             }
             itemListBox.SetSource(list);
+        }
+
+        private void OnSelectedItemChange(object data, int index)
+        {
+            if (data is QuantityList.ListItem item)
+            {
+                itemStatistic.Refresh(CurrentAction(item.id));
+            }
+            else
+            {
+                itemStatistic.Refresh(null);
+            }
         }
 
         private void Interact()
