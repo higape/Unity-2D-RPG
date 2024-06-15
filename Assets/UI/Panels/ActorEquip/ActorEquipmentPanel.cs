@@ -93,6 +93,9 @@ namespace UI
 
         #endregion
 
+        [SerializeField]
+        private ActorWeaponStatistic weaponStatistic;
+
         private Actor CurrentActor { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
@@ -138,7 +141,7 @@ namespace UI
             }
 
             itemListBox.Initialize(1, Actor.WeaponCount + Actor.ArmorCount, RefreshItem);
-            itemListBox.RegisterSelectedItemChangeCallback(RefreshAtk);
+            itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
         }
 
         private void OnEnable()
@@ -151,9 +154,9 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(ActorEquipmentPanel));
         }
 
-        public void SetActor(Actor human)
+        public void SetActor(Actor actor)
         {
-            CurrentActor = human;
+            CurrentActor = actor;
             Refresh();
         }
 
@@ -198,7 +201,7 @@ namespace UI
             nextExpContent.text = CurrentActor.NextExp.ToString();
         }
 
-        private void RefreshAtk(object item, int index)
+        private void OnSelectedItemChange(object item, int index)
         {
             if (
                 itemListBox.SelectedIndex < Actor.WeaponCount
@@ -207,11 +210,13 @@ namespace UI
             {
                 atkContent.color = Color.green;
                 atkContent.text = (CurrentActor.Atk + hw.Attack).ToString();
+                weaponStatistic.Refresh(hw);
             }
             else
             {
                 atkContent.color = Color.white;
                 atkContent.text = CurrentActor.Atk.ToString();
+                weaponStatistic.Refresh(null);
             }
         }
 

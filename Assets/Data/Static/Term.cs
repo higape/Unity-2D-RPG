@@ -42,6 +42,7 @@ namespace Static
         public string round;
         public string menu;
         public string battle;
+        public string equipable;
 
         #endregion
 

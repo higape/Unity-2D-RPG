@@ -123,12 +123,12 @@ namespace Dynamic
         /// </summary>
         public static List<Actor> GetBattleActorList()
         {
-            List<Actor> humans = new();
+            List<Actor> actors = new();
 
             for (int i = 0; i < PartyActorList.Count && i < MaxBattleMembers; i++)
-                humans.Add(PartyActorList[i]);
+                actors.Add(PartyActorList[i]);
 
-            return humans;
+            return actors;
         }
 
         public static int GetBattleActorCount() =>
@@ -139,13 +139,13 @@ namespace Dynamic
         /// </summary>
         public static List<Actor> GetAliveBattleActorList()
         {
-            List<Actor> humans = new();
+            List<Actor> actors = new();
 
             for (int i = 0; i < PartyActorList.Count && i < MaxBattleMembers; i++)
                 if (PartyActorList[i].IsAlive)
-                    humans.Add(PartyActorList[i]);
+                    actors.Add(PartyActorList[i]);
 
-            return humans;
+            return actors;
         }
 
         /// <summary>
@@ -153,13 +153,13 @@ namespace Dynamic
         /// </summary>
         public static List<Actor> GetDeadBattleActorList()
         {
-            List<Actor> humans = new();
+            List<Actor> actors = new();
 
             for (int i = 0; i < PartyActorList.Count && i < MaxBattleMembers; i++)
                 if (!PartyActorList[i].IsAlive)
-                    humans.Add(PartyActorList[i]);
+                    actors.Add(PartyActorList[i]);
 
-            return humans;
+            return actors;
         }
 
         /// <summary>
@@ -175,10 +175,21 @@ namespace Dynamic
         /// <summary>
         /// 获取队伍里的角色
         /// </summary>
-        public static Actor GetPartyActor(int index)
+        public static Actor GetPartyActorByIndex(int index)
         {
             if (index < PartyActorList.Count && index >= 0)
                 return PartyActorList[index];
+            return null;
+        }
+
+        /// <summary>
+        /// 获取队伍里的角色
+        /// </summary>
+        public static Actor GetPartyActorByID(int id)
+        {
+            foreach (Actor actor in PartyActorList)
+                if (actor.ID == id)
+                    return actor;
             return null;
         }
 

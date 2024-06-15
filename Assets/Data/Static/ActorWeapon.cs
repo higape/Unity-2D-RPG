@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Root;
 using UnityEngine;
 
 namespace Static
@@ -49,7 +50,23 @@ namespace Static
             }
         }
 
-        public bool CanEquip(Dynamic.Actor human) =>
-            equipable.Length == 0 || equipable.Contains(human.ID);
+        public bool CanEquip(int actorID) => equipable.Length == 0 || equipable.Contains(actorID);
+
+        public Actor[] GetEquipableActors()
+        {
+            if (equipable.Length == 0)
+            {
+                return ResourceManager.Actor.ItemList;
+            }
+            else
+            {
+                var actors = new Actor[equipable.Length];
+                for (int i = 0; i < equipable.Length; i++)
+                {
+                    actors[i] = ResourceManager.Actor.GetItem(equipable[i]);
+                }
+                return actors;
+            }
+        }
     }
 }

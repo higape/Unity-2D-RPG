@@ -37,13 +37,13 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(ActorWeaponList));
         }
 
-        public void Setup(Actor human, UnityAction<object> callback)
+        public void Setup(Actor actor, UnityAction<object> callback)
         {
             List<QuantityList.ListItem> fl = new();
 
             foreach (var item in Party.ActorWeapon)
             {
-                if (ResourceManager.ActorWeapon.GetItem(item.id).CanEquip(human))
+                if (ResourceManager.ActorWeapon.GetItem(item.id).CanEquip(actor.ID))
                     fl.Add(item);
             }
 

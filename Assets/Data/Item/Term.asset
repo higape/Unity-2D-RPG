@@ -40,6 +40,7 @@ MonoBehaviour:
   round: "\u56DE\u5408"
   menu: "\u83DC\u5355"
   battle: "\u6218\u6597"
+  equipable: "\u53EF\u88C5\u5907"
   all: "\u5168\u90E8"
   recoverItem: "\u56DE\u590D\u9053\u5177"
   attackItem: "\u653B\u51FB\u9053\u5177"

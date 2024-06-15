@@ -41,8 +41,8 @@ namespace Dynamic
 
         protected override void StartBullet()
         {
-            if (Owner is Actor human && Skin.motion != Static.Actor.Motion.Idle)
-                human.ShowMotion(Skin, ProcessBullet);
+            if (Owner is Actor actor && Skin.motion != Static.Actor.Motion.Idle)
+                actor.ShowMotion(Skin, ProcessBullet);
             else
                 ProcessBullet();
         }
@@ -53,5 +53,22 @@ namespace Dynamic
         }
 
         public Static.WeaponUsage GetUsage(int usageIndex) => DataObject.UsageList[usageIndex];
+
+        public List<Actor> GetEquipableActorList()
+        {
+            if (DataObject.equipable.Length == 0)
+            {
+                return Party.PartyActorList;
+            }
+            else
+            {
+                List<Actor> actors = new();
+                foreach (int actorID in DataObject.equipable)
+                {
+                    actors.Add(Party.GetPartyActorByID(actorID));
+                }
+                return actors;
+            }
+        }
     }
 }
