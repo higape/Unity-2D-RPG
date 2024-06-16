@@ -253,7 +253,7 @@ namespace UI
                 UIManager
                     .Instantiate(weaponPanelPrefab)
                     .GetComponent<ActorWeaponList>()
-                    .Setup(CurrentActor, WeaponListCallback);
+                    .Setup(CurrentActor, WeaponListCallback, weaponStatistic);
             else
                 UIManager
                     .Instantiate(armorPanelPrefab)
@@ -261,7 +261,8 @@ namespace UI
                     .Setup(
                         itemListBox.SelectedIndex - Actor.WeaponCount,
                         CurrentActor,
-                        ArmorListCallback
+                        ArmorListCallback,
+                        armorStatistic
                     );
         }
 

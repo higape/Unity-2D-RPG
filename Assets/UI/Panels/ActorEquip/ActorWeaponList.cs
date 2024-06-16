@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Dynamic;
@@ -13,6 +14,8 @@ namespace UI
         private ListBox listBox;
 
         private UnityAction<object> Callback { get; set; }
+
+        private ActorWeaponStatistic WeaponStatistic { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
 
@@ -37,8 +40,11 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(ActorWeaponList));
         }
 
-        public void Setup(Actor actor, UnityAction<object> callback)
+        public void Setup(Actor actor, UnityAction<object> callback, ActorWeaponStatistic statistic)
         {
+            Callback = callback;
+            WeaponStatistic = statistic;
+
             List<QuantityList.ListItem> fl = new();
 
             foreach (var item in Party.ActorWeapon)
@@ -47,8 +53,20 @@ namespace UI
                     fl.Add(item);
             }
 
+            listBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
             listBox.Initialize(1, 8, RefreshItem, fl);
-            Callback = callback;
+        }
+
+        private void OnSelectedItemChange(object data, int index)
+        {
+            if (data is QuantityList.ListItem item)
+            {
+                WeaponStatistic.Refresh(new(item.id));
+            }
+            else
+            {
+                WeaponStatistic.Refresh(null);
+            }
         }
 
         private void Interact()

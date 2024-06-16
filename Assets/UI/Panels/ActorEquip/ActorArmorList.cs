@@ -16,6 +16,8 @@ namespace UI
 
         private int SlotIndex { get; set; }
 
+        private ActorArmorStatistic ArmorStatistic { get; set; }
+
         private InputCommand[] InputCommands { get; set; }
 
         private void Awake()
@@ -39,10 +41,16 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(ActorArmorList));
         }
 
-        public void Setup(int slotIndex, Actor actor, UnityAction<object> callback)
+        public void Setup(
+            int slotIndex,
+            Actor actor,
+            UnityAction<object> callback,
+            ActorArmorStatistic statistic
+        )
         {
             SlotIndex = slotIndex;
             Callback = callback;
+            ArmorStatistic = statistic;
 
             List<QuantityList.ListItem> fl = new();
             var partyItems = Party.GetActorArmorList(slotIndex);
@@ -54,7 +62,20 @@ namespace UI
                     fl.Add(item);
             }
 
+            listBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
             listBox.Initialize(1, 8, RefreshItem, fl);
+        }
+
+        private void OnSelectedItemChange(object data, int index)
+        {
+            if (data is QuantityList.ListItem item)
+            {
+                ArmorStatistic.Refresh(new(SlotIndex, item.id));
+            }
+            else
+            {
+                ArmorStatistic.Refresh(null);
+            }
         }
 
         private void RefreshItem(ListBoxItem listItem, object data)
