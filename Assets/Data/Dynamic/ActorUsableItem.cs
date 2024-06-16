@@ -58,9 +58,9 @@ namespace Dynamic
 
         protected override void StartBullet()
         {
-            if (Owner is Actor human)
+            if (Owner is Actor actor)
             {
-                human.ShowMotion(Skin, ProcessBullet);
+                actor.ShowMotion(Skin, ProcessBullet);
             }
             else
             {

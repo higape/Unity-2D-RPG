@@ -55,5 +55,22 @@ namespace Dynamic
             Party.LoseActorArmor(SlotIndex, ID, quantity);
             Party.GainGold(SellingPrice * quantity);
         }
+
+        public List<Actor> GetEquipableActorList()
+        {
+            if (DataObject.equipable.Length == 0)
+            {
+                return Party.PartyActorList;
+            }
+            else
+            {
+                List<Actor> actors = new();
+                foreach (int actorID in DataObject.equipable)
+                {
+                    actors.Add(Party.GetPartyActorByID(actorID));
+                }
+                return actors;
+            }
+        }
     }
 }

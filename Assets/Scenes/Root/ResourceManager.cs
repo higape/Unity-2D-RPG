@@ -6,6 +6,7 @@ using System.Text;
 using Static;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Root
 {
@@ -46,6 +47,9 @@ namespace Root
         public static SkillList Skill { get; private set; }
         public static EnemyList Enemy { get; private set; }
         public static ShopList Shop { get; private set; }
+        public static Sprite[] ElementSprite { get; set; }
+
+        public static Sprite GetElementSprite(ElementType type) => ElementSprite[(int)type];
 
         public static ActorArmorList GetActorArmorList(int slotIndex) =>
             slotIndex switch
@@ -189,40 +193,40 @@ namespace Root
         private WeaponUsageList weaponUsage;
 
         [SerializeField]
-        private ActorList human;
+        private ActorList actor;
 
         [SerializeField]
-        private ActorWeaponList humanWeapon;
+        private ActorWeaponList actorWeapon;
 
         [SerializeField]
-        private ActorWeaponSkinList humanWeaponSkin;
+        private ActorWeaponSkinList actorWeaponSkin;
 
         [SerializeField]
-        private ActorArmorList humanHeadArmor;
+        private ActorArmorList actorHeadArmor;
 
         [SerializeField]
-        private ActorArmorList humanBodyArmor;
+        private ActorArmorList actorBodyArmor;
 
         [SerializeField]
-        private ActorArmorList humanHandArmor;
+        private ActorArmorList actorHandArmor;
 
         [SerializeField]
-        private ActorArmorList humanFootArmor;
+        private ActorArmorList actorFootArmor;
 
         [SerializeField]
-        private ActorArmorList humanOrnamentArmor;
+        private ActorArmorList actorOrnamentArmor;
 
         [SerializeField]
-        private ActorUsableItemList humanRecoverItem;
+        private ActorUsableItemList actorRecoverItem;
 
         [SerializeField]
-        private ActorUsableItemList humanAttackItem;
+        private ActorUsableItemList actorAttackItem;
 
         [SerializeField]
-        private ActorUsableItemList humanAuxiliaryItem;
+        private ActorUsableItemList actorAuxiliaryItem;
 
         [SerializeField]
-        private ActorNormalItemList humanNormalItem;
+        private ActorNormalItemList actorNormalItem;
 
         [SerializeField]
         private SkillList skill;
@@ -233,6 +237,9 @@ namespace Root
         [SerializeField]
         private ShopList shop;
 
+        [SerializeField]
+        private Sprite[] elementSprite;
+
         private void Awake()
         {
             GameInfo = gameInfo;
@@ -240,21 +247,22 @@ namespace Root
             BattleEffect = battleEffect;
             DurationState = durationState;
             WeaponUsage = weaponUsage;
-            Actor = human;
-            ActorWeapon = humanWeapon;
-            ActorWeaponSkin = humanWeaponSkin;
-            ActorHeadArmor = humanHeadArmor;
-            ActorBodyArmor = humanBodyArmor;
-            ActorHandArmor = humanHandArmor;
-            ActorFootArmor = humanFootArmor;
-            ActorOrnamentArmor = humanOrnamentArmor;
-            ActorRecoverItem = humanRecoverItem;
-            ActorAttackItem = humanAttackItem;
-            ActorAuxiliaryItem = humanAuxiliaryItem;
-            ActorNormalItem = humanNormalItem;
+            Actor = actor;
+            ActorWeapon = actorWeapon;
+            ActorWeaponSkin = actorWeaponSkin;
+            ActorHeadArmor = actorHeadArmor;
+            ActorBodyArmor = actorBodyArmor;
+            ActorHandArmor = actorHandArmor;
+            ActorFootArmor = actorFootArmor;
+            ActorOrnamentArmor = actorOrnamentArmor;
+            ActorRecoverItem = actorRecoverItem;
+            ActorAttackItem = actorAttackItem;
+            ActorAuxiliaryItem = actorAuxiliaryItem;
+            ActorNormalItem = actorNormalItem;
             Skill = skill;
             Enemy = enemy;
             Shop = shop;
+            ElementSprite = elementSprite;
         }
     }
 }

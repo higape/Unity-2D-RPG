@@ -96,6 +96,9 @@ namespace UI
         [SerializeField]
         private ActorWeaponStatistic weaponStatistic;
 
+        [SerializeField]
+        private ActorArmorStatistic armorStatistic;
+
         private Actor CurrentActor { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
@@ -181,11 +184,11 @@ namespace UI
 
             if (
                 itemListBox.SelectedIndex < Actor.WeaponCount
-                && itemListBox.SelectedItem is ActorWeapon hw
+                && itemListBox.SelectedItem is ActorWeapon aw
             )
             {
                 atkContent.color = Color.green;
-                atkContent.text = (CurrentActor.Atk + hw.Attack).ToString();
+                atkContent.text = (CurrentActor.Atk + aw.Attack).ToString();
             }
             else
             {
@@ -203,20 +206,26 @@ namespace UI
 
         private void OnSelectedItemChange(object item, int index)
         {
-            if (
-                itemListBox.SelectedIndex < Actor.WeaponCount
-                && itemListBox.SelectedItem is ActorWeapon hw
-            )
+            if (itemListBox.SelectedItem is ActorWeapon aw)
             {
                 atkContent.color = Color.green;
-                atkContent.text = (CurrentActor.Atk + hw.Attack).ToString();
-                weaponStatistic.Refresh(hw);
+                atkContent.text = (CurrentActor.Atk + aw.Attack).ToString();
+                weaponStatistic.Refresh(aw);
+                armorStatistic.Refresh(null);
+            }
+            else if (itemListBox.SelectedItem is ActorArmor aa)
+            {
+                atkContent.color = Color.white;
+                atkContent.text = CurrentActor.Atk.ToString();
+                weaponStatistic.Refresh(null);
+                armorStatistic.Refresh(aa);
             }
             else
             {
                 atkContent.color = Color.white;
                 atkContent.text = CurrentActor.Atk.ToString();
                 weaponStatistic.Refresh(null);
+                armorStatistic.Refresh(null);
             }
         }
 

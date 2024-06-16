@@ -39,7 +39,7 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(ActorArmorList));
         }
 
-        public void Setup(int slotIndex, Actor human, UnityAction<object> callback)
+        public void Setup(int slotIndex, Actor actor, UnityAction<object> callback)
         {
             SlotIndex = slotIndex;
             Callback = callback;
@@ -50,7 +50,7 @@ namespace UI
 
             foreach (var item in partyItems)
             {
-                if (dataItems.GetItem(item.id).CanEquip(human))
+                if (dataItems.GetItem(item.id).CanEquip(actor))
                     fl.Add(item);
             }
 

@@ -1811,21 +1811,30 @@ MonoBehaviour:
   battleEffect: {fileID: 11400000, guid: 057bbe2361ff87946ab6f548ca0a4974, type: 2}
   durationState: {fileID: 11400000, guid: 1b5f26ca1e40132418f399d3fc168062, type: 2}
   weaponUsage: {fileID: 11400000, guid: dc2b4d4ce81def445915dbe5053cf24c, type: 2}
-  human: {fileID: 11400000, guid: 792303bc60feb3445a3ebc35034215a9, type: 2}
-  humanWeapon: {fileID: 11400000, guid: a39708104d85e3e47ba29551730a57d7, type: 2}
-  humanWeaponSkin: {fileID: 11400000, guid: c05113088c3e27f4d97e19229967c73c, type: 2}
-  humanHeadArmor: {fileID: 11400000, guid: 3a3eacaf3a3018444a4d144e0712a3a1, type: 2}
-  humanBodyArmor: {fileID: 11400000, guid: 621d16587d6236f46b89642f06d4cd39, type: 2}
-  humanHandArmor: {fileID: 11400000, guid: 3ebf3c469c1d6f749806e667d6da5d3b, type: 2}
-  humanFootArmor: {fileID: 11400000, guid: 0a71e73330b755f4987249d5fff88c74, type: 2}
-  humanOrnamentArmor: {fileID: 11400000, guid: dd95aca485f9afb42b39d3b5fa1d6a1a, type: 2}
-  humanRecoverItem: {fileID: 11400000, guid: e521837e35909014e899f33ec0c5d2c4, type: 2}
-  humanAttackItem: {fileID: 11400000, guid: e8050f1fce026bd478369e5a963bdbc9, type: 2}
-  humanAuxiliaryItem: {fileID: 11400000, guid: 10dceca9b626a844db499e9f20c8cc57, type: 2}
-  humanNormalItem: {fileID: 11400000, guid: cbb1cb0aed59c294f8f7740f33fcde93, type: 2}
+  actor: {fileID: 11400000, guid: 792303bc60feb3445a3ebc35034215a9, type: 2}
+  actorWeapon: {fileID: 11400000, guid: a39708104d85e3e47ba29551730a57d7, type: 2}
+  actorWeaponSkin: {fileID: 11400000, guid: c05113088c3e27f4d97e19229967c73c, type: 2}
+  actorHeadArmor: {fileID: 11400000, guid: 3a3eacaf3a3018444a4d144e0712a3a1, type: 2}
+  actorBodyArmor: {fileID: 11400000, guid: 621d16587d6236f46b89642f06d4cd39, type: 2}
+  actorHandArmor: {fileID: 11400000, guid: 3ebf3c469c1d6f749806e667d6da5d3b, type: 2}
+  actorFootArmor: {fileID: 11400000, guid: 0a71e73330b755f4987249d5fff88c74, type: 2}
+  actorOrnamentArmor: {fileID: 11400000, guid: dd95aca485f9afb42b39d3b5fa1d6a1a, type: 2}
+  actorRecoverItem: {fileID: 11400000, guid: e521837e35909014e899f33ec0c5d2c4, type: 2}
+  actorAttackItem: {fileID: 11400000, guid: e8050f1fce026bd478369e5a963bdbc9, type: 2}
+  actorAuxiliaryItem: {fileID: 11400000, guid: 10dceca9b626a844db499e9f20c8cc57, type: 2}
+  actorNormalItem: {fileID: 11400000, guid: cbb1cb0aed59c294f8f7740f33fcde93, type: 2}
   skill: {fileID: 11400000, guid: a73520d8aba57e84683dfe3229111650, type: 2}
   enemy: {fileID: 11400000, guid: c1da1341ccdae3b4c8de899e1ea8529b, type: 2}
   shop: {fileID: 11400000, guid: 094d3b855f0e2eb47a87adb865f179cd, type: 2}
+  elementSprite:
+  - {fileID: 21300000, guid: fb941073dd60ab142951b0a337e15b15, type: 3}
+  - {fileID: 21300000, guid: 60c9e67cd5573cb4fa6a945104a8a9d4, type: 3}
+  - {fileID: 21300000, guid: bc866b8cc1ebbcb489d2dfd55d05ce4a, type: 3}
+  - {fileID: 21300000, guid: 64eb2b5e09a17fd49a31c90fdc048071, type: 3}
+  - {fileID: 21300000, guid: 40e89d282da2c464585076f44aae3f69, type: 3}
+  - {fileID: 21300000, guid: 710db1c8295a42d47800fb9fc8e71ccd, type: 3}
+  - {fileID: 21300000, guid: aa90c60a0d9a1d445ae0c18dcd329ffe, type: 3}
+  - {fileID: 21300000, guid: 355c9fe05434d254db39004a0c9c493a, type: 3}
 --- !u!1 &1094934788
 GameObject:
   m_ObjectHideFlags: 0
