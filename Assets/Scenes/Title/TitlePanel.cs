@@ -19,6 +19,9 @@ namespace Title
         [SerializeField]
         private ListBox listBox;
 
+        [SerializeField]
+        private GameObject settingPanelPrefab;
+
         private InputCommand[] InputCommands { get; set; }
 
         private void Awake()
@@ -36,7 +39,7 @@ namespace Title
             {
                 (ResourceManager.Term.newGame, "newGame"),
                 (ResourceManager.Term.continueGame, "continueGame"),
-                (ResourceManager.Term.options, "options"),
+                (ResourceManager.Term.settings, "setting"),
                 (ResourceManager.Term.endGame, "endGame")
             };
 
@@ -62,6 +65,9 @@ namespace Title
                     Dynamic.Party.InitializeByNewGame();
                     Map.PlayerController.WaitCount++;
                     ScreenManager.FadeOut(NewGameFadeOutCallback);
+                    break;
+                case "setting":
+                    UIManager.Instantiate(settingPanelPrefab);
                     break;
                 case "endGame":
                     Application.Quit();

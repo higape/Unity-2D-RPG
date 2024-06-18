@@ -563,6 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 848679457}
   listBox: {fileID: 1159164684}
+  settingPanelPrefab: {fileID: 3998932818969071980, guid: 81cbc18461c09bc4a8f31e43530201c3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -62,16 +62,6 @@ namespace Root
                 _ => null,
             };
 
-        public static bool CheckFolderPath(string folderPath)
-        {
-            return Directory.Exists(folderPath);
-        }
-
-        public static bool CheckFilePath(string filePath)
-        {
-            return File.Exists(filePath);
-        }
-
         /// <summary>
         /// 创建存档路径
         /// </summary>
@@ -89,12 +79,26 @@ namespace Root
             }
         }
 
+        public static void SaveJson(string filepath, object data)
+        {
+            try
+            {
+                filepath = Path.Combine(RootDirectory, filepath);
+                string json = JsonUtility.ToJson(data);
+                File.WriteAllText(filepath, json, Encoding.UTF8);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+        }
+
         public static T LoadJson<T>(string filepath)
         {
             try
             {
                 filepath = Path.Combine(RootDirectory, filepath);
-                if (CheckFilePath(filepath))
+                if (File.Exists(filepath))
                 {
                     string json = File.ReadAllText(filepath, Encoding.UTF8);
                     var obj = JsonUtility.FromJson<T>(json);

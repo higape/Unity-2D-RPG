@@ -130,7 +130,7 @@ namespace Static
 
         public string newGame;
         public string continueGame;
-        public string options;
+        public string settings;
         public string endGame;
 
         public string saveFile;
@@ -151,6 +151,9 @@ namespace Static
 
         public string buy;
         public string sell;
+
+        public string bgm;
+        public string se;
 
         #endregion
 

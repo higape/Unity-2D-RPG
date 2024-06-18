@@ -22,7 +22,7 @@ MonoBehaviour:
   agi: "\u654F\u6377"
   hit: "\u547D\u4E2D"
   eva: "\u56DE\u907F"
-  resistance: "\u62B5\u6297\u529B"
+  elementResistance: "\u6297\u6027"
   currencyUnit: G
   price: "\u4EF7\u683C"
   sellingPrice: "\u552E\u4EF7"
@@ -94,7 +94,7 @@ MonoBehaviour:
   promptCannotUseItemInMenu: "\u8FD9\u4E2A\u9053\u5177\u4E0D\u80FD\u5728\u83DC\u5355\u4F7F\u7528"
   newGame: "\u65B0\u6E38\u620F"
   continueGame: "\u7EE7\u7EED\u6E38\u620F"
-  options: "\u8BBE\u7F6E"
+  settings: "\u8BBE\u5B9A"
   endGame: "\u7ED3\u675F\u6E38\u620F"
   saveFile: "\u5B58\u6863"
   loadFile: "\u8BFB\u6863"
@@ -110,3 +110,5 @@ MonoBehaviour:
   escape: "\u9003\u8DD1"
   buy: "\u4E70"
   sell: "\u5356"
+  bgm: BGM
+  se: SE

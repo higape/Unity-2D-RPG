@@ -17,13 +17,13 @@ namespace UI
         private ListBox listBox;
 
         [SerializeField]
-        private ActorStatusItem[] humanStatusItems;
+        private ActorStatusItem[] actorStatusItems;
 
         [SerializeField]
         private GameObject itemTypePrefab;
 
         [SerializeField]
-        private GameObject humanEquipmentPrefab;
+        private GameObject actorEquipmentPrefab;
 
         private UnityAction Callback { get; set; }
         private int SelectedIndex { get; set; }
@@ -60,7 +60,7 @@ namespace UI
                 (ResourceManager.Term.skill, "skill"),
                 (ResourceManager.Term.equip, "equip"),
                 (ResourceManager.Term.status, "status"),
-                (ResourceManager.Term.options, "options")
+                (ResourceManager.Term.settings, "settings")
             };
 
             listBox.Initialize(1, texts.Length, Refresh, texts);
@@ -79,7 +79,7 @@ namespace UI
         private void Start()
         {
 #if UNITY_EDITOR
-            if (humanStatusItems.Length != Party.MaxBattleMembers)
+            if (actorStatusItems.Length != Party.MaxBattleMembers)
             {
                 Debug.Log("ActorStatusItem 数量错误，应等于最大参战人员数量。");
             }
@@ -101,12 +101,12 @@ namespace UI
         private void RebindAllActor()
         {
             var list = Party.GetBattleActorList();
-            for (int i = 0; i < humanStatusItems.Length; i++)
+            for (int i = 0; i < actorStatusItems.Length; i++)
             {
                 if (i < list.Count)
-                    humanStatusItems[i].Rebind(list[i]);
+                    actorStatusItems[i].Rebind(list[i]);
                 else
-                    humanStatusItems[i].Rebind(null);
+                    actorStatusItems[i].Rebind(null);
             }
         }
 
@@ -120,7 +120,7 @@ namespace UI
                 case "equip":
                     SelectedIndex = 0;
                     IsSelectActor = true;
-                    humanStatusItems[0].Selected = true;
+                    actorStatusItems[0].Selected = true;
                     InputManagementSystem.AddCommands(
                         nameof(MainMenuPanel) + "Status",
                         StatusCommands
@@ -136,19 +136,19 @@ namespace UI
 
         private void ActorInteract()
         {
-            var human = Party.GetBattleActor(SelectedIndex);
-            if (human != null)
+            var actor = Party.GetBattleActor(SelectedIndex);
+            if (actor != null)
                 UIManager
-                    .Instantiate(humanEquipmentPrefab)
+                    .Instantiate(actorEquipmentPrefab)
                     .GetComponent<ActorEquipmentPanel>()
-                    .SetActor(human);
+                    .SetActor(actor);
         }
 
         private void ActorCancel()
         {
             if (IsSelectActor)
             {
-                humanStatusItems[SelectedIndex].Selected = false;
+                actorStatusItems[SelectedIndex].Selected = false;
             }
             InputManagementSystem.RemoveCommands(nameof(MainMenuPanel) + "Status");
         }
@@ -157,9 +157,9 @@ namespace UI
         {
             if (SelectedIndex > 0)
             {
-                humanStatusItems[SelectedIndex].Selected = false;
+                actorStatusItems[SelectedIndex].Selected = false;
                 SelectedIndex--;
-                humanStatusItems[SelectedIndex].Selected = true;
+                actorStatusItems[SelectedIndex].Selected = true;
             }
         }
 
@@ -167,9 +167,9 @@ namespace UI
         {
             if (SelectedIndex < Party.GetBattleActorCount() - 1)
             {
-                humanStatusItems[SelectedIndex].Selected = false;
+                actorStatusItems[SelectedIndex].Selected = false;
                 SelectedIndex++;
-                humanStatusItems[SelectedIndex].Selected = true;
+                actorStatusItems[SelectedIndex].Selected = true;
             }
         }
 

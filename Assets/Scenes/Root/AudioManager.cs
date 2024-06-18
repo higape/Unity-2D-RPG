@@ -15,6 +15,16 @@ namespace Root
         private static AudioClip Interact { get; set; }
         private static AudioClip Cancel { get; set; }
 
+        public static void SetBgmVolume(float volume) => BgmSource.volume = volume;
+
+        public static void SetSeVolume(float volume)
+        {
+            foreach (var s in SeSources)
+            {
+                s.volume = volume;
+            }
+        }
+
         public static void PlayBgm(AudioClip clip)
         {
             BgmSource.clip = clip;
@@ -85,7 +95,7 @@ namespace Root
         [SerializeField]
         private AudioClip cancel;
 
-        private void Start()
+        private void Awake()
         {
             BgmSource = bgmSource;
             MeSource = meSource;
