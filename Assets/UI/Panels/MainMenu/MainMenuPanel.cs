@@ -25,6 +25,9 @@ namespace UI
         [SerializeField]
         private GameObject actorEquipmentPrefab;
 
+        [SerializeField]
+        private GameObject settingPanelPrefab;
+
         private UnityAction Callback { get; set; }
         private int SelectedIndex { get; set; }
         private bool IsSelectActor { get; set; }
@@ -125,6 +128,9 @@ namespace UI
                         nameof(MainMenuPanel) + "Status",
                         StatusCommands
                     );
+                    break;
+                case "settings":
+                    UIManager.Instantiate(settingPanelPrefab);
                     break;
             }
         }
