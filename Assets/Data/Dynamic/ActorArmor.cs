@@ -40,7 +40,7 @@ namespace Dynamic
                     item.Effect.type0 == Static.BattleEffect.EffectType.AdditionType
                     && item.Effect.type1 == (int)Static.BattleEffect.ActorType.Skill
                 )
-                    Skills.Add(new Skill(item.effectValue, false, () => true));
+                    Skills.Add(new Skill(item.effectValue));
             }
         }
 

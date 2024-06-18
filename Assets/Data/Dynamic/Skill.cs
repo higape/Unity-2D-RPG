@@ -9,13 +9,28 @@ namespace Dynamic
     {
         public delegate bool BoolFunction();
 
+        public Skill(int id)
+        {
+            DataObject = Root.ResourceManager.Skill.GetItem(id);
+            IsCountLimit = false;
+            CheckUsable = () => true;
+        }
+
+        public Skill(int id, int maxUsageCount)
+        {
+            DataObject = Root.ResourceManager.Skill.GetItem(id);
+            MaxUsageCount = maxUsageCount;
+            IsCountLimit = true;
+            CheckUsable = () => true;
+        }
+
         /// <param name="id">技能ID</param>
         /// <param name="isCountLimit">是否有使用次数的限制</param>
         /// <param name="checkUsable">此方法的返回值决定技能是否可以使用</param>
-        public Skill(int id, bool isCountLimit, BoolFunction checkUsable)
+        public Skill(int id, BoolFunction checkUsable)
         {
             DataObject = Root.ResourceManager.Skill.GetItem(id);
-            IsCountLimit = isCountLimit;
+            IsCountLimit = false;
             CheckUsable = checkUsable;
         }
 
@@ -69,9 +84,9 @@ namespace Dynamic
 
         protected override void StartBullet()
         {
-            if (Owner is Actor human)
+            if (Owner is Actor actor)
             {
-                human.ShowMotion(Skin, ProcessBullet);
+                actor.ShowMotion(Skin, ProcessBullet);
             }
             else
             {

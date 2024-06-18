@@ -54,6 +54,18 @@ namespace Static
             public Sprite dead;
         }
 
+        public class SaveData
+        {
+            public int id;
+            public string name;
+            public int lv;
+            public int exp;
+            public int hp;
+            public int[] skillConsumeCounts;
+            public int[] weaponIDs;
+            public int[] armorIDs;
+        }
+
         /// <summary>
         /// 初始等级，由等级决定初始经验值
         /// </summary>

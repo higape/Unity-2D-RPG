@@ -22,8 +22,52 @@ namespace Dynamic
 
             CreateEquipment();
             CreateOriginalSkill();
-            UpdateOriginalSkill();
             Recover();
+        }
+
+        public Actor(Static.Actor.SaveData saveData)
+        {
+            DataObject = ResourceManager.Actor.GetItem(saveData.id);
+            Name = saveData.name;
+            Level = saveData.lv;
+            Exp = saveData.exp;
+            Hp = saveData.hp;
+
+            CreateEquipment();
+            CreateOriginalSkill();
+        }
+
+        public Static.Actor.SaveData ToSaveData()
+        {
+            Static.Actor.SaveData saveData =
+                new()
+                {
+                    id = DataObject.id,
+                    name = Name,
+                    lv = Level,
+                    exp = Exp,
+                    hp = Hp,
+                    skillConsumeCounts = new int[DataObject.skills.Length],
+                    weaponIDs = new int[WeaponCount],
+                    armorIDs = new int[ArmorCount]
+                };
+
+            for (int i = 0; i < saveData.skillConsumeCounts.Length; i++)
+            {
+                saveData.skillConsumeCounts[i] = OriginalSkills[i].ConsumeCount;
+            }
+
+            for (int i = 0; i < WeaponCount; i++)
+            {
+                saveData.weaponIDs[i] = Weapons[i] == null ? 0 : Weapons[i].ID;
+            }
+
+            for (int i = 0; i < ArmorCount; i++)
+            {
+                saveData.armorIDs[i] = Armors[i] == null ? 0 : Armors[i].ID;
+            }
+
+            return saveData;
         }
 
         private int hp;
@@ -298,9 +342,11 @@ namespace Dynamic
         private void CreateOriginalSkill()
         {
             OriginalSkills = new(DataObject.skills.Length);
-            foreach (var sd in DataObject.skills)
+            for (int i = 0; i < DataObject.skills.Length; i++)
             {
-                OriginalSkills.Add(new Skill(sd.id, true, () => true));
+                var sd = DataObject.skills[i];
+                var skill = new Skill(sd.id, sd.GetCount(Level));
+                OriginalSkills.Add(skill);
             }
         }
 

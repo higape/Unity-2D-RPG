@@ -34,7 +34,7 @@ namespace Dynamic
                 EffectType0 == BET.AdditionType
                 && EffectType1 == (int)Static.BattleEffect.ActorType.Skill
             )
-                Skill = new Skill(EffectValue, false, () => true);
+                Skill = new Skill(EffectValue);
         }
 
         private Static.DurationState DataObject { get; set; }
