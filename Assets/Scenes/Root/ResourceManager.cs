@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Static;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Root
 {
@@ -15,6 +12,8 @@ namespace Root
     /// </summary>
     public class ResourceManager : MonoBehaviour
     {
+        public const string SaveFileName = "SAVEDATA??.save";
+
         public static string RootDirectory
         {
             get
@@ -26,6 +25,8 @@ namespace Root
 #endif
             }
         }
+
+        public static string SaveDirectory => Path.Combine(RootDirectory, "Save");
 
         public static GameInfo GameInfo { get; private set; }
         public static Term Term { get; private set; }
@@ -69,7 +70,7 @@ namespace Root
         {
             try
             {
-                string savePath = Path.Combine(RootDirectory, "Save");
+                string savePath = SaveDirectory;
                 if (!Directory.Exists(savePath))
                     Directory.CreateDirectory(savePath);
             }
@@ -83,7 +84,6 @@ namespace Root
         {
             try
             {
-                filepath = Path.Combine(RootDirectory, filepath);
                 string json = JsonUtility.ToJson(data);
                 File.WriteAllText(filepath, json, Encoding.UTF8);
             }
@@ -97,7 +97,6 @@ namespace Root
         {
             try
             {
-                filepath = Path.Combine(RootDirectory, filepath);
                 if (File.Exists(filepath))
                 {
                     string json = File.ReadAllText(filepath, Encoding.UTF8);
@@ -130,56 +129,68 @@ namespace Root
             return Resources.Load<T>(filepath);
         }
 
-        //存档
-        /* public static bool SaveFile(string filename, object save)
+        public static void SaveNewFile(SaveData saveData)
         {
             try
             {
-                string saveFolderPath = Path.Combine(RootDirectory, "Save");
-                if (!Directory.Exists(saveFolderPath))
+                var dirpath = SaveDirectory;
+                if (!Directory.Exists(dirpath))
+                    CheckAndCreatePath();
+                string[] dirs = Directory.GetFiles(dirpath, SaveFileName);
+                int i;
+                for (i = 1; i < 100; i++)
                 {
-                    Directory.CreateDirectory(saveFolderPath);
+                    bool result = true;
+                    string current = SaveFileName.Replace("??", i.ToString().PadLeft(2, '0'));
+                    foreach (string dir in dirs)
+                    {
+                        string fn = Path.GetFileName(dir);
+                        if (current == fn)
+                        {
+                            result = false;
+                            break;
+                        }
+                    }
+                    if (result)
+                    {
+                        SaveJson(Path.Combine(dirpath, current), saveData);
+                        return;
+                    }
                 }
-                string filePath = Path.Combine(saveFolderPath, filename);
-                BinaryFormatter bf = new();
-                FileStream file = File.Create(filePath);
-                bf.Serialize(file, save);
-                file.Close();
-                return true;
             }
             catch (Exception e)
             {
                 Debug.LogError(e.Message);
-                return false;
             }
-        } */
+        }
 
-        //读档
-        /* public static object LoadFile(string filename)
+        public static SaveData[] LoadSaveInfo()
         {
             try
             {
-                string filePath = Path.Combine(RootDirectory, "Save", filename);
-                if (File.Exists(filePath))
+                string[] dirs = Directory.GetFiles(SaveDirectory, SaveFileName);
+                List<SaveData> saveDatas = new();
+                foreach (string dir in dirs)
                 {
-                    BinaryFormatter bf = new();
-                    FileStream file = File.Open(filePath, FileMode.Open);
-                    object save = bf.Deserialize(file);
-                    file.Close();
-                    return save;
+                    string fn = Path.GetFileName(dir);
+                    if (char.IsDigit(fn[8]) && char.IsDigit(fn[9]))
+                    {
+                        var save = LoadJson<SaveData>(dir);
+                        if (save != null)
+                        {
+                            save.name = fn.Remove(10);
+                            saveDatas.Add(save);
+                        }
+                    }
                 }
-                else
-                {
-                    Debug.Log("No gamesaved!");
-                    return null;
-                }
+                return saveDatas.ToArray();
             }
             catch (Exception e)
             {
                 Debug.LogError(e.Message);
                 return null;
             }
-        } */
+        }
 
         [SerializeField]
         private GameInfo gameInfo;

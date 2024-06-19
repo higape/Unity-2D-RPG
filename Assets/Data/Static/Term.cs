@@ -135,6 +135,7 @@ namespace Static
 
         public string saveFile;
         public string loadFile;
+        public string createFile;
 
         public string cancel;
         public string back;

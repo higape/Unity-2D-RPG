@@ -98,6 +98,7 @@ MonoBehaviour:
   endGame: "\u7ED3\u675F\u6E38\u620F"
   saveFile: "\u5B58\u6863"
   loadFile: "\u8BFB\u6863"
+  createFile: "\u65B0\u5EFA\u5B58\u6863"
   cancel: "\u53D6\u6D88"
   back: "\u8FD4\u56DE"
   item: "\u9053\u5177"

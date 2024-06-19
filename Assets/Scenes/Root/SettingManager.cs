@@ -35,12 +35,17 @@ namespace Root
 
         public static void SaveSetting()
         {
-            ResourceManager.SaveJson(Path.Combine("Save", "Setting.json"), GlobalSetting);
+            ResourceManager.SaveJson(
+                Path.Combine(ResourceManager.SaveDirectory, "Setting.json"),
+                GlobalSetting
+            );
         }
 
         private void Awake()
         {
-            GlobalSetting = ResourceManager.LoadJson<Setting>(Path.Combine("Save", "Setting.json"));
+            GlobalSetting = ResourceManager.LoadJson<Setting>(
+                Path.Combine(ResourceManager.SaveDirectory, "Setting.json")
+            );
             if (GlobalSetting == null)
             {
                 GlobalSetting = CreateDefaultSetting();
