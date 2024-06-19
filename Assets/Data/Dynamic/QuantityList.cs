@@ -26,6 +26,16 @@ namespace Dynamic
 
         public QuantityList() { }
 
+        public QuantityList(int[] data)
+        {
+            int i = 0;
+            while (i < data.Length)
+            {
+                Add(new(data[i], data[i + 1]));
+                i += 2;
+            }
+        }
+
         public int GetQuantity(int id)
         {
             foreach (var item in this)
@@ -95,6 +105,30 @@ namespace Dynamic
             }
 
             return false;
+        }
+
+        // public (int[], int[]) ToSaveData()
+        // {
+        //     int[] idArray = new int[this.Count];
+        //     int[] quantityArray = new int[this.Count];
+        //     for (int i = 0; i < this.Count; i++)
+        //     {
+        //         idArray[i] = this[i].id;
+        //         quantityArray[i] = this[i].quantity;
+        //     }
+        //     return (idArray, quantityArray);
+        // }
+
+        public int[] ToSaveData()
+        {
+            int[] data = new int[this.Count * 2];
+            int j = 0;
+            foreach (var v in this)
+            {
+                data[j++] = v.id;
+                data[j++] = v.quantity;
+            }
+            return data;
         }
     }
 }

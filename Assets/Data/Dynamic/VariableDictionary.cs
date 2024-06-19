@@ -16,10 +16,16 @@ namespace Dynamic
         /// </summary>
         public UnityEvent<TKey, TValue> valueChanged = new();
 
-        private List<TKey> keys = new();
-        private List<TValue> values = new();
+        private List<TKey> keys;
+        private List<TValue> values;
 
-        public void Setup(List<TKey> keys, List<TValue> values)
+        public VariableDictionary()
+        {
+            keys = new();
+            values = new();
+        }
+
+        public VariableDictionary(IList<TKey> keys, IList<TValue> values)
         {
 #if UNITY_EDITOR
             if (keys.Count != values.Count)
@@ -27,8 +33,8 @@ namespace Dynamic
                 Debug.LogError("键值对配对异常。");
             }
 #endif
-            this.keys = keys;
-            this.values = values;
+            this.keys = new(keys);
+            this.values = new(values);
         }
 
         public void SetValue(TKey key, TValue value)
@@ -60,19 +66,10 @@ namespace Dynamic
             return keys.ToArray();
         }
 
+        //用于序列化保存
         public TValue[] GetValues()
         {
             return values.ToArray();
         }
-
-        /*public override string ToString()
-        {
-            string s = "Dictionary:";
-            for(int i = 0; i < keys.Count && i < values.Count; i++)
-            {
-                s += $"{keys[i]}:{values[i]}, ";
-            }
-            return s;
-        }*/
     }
 }

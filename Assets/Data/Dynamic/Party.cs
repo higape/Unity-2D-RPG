@@ -193,6 +193,24 @@ namespace Dynamic
             return null;
         }
 
+        public static int[] GetPartyActorIDs()
+        {
+            int[] ids = new int[PartyActorList.Count];
+            for (int i = 0; i < ids.Length; i++)
+            {
+                ids[i] = PartyActorList[i].ID;
+            }
+            return ids;
+        }
+
+        public static Actor GetActorByID(int id)
+        {
+            foreach (Actor actor in AllActorList)
+                if (actor.ID == id)
+                    return actor;
+            return null;
+        }
+
         /// <summary>
         /// 从新游戏初始化
         /// </summary>
@@ -263,7 +281,70 @@ namespace Dynamic
         /// <summary>
         /// 从存档初始化
         /// </summary>
-        public static void InitializeBySaveFile() { }
+        public static void InitializeBySaveData(Static.SaveData saveData)
+        {
+            Gold = saveData.gold;
+            BoolVariables = new(saveData.boolKeys, saveData.boolValues);
+            IntVariables = new(saveData.intKeys, saveData.intValues);
+            ActorWeapon = new(saveData.actorWeapons);
+            ActorHeadArmor = new(saveData.actorHeadArmors);
+            ActorBodyArmor = new(saveData.actorBodyArmors);
+            ActorHandArmor = new(saveData.actorHandArmors);
+            ActorFootArmor = new(saveData.actorFootArmors);
+            ActorOrnamentArmor = new(saveData.actorOrnamentArmors);
+            ActorRecoverItem = new(saveData.actorRecoverItems);
+            ActorAttackItem = new(saveData.actorAttackItems);
+            ActorAuxiliaryItem = new(saveData.actorAuxiliaryItems);
+            ActorNormalItem = new(saveData.actorNormalItems);
+            AllActorList = new();
+            foreach (var actorData in saveData.actors)
+            {
+                AllActorList.Add(new(actorData));
+            }
+            PartyActorList = new();
+            foreach (int id in saveData.partyActorIDs)
+            {
+                PartyActorList.Add(GetActorByID(id));
+            }
+        }
+
+        public static Static.SaveData CreateSaveData()
+        {
+            var date = DateTime.Now;
+            var actors = new Static.Actor.SaveData[AllActorList.Count];
+            for (int i = 0; i < actors.Length; i++)
+            {
+                actors[i] = AllActorList[i].ToSaveData();
+            }
+            Static.SaveData saveData =
+                new()
+                {
+                    year = date.Year,
+                    month = date.Month,
+                    day = date.Day,
+                    hour = date.Hour,
+                    minute = date.Minute,
+                    second = date.Second,
+                    gold = Gold,
+                    boolKeys = BoolVariables.GetKeys(),
+                    boolValues = BoolVariables.GetValues(),
+                    intKeys = IntVariables.GetKeys(),
+                    intValues = IntVariables.GetValues(),
+                    actorWeapons = ActorWeapon.ToSaveData(),
+                    actorHeadArmors = ActorHeadArmor.ToSaveData(),
+                    actorBodyArmors = ActorBodyArmor.ToSaveData(),
+                    actorHandArmors = ActorHandArmor.ToSaveData(),
+                    actorFootArmors = ActorFootArmor.ToSaveData(),
+                    actorOrnamentArmors = ActorOrnamentArmor.ToSaveData(),
+                    actorRecoverItems = ActorRecoverItem.ToSaveData(),
+                    actorAttackItems = ActorAttackItem.ToSaveData(),
+                    actorAuxiliaryItems = ActorAuxiliaryItem.ToSaveData(),
+                    actorNormalItems = ActorNormalItem.ToSaveData(),
+                    actors = actors,
+                    partyActorIDs = GetPartyActorIDs()
+                };
+            return saveData;
+        }
 
         private static readonly UnityEvent<int> goldChanged = new();
 
