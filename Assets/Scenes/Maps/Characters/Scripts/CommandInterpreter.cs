@@ -137,6 +137,9 @@ namespace Map
                     case CT.Shop:
                         Shop();
                         return;
+                    case CT.OpenSystemMenu:
+                        OpenSystemMenu();
+                        return;
                     case CT.TransferPlayer:
                         TransferPlayer();
                         return;
@@ -333,6 +336,16 @@ namespace Map
                     CurrentIndex++;
                 }
             );
+        }
+
+        private void OpenSystemMenu()
+        {
+            Pause = true;
+            UIManager.OpenSystemMenu(() =>
+            {
+                Pause = false;
+                CurrentIndex++;
+            });
         }
 
         private void TransferPlayer()

@@ -43,6 +43,13 @@ namespace UI
                 .Setup(id, callback);
         }
 
+        public static void OpenSystemMenu(UnityAction callback)
+        {
+            Instantiate(Instance.systemMenuPrefab, Instance.transform)
+                .GetComponent<SystemChoicePanel>()
+                .Setup(callback);
+        }
+
         [SerializeField]
         private GameObject messagePanelPrefab;
 
@@ -51,6 +58,9 @@ namespace UI
 
         [SerializeField]
         private GameObject shopPanelPrefab;
+
+        [SerializeField]
+        private GameObject systemMenuPrefab;
 
         private void Awake()
         {

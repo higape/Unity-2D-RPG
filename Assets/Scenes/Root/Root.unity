@@ -3071,6 +3071,7 @@ MonoBehaviour:
   messagePanelPrefab: {fileID: 7451598186966491399, guid: fa5e11ac3d5bf2c44b0785bc7e22bc7f, type: 3}
   choiceListPanelPrefab: {fileID: 4889884933614078618, guid: bc249b9b0968b3f48ba9205085bc0875, type: 3}
   shopPanelPrefab: {fileID: 6472040937346605360, guid: c5cd1a226a70d0a42b4c4183b30716d1, type: 3}
+  systemMenuPrefab: {fileID: 8495319737791800830, guid: df6eda22bbb914142a96b449e1067edc, type: 3}
 --- !u!114 &2023746351 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5912078835740794271, guid: d1c6c7838abadd64688ad4ddbdea8e2a, type: 3}

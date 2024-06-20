@@ -29,6 +29,9 @@ namespace Map
             [InspectorName("商店[ID]")]
             Shop = 310,
 
+            [InspectorName("打开系统菜单")]
+            OpenSystemMenu = 400,
+
             #endregion
 
             #region Map
