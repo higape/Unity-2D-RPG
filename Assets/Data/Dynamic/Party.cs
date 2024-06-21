@@ -316,6 +316,7 @@ namespace Dynamic
             {
                 actors[i] = AllActorList[i].ToSaveData();
             }
+            var position = Map.PlayerParty.PlayerPosition;
             Static.SaveData saveData =
                 new()
                 {
@@ -341,7 +342,9 @@ namespace Dynamic
                     actorAuxiliaryItems = ActorAuxiliaryItem.ToSaveData(),
                     actorNormalItems = ActorNormalItem.ToSaveData(),
                     actors = actors,
-                    partyActorIDs = GetPartyActorIDs()
+                    partyActorIDs = GetPartyActorIDs(),
+                    startMapName = MapManager.CurrentMapSceneName,
+                    startPosition = new(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y))
                 };
             return saveData;
         }

@@ -20,12 +20,20 @@ namespace Title
         private ListBox listBox;
 
         [SerializeField]
+        private GameObject loadFilePanelPrefab;
+
+        [SerializeField]
         private GameObject settingPanelPrefab;
+
+        private Static.SaveData[] SaveData { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
 
+        private LoadFilePanel LoadFilePanelInstance { get; set; }
+
         private void Awake()
         {
+            SaveData = ResourceManager.LoadSaveInfo();
             title.text = ResourceManager.GameInfo.gameName;
 
             InputCommands = new InputCommand[]
@@ -35,12 +43,12 @@ namespace Title
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
             };
 
-            (string, string)[] texts = new (string, string)[]
+            (string, string, bool)[] texts = new (string, string, bool)[]
             {
-                (ResourceManager.Term.newGame, "newGame"),
-                (ResourceManager.Term.continueGame, "continueGame"),
-                (ResourceManager.Term.settings, "setting"),
-                (ResourceManager.Term.endGame, "endGame")
+                (ResourceManager.Term.newGame, "newGame", true),
+                (ResourceManager.Term.continueGame, "continueGame", SaveData.Length > 0),
+                (ResourceManager.Term.settings, "setting", true),
+                (ResourceManager.Term.endGame, "endGame", true)
             };
 
             listBox.Initialize(1, texts.Length, RefreshItem, texts);
@@ -58,13 +66,34 @@ namespace Title
 
         private void Interact()
         {
-            switch ((((string, string))listBox.SelectedItem).Item2)
+            switch ((((string, string, bool))listBox.SelectedItem).Item2)
             {
                 case "newGame":
                     enabled = false;
                     Dynamic.Party.InitializeByNewGame();
                     Map.PlayerController.WaitCount++;
                     ScreenManager.FadeOut(NewGameFadeOutCallback);
+                    break;
+                case "continueGame":
+                    if (SaveData.Length > 0)
+                    {
+                        LoadFilePanelInstance = UIManager
+                            .Instantiate(loadFilePanelPrefab)
+                            .GetComponent<LoadFilePanel>();
+                        LoadFilePanelInstance.Setup(
+                            SaveData,
+                            (saveData) =>
+                            {
+                                Dynamic.Party.InitializeBySaveData(saveData);
+                                Map.PlayerController.WaitCount++;
+                                ScreenManager.FadeOut(() =>
+                                {
+                                    Destroy(LoadFilePanelInstance.gameObject);
+                                    LoadFileFadeOutCallback(saveData);
+                                });
+                            }
+                        );
+                    }
                     break;
                 case "setting":
                     UIManager.Instantiate(settingPanelPrefab);
@@ -78,9 +107,25 @@ namespace Title
         private static void NewGameFadeOutCallback()
         {
             SceneManager.UnloadSceneAsync("Title");
+            Map.PlayerParty.StartPosition = ResourceManager.GameInfo.startPosition;
             SceneManager.LoadScene("MapRoot", LoadSceneMode.Additive);
             MapManager.GoToNewMap(
                 ResourceManager.GameInfo.startMapName,
+                () => ScreenManager.FadeIn(() => Map.PlayerController.WaitCount--)
+            );
+        }
+
+        private static void LoadFileFadeOutCallback(Static.SaveData saveData)
+        {
+            SceneManager.UnloadSceneAsync("Title");
+            Map.PlayerParty.StartPosition = new Vector3(
+                saveData.startPosition.x,
+                saveData.startPosition.y,
+                0
+            );
+            SceneManager.LoadScene("MapRoot", LoadSceneMode.Additive);
+            MapManager.GoToNewMap(
+                saveData.startMapName,
                 () => ScreenManager.FadeIn(() => Map.PlayerController.WaitCount--)
             );
         }
@@ -91,7 +136,9 @@ namespace Title
             {
                 if (data != null)
                 {
-                    c.textComponent.text = (((string, string))data).Item1;
+                    var v = ((string, string, bool))data;
+                    c.textComponent.text = v.Item1;
+                    c.textComponent.color = v.Item3 ? Color.white : Color.gray;
                 }
                 else
                 {

@@ -18,6 +18,7 @@ namespace Map
         public static List<GameObject> Followers { get; private set; }
         public static List<Mover> FollowerMovers { get; private set; }
         public static Static.CharacterSkin BlankSkin => Instance.blankSkin;
+        public static Vector3 StartPosition { get; set; }
 
         public static void RefreshPlayerSkin()
         {
@@ -87,7 +88,7 @@ namespace Map
             //生成玩家对象并设置位置
             Player = Instantiate(playerPrefab, transform);
             PlayerMover = Player.GetComponent<Mover>();
-            PlayerMover.Position = ResourceManager.GameInfo.startPosition;
+            PlayerMover.Position = StartPosition;
 
             //生成跟随玩家的队友并设置位置
             Followers = new();
@@ -97,7 +98,7 @@ namespace Map
                 var f = Instantiate(followerPrefab, transform);
                 Followers.Add(f);
                 var fm = f.GetComponent<Mover>();
-                fm.Position = ResourceManager.GameInfo.startPosition;
+                fm.Position = StartPosition;
                 FollowerMovers.Add(fm);
             }
 

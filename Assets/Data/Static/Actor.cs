@@ -54,6 +54,7 @@ namespace Static
             public Sprite dead;
         }
 
+        [Serializable]
         public class SaveData
         {
             public int id;

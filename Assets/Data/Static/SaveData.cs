@@ -34,5 +34,8 @@ namespace Static
         public int[] actorNormalItems;
         public Actor.SaveData[] actors;
         public int[] partyActorIDs;
+
+        public string startMapName;
+        public Vector2Int startPosition;
     }
 }

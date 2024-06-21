@@ -31,10 +31,10 @@ namespace Dynamic
             Name = saveData.name;
             Level = saveData.lv;
             Exp = saveData.exp;
-            Hp = saveData.hp;
 
             CreateEquipment();
             CreateOriginalSkill();
+            Hp = saveData.hp;
         }
 
         public Static.Actor.SaveData ToSaveData()
