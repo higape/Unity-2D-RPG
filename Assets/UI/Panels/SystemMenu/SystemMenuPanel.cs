@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace UI
 {
-    public class SystemChoicePanel : MonoBehaviour
+    public class SystemMenuPanel : MonoBehaviour
     {
         [SerializeField]
         private ListBox listBox;
@@ -52,12 +52,12 @@ namespace UI
 
         private void OnEnable()
         {
-            InputManagementSystem.AddCommands(nameof(SystemChoicePanel), InputCommands);
+            InputManagementSystem.AddCommands(nameof(SystemMenuPanel), InputCommands);
         }
 
         private void OnDisable()
         {
-            InputManagementSystem.RemoveCommands(nameof(SystemChoicePanel));
+            InputManagementSystem.RemoveCommands(nameof(SystemMenuPanel));
         }
 
         private void Interact()

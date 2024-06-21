@@ -46,7 +46,7 @@ namespace UI
         public static void OpenSystemMenu(UnityAction callback)
         {
             Instantiate(Instance.systemMenuPrefab, Instance.transform)
-                .GetComponent<SystemChoicePanel>()
+                .GetComponent<SystemMenuPanel>()
                 .Setup(callback);
         }
 
