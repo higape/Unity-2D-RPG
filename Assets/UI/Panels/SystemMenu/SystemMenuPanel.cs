@@ -24,6 +24,8 @@ namespace UI
 
         private InputCommand[] InputCommands { get; set; }
 
+        private LoadFilePanel LoadFilePanelInstance { get; set; }
+
         public void Setup(UnityAction callback)
         {
             Callback = callback;
@@ -71,7 +73,22 @@ namespace UI
                         UIManager.Instantiate(saveFilePanelPrefab);
                         break;
                     case "loadFile":
-                        UIManager.Instantiate(loadFilePanelPrefab);
+                        LoadFilePanelInstance = UIManager
+                            .Instantiate(loadFilePanelPrefab)
+                            .GetComponent<LoadFilePanel>();
+                        LoadFilePanelInstance.Setup(
+                            ResourceManager.LoadSaveInfo(),
+                            (saveData) =>
+                            {
+                                Map.PlayerController.WaitCount++;
+                                ScreenManager.FadeOut(() =>
+                                {
+                                    Destroy(LoadFilePanelInstance.gameObject);
+                                    LoadFileFadeOutCallback(saveData);
+                                    Destroy(gameObject);
+                                });
+                            }
+                        );
                         break;
                     case "settings":
                         UIManager.Instantiate(settingPanelPrefab);
@@ -85,6 +102,24 @@ namespace UI
                         break;
                 }
             }
+        }
+
+        private static void LoadFileFadeOutCallback(Static.SaveData saveData)
+        {
+            Dynamic.Party.InitializeBySaveData(saveData);
+            Map.PlayerParty.SetPartyPosition(
+                new Vector3(saveData.startPosition.x, saveData.startPosition.y, 0),
+                Map.Mover.DirectionType.Down
+            );
+            Map.PlayerParty.RefreshPlayerSkin();
+            MapManager.GoToNewMap(
+                saveData.startMapName,
+                () =>
+                {
+                    Map.CommandInterpreter.Pause = false;
+                    ScreenManager.FadeIn(() => Map.PlayerController.WaitCount--);
+                }
+            );
         }
 
         private static void QuitGame() => Application.Quit();

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listBox: {fileID: 9209033226383469755}
   saveFilePanelPrefab: {fileID: 8268065795828053596, guid: 5b0221d523675954f9444bb2bff5b252, type: 3}
-  loadFilePanelPrefab: {fileID: 0}
+  loadFilePanelPrefab: {fileID: 8268065795828053596, guid: db98cb11a7c410740917ba564cfc562f, type: 3}
   settingPanelPrefab: {fileID: 3998932818969071980, guid: 81cbc18461c09bc4a8f31e43530201c3, type: 3}
 --- !u!114 &5386185915513474424
 MonoBehaviour:
