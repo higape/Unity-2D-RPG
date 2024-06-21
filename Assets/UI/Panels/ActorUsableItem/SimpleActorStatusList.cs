@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Dynamic;
 using Root;
 using UnityEngine;
@@ -7,7 +5,7 @@ using UnityEngine.Events;
 
 namespace UI
 {
-    public class ActorSimpleStatusListPanel : MonoBehaviour
+    public class SimpleActorStatusList : MonoBehaviour
     {
         [SerializeField]
         private ListBox listBox;
@@ -26,18 +24,18 @@ namespace UI
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
-            var humans = Party.GetBattleActorList();
-            listBox.Initialize(1, humans.Count, RefreshItem, humans);
+            var actors = Party.GetBattleActorList();
+            listBox.Initialize(1, actors.Count, RefreshItem, actors);
         }
 
         private void OnEnable()
         {
-            InputManagementSystem.AddCommands(nameof(ActorSimpleStatusListPanel), InputCommands);
+            InputManagementSystem.AddCommands(nameof(SimpleActorStatusList), InputCommands);
         }
 
         private void OnDisable()
         {
-            InputManagementSystem.RemoveCommands(nameof(ActorSimpleStatusListPanel));
+            InputManagementSystem.RemoveCommands(nameof(SimpleActorStatusList));
         }
 
         public void SetCallback(UnityAction<Battler> callback)

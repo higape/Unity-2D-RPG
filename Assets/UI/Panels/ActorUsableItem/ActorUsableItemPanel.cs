@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using Dynamic;
 using Root;
 using UnityEngine;
-using HIT = Static.ActorUsableItem.ItemType;
+using AIT = Static.ActorUsableItem.ItemType;
 
 namespace UI
 {
-    public class ActorItemPanel : MonoBehaviour
+    public class ActorUsableItemPanel : MonoBehaviour
     {
         private delegate ActorUsableItem MakeCommodity(int id);
 
@@ -21,17 +19,22 @@ namespace UI
         private ActorUsableItemStatistic itemStatistic;
 
         [SerializeField]
-        private GameObject humanListPrefab;
+        private GameObject actorListPrefab;
 
         private MakeCommodity CurrentAction { get; set; }
 
-        private ActorSimpleStatusListPanel ActorListInstance { get; set; }
+        private SimpleActorStatusList ActorListInstance { get; set; }
 
         private QuantityList.ListItem CurrentQuantityItem { get; set; }
 
         private ActorUsableItem CurrentItem { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
+
+        public void Setup(int typeIndex)
+        {
+            typeListBox.Select(typeIndex);
+        }
 
         private void Awake()
         {
@@ -57,17 +60,16 @@ namespace UI
 
             typeListBox.Initialize(typeTexts.Length, 1, RefreshType, typeTexts);
             typeListBox.RegisterSelectedItemChangeCallback(OnTypeChange);
-            typeListBox.SelectFirst();
         }
 
         private void OnEnable()
         {
-            InputManagementSystem.AddCommands(nameof(ActorItemPanel), InputCommands);
+            InputManagementSystem.AddCommands(nameof(ActorUsableItemPanel), InputCommands);
         }
 
         private void OnDisable()
         {
-            InputManagementSystem.RemoveCommands(nameof(ActorItemPanel));
+            InputManagementSystem.RemoveCommands(nameof(ActorUsableItemPanel));
         }
 
         private void OnTypeChange(object data, int index)
@@ -76,15 +78,15 @@ namespace UI
             switch ((((string, string))typeListBox.SelectedItem).Item2)
             {
                 case "recoverItem":
-                    CurrentAction = (id) => new ActorUsableItem(HIT.RecoverItem, id);
+                    CurrentAction = (id) => new ActorUsableItem(AIT.RecoverItem, id);
                     list = Party.ActorRecoverItem;
                     break;
                 case "attackItem":
-                    CurrentAction = (id) => new ActorUsableItem(HIT.AttackItem, id);
+                    CurrentAction = (id) => new ActorUsableItem(AIT.AttackItem, id);
                     list = Party.ActorAttackItem;
                     break;
                 case "auxiliaryItem":
-                    CurrentAction = (id) => new ActorUsableItem(HIT.AuxiliaryItem, id);
+                    CurrentAction = (id) => new ActorUsableItem(AIT.AuxiliaryItem, id);
                     list = Party.ActorAuxiliaryItem;
                     break;
                 default:
@@ -116,8 +118,8 @@ namespace UI
                 {
                     //打开角色面板并传递回调
                     ActorListInstance = UIManager
-                        .Instantiate(humanListPrefab)
-                        .GetComponent<ActorSimpleStatusListPanel>();
+                        .Instantiate(actorListPrefab)
+                        .GetComponent<SimpleActorStatusList>();
                     ActorListInstance.SetCallback(OnActorInteract);
                 }
                 else

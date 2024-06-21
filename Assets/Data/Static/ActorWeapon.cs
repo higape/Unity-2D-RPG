@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Static
 {
     /// <summary>
-    /// 人类武器
+    /// 角色武器
     /// </summary>
     [Serializable]
     public class ActorWeapon : NameItem

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Static
 {
     /// <summary>
-    /// 人类角色的初始配置
+    /// 角色的初始配置
     /// </summary>
     [Serializable]
     public class Actor : Battler

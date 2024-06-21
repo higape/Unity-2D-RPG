@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Static
 {
     /// <summary>
-    /// 人类可使用的物品，包括攻击道具和药品，部分道具可以在菜单使用。
+    /// 角色可使用的物品，包括攻击道具和药品，部分道具可以在菜单使用。
     /// </summary>
     [Serializable]
     public class ActorUsableItem : NameItem

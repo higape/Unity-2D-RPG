@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listBox: {fileID: 7103713499786140500}
-  humanItemPrefab: {fileID: 5986435431713657235, guid: 02193926af1b44a45b25fd135a32c3b1, type: 3}
+  actorUsableItemPrefab: {fileID: 5986435431713657235, guid: 02193926af1b44a45b25fd135a32c3b1, type: 3}
 --- !u!114 &8409023225543768834
 MonoBehaviour:
   m_ObjectHideFlags: 0

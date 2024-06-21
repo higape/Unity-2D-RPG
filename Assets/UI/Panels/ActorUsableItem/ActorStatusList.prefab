@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 6944756751493924268}
   - component: {fileID: 1531244940535062995}
   m_Layer: 0
-  m_Name: ActorListPanel
+  m_Name: ActorStatusList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,10 +21,10 @@ namespace Static
             [InspectorName("用法")]
             Usage = 1,
 
-            [InspectorName("选择人类武器")]
+            [InspectorName("选择角色武器")]
             SelectActorWeapon = 2,
 
-            [InspectorName("选择人类道具")]
+            [InspectorName("选择角色道具")]
             SelectActorItem = 3,
         }
 

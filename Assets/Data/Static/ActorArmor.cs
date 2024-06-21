@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Static
 {
     /// <summary>
-    /// 人类防具
+    /// 角色防具
     /// </summary>
     [Serializable]
     public class ActorArmor : NameItem

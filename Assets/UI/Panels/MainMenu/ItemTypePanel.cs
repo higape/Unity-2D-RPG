@@ -11,7 +11,7 @@ namespace UI
         private ListBox listBox;
 
         [SerializeField]
-        private GameObject humanItemPrefab;
+        private GameObject actorUsableItemPrefab;
 
         private InputCommand[] InputCommands { get; set; }
 
@@ -27,8 +27,16 @@ namespace UI
 
             (string, string)[] texts = new (string, string)[]
             {
-                (ResourceManager.Term.item, "item"),
-                (ResourceManager.Term.equip, "equip")
+                (ResourceManager.Term.recoverItem, "recoverItem"),
+                (ResourceManager.Term.attackItem, "attackItem"),
+                (ResourceManager.Term.auxiliaryItem, "auxiliaryItem"),
+                (ResourceManager.Term.normalItem, "normalItem"),
+                (ResourceManager.Term.weapon, "weapon"),
+                (ResourceManager.Term.headArmor, "headArmor"),
+                (ResourceManager.Term.bodyArmor, "bodyArmor"),
+                (ResourceManager.Term.handArmor, "handArmor"),
+                (ResourceManager.Term.footArmor, "footArmor"),
+                (ResourceManager.Term.ornamentArmor, "ornamentArmor"),
             };
 
             listBox.Initialize(1, texts.Length, Refresh, texts);
@@ -48,10 +56,37 @@ namespace UI
         {
             switch ((((string, string))listBox.SelectedItem).Item2)
             {
-                case "item":
-                    UIManager.Instantiate(humanItemPrefab);
+                case "recoverItem":
+                    UIManager
+                        .Instantiate(actorUsableItemPrefab)
+                        .GetComponent<ActorUsableItemPanel>()
+                        .Setup(0);
                     break;
-                case "equip":
+                case "attackItem":
+                    UIManager
+                        .Instantiate(actorUsableItemPrefab)
+                        .GetComponent<ActorUsableItemPanel>()
+                        .Setup(1);
+                    break;
+                case "auxiliaryItem":
+                    UIManager
+                        .Instantiate(actorUsableItemPrefab)
+                        .GetComponent<ActorUsableItemPanel>()
+                        .Setup(2);
+                    break;
+                case "normalItem":
+                    break;
+                case "weapon":
+                    break;
+                case "headArmor":
+                    break;
+                case "bodyArmor":
+                    break;
+                case "handArmor":
+                    break;
+                case "footArmor":
+                    break;
+                case "ornamentArmor":
                     break;
             }
         }

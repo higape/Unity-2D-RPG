@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Dynamic;
 using Root;
 using TMPro;
@@ -29,9 +27,9 @@ namespace UI
             hpLabel.text = ResourceManager.Term.hp;
         }
 
-        public void SetActor(Actor human)
+        public void SetActor(Actor actor)
         {
-            CurrentActor = human;
+            CurrentActor = actor;
             Refresh();
         }
 
