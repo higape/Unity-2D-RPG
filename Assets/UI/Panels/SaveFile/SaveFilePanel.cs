@@ -77,19 +77,31 @@ namespace UI
 
         private void RefreshItem(ListBoxItem listItem, object data)
         {
-            if (listItem is TextItem7 c)
+            if (listItem is TextItem3 c)
             {
                 if (data is Static.SaveData save)
                 {
                     c.textComponent0.text = save.name;
+                    c.textComponent1.text =
+                        save.year.ToString() + '/' + save.month + '/' + save.day;
+                    c.textComponent2.text =
+                        save.hour.ToString().PadLeft(2, '0')
+                        + ':'
+                        + save.minute.ToString().PadLeft(2, '0')
+                        + ':'
+                        + save.second.ToString().PadLeft(2, '0');
                 }
                 else if (data is int)
                 {
                     c.textComponent0.text = ResourceManager.Term.createFile;
+                    c.textComponent1.text = string.Empty;
+                    c.textComponent2.text = string.Empty;
                 }
                 else
                 {
-                    c.textComponent0.text = "nothing";
+                    c.textComponent0.text = " ";
+                    c.textComponent1.text = " ";
+                    c.textComponent2.text = " ";
                 }
             }
         }
