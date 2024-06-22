@@ -11,10 +11,13 @@ namespace UI
         private ListBox listBox;
 
         [SerializeField]
-        private GameObject actorUsableItemPrefab;
+        private GameObject actorUsableItemPanelPrefab;
 
         [SerializeField]
-        private GameObject actorArmorPrefab;
+        private GameObject actorArmorPanelPrefab;
+
+        [SerializeField]
+        private GameObject actorWeaponPanelPrefab;
 
         private InputCommand[] InputCommands { get; set; }
 
@@ -61,53 +64,54 @@ namespace UI
             {
                 case "recoverItem":
                     UIManager
-                        .Instantiate(actorUsableItemPrefab)
+                        .Instantiate(actorUsableItemPanelPrefab)
                         .GetComponent<ActorUsableItemPanel>()
                         .Setup(0);
                     break;
                 case "attackItem":
                     UIManager
-                        .Instantiate(actorUsableItemPrefab)
+                        .Instantiate(actorUsableItemPanelPrefab)
                         .GetComponent<ActorUsableItemPanel>()
                         .Setup(1);
                     break;
                 case "auxiliaryItem":
                     UIManager
-                        .Instantiate(actorUsableItemPrefab)
+                        .Instantiate(actorUsableItemPanelPrefab)
                         .GetComponent<ActorUsableItemPanel>()
                         .Setup(2);
                     break;
                 case "normalItem":
                     break;
                 case "weapon":
+                    UIManager.Instantiate(actorWeaponPanelPrefab);
                     break;
                 case "headArmor":
                     UIManager
-                        .Instantiate(actorArmorPrefab)
+                        .Instantiate(actorArmorPanelPrefab)
                         .GetComponent<ActorArmorPanel>()
                         .Setup(0);
                     break;
                 case "bodyArmor":
                     UIManager
-                        .Instantiate(actorArmorPrefab)
+                        .Instantiate(actorArmorPanelPrefab)
                         .GetComponent<ActorArmorPanel>()
                         .Setup(1);
                     break;
                 case "handArmor":
                     UIManager
-                        .Instantiate(actorArmorPrefab)
+                        .Instantiate(actorArmorPanelPrefab)
                         .GetComponent<ActorArmorPanel>()
                         .Setup(2);
                     break;
                 case "footArmor":
                     UIManager
-                        .Instantiate(actorArmorPrefab)
+                        .Instantiate(actorArmorPanelPrefab)
                         .GetComponent<ActorArmorPanel>()
                         .Setup(3);
                     break;
                 case "ornamentArmor":
                     UIManager
-                        .Instantiate(actorArmorPrefab)
+                        .Instantiate(actorArmorPanelPrefab)
                         .GetComponent<ActorArmorPanel>()
                         .Setup(4);
                     break;
