@@ -13,6 +13,9 @@ namespace UI
         [SerializeField]
         private GameObject actorUsableItemPrefab;
 
+        [SerializeField]
+        private GameObject actorArmorPrefab;
+
         private InputCommand[] InputCommands { get; set; }
 
         private void Awake()
@@ -79,14 +82,34 @@ namespace UI
                 case "weapon":
                     break;
                 case "headArmor":
+                    UIManager
+                        .Instantiate(actorArmorPrefab)
+                        .GetComponent<ActorArmorPanel>()
+                        .Setup(0);
                     break;
                 case "bodyArmor":
+                    UIManager
+                        .Instantiate(actorArmorPrefab)
+                        .GetComponent<ActorArmorPanel>()
+                        .Setup(1);
                     break;
                 case "handArmor":
+                    UIManager
+                        .Instantiate(actorArmorPrefab)
+                        .GetComponent<ActorArmorPanel>()
+                        .Setup(2);
                     break;
                 case "footArmor":
+                    UIManager
+                        .Instantiate(actorArmorPrefab)
+                        .GetComponent<ActorArmorPanel>()
+                        .Setup(3);
                     break;
                 case "ornamentArmor":
+                    UIManager
+                        .Instantiate(actorArmorPrefab)
+                        .GetComponent<ActorArmorPanel>()
+                        .Setup(4);
                     break;
             }
         }
