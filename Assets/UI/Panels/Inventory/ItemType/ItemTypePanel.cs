@@ -14,10 +14,13 @@ namespace UI
         private GameObject actorUsableItemPanelPrefab;
 
         [SerializeField]
-        private GameObject actorArmorPanelPrefab;
+        private GameObject actorNormalItemPanelPrefab;
 
         [SerializeField]
         private GameObject actorWeaponPanelPrefab;
+
+        [SerializeField]
+        private GameObject actorArmorPanelPrefab;
 
         private InputCommand[] InputCommands { get; set; }
 
@@ -81,6 +84,7 @@ namespace UI
                         .Setup(2);
                     break;
                 case "normalItem":
+                    UIManager.Instantiate(actorNormalItemPanelPrefab);
                     break;
                 case "weapon":
                     UIManager.Instantiate(actorWeaponPanelPrefab);

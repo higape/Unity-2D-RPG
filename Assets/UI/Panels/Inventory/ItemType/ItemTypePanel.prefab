@@ -52,8 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listBox: {fileID: 7103713499786140500}
   actorUsableItemPanelPrefab: {fileID: 5986435431713657235, guid: 02193926af1b44a45b25fd135a32c3b1, type: 3}
-  actorArmorPanelPrefab: {fileID: 5986435431713657235, guid: 1a3f99e1170dd39499287deab2cea91c, type: 3}
+  actorNormalItemPanelPrefab: {fileID: 5986435431713657235, guid: 48bc3d648b720dc4989f68dd1576aecd, type: 3}
   actorWeaponPanelPrefab: {fileID: 5986435431713657235, guid: 8a0a974924dbf5449bd38fb0234b57cc, type: 3}
+  actorArmorPanelPrefab: {fileID: 5986435431713657235, guid: 1a3f99e1170dd39499287deab2cea91c, type: 3}
 --- !u!114 &8409023225543768834
 MonoBehaviour:
   m_ObjectHideFlags: 0
