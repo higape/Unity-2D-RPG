@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 2323229324671203207}
   - {fileID: 4711439008080540368}
   itemTypePrefab: {fileID: 1722885761542503368, guid: d8f2d56c8d6f1134a91f1d7fd9ce410c, type: 3}
+  actorSkillPrefab: {fileID: 5986435431713657235, guid: e441bad4450b1e74eafb8fc48f4c74d3, type: 3}
   actorEquipmentPrefab: {fileID: 8095961990790901254, guid: 08b575faf947a94448edf164f8abac29, type: 3}
   settingPanelPrefab: {fileID: 3998932818969071980, guid: 81cbc18461c09bc4a8f31e43530201c3, type: 3}
 --- !u!114 &4869340796935838470

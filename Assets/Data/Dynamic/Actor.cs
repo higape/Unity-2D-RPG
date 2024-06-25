@@ -94,7 +94,7 @@ namespace Dynamic
         {
             get
             {
-                var list = new List<Skill>(OriginalSkills);
+                var list = new List<Skill>();
                 foreach (var item in OriginalSkills)
                     if (item.IsEnable)
                         list.Add(item);
@@ -105,7 +105,7 @@ namespace Dynamic
         /// <summary>
         /// 角色拥有的技能，不包括未习得的技能
         /// </summary>
-        private List<Skill> AllSkills
+        public List<Skill> AllSkills
         {
             get
             {

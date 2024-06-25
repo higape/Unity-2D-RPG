@@ -23,6 +23,9 @@ namespace UI
         private GameObject itemTypePrefab;
 
         [SerializeField]
+        private GameObject actorSkillPrefab;
+
+        [SerializeField]
         private GameObject actorEquipmentPrefab;
 
         [SerializeField]
@@ -120,6 +123,15 @@ namespace UI
                 case "item":
                     UIManager.Instantiate(itemTypePrefab);
                     break;
+                case "skill":
+                    SelectedIndex = 0;
+                    IsSelectActor = true;
+                    actorStatusItems[0].Selected = true;
+                    InputManagementSystem.AddCommands(
+                        nameof(MainMenuPanel) + "Status",
+                        StatusCommands
+                    );
+                    break;
                 case "equip":
                     SelectedIndex = 0;
                     IsSelectActor = true;
@@ -144,10 +156,23 @@ namespace UI
         {
             var actor = Party.GetBattleActor(SelectedIndex);
             if (actor != null)
-                UIManager
-                    .Instantiate(actorEquipmentPrefab)
-                    .GetComponent<ActorEquipmentPanel>()
-                    .SetActor(actor);
+            {
+                switch ((((string, string))listBox.SelectedItem).Item2)
+                {
+                    case "skill":
+                        UIManager
+                            .Instantiate(actorSkillPrefab)
+                            .GetComponent<SkillPanel>()
+                            .Setup(actor);
+                        break;
+                    case "equip":
+                        UIManager
+                            .Instantiate(actorEquipmentPrefab)
+                            .GetComponent<ActorEquipmentPanel>()
+                            .SetActor(actor);
+                        break;
+                }
+            }
         }
 
         private void ActorCancel()

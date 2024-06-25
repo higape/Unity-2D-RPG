@@ -57,6 +57,8 @@ namespace Dynamic
         /// </summary>
         public int MaxUsageCount { get; set; }
 
+        public int CurrentCount => MaxUsageCount - ConsumeCount;
+
         /// <summary>
         /// 是否有使用次数的限制
         /// </summary>
