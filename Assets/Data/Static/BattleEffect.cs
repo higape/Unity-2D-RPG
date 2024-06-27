@@ -49,9 +49,6 @@ namespace Static
 
             [InspectorName("附加")]
             AdditionType = 1005,
-
-            [InspectorName("范围变化")]
-            ScopeChange = 2001,
         }
 
         public enum DamageType

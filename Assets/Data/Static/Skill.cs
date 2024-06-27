@@ -13,7 +13,7 @@ namespace Static
         /// <summary>
         /// 使用方式
         /// </summary>
-        public enum UsedType
+        public enum SkillType
         {
             [InspectorName("被动")]
             Passivity = 0,
@@ -33,12 +33,12 @@ namespace Static
 
         public UsedOccasion occasion;
 
-        public UsedType usedType;
+        public SkillType skillType;
 
         /// <summary>
         /// 由 UsedType 决定意义，可以是用法ID或数量
         /// </summary>
-        public int usedValue;
+        public int usageID;
 
         /// <summary>
         /// 选项过滤。
@@ -46,13 +46,17 @@ namespace Static
         /// </summary>
         public int selectionFilter;
 
+        public int itemQuantity;
+
+        public int itemUsedCount;
+
         /// <summary>
         /// 效率
         /// </summary>
-        public int effectRate;
+        public int effectRatePercentage;
 
         /// <summary>
-        /// 冷却时间，技能类型为Usage时也以此值为准
+        /// 冷却时间
         /// </summary>
         public int waitTime;
 
@@ -64,13 +68,7 @@ namespace Static
         /// <summary>
         /// 被动效果，拥有技能即生效
         /// </summary>
-        [SerializeField]
-        private TraitData[] traits;
-
-        [NonSerialized]
-        private List<TraitData> traitList;
-
-        public List<TraitData> TraitList => traitList ??= new(traits);
+        public TraitData[] traits;
 
         [NonSerialized]
         private ActorWeaponSkin skin;
@@ -78,13 +76,8 @@ namespace Static
         public ActorWeaponSkin Skin =>
             skin ??= Root.ResourceManager.ActorWeaponSkin.GetItem(skinID);
 
-        [NonSerialized]
-        private WeaponUsage usage;
-
-        public WeaponUsage Usage => usage ??= Root.ResourceManager.WeaponUsage.GetItem(usedValue);
-
         public bool UsedInMenu =>
-            (occasion & UsedOccasion.Menu) != UsedOccasion.None && usedType == UsedType.Usage;
+            (occasion & UsedOccasion.Menu) != UsedOccasion.None && skillType == SkillType.Usage;
 
         public bool UsedInBattle => (occasion & UsedOccasion.Battle) != UsedOccasion.None;
     }

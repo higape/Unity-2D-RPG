@@ -557,7 +557,7 @@ namespace Battle
 
             var controlInfo = ActionableBattlers[0].ControlInfo;
 
-            if (ActionableBattlers[0] is Actor human)
+            if (ActionableBattlers[0] is Actor actor)
             {
                 bool enableSkill = true;
 
@@ -566,11 +566,11 @@ namespace Battle
                     switch (controlInfo.Item1)
                     {
                         case Static.BattleEffect.ControlType.Charm:
-                            Debug.Log($"未实现魅惑，跳过角色{human.Name}的行动");
+                            Debug.Log($"未实现魅惑，跳过角色{actor.Name}的行动");
                             ActionEnd();
                             return;
                         case Static.BattleEffect.ControlType.Confusion:
-                            Debug.Log($"未实现混乱，跳过角色{human.Name}的行动");
+                            Debug.Log($"未实现混乱，跳过角色{actor.Name}的行动");
                             ActionEnd();
                             return;
                         case Static.BattleEffect.ControlType.Fetter:
@@ -582,11 +582,11 @@ namespace Battle
                     }
                 }
 
-                (human.DisplayObject as DisplayActor).MoveToLeft();
+                (actor.DisplayObject as DisplayActor).MoveToLeft();
                 //打开指令面板
                 CreateUI(commandPanelPrefab)
                     .GetComponent<MainCommandPanel>()
-                    .Setup(human, enableSkill);
+                    .Setup(actor, enableSkill);
             }
             else
             {
@@ -636,8 +636,8 @@ namespace Battle
                     Enemies.Remove(enemy);
             }
 
-            foreach (var human in Party.GetBattleActorList())
-                human.UpdateDurationState();
+            foreach (var actor in Party.GetBattleActorList())
+                actor.UpdateDurationState();
 
             NewTurn();
         }
@@ -739,10 +739,10 @@ namespace Battle
         {
             //执行选择类技能的消费和冷却
             if (CurrentCommand.SelectedSkill != null)
-                switch (CurrentCommand.SelectedSkill.UsedType)
+                switch (CurrentCommand.SelectedSkill.SkillType)
                 {
-                    case Static.Skill.UsedType.SelectActorWeapon:
-                    case Static.Skill.UsedType.SelectActorItem:
+                    case Static.Skill.SkillType.SelectActorWeapon:
+                    case Static.Skill.SkillType.SelectActorItem:
                         CurrentCommand.SelectedSkill.CostAndCool();
                         break;
                 }

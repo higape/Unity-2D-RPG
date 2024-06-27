@@ -25,7 +25,6 @@ namespace Dynamic
         }
 
         /// <param name="id">技能ID</param>
-        /// <param name="isCountLimit">是否有使用次数的限制</param>
         /// <param name="checkUsable">此方法的返回值决定技能是否可以使用</param>
         public Skill(int id, BoolFunction checkUsable)
         {
@@ -35,16 +34,45 @@ namespace Dynamic
         }
 
         private Static.Skill DataObject { get; set; }
+
         public int ID => DataObject.id;
+
         public string Name => DataObject.Name;
+
         public Static.ActorWeaponSkin Skin => DataObject.Skin;
+
         public Static.UsedOccasion Occasion => DataObject.occasion;
-        public Static.Skill.UsedType UsedType => DataObject.usedType;
-        public int UsedValue => DataObject.usedValue;
+
+        public Static.Skill.SkillType SkillType => DataObject.skillType;
+
+        public Static.WeaponUsage Usage =>
+            Root.ResourceManager.WeaponUsage.GetItem(DataObject.usageID);
+
         public int SelectionFilter => DataObject.selectionFilter;
-        public override float SkillEffectRate => DataObject.effectRate / 100f;
-        public int WaitTime => DataObject.waitTime;
+
+        public int ItemQuantity => DataObject.itemQuantity;
+
+        public int ItemUsedCount => DataObject.itemUsedCount;
+
+        public override float SkillEffectRate => DataObject.effectRatePercentage / 100f;
+
+        public int WaitTime
+        {
+            get
+            {
+                if (SkillType == Static.Skill.SkillType.Usage)
+                    return Usage.waitTime;
+                else
+                    return DataObject.waitTime;
+            }
+        }
+
+        public Static.BattleEffectData[] AddedEffects => DataObject.addedEffects;
+
+        public IEnumerable<Static.TraitData> Traits => DataObject.traits;
+
         public bool UsedInMenu => DataObject.UsedInMenu;
+
         public bool UsedInBattle => DataObject.UsedInBattle;
 
         /// <summary>
@@ -67,20 +95,18 @@ namespace Dynamic
         private BoolFunction CheckUsable { get; set; }
 
         /// <summary>
-        /// 此技能是否激活，非激活的技能将不会出现在使用菜单
+        /// 此技能是否激活，非激活的技能不会在菜单出现
         /// </summary>
         public bool IsEnable => IsCountLimit == false || MaxUsageCount > 0;
 
         /// <summary>
-        /// 此技能是否可以使用，不可使用的技能会在UI显示，但不能选择
+        /// 此技能是否可以使用
         /// </summary>
         public bool CanUse =>
             (IsCountLimit == false || ConsumeCount < MaxUsageCount) && CheckUsable.Invoke();
 
         public override int Attack => 0;
-        public Static.WeaponUsage Usage => DataObject.Usage;
-        public Static.BattleEffectData[] AddedEffects => DataObject.addedEffects;
-        public IEnumerable<Static.TraitData> Traits => DataObject.TraitList;
+
         protected override Vector3 FirePosition =>
             Skin.firePosition + Owner.DisplayObject.FirePosition;
 
@@ -98,7 +124,6 @@ namespace Dynamic
 
         public override void CostAndCool()
         {
-            Debug.Log("消费和冷却技能");
             CurrentWaitTime = WaitTime;
             if (IsCountLimit)
                 ConsumeCount++;
