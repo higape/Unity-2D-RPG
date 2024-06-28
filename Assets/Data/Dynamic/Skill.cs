@@ -52,7 +52,7 @@ namespace Dynamic
 
         public int ItemQuantity => DataObject.itemQuantity;
 
-        public int ItemUsedCount => DataObject.itemUsedCount;
+        public int ItemAttackCount => DataObject.itemAttackCount;
 
         public override float SkillEffectRate => DataObject.effectRatePercentage / 100f;
 

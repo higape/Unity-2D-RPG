@@ -48,7 +48,7 @@ namespace Static
 
         public int itemQuantity;
 
-        public int itemUsedCount;
+        public int itemAttackCount;
 
         /// <summary>
         /// 效率

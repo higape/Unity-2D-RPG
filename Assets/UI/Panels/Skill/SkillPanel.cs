@@ -11,6 +11,9 @@ namespace UI
         [SerializeField]
         private ListBox itemListBox;
 
+        [SerializeField]
+        private SkillStatistic itemStatistic;
+
         private InputCommand[] InputCommands { get; set; }
 
         public void Setup(Actor actor)
@@ -27,6 +30,7 @@ namespace UI
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
+            itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
             itemListBox.Initialize(1, 8, RefreshItem);
         }
 
@@ -38,6 +42,11 @@ namespace UI
         private void OnDisable()
         {
             InputManagementSystem.RemoveCommands(nameof(SkillPanel));
+        }
+
+        private void OnSelectedItemChange(object data, int index)
+        {
+            itemStatistic.Refresh(data as Skill);
         }
 
         private void Cancel()
