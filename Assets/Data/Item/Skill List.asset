@@ -18,10 +18,12 @@ MonoBehaviour:
     description: 
     skinID: 1
     occasion: 2
-    usedType: 1
-    usedValue: 2
+    skillType: 1
+    usageID: 1
     selectionFilter: 0
-    effectRate: 100
+    itemQuantity: 0
+    itemAttackCount: 0
+    effectRatePercentage: 0
     waitTime: 0
     addedEffects: []
     traits: []

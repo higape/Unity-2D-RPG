@@ -40,6 +40,7 @@ namespace Static
         public string scopeStatement;
         public string waitTime;
         public string round;
+        public string effect;
         public string menu;
         public string battle;
         public string equipable;
