@@ -28,6 +28,8 @@ namespace UI
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
                 new(InputCommand.ButtonLeft, ButtonType.Down, listBox.PageUp),
                 new(InputCommand.ButtonRight, ButtonType.Down, listBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, listBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, listBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };

@@ -5,8 +5,8 @@ using Root;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using HIT = Static.ActorUsableItem.ItemType;
 using SIT = Static.Shop.ItemType;
+using UIT = Static.ActorUsableItem.ItemType;
 
 namespace UI
 {
@@ -45,6 +45,8 @@ namespace UI
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
                 new(InputCommand.ButtonLeft, ButtonType.Down, listBox.PageUp),
                 new(InputCommand.ButtonRight, ButtonType.Down, listBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, listBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, listBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
@@ -74,15 +76,15 @@ namespace UI
                     listBox.Initialize(col, row, RefreshItem, Party.ActorNormalItem);
                     break;
                 case SIT.ActorRecoverItem:
-                    CurrentAction = (id) => new ActorUsableItem(HIT.RecoverItem, id);
+                    CurrentAction = (id) => new ActorUsableItem(UIT.RecoverItem, id);
                     listBox.Initialize(col, row, RefreshItem, Party.ActorRecoverItem);
                     break;
                 case SIT.ActorAttackItem:
-                    CurrentAction = (id) => new ActorUsableItem(HIT.AttackItem, id);
+                    CurrentAction = (id) => new ActorUsableItem(UIT.AttackItem, id);
                     listBox.Initialize(col, row, RefreshItem, Party.ActorAttackItem);
                     break;
                 case SIT.ActorAuxiliaryItem:
-                    CurrentAction = (id) => new ActorUsableItem(HIT.AuxiliaryItem, id);
+                    CurrentAction = (id) => new ActorUsableItem(UIT.AuxiliaryItem, id);
                     listBox.Initialize(col, row, RefreshItem, Party.ActorAuxiliaryItem);
                     break;
                 case SIT.ActorWeapon:

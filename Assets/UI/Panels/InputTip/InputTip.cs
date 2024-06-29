@@ -13,17 +13,15 @@ namespace UI
         public TextMeshProUGUI text3;
         public TextMeshProUGUI text4;
         public TextMeshProUGUI text5;
-        public TextMeshProUGUI text6;
 
         private void Start()
         {
             text0.text = "移动";
             text1.text = "确定";
             text2.text = "取消";
-            text3.text = "菜单/卸装备";
+            text3.text = "菜单";
             text4.text = "未定义";
-            text5.text = "类型切换";
-            text6.text = "列表翻页";
+            text5.text = "翻页";
         }
     }
 }

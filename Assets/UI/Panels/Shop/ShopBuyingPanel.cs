@@ -5,8 +5,8 @@ using Root;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using HIT = Static.ActorUsableItem.ItemType;
 using SIT = Static.Shop.ItemType;
+using UIT = Static.ActorUsableItem.ItemType;
 
 namespace UI
 {
@@ -41,6 +41,8 @@ namespace UI
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
                 new(InputCommand.ButtonLeft, ButtonType.Down, listBox.PageUp),
                 new(InputCommand.ButtonRight, ButtonType.Down, listBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, listBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, listBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
@@ -77,7 +79,7 @@ namespace UI
                     case SIT.ActorRecoverItem:
                         Commodities.Add(
                             (
-                                new ActorUsableItem(HIT.RecoverItem, item.id),
+                                new ActorUsableItem(UIT.RecoverItem, item.id),
                                 Party.ActorRecoverItem.GetQuantity(item.id)
                             )
                         );
@@ -85,7 +87,7 @@ namespace UI
                     case SIT.ActorAttackItem:
                         Commodities.Add(
                             (
-                                new ActorUsableItem(HIT.AttackItem, item.id),
+                                new ActorUsableItem(UIT.AttackItem, item.id),
                                 Party.ActorAttackItem.GetQuantity(item.id)
                             )
                         );
@@ -93,7 +95,7 @@ namespace UI
                     case SIT.ActorAuxiliaryItem:
                         Commodities.Add(
                             (
-                                new ActorUsableItem(HIT.AuxiliaryItem, item.id),
+                                new ActorUsableItem(UIT.AuxiliaryItem, item.id),
                                 Party.ActorAuxiliaryItem.GetQuantity(item.id)
                             )
                         );
