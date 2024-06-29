@@ -112,6 +112,7 @@ MonoBehaviour:
   equip: "\u88C5\u5907"
   status: "\u72B6\u6001"
   formation: "\u961F\u5217"
+  notEquip: "\u4E0D\u88C5\u5907"
   attack: "\u653B\u51FB"
   guard: "\u9632\u5FA1"
   escape: "\u9003\u8DD1"

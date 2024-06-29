@@ -45,7 +45,7 @@ namespace UI
             Callback = callback;
             WeaponStatistic = statistic;
 
-            List<QuantityList.ListItem> fl = new();
+            List<object> fl = new() { -1 };
 
             foreach (var item in Party.ActorWeapon)
             {
@@ -77,6 +77,7 @@ namespace UI
 
         private void Cancel()
         {
+            Callback?.Invoke(null);
             Destroy(gameObject);
         }
 
@@ -88,6 +89,11 @@ namespace UI
                 {
                     c.textComponent0.text = Root.ResourceManager.ActorWeapon.GetItem(item.id).Name;
                     c.textComponent1.text = item.quantity.ToString();
+                }
+                else if (data is int)
+                {
+                    c.textComponent0.text = Root.ResourceManager.Term.notEquip;
+                    c.textComponent1.text = " ";
                 }
                 else
                 {

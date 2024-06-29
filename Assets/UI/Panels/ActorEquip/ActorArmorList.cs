@@ -52,7 +52,7 @@ namespace UI
             Callback = callback;
             ArmorStatistic = statistic;
 
-            List<QuantityList.ListItem> fl = new();
+            List<object> fl = new() { -1 };
             var partyItems = Party.GetActorArmorList(slotIndex);
             var dataItems = ResourceManager.GetActorArmorList(slotIndex);
 
@@ -90,6 +90,11 @@ namespace UI
                         .Name;
                     c.textComponent1.text = item.quantity.ToString();
                 }
+                else if (data is int)
+                {
+                    c.textComponent0.text = Root.ResourceManager.Term.notEquip;
+                    c.textComponent1.text = " ";
+                }
                 else
                 {
                     c.textComponent0.text = " ";
@@ -106,6 +111,7 @@ namespace UI
 
         private void Cancel()
         {
+            Callback?.Invoke(null);
             Destroy(gameObject);
         }
     }

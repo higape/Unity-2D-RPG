@@ -111,7 +111,6 @@ namespace UI
                 new(InputCommand.ButtonDown, ButtonType.Press, itemListBox.SelectDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
-                new(InputCommand.ButtonMainMenu, ButtonType.Down, NotEquip),
             };
 
             lvLabel.text = ResourceManager.Term.lv;
@@ -144,7 +143,7 @@ namespace UI
             }
 
             itemListBox.Initialize(1, Actor.WeaponCount + Actor.ArmorCount, RefreshItem);
-            itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
+            itemListBox.RegisterSelectedItemChangeCallback((o, i) => RefreshBySelectedItem());
         }
 
         private void OnEnable()
@@ -167,6 +166,7 @@ namespace UI
         {
             RefreshEquipment();
             RefreshStatus();
+            RefreshBySelectedItem();
         }
 
         private void RefreshEquipment()
@@ -181,21 +181,7 @@ namespace UI
             nameContent.text = CurrentActor.Name;
             lvContent.text = CurrentActor.Level.ToString();
             hpContent.text = CurrentActor.Hp.ToString() + '/' + CurrentActor.Mhp.ToString();
-
-            if (
-                itemListBox.SelectedIndex < Actor.WeaponCount
-                && itemListBox.SelectedItem is ActorWeapon aw
-            )
-            {
-                atkContent.color = Color.green;
-                atkContent.text = (CurrentActor.Atk + aw.Attack).ToString();
-            }
-            else
-            {
-                atkContent.color = Color.white;
-                atkContent.text = CurrentActor.Atk.ToString();
-            }
-
+            // don't refresh atk
             defContent.text = CurrentActor.Def.ToString();
             agiContent.text = CurrentActor.Agi.ToString();
             hitContent.text = CurrentActor.Hit.ToString();
@@ -204,7 +190,7 @@ namespace UI
             nextExpContent.text = CurrentActor.NextExp.ToString();
         }
 
-        private void OnSelectedItemChange(object item, int index)
+        private void RefreshBySelectedItem()
         {
             if (itemListBox.SelectedItem is ActorWeapon aw)
             {
@@ -236,6 +222,15 @@ namespace UI
                 CurrentActor.EquipWeapon(itemListBox.SelectedIndex, item.id);
                 Refresh();
             }
+            else if (listObject is int)
+            {
+                CurrentActor.EquipWeapon(itemListBox.SelectedIndex, 0);
+                Refresh();
+            }
+            else
+            {
+                Refresh();
+            }
         }
 
         private void ArmorListCallback(object listObject)
@@ -243,6 +238,15 @@ namespace UI
             if (listObject is QuantityList.ListItem item)
             {
                 CurrentActor.EquipArmor(itemListBox.SelectedIndex - Actor.WeaponCount, item.id);
+                Refresh();
+            }
+            else if (listObject is int)
+            {
+                CurrentActor.EquipArmor(itemListBox.SelectedIndex - Actor.WeaponCount, 0);
+                Refresh();
+            }
+            else
+            {
                 Refresh();
             }
         }
@@ -269,15 +273,6 @@ namespace UI
         private void Cancel()
         {
             Destroy(gameObject);
-        }
-
-        private void NotEquip()
-        {
-            if (itemListBox.SelectedIndex < Actor.WeaponCount)
-                CurrentActor.EquipWeapon(itemListBox.SelectedIndex, 0);
-            else
-                CurrentActor.EquipArmor(itemListBox.SelectedIndex - Actor.WeaponCount, 0);
-            Refresh();
         }
 
         private void RefreshLabel(ListBoxItem listItem, object data)

@@ -152,6 +152,7 @@ namespace Static
         public string equip;
         public string status;
         public string formation;
+        public string notEquip;
 
         public string attack;
         public string guard;
