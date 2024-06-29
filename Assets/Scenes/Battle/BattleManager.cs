@@ -752,27 +752,30 @@ namespace Battle
         /// </summary>
         private void ProcessEnemyAction()
         {
-            var enemy = ActionableBattlers[0] as Enemy;
-            var action = enemy.GetAction();
-
-            if (action != null)
+            if (!CheckBattleEnd())
             {
-                var target = BestTarget(enemy, action.Usage.scope);
-                if (target != null)
-                {
-                    action.Emit(
-                        target,
-                        enemy,
-                        action.Usage,
-                        1f,
-                        new(action.Usage.effects),
-                        ProcessEnemyAction
-                    );
-                    return;
-                }
-            }
+                var enemy = ActionableBattlers[0] as Enemy;
+                var action = enemy.GetAction();
 
-            ActionEnd();
+                if (action != null)
+                {
+                    var target = BestTarget(enemy, action.Usage.scope);
+                    if (target != null)
+                    {
+                        action.Emit(
+                            target,
+                            enemy,
+                            action.Usage,
+                            1f,
+                            new(action.Usage.effects),
+                            ProcessEnemyAction
+                        );
+                        return;
+                    }
+                }
+
+                ActionEnd();
+            }
         }
 
         /// <summary>
@@ -798,28 +801,31 @@ namespace Battle
         /// </summary>
         private void ProcessActorItem()
         {
-            if (CurrentCommand.ItemIndex < CurrentCommand.SelectedItems.Count)
+            if (!CheckBattleEnd())
             {
-                var target = CurrentCommand.SelectedTarget;
-                var itemInfo = CurrentCommand.ItemInfo;
-                var skillEffectRate = CurrentCommand.SkillEffectRate;
-                var battleEffectList = CurrentCommand.BattleEffectList;
-                CurrentCommand.ItemIndex++;
+                if (CurrentCommand.ItemIndex < CurrentCommand.SelectedItems.Count)
+                {
+                    var target = CurrentCommand.SelectedTarget;
+                    var itemInfo = CurrentCommand.ItemInfo;
+                    var skillEffectRate = CurrentCommand.SkillEffectRate;
+                    var battleEffectList = CurrentCommand.BattleEffectList;
+                    CurrentCommand.ItemIndex++;
 
-                itemInfo
-                    .Weapon
-                    .Emit(
-                        target,
-                        ActionableBattlers[0],
-                        itemInfo.Usage,
-                        skillEffectRate,
-                        battleEffectList,
-                        ProcessActorItem
-                    );
-            }
-            else
-            {
-                ActionEnd();
+                    itemInfo
+                        .Weapon
+                        .Emit(
+                            target,
+                            ActionableBattlers[0],
+                            itemInfo.Usage,
+                            skillEffectRate,
+                            battleEffectList,
+                            ProcessActorItem
+                        );
+                }
+                else
+                {
+                    ActionEnd();
+                }
             }
         }
 

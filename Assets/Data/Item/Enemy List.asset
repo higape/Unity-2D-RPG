@@ -134,3 +134,121 @@ MonoBehaviour:
       durability: 0
       firePosition: {x: 0, y: 0, z: 0}
     traits: []
+  - id: 3
+    name: Test/1HP/1000EXP/1000G
+    type: 0
+    exp:
+      basic: 1000
+      power1: 0
+      power2: 0
+      power3: 0
+    hp:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    atk:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    agi:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    gold:
+      basic: 1000
+      power1: 0
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 3
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
+  - id: 4
+    name: "\u5FEB\u901F\u8BA9\u73A9\u5BB6\u56E2\u706D"
+    type: 0
+    exp:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    hp:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    atk:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    def:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    agi:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    gold:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    actionCount: 3
+    actions:
+    - usageID: 6
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
