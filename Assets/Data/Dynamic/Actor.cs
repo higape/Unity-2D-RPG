@@ -440,12 +440,6 @@ namespace Dynamic
             }
         }
 
-        public override void QuiteBattle()
-        {
-            DurationStates.Clear();
-            DisplayObject = null;
-        }
-
         /// <summary>
         /// 拿出武器并在合适时机触发回调
         /// </summary>

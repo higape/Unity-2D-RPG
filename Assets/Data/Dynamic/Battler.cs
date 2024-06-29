@@ -286,7 +286,11 @@ namespace Dynamic
         /// <summary>
         /// 退出战斗时清理各种数据
         /// </summary>
-        public virtual void QuiteBattle() { }
+        public virtual void QuiteBattle()
+        {
+            DurationStates.Clear();
+            DisplayObject = null;
+        }
 
         /// <summary>
         /// 更新状态的回合并发动效果

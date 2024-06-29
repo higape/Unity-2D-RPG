@@ -101,6 +101,8 @@ namespace Battle
 
         private static List<Enemy> Enemies { get; set; }
 
+        private static List<Enemy> DeadEnemies { get; set; }
+
         private static List<ActorStatusUnit> ActorStatusList { get; set; }
 
         public static GameObject BattlerStatePrefab => Instance?.battlerStatePrefab;
@@ -142,6 +144,7 @@ namespace Battle
                 //复活死亡的角色
                 foreach (var battler in Party.GetBattleActorList())
                 {
+                    battler.QuiteBattle();
                     battler.Reborn(1);
                 }
                 SceneManager.UnloadSceneAsync("Battle");
@@ -480,6 +483,7 @@ namespace Battle
                 d.Setup(b);
                 d.transform.localPosition = new Vector3(0, 8f - 24f * i / bl.Count, 0);
                 b.DisplayObject = d;
+                b.EnterBattle();
             }
         }
 
@@ -492,6 +496,7 @@ namespace Battle
                     .GetComponent<DisplayEnemy>();
                 d.Setup(b);
                 b.DisplayObject = d;
+                b.EnterBattle();
             }
         }
 
@@ -632,14 +637,13 @@ namespace Battle
                     enemy.ResetActionCount();
                     i++;
                 }
-                else
-                    Enemies.Remove(enemy);
             }
 
             foreach (var actor in Party.GetBattleActorList())
                 actor.UpdateDurationState();
 
-            NewTurn();
+            if (!CheckBattleEnd())
+                NewTurn();
         }
 
         private void ActionEnd()
@@ -665,6 +669,7 @@ namespace Battle
             NextBattler();
         }
 
+        //检查战斗结束，如果符合条件，将会进入战斗结束流程
         private bool CheckBattleEnd()
         {
             if (AllEnemyDead())
@@ -696,10 +701,18 @@ namespace Battle
             int i = 0;
             while (i < Enemies.Count)
             {
-                if (!Enemies[i].IsAlive)
+                var e = Enemies[i];
+                if (!e.IsAlive)
+                {
+                    DeadEnemies.Add(e);
+                    Destroy(e.DisplayObject);
+                    e.QuiteBattle();
                     Enemies.RemoveAt(i);
+                }
                 else
+                {
                     i++;
+                }
             }
             return Enemies.Count == 0;
         }

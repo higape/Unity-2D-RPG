@@ -193,8 +193,6 @@ namespace Dynamic
             return 0;
         }
 
-        public override void QuiteBattle() { }
-
         /// <summary>
         /// 重置行动计数
         /// </summary>
