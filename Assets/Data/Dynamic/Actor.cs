@@ -283,6 +283,20 @@ namespace Dynamic
         }
 
         /// <summary>
+        /// 获得经验值并检查升级
+        /// </summary>
+        /// <returns>是否升级</returns>
+        public bool GainExp(int value)
+        {
+            if (value > 0)
+            {
+                Exp += value;
+                return UpdateLevel();
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 根据经验值刷新等级
         /// </summary>
         /// <returns>是否升级</returns>

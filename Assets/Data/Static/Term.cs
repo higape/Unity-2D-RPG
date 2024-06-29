@@ -124,6 +124,9 @@ namespace Static
         public string battleDefeat;
         public string escapeVictory;
         public string escapeDefeat;
+        public string gainGoldInBattle;
+        public string gainExpInBattle;
+        public string actorLevelUp;
 
         public string selectQuantity;
         public string confirmBuy;

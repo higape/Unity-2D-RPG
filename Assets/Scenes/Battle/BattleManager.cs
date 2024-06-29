@@ -116,6 +116,7 @@ namespace Battle
                 IsBattling = true;
                 BattleEnded.AddListener(callback);
                 Enemies = new();
+                DeadEnemies = new();
                 foreach (var d in enemyData)
                 {
                     Enemies.Add(new(d.Item1, d.Item2));
@@ -387,6 +388,7 @@ namespace Battle
             Instance = null;
             CurrentCommand = null;
             Enemies = null;
+            DeadEnemies = null;
             ActorStatusList = null;
         }
 
@@ -675,7 +677,7 @@ namespace Battle
             if (AllEnemyDead())
             {
                 //战斗胜利
-                UI.UIManager.StartMessage(ResourceManager.Term.battleVictory, EndBattle);
+                UI.UIManager.StartMessage(ResourceManager.Term.battleVictory, ShowBattleVictory);
                 return true;
             }
             else if (AllActorDead())
@@ -715,6 +717,34 @@ namespace Battle
                 }
             }
             return Enemies.Count == 0;
+        }
+
+        private void ShowBattleVictory()
+        {
+            int goldTotal = 0;
+            int expTotal = 0;
+            List<string> messages = new();
+            foreach (var e in DeadEnemies)
+            {
+                goldTotal += e.Gold;
+                expTotal += e.Exp;
+            }
+            messages.Add(
+                string.Format(ResourceManager.Term.gainGoldInBattle, goldTotal)
+                    + '\n'
+                    + string.Format(ResourceManager.Term.gainExpInBattle, expTotal)
+            );
+            //获得金钱
+            Party.GainGold(goldTotal);
+            foreach (var a in Party.GetBattleActorList())
+            {
+                //角色获得经验并检查升级
+                if (a.GainExp(expTotal))
+                {
+                    messages.Add(string.Format(ResourceManager.Term.actorLevelUp, a.Name));
+                }
+            }
+            UI.UIManager.StartMessage(messages, () => EndBattle());
         }
 
         /// <summary>
