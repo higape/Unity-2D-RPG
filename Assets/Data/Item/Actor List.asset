@@ -59,6 +59,12 @@ MonoBehaviour:
         power1: 0
         power2: 0
         power3: 0
+    - id: 2
+      count:
+        basic: 1
+        power1: 0
+        power2: 0
+        power3: 0
     weaponIDs: 010000000000000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:

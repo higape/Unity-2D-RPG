@@ -44,6 +44,10 @@ namespace Static
         public string menu;
         public string battle;
         public string equipable;
+        public string quantity;
+        public string usedCount;
+        public string effectRate;
+        public string addedEffect;
 
         #endregion
 
@@ -125,6 +129,8 @@ namespace Static
         public string confirmBuy;
         public string promptCannotUseItemInMenu;
 
+        public string skillUseItem;
+
         #endregion
 
         #region Command
@@ -203,6 +209,15 @@ namespace Static
                 UsedScope.BigRay => scopeBigRay,
                 UsedScope.SmallCircle => scopeSmallCircle,
                 UsedScope.BigCircle => scopeBigCircle,
+                _ => " "
+            };
+
+        public string GetText(ActorUsableItem.ItemType type) =>
+            type switch
+            {
+                ActorUsableItem.ItemType.RecoverItem => recoverItem,
+                ActorUsableItem.ItemType.AttackItem => attackItem,
+                ActorUsableItem.ItemType.AuxiliaryItem => auxiliaryItem,
                 _ => " "
             };
 

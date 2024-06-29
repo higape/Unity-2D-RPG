@@ -20,10 +20,28 @@ MonoBehaviour:
     occasion: 2
     skillType: 1
     usageID: 1
-    selectionFilter: 0
+    selectionLimit: 0
     itemQuantity: 0
-    itemAttackCount: 0
+    itemUsedCount: 0
     effectRatePercentage: 0
     waitTime: 0
     addedEffects: []
+    traits: []
+  - id: 2
+    name: "\u6295\u63B7\xB7\u9644\u52A0\u706B\u7130"
+    description: 
+    skinID: 1
+    occasion: 2
+    skillType: 3
+    usageID: 0
+    selectionLimit: 2
+    itemQuantity: 1
+    itemUsedCount: 1
+    effectRatePercentage: 100
+    waitTime: 0
+    addedEffects:
+    - effectID: 1
+      effectValue: 100
+      duration: 1
+      targetType: 0
     traits: []

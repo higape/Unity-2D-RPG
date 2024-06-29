@@ -48,11 +48,13 @@ namespace Dynamic
         public Static.WeaponUsage Usage =>
             Root.ResourceManager.WeaponUsage.GetItem(DataObject.usageID);
 
-        public int SelectionFilter => DataObject.selectionFilter;
+        public int SelectionLimit => DataObject.selectionLimit;
 
         public int ItemQuantity => DataObject.itemQuantity;
 
-        public int ItemAttackCount => DataObject.itemAttackCount;
+        public int ItemUsedCount => DataObject.itemUsedCount;
+
+        public int SkillEffectRatePercentage => DataObject.effectRatePercentage;
 
         public override float SkillEffectRate => DataObject.effectRatePercentage / 100f;
 

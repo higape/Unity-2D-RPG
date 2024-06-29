@@ -21,6 +21,9 @@ namespace UI
         [SerializeField]
         private UsageStatistic usageStatistic;
 
+        [SerializeField]
+        private SkillSelectionStatistic selectionStatistic;
+
         private void Awake()
         {
             occasionLabel.text = ResourceManager.Term.usedOccasion;
@@ -61,19 +64,22 @@ namespace UI
             {
                 case Static.Skill.SkillType.Passivity:
                     usageStatistic.gameObject.SetActive(false);
+                    selectionStatistic.gameObject.SetActive(false);
                     break;
                 case Static.Skill.SkillType.Usage:
                     usageStatistic.Refresh(item.Usage);
                     usageStatistic.gameObject.SetActive(true);
+                    selectionStatistic.gameObject.SetActive(false);
                     break;
                 case Static.Skill.SkillType.SelectActorWeapon:
-                    usageStatistic.gameObject.SetActive(false);
-                    break;
                 case Static.Skill.SkillType.SelectActorItem:
+                    selectionStatistic.Refresh(item);
                     usageStatistic.gameObject.SetActive(false);
+                    selectionStatistic.gameObject.SetActive(true);
                     break;
                 default:
                     usageStatistic.gameObject.SetActive(false);
+                    selectionStatistic.gameObject.SetActive(false);
                     break;
             }
         }

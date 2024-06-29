@@ -35,20 +35,17 @@ namespace Static
 
         public SkillType skillType;
 
-        /// <summary>
-        /// 由 UsedType 决定意义，可以是用法ID或数量
-        /// </summary>
         public int usageID;
 
         /// <summary>
-        /// 选项过滤。
-        /// 技能为选择类型时，将此值可转换为对应的flag枚举
+        /// 选项限制。
+        /// 技能为选择类型时，将此值可转换为对应的物品类型枚举值
         /// </summary>
-        public int selectionFilter;
+        public int selectionLimit;
 
         public int itemQuantity;
 
-        public int itemAttackCount;
+        public int itemUsedCount;
 
         /// <summary>
         /// 效率
