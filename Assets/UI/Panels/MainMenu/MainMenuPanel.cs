@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dynamic;
 using Root;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,6 +31,12 @@ namespace UI
 
         [SerializeField]
         private GameObject settingPanelPrefab;
+
+        [SerializeField]
+        private TextMeshProUGUI goldLabel;
+
+        [SerializeField]
+        private TextMeshProUGUI goldContent;
 
         private UnityAction Callback { get; set; }
         private int SelectedIndex { get; set; }
@@ -68,8 +75,14 @@ namespace UI
                 (ResourceManager.Term.status, "status"),
                 (ResourceManager.Term.settings, "settings")
             };
-
             listBox.Initialize(1, texts.Length, Refresh, texts);
+
+            RebindAllActor();
+            Party.RegisterMemberSortCallback(RebindAllActor);
+
+            goldLabel.text = ResourceManager.Term.currencyUnit + ':';
+            RefreshGold(Party.Gold);
+            Party.RegisterGoldChangeCallback(RefreshGold);
         }
 
         private void OnEnable()
@@ -90,14 +103,12 @@ namespace UI
                 Debug.Log("ActorStatusItem 数量错误，应等于最大参战人员数量。");
             }
 #endif
-
-            RebindAllActor();
-            Party.RegisterMemberSortCallback(RebindAllActor);
         }
 
         private void OnDestroy()
         {
             Party.UnregisterMemberSortCallback(RebindAllActor);
+            Party.UnregisterGoldChangeCallback(RefreshGold);
             Callback?.Invoke();
         }
 
@@ -114,6 +125,11 @@ namespace UI
                 else
                     actorStatusItems[i].Rebind(null);
             }
+        }
+
+        private void RefreshGold(int gold)
+        {
+            goldContent.text = gold.ToString();
         }
 
         private void CommandInteract()
