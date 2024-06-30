@@ -33,6 +33,8 @@ namespace Battle
             {
                 new(InputCommand.ButtonUp, ButtonType.Press, listBox.SelectUp),
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
+                new(InputCommand.ButtonLeft, ButtonType.Press, listBox.PageUp),
+                new(InputCommand.ButtonRight, ButtonType.Press, listBox.PageDown),
                 new(InputCommand.ButtonPrevious, ButtonType.Press, listBox.PageUp),
                 new(InputCommand.ButtonNext, ButtonType.Press, listBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
@@ -50,12 +52,12 @@ namespace Battle
             InputManagementSystem.RemoveCommands(nameof(WeaponSelectionPanel));
         }
 
-        public void Setup(Actor human, UnityAction cancelCallback, UnityAction finishCallback)
+        public void Setup(Actor actor, UnityAction cancelCallback, UnityAction finishCallback)
         {
-            CurrentActor = human;
+            CurrentActor = actor;
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
-            var wl = human.GetBattleWeapons();
+            var wl = actor.GetBattleWeapons();
             listBox.Initialize(1, Mathf.Min(8, wl.Count), RefreshItem, wl);
         }
 
@@ -84,8 +86,8 @@ namespace Battle
                 case Static.UsedScope.BigRay:
                 case Static.UsedScope.SmallCircle:
                 case Static.UsedScope.BigCircle:
-                    BattleManager
-                        .CreateUI(enemyPanelPrefab)
+                    UIManager
+                        .Instantiate(enemyPanelPrefab)
                         .GetComponent<EnemySelectionPanel>()
                         .Setup(
                             CurrentActor,

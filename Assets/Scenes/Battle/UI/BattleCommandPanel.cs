@@ -10,7 +10,7 @@ namespace Battle
     /// <summary>
     /// 选择战斗指令的面板
     /// </summary>
-    public class MainCommandPanel : MonoBehaviour
+    public class BattleCommandPanel : MonoBehaviour
     {
         [SerializeField]
         private ListBox listBox;
@@ -38,8 +38,23 @@ namespace Battle
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
             };
+        }
 
-            (string, string)[] texts = new (string, string)[5]
+        private void OnEnable()
+        {
+            InputManagementSystem.AddCommands(nameof(BattleCommandPanel), InputCommands);
+        }
+
+        private void OnDisable()
+        {
+            InputManagementSystem.RemoveCommands(nameof(BattleCommandPanel));
+        }
+
+        public void Setup(Actor actor, bool enableSkill)
+        {
+            CurrentActor = actor;
+            EnableSkill = enableSkill;
+            (string, string)[] texts = new (string, string)[]
             {
                 (ResourceManager.Term.attack, "attack"),
                 (ResourceManager.Term.skill, "skill"),
@@ -51,22 +66,6 @@ namespace Battle
             listBox.Initialize(1, texts.Length, RefreshItem, texts);
         }
 
-        private void OnEnable()
-        {
-            InputManagementSystem.AddCommands(nameof(MainCommandPanel), InputCommands);
-        }
-
-        private void OnDisable()
-        {
-            InputManagementSystem.RemoveCommands(nameof(MainCommandPanel));
-        }
-
-        public void Setup(Actor human, bool enableSkill)
-        {
-            CurrentActor = human;
-            EnableSkill = enableSkill;
-        }
-
         private void Interact()
         {
             BattleManager.CurrentCommand = new();
@@ -74,8 +73,8 @@ namespace Battle
             {
                 case "attack":
                     canvasGroup.alpha = 0;
-                    var we = BattleManager
-                        .CreateUI(weaponPanelPrefab)
+                    var we = UIManager
+                        .Instantiate(weaponPanelPrefab)
                         .GetComponent<WeaponSelectionPanel>();
                     we.Setup(CurrentActor, () => canvasGroup.alpha = 1, OnInputFinish);
                     break;
@@ -86,8 +85,8 @@ namespace Battle
                         if (skills.Count > 0)
                         {
                             canvasGroup.alpha = 0;
-                            var se = BattleManager
-                                .CreateUI(skillPanelPrefab)
+                            var se = UIManager
+                                .Instantiate(skillPanelPrefab)
                                 .GetComponent<SkillSelectionPanel>();
                             se.Setup(
                                 CurrentActor,
@@ -96,6 +95,10 @@ namespace Battle
                                 OnInputFinish
                             );
                         }
+                    }
+                    else
+                    {
+                        UIManager.StartMessage(ResourceManager.Term.promptPanicState, null);
                     }
                     break;
                 case "escape":
@@ -136,9 +139,24 @@ namespace Battle
             if (listItem is TextItem c)
             {
                 if (data != null)
-                    c.textComponent.text = (((string, string))data).Item1;
+                {
+                    (string, string) pair = ((string, string))data;
+                    if (pair.Item2 == "skill" && !EnableSkill)
+                    {
+                        c.textComponent.color = Color.gray;
+                        c.textComponent.text = pair.Item1;
+                    }
+                    else
+                    {
+                        c.textComponent.color = Color.white;
+                        c.textComponent.text = pair.Item1;
+                    }
+                }
                 else
+                {
+                    c.textComponent.color = Color.white;
                     c.textComponent.text = " ";
+                }
             }
         }
     }

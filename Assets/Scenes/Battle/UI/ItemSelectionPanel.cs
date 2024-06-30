@@ -13,9 +13,9 @@ namespace Battle
 
         private Actor CurrentActor { get; set; }
 
-        public void Setup(Actor human)
+        public void Setup(Actor actor)
         {
-            CurrentActor = human;
+            CurrentActor = actor;
         }
 
         private void Interact() { }

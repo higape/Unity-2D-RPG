@@ -18,7 +18,7 @@ namespace Battle
         private GameObject cursorPrefab;
 
         private Actor CurrentActor { get; set; }
-        Static.UsedScope Scope { get; set; }
+        private Static.UsedScope Scope { get; set; }
         private Battler CurrentTarget { get; set; }
         private UnityAction CancelCallback { get; set; }
         private UnityAction FinishCallback { get; set; }
@@ -50,14 +50,14 @@ namespace Battle
         }
 
         public void Setup(
-            Actor human,
+            Actor actor,
             Battler target,
             Static.UsedScope scope,
             UnityAction cancelCallback,
             UnityAction finishCallback
         )
         {
-            CurrentActor = human;
+            CurrentActor = actor;
             CurrentTarget = target;
             Scope = scope;
             CancelCallback = cancelCallback;

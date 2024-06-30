@@ -34,6 +34,8 @@ namespace Battle
             {
                 new(InputCommand.ButtonUp, ButtonType.Press, listBox.SelectUp),
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
+                new(InputCommand.ButtonLeft, ButtonType.Press, listBox.PageUp),
+                new(InputCommand.ButtonRight, ButtonType.Press, listBox.PageDown),
                 new(InputCommand.ButtonPrevious, ButtonType.Press, listBox.PageUp),
                 new(InputCommand.ButtonNext, ButtonType.Press, listBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
@@ -52,13 +54,13 @@ namespace Battle
         }
 
         public void Setup(
-            Actor human,
+            Actor actor,
             List<Skill> skills,
             UnityAction cancelCallback,
             UnityAction finishCallback
         )
         {
-            CurrentActor = human;
+            CurrentActor = actor;
             Skills = skills;
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
@@ -96,8 +98,8 @@ namespace Battle
                 case Static.UsedScope.BigRay:
                 case Static.UsedScope.SmallCircle:
                 case Static.UsedScope.BigCircle:
-                    BattleManager
-                        .CreateUI(enemyPanelPrefab)
+                    UIManager
+                        .Instantiate(enemyPanelPrefab)
                         .GetComponent<EnemySelectionPanel>()
                         .Setup(
                             CurrentActor,

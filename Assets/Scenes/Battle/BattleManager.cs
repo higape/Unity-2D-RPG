@@ -188,11 +188,6 @@ namespace Battle
             }
         }
 
-        public static GameObject CreateUI(GameObject prefab)
-        {
-            return Instantiate(prefab, Instance.uiLayer.transform);
-        }
-
         public static GameObject CreateBullet(Vector3 position)
         {
             return Instantiate(
@@ -437,9 +432,6 @@ namespace Battle
         private GameObject digitPrefab;
 
         [SerializeField]
-        private GameObject uiLayer;
-
-        [SerializeField]
         private GameObject commandPanelPrefab;
 
         [SerializeField]
@@ -591,8 +583,9 @@ namespace Battle
 
                 (actor.DisplayObject as DisplayActor).MoveToLeft();
                 //打开指令面板
-                CreateUI(commandPanelPrefab)
-                    .GetComponent<MainCommandPanel>()
+                UI.UIManager
+                    .Instantiate(commandPanelPrefab)
+                    .GetComponent<BattleCommandPanel>()
                     .Setup(actor, enableSkill);
             }
             else
