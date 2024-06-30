@@ -95,6 +95,16 @@ namespace Battle
                                 OnInputFinish
                             );
                         }
+                        else
+                        {
+                            UIManager.StartMessage(
+                                string.Format(
+                                    ResourceManager.Term.promptActorHasNoBattleSkill,
+                                    CurrentActor.Name
+                                ),
+                                null
+                            );
+                        }
                     }
                     else
                     {

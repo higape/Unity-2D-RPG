@@ -127,6 +127,7 @@ namespace Static
         public string gainGoldInBattle;
         public string gainExpInBattle;
         public string actorLevelUp;
+        public string promptActorHasNoBattleSkill;
         public string promptPanicState;
 
         public string selectQuantity;
