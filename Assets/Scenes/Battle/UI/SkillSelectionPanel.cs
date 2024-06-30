@@ -133,9 +133,11 @@ namespace Battle
 
         private void RefreshItem(ListBoxItem listItem, object data)
         {
-            if (listItem is TextItem c)
+            if (listItem is TextItem2 c)
             {
-                c.textComponent.text = (data as Skill).Name;
+                var skill = data as Skill;
+                c.textComponent0.text = skill.Name;
+                c.textComponent1.text = skill.CurrentCount.ToString() + '/' + skill.MaxUsageCount;
             }
         }
     }
