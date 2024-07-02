@@ -51,6 +51,9 @@ namespace UI
         private ListBox equipableListBox;
 
         [SerializeField]
+        private TextMeshProUGUI effectLabel;
+
+        [SerializeField]
         private ListBox effectListBox;
 
         private void Awake()
@@ -61,6 +64,7 @@ namespace UI
             elementLabel.text = ResourceManager.Term.element;
             scopeLabel.text = ResourceManager.Term.scope;
             waitTimeLabel.text = ResourceManager.Term.waitTime;
+            effectLabel.text = ResourceManager.Term.effect;
         }
 
         public void Refresh(Dynamic.ActorWeapon item)
