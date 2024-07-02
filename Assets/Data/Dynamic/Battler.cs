@@ -115,6 +115,7 @@ namespace Dynamic
         /// <returns>实际获得量</returns>
         public int GainHp(int value)
         {
+            int effective = 0;
             if (value > 0 && IsAlive)
             {
                 int old = Hp;
@@ -126,10 +127,19 @@ namespace Dynamic
 
                 anyChanged.Invoke(this);
 
-                return Hp - old;
+                effective = Hp - old;
             }
 
-            return 0;
+            if (Battle.BattleManager.IsBattling)
+                Battle
+                    .BattleManager
+                    .CreateDigit(
+                        effective,
+                        Battle.PopDigit.DigitStyle.Recover,
+                        DisplayObject.Position
+                    );
+
+            return effective;
         }
 
         /// <returns>实际减少量</returns>
@@ -154,6 +164,7 @@ namespace Dynamic
 
                 damage = old - Hp;
             }
+
             if (Battle.BattleManager.IsBattling)
                 Battle
                     .BattleManager
