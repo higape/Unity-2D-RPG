@@ -162,7 +162,37 @@ namespace Battle
             EndBattle();
         }
 
-        public static Enemy[] GetEnemies() => Enemies.ToArray();
+        //获取一个包含可能的目标的数组
+        public static Enemy[] GetActorToEnemyTargets() => Enemies.ToArray();
+
+        //获取一个包含可能的目标的数组
+        public static Actor[] GetActorToActorTargets(Actor owner, Static.UsedScope scope)
+        {
+            List<Actor> list;
+            switch (scope)
+            {
+                case Static.UsedScope.Self:
+                    list = new() { owner };
+                    break;
+                case Static.UsedScope.OneFriend:
+                case Static.UsedScope.AllFriend:
+                    list = Party.GetAliveBattleActorList();
+                    break;
+                case Static.UsedScope.OneFriendExcludeSelf:
+                case Static.UsedScope.AllFriendExcludeSelf:
+                    list = Party.GetAliveBattleActorList();
+                    list.Remove(owner);
+                    break;
+                case Static.UsedScope.OneDeadFriend:
+                case Static.UsedScope.AllDeadFriend:
+                    list = Party.GetDeadBattleActorList();
+                    break;
+                default:
+                    list = new();
+                    break;
+            }
+            return list.ToArray();
+        }
 
         public static Vector3 GetScopePivot(Battler battler, Static.UsedScope scope)
         {

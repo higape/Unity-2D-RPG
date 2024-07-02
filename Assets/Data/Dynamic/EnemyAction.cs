@@ -27,9 +27,12 @@ namespace Dynamic
             ProcessBullet();
         }
 
-        public override void CostAndCool()
+        public override bool CostAndCool()
         {
+            if (CurrentWaitTime > 0)
+                return false;
             CurrentWaitTime += CurrentUsage.waitTime;
+            return true;
         }
     }
 }

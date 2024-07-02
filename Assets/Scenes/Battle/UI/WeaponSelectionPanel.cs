@@ -66,7 +66,6 @@ namespace Battle
             var weapon = listBox.SelectedItem as ActorWeapon;
             var usage = weapon.GetUsage(0);
             BattleManager.CurrentCommand.SelectedItems = new() { new(weapon, usage) };
-            var selectedTarget = BattleManager.BestTarget(CurrentActor, usage.scope);
 
             switch (usage.scope)
             {
@@ -91,14 +90,16 @@ namespace Battle
                         .GetComponent<EnemySelectionPanel>()
                         .Setup(
                             CurrentActor,
-                            selectedTarget,
                             usage.scope,
                             () => canvasGroup.alpha = 1,
                             InvokeFinishCallback
                         );
                     break;
                 default:
-                    BattleManager.CurrentCommand.SelectedTarget = selectedTarget;
+                    BattleManager.CurrentCommand.SelectedTarget = BattleManager.BestTarget(
+                        CurrentActor,
+                        usage.scope
+                    );
                     InvokeFinishCallback();
                     break;
             }

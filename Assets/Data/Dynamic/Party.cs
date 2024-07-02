@@ -95,6 +95,29 @@ namespace Dynamic
             };
         }
 
+        //筛选出可以在战斗使用的道具
+        public static QuantityList GetActorItemListInBattle(Static.ActorUsableItem.ItemType type)
+        {
+            Static.ActorUsableItemList dataSource = ResourceManager.GetActorUsableItemList(type);
+            QuantityList list = type switch
+            {
+                Static.ActorUsableItem.ItemType.RecoverItem => ActorRecoverItem,
+                Static.ActorUsableItem.ItemType.AttackItem => ActorAttackItem,
+                Static.ActorUsableItem.ItemType.AuxiliaryItem => ActorAuxiliaryItem,
+                _ => null,
+            };
+            QuantityList resultList = new();
+            foreach (var q in list)
+            {
+                var data = dataSource.GetItem(q.id);
+                if (data != null && data.UsedInBattle)
+                {
+                    resultList.Add(q);
+                }
+            }
+            return resultList;
+        }
+
         public static QuantityList GetActorArmorList(int slotIndex) =>
             slotIndex switch
             {

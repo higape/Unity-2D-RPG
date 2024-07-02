@@ -101,11 +101,11 @@ namespace Dynamic
             Callback = callback;
             EmitCount = 0;
             DamageCount = 0;
-            CostAndCool();
-            StartBullet();
+            if (CostAndCool())
+                StartBullet();
         }
 
-        public abstract void CostAndCool();
+        public abstract bool CostAndCool();
 
         /// <summary>
         /// 允许子类决定子弹发射的时机，或发射前后做什么

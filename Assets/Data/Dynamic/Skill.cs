@@ -124,11 +124,27 @@ namespace Dynamic
             }
         }
 
-        public override void CostAndCool()
+        public override bool CostAndCool()
         {
-            CurrentWaitTime = WaitTime;
+            if (CurrentWaitTime > 0)
+                return false;
+
             if (IsCountLimit)
+            {
+                if (ConsumeCount >= MaxUsageCount)
+                    return false;
                 ConsumeCount++;
+            }
+            CurrentWaitTime = WaitTime;
+            return true;
+        }
+
+        public void Cost()
+        {
+            if (IsCountLimit && ConsumeCount < MaxUsageCount)
+            {
+                ConsumeCount++;
+            }
         }
     }
 }

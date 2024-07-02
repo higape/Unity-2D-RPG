@@ -24,6 +24,9 @@ namespace Battle
         [SerializeField]
         private GameObject skillPanelPrefab;
 
+        [SerializeField]
+        private GameObject itemPanelPrefab;
+
         private Actor CurrentActor { get; set; }
 
         private bool EnableSkill { get; set; }
@@ -73,10 +76,10 @@ namespace Battle
             {
                 case "attack":
                     canvasGroup.alpha = 0;
-                    var we = UIManager
+                    UIManager
                         .Instantiate(weaponPanelPrefab)
-                        .GetComponent<WeaponSelectionPanel>();
-                    we.Setup(CurrentActor, () => canvasGroup.alpha = 1, OnInputFinish);
+                        .GetComponent<WeaponSelectionPanel>()
+                        .Setup(CurrentActor, () => canvasGroup.alpha = 1, OnInputFinish);
                     break;
                 case "skill":
                     if (EnableSkill)
@@ -85,15 +88,15 @@ namespace Battle
                         if (skills.Count > 0)
                         {
                             canvasGroup.alpha = 0;
-                            var se = UIManager
+                            UIManager
                                 .Instantiate(skillPanelPrefab)
-                                .GetComponent<SkillSelectionPanel>();
-                            se.Setup(
-                                CurrentActor,
-                                skills,
-                                () => canvasGroup.alpha = 1,
-                                OnInputFinish
-                            );
+                                .GetComponent<SkillSelectionPanel>()
+                                .Setup(
+                                    CurrentActor,
+                                    skills,
+                                    () => canvasGroup.alpha = 1,
+                                    OnInputFinish
+                                );
                         }
                         else
                         {
@@ -110,6 +113,19 @@ namespace Battle
                     {
                         UIManager.StartMessage(ResourceManager.Term.promptPanicState, null);
                     }
+                    break;
+                case "item":
+                    canvasGroup.alpha = 0;
+                    UIManager
+                        .Instantiate(itemPanelPrefab)
+                        .GetComponent<ItemSelectionPanel>()
+                        .Setup(
+                            CurrentActor,
+                            () => canvasGroup.alpha = 1,
+                            OnInputFinish,
+                            Static.ActorUsableItem.ItemType.RecoverItem,
+                            false
+                        );
                     break;
                 case "escape":
                     if (Random.value > 0.5f)

@@ -15,14 +15,14 @@ MonoBehaviour:
   itemList:
   - id: 1
     name: "\u5C0F\u6CBB\u7597\u836F"
-    skinID: 0
+    skinID: 1
     usageID: 7
     consumable: 1
     occasion: -1
     price: 100
   - id: 2
     name: "\u5927\u6CBB\u7597\u836F"
-    skinID: 0
+    skinID: 1
     usageID: 8
     consumable: 1
     occasion: -1

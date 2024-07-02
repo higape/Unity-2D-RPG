@@ -51,18 +51,17 @@ namespace Battle
 
         public void Setup(
             Actor actor,
-            Battler target,
             Static.UsedScope scope,
             UnityAction cancelCallback,
             UnityAction finishCallback
         )
         {
             CurrentActor = actor;
-            CurrentTarget = target;
             Scope = scope;
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
-            Enemies = BattleManager.GetEnemies();
+            CurrentTarget = BattleManager.BestTarget(actor, scope);
+            Enemies = BattleManager.GetActorToEnemyTargets();
             CurrentTarget.DisplayObject.ShowCursor(cursorPrefab);
         }
 

@@ -144,6 +144,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 8437606944632166853}
   weaponPanelPrefab: {fileID: 8412648750191902789, guid: 052cf92397aad194ca192b65abd51698, type: 3}
   skillPanelPrefab: {fileID: 7913826872265070601, guid: e557eaea88b7e184e99533bba4167ac5, type: 3}
+  itemPanelPrefab: {fileID: 1094065591775292897, guid: a57b8a806f657344e905f3b5ded235f6, type: 3}
 --- !u!114 &5455923312618626575
 MonoBehaviour:
   m_ObjectHideFlags: 0

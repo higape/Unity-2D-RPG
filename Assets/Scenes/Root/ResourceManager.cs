@@ -52,6 +52,15 @@ namespace Root
 
         public static Sprite GetElementSprite(ElementType type) => ElementSprite[(int)type];
 
+        public static ActorUsableItemList GetActorUsableItemList(ActorUsableItem.ItemType type) =>
+            type switch
+            {
+                ActorUsableItem.ItemType.RecoverItem => ActorRecoverItem,
+                ActorUsableItem.ItemType.AttackItem => ActorAttackItem,
+                ActorUsableItem.ItemType.AuxiliaryItem => ActorAuxiliaryItem,
+                _ => null,
+            };
+
         public static ActorArmorList GetActorArmorList(int slotIndex) =>
             slotIndex switch
             {

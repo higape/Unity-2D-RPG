@@ -30,7 +30,7 @@ namespace Dynamic
             }
         }
 
-        Static.ActorUsableItem.ItemType ItemType { get; set; }
+        private Static.ActorUsableItem.ItemType ItemType { get; set; }
         private Static.ActorUsableItem DataObject { get; set; }
         public int ID => DataObject.id;
         public string Name => DataObject.Name;
@@ -40,7 +40,7 @@ namespace Dynamic
         public bool UsedInBattle => DataObject.UsedInBattle;
         public override int Attack => 0;
         public Static.WeaponUsage Usage => DataObject.Usage;
-        protected override Vector3 FirePosition => Vector3.zero;
+        protected override Vector3 FirePosition => Skin.firePosition + Owner.DisplayObject.Position;
         public int Price => DataObject.price;
         public int SellingPrice => (int)(Price * Party.SellingPriceRate);
 
@@ -68,9 +68,17 @@ namespace Dynamic
             }
         }
 
-        public override void CostAndCool()
+        public override bool CostAndCool()
         {
             //物品无冷却
+            if (Consumable)
+                return Party.GetActorItemList(ItemType).TryLoseItem(ID, 1);
+            else
+                return true;
+        }
+
+        public void Cost()
+        {
             if (Consumable)
                 Party.GetActorItemList(ItemType).LoseItem(ID, 1);
         }

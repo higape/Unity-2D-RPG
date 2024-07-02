@@ -133,6 +133,7 @@ namespace Static
         public string selectQuantity;
         public string confirmBuy;
         public string promptCannotUseItemInMenu;
+        public string promptNoSelectableTarget;
 
         public string skillUseItem;
 

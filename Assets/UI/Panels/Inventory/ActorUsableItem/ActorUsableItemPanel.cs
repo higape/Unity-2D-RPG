@@ -1,7 +1,7 @@
 using Dynamic;
 using Root;
 using UnityEngine;
-using AIT = Static.ActorUsableItem.ItemType;
+using UIT = Static.ActorUsableItem.ItemType;
 
 namespace UI
 {
@@ -29,11 +29,17 @@ namespace UI
 
         private ActorUsableItem CurrentItem { get; set; }
 
+        private (string, UIT)[] TextTypePairs { get; set; }
+
         private InputCommand[] InputCommands { get; set; }
 
-        public void Setup(int typeIndex)
+        public void Setup(UIT itemType)
         {
-            typeListBox.Select(typeIndex);
+            int index = -1;
+            for (int i = 0; i < TextTypePairs.Length; i++)
+                if (TextTypePairs[i].Item2 == itemType)
+                    index = i;
+            typeListBox.Select(index);
         }
 
         private void Awake()
@@ -48,17 +54,17 @@ namespace UI
                 new(InputCommand.ButtonNext, ButtonType.Down, typeListBox.SelectRight),
             };
 
-            (string, string)[] typeTexts = new (string, string)[]
+            TextTypePairs = new (string, UIT)[]
             {
-                (ResourceManager.Term.recoverItem, "recoverItem"),
-                (ResourceManager.Term.attackItem, "attackItem"),
-                (ResourceManager.Term.auxiliaryItem, "auxiliaryItem")
+                (ResourceManager.Term.recoverItem, UIT.RecoverItem),
+                (ResourceManager.Term.attackItem, UIT.AttackItem),
+                (ResourceManager.Term.auxiliaryItem, UIT.AuxiliaryItem)
             };
 
             itemListBox.Initialize(1, 8, RefreshItem);
             itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
 
-            typeListBox.Initialize(typeTexts.Length, 1, RefreshType, typeTexts);
+            typeListBox.Initialize(TextTypePairs.Length, 1, RefreshType, TextTypePairs);
             typeListBox.RegisterSelectedItemChangeCallback(OnTypeChange);
         }
 
@@ -74,26 +80,9 @@ namespace UI
 
         private void OnTypeChange(object data, int index)
         {
-            QuantityList list;
-            switch ((((string, string))typeListBox.SelectedItem).Item2)
-            {
-                case "recoverItem":
-                    CurrentAction = (id) => new ActorUsableItem(AIT.RecoverItem, id);
-                    list = Party.ActorRecoverItem;
-                    break;
-                case "attackItem":
-                    CurrentAction = (id) => new ActorUsableItem(AIT.AttackItem, id);
-                    list = Party.ActorAttackItem;
-                    break;
-                case "auxiliaryItem":
-                    CurrentAction = (id) => new ActorUsableItem(AIT.AuxiliaryItem, id);
-                    list = Party.ActorAuxiliaryItem;
-                    break;
-                default:
-                    list = new();
-                    break;
-            }
-            itemListBox.SetSource(list);
+            UIT itemType = (((string, UIT))typeListBox.SelectedItem).Item2;
+            CurrentAction = (id) => new ActorUsableItem(itemType, id);
+            itemListBox.SetSource(Party.GetActorItemList(itemType));
         }
 
         private void OnSelectedItemChange(object data, int index)
@@ -144,9 +133,9 @@ namespace UI
                     1f
                 );
                 //在生效的情况下消耗道具
-                if (item.Consumable && (result.Item1 > 0 || result.Item2 > 0))
+                if (result.Item1 > 0 || result.Item2 > 0)
                 {
-                    item.CostAndCool();
+                    item.Cost();
                     itemListBox.Refresh();
                     if (CurrentQuantityItem.quantity <= 0)
                         itemListBox.Reselect();
@@ -165,7 +154,7 @@ namespace UI
             if (listItem is TextItem c)
             {
                 if (data != null)
-                    c.textComponent.text = (((string, string))data).Item1;
+                    c.textComponent.text = (((string, UIT))data).Item1;
                 else
                     c.textComponent.text = " ";
             }

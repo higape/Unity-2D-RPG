@@ -69,19 +69,19 @@ namespace UI
                     UIManager
                         .Instantiate(actorUsableItemPanelPrefab)
                         .GetComponent<ActorUsableItemPanel>()
-                        .Setup(0);
+                        .Setup(Static.ActorUsableItem.ItemType.RecoverItem);
                     break;
                 case "attackItem":
                     UIManager
                         .Instantiate(actorUsableItemPanelPrefab)
                         .GetComponent<ActorUsableItemPanel>()
-                        .Setup(1);
+                        .Setup(Static.ActorUsableItem.ItemType.AttackItem);
                     break;
                 case "auxiliaryItem":
                     UIManager
                         .Instantiate(actorUsableItemPanelPrefab)
                         .GetComponent<ActorUsableItemPanel>()
-                        .Setup(2);
+                        .Setup(Static.ActorUsableItem.ItemType.AuxiliaryItem);
                     break;
                 case "normalItem":
                     UIManager.Instantiate(actorNormalItemPanelPrefab);
