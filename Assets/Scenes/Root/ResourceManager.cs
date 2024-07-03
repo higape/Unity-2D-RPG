@@ -266,6 +266,7 @@ namespace Root
 
         private void Awake()
         {
+            CheckAndCreatePath();
             GameInfo = gameInfo;
             Term = term;
             BattleEffect = battleEffect;
