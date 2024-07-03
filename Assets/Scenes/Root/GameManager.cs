@@ -7,6 +7,7 @@ namespace Root
     {
         private void Start()
         {
+            ResourceManager.CheckAndCreatePath();
             SceneManager.LoadSceneAsync("Title", LoadSceneMode.Additive);
         }
     }
