@@ -67,13 +67,6 @@ namespace Static
         public string footArmor;
         public string ornamentArmor;
 
-        public string weaponPart;
-        public string headPart;
-        public string bodyPart;
-        public string handPart;
-        public string footPart;
-        public string ornamentPart;
-
         #endregion
 
         #region ElementType

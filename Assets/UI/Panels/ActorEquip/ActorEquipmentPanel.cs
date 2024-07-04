@@ -13,7 +13,7 @@ namespace UI
         #region Prefab & List
 
         [SerializeField]
-        private GameObject labelPrefab;
+        private GameObject iconPrefab;
 
         [SerializeField]
         private GameObject labelLayer;
@@ -123,23 +123,24 @@ namespace UI
             expLabel.text = ResourceManager.Term.exp;
             nextExpLabel.text = ResourceManager.Term.nextExp;
 
-            string[] labelTexts = new string[Actor.WeaponCount + Actor.ArmorCount]
+            Sprite[] iconSprites = new Sprite[Actor.WeaponCount + Actor.ArmorCount]
             {
-                ResourceManager.Term.weaponPart,
-                ResourceManager.Term.weaponPart,
-                ResourceManager.Term.weaponPart,
-                ResourceManager.Term.headPart,
-                ResourceManager.Term.bodyPart,
-                ResourceManager.Term.handPart,
-                ResourceManager.Term.footPart,
-                ResourceManager.Term.ornamentPart,
+                ResourceManager.GetActorWeaponSprite(),
+                ResourceManager.GetActorWeaponSprite(),
+                ResourceManager.GetActorWeaponSprite(),
+                ResourceManager.GetActorArmorSprite(0),
+                ResourceManager.GetActorArmorSprite(1),
+                ResourceManager.GetActorArmorSprite(2),
+                ResourceManager.GetActorArmorSprite(3),
+                ResourceManager.GetActorArmorSprite(4),
             };
 
-            foreach (var labelText in labelTexts)
+            foreach (var iconSprite in iconSprites)
             {
-                Instantiate(labelPrefab, labelLayer.transform)
-                    .GetComponentInChildren<TextMeshProUGUI>()
-                    .text = labelText;
+                Instantiate(iconPrefab, labelLayer.transform)
+                    .GetComponentInChildren<ImageItem>()
+                    .image
+                    .sprite = iconSprite;
             }
 
             itemListBox.Initialize(1, Actor.WeaponCount + Actor.ArmorCount, RefreshItem);

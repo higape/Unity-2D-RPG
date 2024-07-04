@@ -49,8 +49,7 @@ namespace Root
         public static EnemyList Enemy { get; private set; }
         public static ShopList Shop { get; private set; }
         public static Sprite[] ElementSprite { get; set; }
-
-        public static Sprite GetElementSprite(ElementType type) => ElementSprite[(int)type];
+        public static Sprite[] EquipmentSprite { get; set; }
 
         public static ActorUsableItemList GetActorUsableItemList(ActorUsableItem.ItemType type) =>
             type switch
@@ -71,6 +70,12 @@ namespace Root
                 4 => ActorOrnamentArmor,
                 _ => null,
             };
+
+        public static Sprite GetElementSprite(ElementType type) => ElementSprite[(int)type];
+
+        public static Sprite GetActorWeaponSprite() => EquipmentSprite[0];
+
+        public static Sprite GetActorArmorSprite(int slotIndex) => EquipmentSprite[slotIndex + 1];
 
         /// <summary>
         /// 创建存档路径
@@ -291,6 +296,7 @@ namespace Root
             Enemy = enemy;
             Shop = shop;
             ElementSprite = elementSprite;
+            EquipmentSprite = equipmentSprite;
         }
     }
 }
