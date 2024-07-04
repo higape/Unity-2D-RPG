@@ -264,6 +264,9 @@ namespace Root
         [SerializeField]
         private Sprite[] elementSprite;
 
+        [SerializeField]
+        private Sprite[] equipmentSprite;
+
         private void Awake()
         {
             CheckAndCreatePath();
