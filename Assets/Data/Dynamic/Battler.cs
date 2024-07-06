@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using ET = Static.ElementType;
 
 namespace Dynamic
 {
@@ -30,6 +31,22 @@ namespace Dynamic
         protected List<DurationState> DurationStates { get; set; } = new();
 
         public abstract float GetElementRate(Static.ElementType elementType);
+
+        /// <summary>
+        /// 获取所有元素抗性，抗性的值以整数表示
+        /// </summary>
+        public Static.ElementGroup GetElementGroup() =>
+            new()
+            {
+                Normal = 100 - Mathf.RoundToInt(GetElementRate(ET.Normal) * 100),
+                Corrosion = 100 - Mathf.RoundToInt(GetElementRate(ET.Corrosion) * 100),
+                Fire = 100 - Mathf.RoundToInt(GetElementRate(ET.Fire) * 100),
+                Ice = 100 - Mathf.RoundToInt(GetElementRate(ET.Ice) * 100),
+                Electricity = 100 - Mathf.RoundToInt(GetElementRate(ET.Electricity) * 100),
+                Wave = 100 - Mathf.RoundToInt(GetElementRate(ET.Wave) * 100),
+                Ray = 100 - Mathf.RoundToInt(GetElementRate(ET.Ray) * 100),
+                Gas = 100 - Mathf.RoundToInt(GetElementRate(ET.Gas) * 100),
+            };
 
         /// <summary>
         /// 获取效果值最大的状态以及状态值

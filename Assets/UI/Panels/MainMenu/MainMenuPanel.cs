@@ -30,6 +30,9 @@ namespace UI
         private GameObject actorEquipmentPrefab;
 
         [SerializeField]
+        private GameObject actorStatusPrefab;
+
+        [SerializeField]
         private GameObject settingPanelPrefab;
 
         [SerializeField]
@@ -140,15 +143,8 @@ namespace UI
                     UIManager.Instantiate(itemTypePrefab);
                     break;
                 case "skill":
-                    SelectedIndex = 0;
-                    IsSelectActor = true;
-                    actorStatusItems[0].Selected = true;
-                    InputManagementSystem.AddCommands(
-                        nameof(MainMenuPanel) + "Status",
-                        StatusCommands
-                    );
-                    break;
                 case "equip":
+                case "status":
                     SelectedIndex = 0;
                     IsSelectActor = true;
                     actorStatusItems[0].Selected = true;
@@ -186,6 +182,12 @@ namespace UI
                             .Instantiate(actorEquipmentPrefab)
                             .GetComponent<ActorEquipmentPanel>()
                             .SetActor(actor);
+                        break;
+                    case "status":
+                        UIManager
+                            .Instantiate(actorStatusPrefab)
+                            .GetComponent<ActorStatusPanel>()
+                            .Setup(Party.GetBattleActorList(), SelectedIndex);
                         break;
                 }
             }

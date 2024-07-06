@@ -48,6 +48,8 @@ namespace Static
         public string usedCount;
         public string effectRate;
         public string addedEffect;
+        public string ability;
+        public string equipment;
 
         #endregion
 
