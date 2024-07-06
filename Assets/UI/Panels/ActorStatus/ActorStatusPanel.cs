@@ -79,12 +79,12 @@ namespace UI
         {
             InputCommands = new InputCommand[]
             {
-                new(InputCommand.ButtonUp, ButtonType.Press, () => Select(-1)),
-                new(InputCommand.ButtonDown, ButtonType.Press, () => Select(1)),
-                new(InputCommand.ButtonLeft, ButtonType.Press, () => Select(-1)),
-                new(InputCommand.ButtonRight, ButtonType.Press, () => Select(1)),
-                new(InputCommand.ButtonPrevious, ButtonType.Press, () => Select(-1)),
-                new(InputCommand.ButtonNext, ButtonType.Press, () => Select(1)),
+                new(InputCommand.ButtonUp, ButtonType.Down, () => Select(-1)),
+                new(InputCommand.ButtonDown, ButtonType.Down, () => Select(1)),
+                new(InputCommand.ButtonLeft, ButtonType.Down, () => Select(-1)),
+                new(InputCommand.ButtonRight, ButtonType.Down, () => Select(1)),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, () => Select(-1)),
+                new(InputCommand.ButtonNext, ButtonType.Down, () => Select(1)),
                 new(InputCommand.ButtonInteract, ButtonType.Down, () => Select(1)),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
@@ -206,6 +206,7 @@ namespace UI
                 ActorIndex = Actors.Count - 1;
             else if (ActorIndex >= Actors.Count)
                 ActorIndex = 0;
+            Refresh();
         }
 
         private void Cancel()
