@@ -23,8 +23,12 @@ namespace Dynamic
         }
 
         private int hp;
+
         public Static.Enemy DataObject { get; private set; }
+
         public Sprite Skin => DataObject.skin;
+
+        public Vector2 LayoutPosition { get; set; }
 
         /// <summary>
         /// 身体在世界坐标的所占范围。

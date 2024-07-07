@@ -9,6 +9,13 @@ namespace Root
 {
     public static class Mathc
     {
+        public const float EnemyLayoutWidth = 896;
+        public const float EnemyLayoutHeight = 504;
+
+        public static void LayoutEnemy(List<Enemy> enemies) { }
+
+        public static void LayoutNewEnemy(List<Enemy> olds, List<Enemy> news) { }
+
         /// <summary>
         /// 获取构成扇形的两条直线
         /// </summary>

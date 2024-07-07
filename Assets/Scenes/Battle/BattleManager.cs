@@ -109,7 +109,7 @@ namespace Battle
 
         public static UnityEvent BattleEnded { get; set; } = new();
 
-        public static void StartBattle(List<(int, int)> enemyData, UnityAction callback)
+        public static void StartBattle(List<(int, int, Vector2)> enemyData, UnityAction callback)
         {
             if (!IsBattling)
             {
@@ -119,7 +119,9 @@ namespace Battle
                 DeadEnemies = new();
                 foreach (var d in enemyData)
                 {
-                    Enemies.Add(new(d.Item1, d.Item2));
+                    var enemy = new Enemy(d.Item1, d.Item2);
+                    enemy.LayoutPosition = d.Item3;
+                    Enemies.Add(enemy);
                 }
 
                 Map.PlayerController.WaitCount++;

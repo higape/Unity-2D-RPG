@@ -16,16 +16,18 @@ namespace Static
 
             [Tooltip("敌人等级")]
             public int level;
+
+            public Vector2 position;
         }
 
         public EnemyInfo[] enemies;
 
-        public List<(int, int)> MakeBattleData()
+        public List<(int, int, Vector2)> MakeBattleData()
         {
-            List<(int, int)> data = new();
+            List<(int, int, Vector2)> data = new();
             foreach (EnemyInfo enemy in enemies)
             {
-                data.Add((enemy.id, enemy.level));
+                data.Add((enemy.id, enemy.level, enemy.position));
             }
             return data;
         }

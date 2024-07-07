@@ -20,6 +20,12 @@ namespace Battle
         {
             Source = source;
             spriteRenderer.sprite = Source.Skin;
+            transform.localPosition = new Vector3(
+                source.LayoutPosition.x / source.Skin.pixelsPerUnit,
+                source.LayoutPosition.y / source.Skin.pixelsPerUnit,
+                0
+            );
+            Debug.Log(source.LayoutPosition);
         }
 
         public override void GoToDie()
