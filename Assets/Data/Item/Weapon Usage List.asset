@@ -133,3 +133,13 @@ MonoBehaviour:
       duration: 0
       targetType: 0
     log: 
+  - id: 9
+    name: "\u4EC0\u4E48\u90FD\u4E0D\u505A"
+    bullets:
+    - {fileID: 11400000, guid: f5526bed8829a08439b18371e136b94b, type: 2}
+    element: 0
+    scope: 0
+    attackCount: 1
+    waitTime: 0
+    effects: []
+    log: 

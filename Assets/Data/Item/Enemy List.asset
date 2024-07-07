@@ -252,3 +252,62 @@ MonoBehaviour:
       durability: 0
       firePosition: {x: 0, y: 0, z: 0}
     traits: []
+  - id: 5
+    name: "\u6728\u6869"
+    type: 0
+    exp:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    hp:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    atk:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    def:
+      basic: 9999
+      power1: 0
+      power2: 0
+      power3: 0
+    agi:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    gold:
+      basic: 1
+      power1: 0
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 9
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
