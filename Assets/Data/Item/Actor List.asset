@@ -65,7 +65,7 @@ MonoBehaviour:
         power1: 0
         power2: 0
         power3: 0
-    weaponIDs: 010000000000000000000000
+    weaponIDs: 040000000500000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:
       idle: {fileID: -1664743668, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
@@ -114,7 +114,7 @@ MonoBehaviour:
       power3: 0
     lv: 1
     skills: []
-    weaponIDs: 020000000000000000000000
+    weaponIDs: 040000000000000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:
       idle: {fileID: 1426884576, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
@@ -163,7 +163,7 @@ MonoBehaviour:
       power3: 0
     lv: 1
     skills: []
-    weaponIDs: 030000000000000000000000
+    weaponIDs: 040000000000000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:
       idle: {fileID: -1925611698, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}

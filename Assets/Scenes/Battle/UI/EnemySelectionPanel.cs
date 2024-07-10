@@ -18,10 +18,15 @@ namespace Battle
         private GameObject cursorPrefab;
 
         private Actor CurrentActor { get; set; }
+
         private Static.UsedScope Scope { get; set; }
+
         private Battler CurrentTarget { get; set; }
+
         private UnityAction CancelCallback { get; set; }
+
         private UnityAction FinishCallback { get; set; }
+
         private Enemy[] Enemies { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
@@ -63,6 +68,7 @@ namespace Battle
             CurrentTarget = BattleManager.BestTarget(actor, scope);
             Enemies = BattleManager.GetActorToEnemyTargets();
             CurrentTarget.DisplayObject.ShowCursor(cursorPrefab);
+            RefreshScope();
         }
 
         private void InvokeFinishCallback()
@@ -74,6 +80,7 @@ namespace Battle
         private void Interact()
         {
             CurrentTarget.DisplayObject.HideCursor();
+            ScopeDrawer.Clear();
             BattleManager.CurrentCommand.SelectedTarget = CurrentTarget;
             BattleManager.CommandInputEnd();
             InvokeFinishCallback();
@@ -82,6 +89,7 @@ namespace Battle
         private void Cancel()
         {
             CurrentTarget.DisplayObject.HideCursor();
+            ScopeDrawer.Clear();
             CancelCallback?.Invoke();
             Destroy(gameObject);
         }
@@ -187,6 +195,56 @@ namespace Battle
                 CurrentTarget.DisplayObject.HideCursor();
                 CurrentTarget = nearestTarget;
                 CurrentTarget.DisplayObject.ShowCursor(cursorPrefab);
+                RefreshScope();
+            }
+        }
+
+        private void RefreshScope()
+        {
+            switch (Scope)
+            {
+                case Static.UsedScope.None:
+                    break;
+                case Static.UsedScope.Self:
+                    break;
+                case Static.UsedScope.OneFriend:
+                    break;
+                case Static.UsedScope.OneFriendExcludeSelf:
+                    break;
+                case Static.UsedScope.AllFriend:
+                    break;
+                case Static.UsedScope.AllFriendExcludeSelf:
+                    break;
+                case Static.UsedScope.OneDeadFriend:
+                    break;
+                case Static.UsedScope.AllDeadFriend:
+                    break;
+                case Static.UsedScope.OneEnemy:
+                    break;
+                case Static.UsedScope.AllEnemy:
+                    break;
+                case Static.UsedScope.SmallSector:
+                    ScopeDrawer.DrawSmallSector(
+                        CurrentActor.DisplayObject.FirePosition,
+                        CurrentTarget.DisplayObject.Position
+                    );
+                    break;
+                case Static.UsedScope.BigSector:
+                    ScopeDrawer.DrawBigSector(
+                        CurrentActor.DisplayObject.FirePosition,
+                        CurrentTarget.DisplayObject.Position
+                    );
+                    break;
+                case Static.UsedScope.SmallRay:
+                    break;
+                case Static.UsedScope.BigRay:
+                    break;
+                case Static.UsedScope.SmallCircle:
+                    break;
+                case Static.UsedScope.BigCircle:
+                    break;
+                default:
+                    break;
             }
         }
     }

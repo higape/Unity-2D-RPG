@@ -299,21 +299,22 @@ namespace Battle
                     }
                     else
                     {
-                        return Enemies[Random.Range(0, Enemies.Count)];
+                        return Enemies[0];
                     }
                 case Static.UsedScope.SmallSector:
-                    return null;
+                    return Enemies[0];
                 case Static.UsedScope.BigSector:
-                    return null;
+                    return Enemies[0];
                 case Static.UsedScope.SmallRay:
-                    return null;
+                    return Enemies[0];
                 case Static.UsedScope.BigRay:
-                    return null;
+                    return Enemies[0];
                 case Static.UsedScope.SmallCircle:
-                    return null;
+                    return Enemies[0];
                 case Static.UsedScope.BigCircle:
-                    return null;
+                    return Enemies[0];
                 default:
+                    Debug.LogError($"无法获取目标, 成员: {owner.Name}, 范围: {scope}");
                     return null;
             }
         }

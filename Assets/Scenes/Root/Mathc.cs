@@ -33,7 +33,7 @@ namespace Root
             float dy = endPosition.y - startPosition.y;
 
             //角度转换为弧度
-            float r0 = angle / -2 * Mathf.PI / 180;
+            float r0 = angle * -1 * Mathf.PI / 180;
             //旋转后的点
             float px0 = dx * Mathf.Cos(r0) - dy * Mathf.Sin(r0) + startPosition.x;
             float py0 = dx * Mathf.Sin(r0) + dy * Mathf.Cos(r0) + startPosition.y;
@@ -55,12 +55,17 @@ namespace Root
 
         public static List<Enemy> GetSectorTarget(Vector4 kbkb, List<Enemy> targetList)
         {
-            //捋清两条线的位置关系
+            //此方法做的事：计算目标的身体矩形是否包含在扇形范围内，并返回符合条件的目标
+            //可抽象为计算矩形的任一顶点是否在扇形的两条边之间
+            //计算步骤：过矩形的顶点作一条垂直于y轴的线，求出线与扇形两条边相交的点，
+            //如果有任一顶点处于其对应的两交点之间，或者交点处于两个顶点之间，则认为目标在范围内
+            //判断点的位置关系时，仅比较y坐标，因此计算过程中不求出点的x坐标
+
+            //计算两条直线在垂直方向的位置关系
             float k0,
                 b0,
                 k1,
                 b1;
-
             if (kbkb.x < kbkb.z)
             {
                 k0 = kbkb.x;
@@ -80,28 +85,22 @@ namespace Root
             List<Enemy> newList = new();
             foreach (Enemy battler in targetList)
             {
-                //检查表示身体范围的矩形
-                var rect = battler.ScopeRect;
+                var border = battler.BodyBorder;
 
-                //各定点坐标值
-                float leftX = rect.x,
-                    rightX = rect.x + rect.width,
-                    downY = rect.y,
-                    upY = rect.y + rect.height;
+                //两条直线对应的y值
+                float leftUpY = k0 * border.x + b0;
+                float leftDownY = k1 * border.x + b1;
+                float rightUpY = k0 * border.y + b0;
+                float rightDownY = k1 * border.y + b1;
 
-                //直线在矩形左右两侧对应的y值
-                float leftUpY = k0 * leftX + b0;
-                float leftDownY = k1 * leftX + b1;
-                float rightUpY = k0 * rightX + b0;
-                float rightDownY = k1 * rightX + b1;
-
-                //从矩形左上角顺时针依次检查四个点，任意一点在两线之间即在范围内
                 //根据y坐标确定位置关系
                 if (
-                    (upY < leftUpY && upY > leftDownY)
-                    || (upY < rightUpY && upY > rightDownY)
-                    || (downY < rightUpY && downY > rightDownY)
-                    || (downY < leftUpY && downY > leftDownY)
+                    (border.z < leftUpY && border.z > leftDownY)
+                    || (border.z < rightUpY && border.z > rightDownY)
+                    || (border.w < rightUpY && border.w > rightDownY)
+                    || (border.w < leftUpY && border.w > leftDownY)
+                    || (leftUpY >= border.z && leftUpY <= border.w)
+                    || (rightUpY >= border.z && rightUpY <= border.w)
                 )
                     newList.Add(battler);
             }

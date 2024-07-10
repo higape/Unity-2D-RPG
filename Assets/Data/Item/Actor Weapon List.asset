@@ -22,22 +22,36 @@ MonoBehaviour:
     equipable: 
   - id: 1
     name: "\u5355\u4F53\u666E\u653B\u6B66\u5668"
-    skinID: 2
+    skinID: 1
     usageIDs: 05000000
     atk: 1
     price: 10
     equipable: 
   - id: 2
     name: "\u706B\u6B66\u5668"
-    skinID: 2
+    skinID: 1
     usageIDs: 02000000
     atk: 5
     price: 50
     equipable: 
   - id: 3
     name: "\u51B0\u6B66\u5668"
-    skinID: 2
+    skinID: 1
     usageIDs: 04000000
     atk: 8
     price: 80
+    equipable: 
+  - id: 4
+    name: "\u5C0F\u6247\u5F62\u666E\u901A\u6B66\u5668"
+    skinID: 1
+    usageIDs: 0a000000
+    atk: 8
+    price: 200
+    equipable: 
+  - id: 5
+    name: "\u5927\u6247\u5F62\u666E\u901A\u6B66\u5668"
+    skinID: 1
+    usageIDs: 0b000000
+    atk: 2
+    price: 300
     equipable: 

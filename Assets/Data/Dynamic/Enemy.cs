@@ -31,21 +31,20 @@ namespace Dynamic
         public Vector2 LayoutPosition { get; set; }
 
         /// <summary>
-        /// 身体在世界坐标的所占范围。
         /// 用来计算战斗者是否在攻击范围内。
-        /// 采用 Unity Unit。
+        /// 身体边界信息，包含最小x坐标、最大x坐标、最小y坐标、最大y坐标。
+        /// 采用世界坐标系，单位为 Unity Unit。
         /// </summary>
-        public Rect ScopeRect
+        public Vector4 BodyBorder
         {
             get
             {
-                Rect skinRect = Skin.rect;
                 Vector3 position = DisplayObject.Position;
-                return new Rect(
-                    skinRect.x / Skin.pixelsPerUnit + position.x,
-                    skinRect.y / Skin.pixelsPerUnit + position.y,
-                    skinRect.width / Skin.pixelsPerUnit,
-                    skinRect.height / Skin.pixelsPerUnit
+                return new Vector4(
+                    position.x - Skin.pivot.x / Skin.pixelsPerUnit,
+                    position.x + (Skin.rect.width - Skin.pivot.x) / Skin.pixelsPerUnit,
+                    position.y - Skin.pivot.y / Skin.pixelsPerUnit,
+                    position.y + (Skin.rect.height - Skin.pivot.y) / Skin.pixelsPerUnit
                 );
             }
         }

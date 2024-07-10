@@ -115,7 +115,7 @@ MonoBehaviour:
     waitTime: 0
     effects:
     - effectID: 7
-      effectValue: 50
+      effectValue: 10
       duration: 0
       targetType: 0
     log: 
@@ -142,4 +142,32 @@ MonoBehaviour:
     attackCount: 1
     waitTime: 0
     effects: []
+    log: 
+  - id: 10
+    name: "\u5C0F\u6247\u5F62\u666E\u901A\u653B\u51FB"
+    bullets:
+    - {fileID: 11400000, guid: f5526bed8829a08439b18371e136b94b, type: 2}
+    element: 0
+    scope: 101
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 11
+    name: "\u5927\u6247\u5F62\u666E\u901A\u653B\u51FB"
+    bullets:
+    - {fileID: 11400000, guid: f5526bed8829a08439b18371e136b94b, type: 2}
+    element: 0
+    scope: 102
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
     log: 

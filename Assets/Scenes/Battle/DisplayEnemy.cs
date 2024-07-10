@@ -12,7 +12,6 @@ namespace Battle
 
         private Enemy Source { get; set; }
         public override Vector3 Position => transform.position;
-        public Rect ScopeRect => Source.ScopeRect;
         public override Vector3 FirePosition => transform.position;
         private bool IsGoingDie { get; set; } = false;
 
@@ -25,7 +24,6 @@ namespace Battle
                 source.LayoutPosition.y / source.Skin.pixelsPerUnit,
                 0
             );
-            Debug.Log(source.LayoutPosition);
         }
 
         public override void GoToDie()
