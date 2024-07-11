@@ -14,10 +14,10 @@ namespace Battle
     /// </summary>
     public class BattleManager : MonoBehaviour
     {
-        public const float SmallSectorAngle = 15f;
-        public const float BigSectorAngle = 25f;
-        public const float SmallRayWidth = 3f;
-        public const float BigRayWidth = 5f;
+        public const float SmallSectorAngle = 16f;
+        public const float BigSectorAngle = 24f;
+        public const float SmallRayWidth = 20f; // pixel unit
+        public const float BigRayWidth = 50f; // pixel unit
         public const float SmallCircleRadius = 10f;
         public const float BigCircleRadius = 10f;
 
@@ -391,8 +391,34 @@ namespace Battle
                         );
                     break;
                 case Static.UsedScope.SmallRay:
+                    if (owner is Enemy)
+                        targetList.Add(oldTarget);
+                    else
+                        targetList.AddRange(
+                            Mathc.GetRayTarget(
+                                Mathc.GetRayParam(
+                                    SmallRayWidth,
+                                    owner.DisplayObject.Position,
+                                    oldTarget.DisplayObject.Position
+                                ),
+                                Enemies
+                            )
+                        );
                     break;
                 case Static.UsedScope.BigRay:
+                    if (owner is Enemy)
+                        targetList.Add(oldTarget);
+                    else
+                        targetList.AddRange(
+                            Mathc.GetRayTarget(
+                                Mathc.GetRayParam(
+                                    BigRayWidth,
+                                    owner.DisplayObject.Position,
+                                    oldTarget.DisplayObject.Position
+                                ),
+                                Enemies
+                            )
+                        );
                     break;
                 case Static.UsedScope.SmallCircle:
                     break;
@@ -857,65 +883,51 @@ namespace Battle
 
         // private void OnDrawGizmos()
         // {
-        //     TestScope(new Vector3(20.0f, 11.25f, 0), new Vector3(-20.0f, -11.25f, 0));
+        //     TestScope(new Vector3(9f, 8f, 0), new Vector3(-6f, 5.56f, 0));
         // }
 
-        //测试绘制攻击范围
-        private void TestScope(Vector3 start, Vector3 end)
-        {
-            var kbkb = Mathc.GetSectorParam(SmallSectorAngle, start, end);
-            // for (int i = -20; i < 20; i++)
-            // {
-            //     Gizmos.DrawWireCube(new Vector3(i, kbkb.x * i + kbkb.y), new Vector3(1, 1, 1));
-            //     Gizmos.DrawWireCube(new Vector3(i, kbkb.z * i + kbkb.w), new Vector3(1, 1, 1));
-            // }
+        // //测试绘制攻击范围
+        // private void TestScope(Vector3 start, Vector3 end)
+        // {
+        //     var kbb = Mathc.GetRectangleParam(SmallRayWidth, start, end);
 
-            //捋清两条线的位置关系
-            float k0,
-                b0,
-                k1,
-                b1;
+        //     float k = kbb.x;
+        //     float b0,
+        //         b1;
+        //     if (kbb.y > kbb.z)
+        //     {
+        //         b0 = kbb.y;
+        //         b1 = kbb.z;
+        //     }
+        //     else
+        //     {
+        //         b0 = kbb.z;
+        //         b1 = kbb.y;
+        //     }
 
-            if (kbkb.x < kbkb.z)
-            {
-                k0 = kbkb.x;
-                b0 = kbkb.y;
-                k1 = kbkb.z;
-                b1 = kbkb.w;
-            }
-            else
-            {
-                k0 = kbkb.z;
-                b0 = kbkb.w;
-                k1 = kbkb.x;
-                b1 = kbkb.y;
-            }
+        //     Vector4 border = new(-9f, -3f, 2.56f, 8.56f);
 
-            //检查表示身体范围的矩形
-            var rect = new Rect(0, 0, 8, 8);
+        //     float leftUpY = k * border.x + b0;
+        //     float leftDownY = k * border.x + b1;
+        //     float rightUpY = k * border.y + b0;
+        //     float rightDownY = k * border.y + b1;
 
-            //各定点坐标值
-            float leftX = rect.x,
-                rightX = rect.x + rect.width,
-                downY = rect.y,
-                upY = rect.y + rect.height;
+        //     Gizmos.DrawWireCube(
+        //         new Vector3(-6f, 5.56f * k + (b0 + b1) / 2f),
+        //         new Vector3(3f, 3f, 3f)
+        //     );
 
-            // Gizmos.DrawWireCube(new Vector3(leftX, upY), new Vector3(1, 1, 1));
-            // Gizmos.DrawWireCube(new Vector3(rightX, upY), new Vector3(1, 1, 1));
-            // Gizmos.DrawWireCube(new Vector3(rightX, downY), new Vector3(1, 1, 1));
-            // Gizmos.DrawWireCube(new Vector3(leftX, downY), new Vector3(1, 1, 1));
+        //     Gizmos.DrawWireCube(new Vector3(border.x, border.w), new Vector3(0.25f, 0.25f, 0.25f));
+        //     Gizmos.DrawWireCube(new Vector3(border.y, border.w), new Vector3(0.25f, 0.25f, 0.25f));
+        //     Gizmos.DrawWireCube(new Vector3(border.y, border.z), new Vector3(0.25f, 0.25f, 0.25f));
+        //     Gizmos.DrawWireCube(new Vector3(border.x, border.z), new Vector3(0.25f, 0.25f, 0.25f));
 
-            //直线在矩形左右两侧对应的y值
-            float leftUpY = k0 * leftX + b0;
-            float leftDownY = k1 * leftX + b1;
-            float rightUpY = k0 * rightX + b0;
-            float rightDownY = k1 * rightX + b1;
+        //     Gizmos.DrawWireCube(new Vector3(border.x, leftUpY), new Vector3(0.5f, 0.5f, 0.5f));
+        //     Gizmos.DrawWireCube(new Vector3(border.y, rightUpY), new Vector3(0.5f, 0.5f, 0.5f));
+        //     Gizmos.DrawWireCube(new Vector3(border.y, rightDownY), new Vector3(0.5f, 0.5f, 0.5f));
+        //     Gizmos.DrawWireCube(new Vector3(border.x, leftDownY), new Vector3(0.5f, 0.5f, 0.5f));
+        // }
 
-            Gizmos.DrawWireCube(new Vector3(leftX, leftUpY), new Vector3(1, 1, 1));
-            Gizmos.DrawWireCube(new Vector3(rightX, rightUpY), new Vector3(1, 1, 1));
-            Gizmos.DrawWireCube(new Vector3(rightX, rightDownY), new Vector3(1, 1, 1));
-            Gizmos.DrawWireCube(new Vector3(leftX, leftDownY), new Vector3(1, 1, 1));
-        }
         #endregion
     }
 }

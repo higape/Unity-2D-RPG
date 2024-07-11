@@ -32,8 +32,8 @@ namespace Root
             float dx = endPosition.x - startPosition.x;
             float dy = endPosition.y - startPosition.y;
 
-            //角度转换为弧度
-            float r0 = angle * -1 * Mathf.PI / 180;
+            //角度除以2后转换为弧度
+            float r0 = angle / 2 * Mathf.PI / 180;
             //旋转后的点
             float px0 = dx * Mathf.Cos(r0) - dy * Mathf.Sin(r0) + startPosition.x;
             float py0 = dx * Mathf.Sin(r0) + dy * Mathf.Cos(r0) + startPosition.y;
@@ -111,7 +111,7 @@ namespace Root
         /// <summary>
         /// 获取构成矩形的直线的k值和b值
         /// </summary>
-        public static Vector3 GetRectangleParam(
+        public static Vector3 GetRayParam(
             float rectWidth,
             Vector3 startPosition,
             Vector3 endPosition
@@ -123,17 +123,53 @@ namespace Root
 
             //直线的k值和b值
             float k = dy / dx;
-            float b = dy - k * dx;
+            float b = endPosition.y - k * endPosition.x;
 
             //计算矩形两条边所在直线的b值
-            float d = Mathf.Sqrt(dx * dx + dy * dy);
-            float offsetY = rectWidth * d / Mathf.Abs(dx);
-            return new Vector3(k, b + offsetY / 2, b + offsetY / -2);
+            float offsetY = rectWidth / 32f * Mathf.Sqrt(dx * dx + dy * dy) / Mathf.Abs(dx) / 2;
+            return new Vector3(k, b + offsetY, b - offsetY);
         }
 
-        public static List<Enemy> GetRectangleTarget(Vector3 kbb, List<Enemy> targetList)
+        public static List<Enemy> GetRayTarget(Vector3 kbb, List<Enemy> targetList)
         {
+            //计算两条直线在垂直方向的位置关系
+            float k = kbb.x;
+            float b0,
+                b1;
+            if (kbb.y > kbb.z)
+            {
+                b0 = kbb.y;
+                b1 = kbb.z;
+            }
+            else
+            {
+                b0 = kbb.z;
+                b1 = kbb.y;
+            }
+
+            //选取两线之间的目标
             List<Enemy> newList = new();
+            foreach (Enemy battler in targetList)
+            {
+                var border = battler.BodyBorder;
+
+                //两条直线对应的y值
+                float leftUpY = k * border.x + b0;
+                float leftDownY = k * border.x + b1;
+                float rightUpY = k * border.y + b0;
+                float rightDownY = k * border.y + b1;
+
+                //根据y坐标确定位置关系
+                if (
+                    (border.z < leftUpY && border.z > leftDownY)
+                    || (border.z < rightUpY && border.z > rightDownY)
+                    || (border.w < rightUpY && border.w > rightDownY)
+                    || (border.w < leftUpY && border.w > leftDownY)
+                    || (leftUpY >= border.z && leftUpY <= border.w)
+                    || (rightUpY >= border.z && rightUpY <= border.w)
+                )
+                    newList.Add(battler);
+            }
 
             return newList;
         }

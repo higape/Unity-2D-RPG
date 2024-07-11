@@ -171,3 +171,31 @@ MonoBehaviour:
       duration: 0
       targetType: 0
     log: 
+  - id: 12
+    name: "\u5C0F\u8D2F\u7A7F\u666E\u901A\u653B\u51FB"
+    bullets:
+    - {fileID: 11400000, guid: f5526bed8829a08439b18371e136b94b, type: 2}
+    element: 0
+    scope: 201
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 13
+    name: "\u5927\u8D2F\u7A7F\u666E\u901A\u653B\u51FB"
+    bullets:
+    - {fileID: 11400000, guid: f5526bed8829a08439b18371e136b94b, type: 2}
+    element: 0
+    scope: 202
+    attackCount: 1
+    waitTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 

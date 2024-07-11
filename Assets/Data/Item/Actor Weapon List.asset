@@ -55,3 +55,17 @@ MonoBehaviour:
     atk: 2
     price: 300
     equipable: 
+  - id: 6
+    name: "\u5C0F\u8D2F\u7A7F\u666E\u901A\u6B66\u5668"
+    skinID: 1
+    usageIDs: 0c000000
+    atk: 2
+    price: 300
+    equipable: 
+  - id: 7
+    name: "\u5927\u8D2F\u7A7F\u666E\u901A\u6B66\u5668"
+    skinID: 1
+    usageIDs: 0d000000
+    atk: 2
+    price: 300
+    equipable: 

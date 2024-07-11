@@ -236,8 +236,16 @@ namespace Battle
                     );
                     break;
                 case Static.UsedScope.SmallRay:
+                    ScopeDrawer.DrawSmallRay(
+                        CurrentActor.DisplayObject.FirePosition,
+                        CurrentTarget.DisplayObject.Position
+                    );
                     break;
                 case Static.UsedScope.BigRay:
+                    ScopeDrawer.DrawBigRay(
+                        CurrentActor.DisplayObject.FirePosition,
+                        CurrentTarget.DisplayObject.Position
+                    );
                     break;
                 case Static.UsedScope.SmallCircle:
                     break;
