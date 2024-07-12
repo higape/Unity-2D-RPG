@@ -115,6 +115,8 @@ namespace Static
 
         #region Log
 
+        public string gainItemFromTreasure;
+
         public string battleVictory;
         public string battleDefeat;
         public string escapeVictory;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Root;
 using TMPro;
 using UnityEngine;
-using SIT = Static.Shop.ItemType;
+using SIT = Static.CommonItemType;
 
 namespace UI
 {

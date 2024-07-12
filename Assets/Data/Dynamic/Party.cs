@@ -84,16 +84,30 @@ namespace Dynamic
                 Gold -= value;
         }
 
-        public static QuantityList GetActorItemList(Static.ActorUsableItem.ItemType type)
-        {
-            return type switch
+        public static QuantityList GetItemList(Static.CommonItemType type) =>
+            type switch
+            {
+                Static.CommonItemType.ActorNormalItem => ActorNormalItem,
+                Static.CommonItemType.ActorRecoverItem => ActorRecoverItem,
+                Static.CommonItemType.ActorAttackItem => ActorAttackItem,
+                Static.CommonItemType.ActorAuxiliaryItem => ActorAuxiliaryItem,
+                Static.CommonItemType.ActorWeapon => ActorWeapon,
+                Static.CommonItemType.ActorHeadArmor => ActorHeadArmor,
+                Static.CommonItemType.ActorBodyArmor => ActorBodyArmor,
+                Static.CommonItemType.ActorHandArmor => ActorHandArmor,
+                Static.CommonItemType.ActorFootArmor => ActorFootArmor,
+                Static.CommonItemType.ActorOrnamentArmor => ActorOrnamentArmor,
+                _ => null,
+            };
+
+        public static QuantityList GetActorItemList(Static.ActorUsableItem.ItemType type) =>
+            type switch
             {
                 Static.ActorUsableItem.ItemType.RecoverItem => ActorRecoverItem,
                 Static.ActorUsableItem.ItemType.AttackItem => ActorAttackItem,
                 Static.ActorUsableItem.ItemType.AuxiliaryItem => ActorAuxiliaryItem,
                 _ => null,
             };
-        }
 
         //筛选出可以在战斗使用的道具
         public static QuantityList GetActorItemListInBattle(Static.ActorUsableItem.ItemType type)

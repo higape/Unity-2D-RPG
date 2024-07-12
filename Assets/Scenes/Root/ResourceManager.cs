@@ -77,6 +77,22 @@ namespace Root
 
         public static Sprite GetActorArmorSprite(int slotIndex) => EquipmentSprite[slotIndex + 1];
 
+        public static string GetItemName(CommonItemType itemType, int itemID) =>
+            itemType switch
+            {
+                CommonItemType.ActorNormalItem => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorRecoverItem => ActorRecoverItem.GetItem(itemID).Name,
+                CommonItemType.ActorAttackItem => ActorAttackItem.GetItem(itemID).Name,
+                CommonItemType.ActorAuxiliaryItem => ActorAuxiliaryItem.GetItem(itemID).Name,
+                CommonItemType.ActorWeapon => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorHeadArmor => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorBodyArmor => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorHandArmor => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorFootArmor => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorOrnamentArmor => ActorNormalItem.GetItem(itemID).Name,
+                _ => string.Empty,
+            };
+
         /// <summary>
         /// 创建存档路径
         /// </summary>

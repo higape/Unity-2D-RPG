@@ -5,7 +5,7 @@ using Root;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using SIT = Static.Shop.ItemType;
+using SIT = Static.CommonItemType;
 using UIT = Static.ActorUsableItem.ItemType;
 
 namespace UI

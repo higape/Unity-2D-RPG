@@ -50,6 +50,6 @@ namespace Map
             Triggers.Remove(this);
         }
 
-        protected virtual void OnHandle(GameObject character) { }
+        protected abstract void OnHandle(GameObject character);
     }
 }

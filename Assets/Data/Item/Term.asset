@@ -86,6 +86,7 @@ MonoBehaviour:
   controlCharm: "\u9B45\u60D1"
   controlConfusion: "\u6DF7\u4E71"
   controlFetter: "\u675F\u7F1A"
+  gainItemFromTreasure: "\u83B7\u5F97{0}"
   battleVictory: "\u6218\u6597\u80DC\u5229"
   battleDefeat: "\u6218\u6597\u5931\u8D25"
   escapeVictory: "\u9003\u8DD1\u6210\u529F"

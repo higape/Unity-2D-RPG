@@ -72,6 +72,6 @@ namespace Map
         /// <summary>
         /// 被交互后调用的方法。
         /// </summary>
-        protected virtual void OnInteract() { }
+        protected abstract void OnInteract();
     }
 }
