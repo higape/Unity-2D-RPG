@@ -18,8 +18,8 @@ namespace Battle
         public const float BigSectorAngle = 24f;
         public const float SmallRayWidth = 20f; // pixel unit
         public const float BigRayWidth = 50f; // pixel unit
-        public const float SmallCircleRadius = 10f;
-        public const float BigCircleRadius = 10f;
+        public const float SmallCircleRadius = 100f; // pixel unit
+        public const float BigCircleRadius = 200f; // pixel unit
 
         public class ItemInfo
         {
@@ -366,11 +366,9 @@ namespace Battle
                     else
                         targetList.AddRange(
                             Mathc.GetSectorTarget(
-                                Mathc.GetSectorParam(
-                                    SmallSectorAngle,
-                                    owner.DisplayObject.Position,
-                                    oldTarget.DisplayObject.Position
-                                ),
+                                SmallSectorAngle,
+                                owner.DisplayObject.Position,
+                                oldTarget.DisplayObject.Position,
                                 Enemies
                             )
                         );
@@ -381,11 +379,9 @@ namespace Battle
                     else
                         targetList.AddRange(
                             Mathc.GetSectorTarget(
-                                Mathc.GetSectorParam(
-                                    BigSectorAngle,
-                                    owner.DisplayObject.Position,
-                                    oldTarget.DisplayObject.Position
-                                ),
+                                BigSectorAngle,
+                                owner.DisplayObject.Position,
+                                oldTarget.DisplayObject.Position,
                                 Enemies
                             )
                         );
@@ -396,11 +392,9 @@ namespace Battle
                     else
                         targetList.AddRange(
                             Mathc.GetRayTarget(
-                                Mathc.GetRayParam(
-                                    SmallRayWidth,
-                                    owner.DisplayObject.Position,
-                                    oldTarget.DisplayObject.Position
-                                ),
+                                SmallRayWidth,
+                                owner.DisplayObject.Position,
+                                oldTarget.DisplayObject.Position,
                                 Enemies
                             )
                         );
@@ -411,18 +405,30 @@ namespace Battle
                     else
                         targetList.AddRange(
                             Mathc.GetRayTarget(
-                                Mathc.GetRayParam(
-                                    BigRayWidth,
-                                    owner.DisplayObject.Position,
-                                    oldTarget.DisplayObject.Position
-                                ),
+                                BigRayWidth,
+                                owner.DisplayObject.Position,
+                                oldTarget.DisplayObject.Position,
                                 Enemies
                             )
                         );
                     break;
                 case Static.UsedScope.SmallCircle:
+                    targetList.AddRange(
+                        Mathc.GetCircleTarget(
+                            SmallCircleRadius,
+                            oldTarget.DisplayObject.Position,
+                            Enemies
+                        )
+                    );
                     break;
                 case Static.UsedScope.BigCircle:
+                    targetList.AddRange(
+                        Mathc.GetCircleTarget(
+                            BigCircleRadius,
+                            oldTarget.DisplayObject.Position,
+                            Enemies
+                        )
+                    );
                     break;
                 default:
                     targetList.Add(oldTarget);

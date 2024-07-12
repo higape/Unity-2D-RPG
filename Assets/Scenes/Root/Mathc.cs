@@ -53,13 +53,21 @@ namespace Root
             return rayPair;
         }
 
-        public static List<Enemy> GetSectorTarget(Vector4 kbkb, List<Enemy> targetList)
+        public static List<Enemy> GetSectorTarget(
+            float angle,
+            Vector3 startPosition,
+            Vector3 endPosition,
+            List<Enemy> targetList
+        )
         {
             //此方法做的事：计算目标的身体矩形是否包含在扇形范围内，并返回符合条件的目标
             //可抽象为计算矩形的任一顶点是否在扇形的两条边之间
             //计算步骤：过矩形的顶点作一条垂直于y轴的线，求出线与扇形两条边相交的点，
             //如果有任一顶点处于其对应的两交点之间，或者交点处于两个顶点之间，则认为目标在范围内
             //判断点的位置关系时，仅比较y坐标，因此计算过程中不求出点的x坐标
+
+            //获取扇形参数
+            Vector4 kbkb = GetSectorParam(angle, startPosition, endPosition);
 
             //计算两条直线在垂直方向的位置关系
             float k0,
@@ -130,8 +138,15 @@ namespace Root
             return new Vector3(k, b + offsetY, b - offsetY);
         }
 
-        public static List<Enemy> GetRayTarget(Vector3 kbb, List<Enemy> targetList)
+        public static List<Enemy> GetRayTarget(
+            float rectWidth,
+            Vector3 startPosition,
+            Vector3 endPosition,
+            List<Enemy> targetList
+        )
         {
+            //获取直线参数
+            Vector3 kbb = GetRayParam(rectWidth, startPosition, endPosition);
             //计算两条直线在垂直方向的位置关系
             float k = kbb.x;
             float b0,
@@ -169,6 +184,45 @@ namespace Root
                     || (rightUpY >= border.z && rightUpY <= border.w)
                 )
                     newList.Add(battler);
+            }
+
+            return newList;
+        }
+
+        public static List<Enemy> GetCircleTarget(
+            float radius,
+            Vector2 targetPosition,
+            List<Enemy> targetList
+        )
+        {
+            //单位转换
+            float r = radius / 32f;
+
+            List<Enemy> newList = new();
+            foreach (Enemy battler in targetList)
+            {
+                var border = battler.BodyBorder;
+
+                // 计算圆心到矩形的最近点的距离
+                // float closestX = Mathf.Clamp(targetPosition.x, border.x, border.y);
+                // float closestY = Mathf.Clamp(targetPosition.y, border.z, border.w);
+                // Vector2 closestPoint = new(closestX, closestY);
+                // float distance = Vector2.Distance(targetPosition, closestPoint);
+
+                // 合并以上计算
+                float distance = Vector2.Distance(
+                    targetPosition,
+                    new(
+                        Mathf.Clamp(targetPosition.x, border.x, border.y),
+                        Mathf.Clamp(targetPosition.y, border.z, border.w)
+                    )
+                );
+
+                // 判断是否相交
+                if (distance <= r)
+                {
+                    newList.Add(battler);
+                }
             }
 
             return newList;

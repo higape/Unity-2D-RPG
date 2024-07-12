@@ -203,26 +203,6 @@ namespace Battle
         {
             switch (Scope)
             {
-                case Static.UsedScope.None:
-                    break;
-                case Static.UsedScope.Self:
-                    break;
-                case Static.UsedScope.OneFriend:
-                    break;
-                case Static.UsedScope.OneFriendExcludeSelf:
-                    break;
-                case Static.UsedScope.AllFriend:
-                    break;
-                case Static.UsedScope.AllFriendExcludeSelf:
-                    break;
-                case Static.UsedScope.OneDeadFriend:
-                    break;
-                case Static.UsedScope.AllDeadFriend:
-                    break;
-                case Static.UsedScope.OneEnemy:
-                    break;
-                case Static.UsedScope.AllEnemy:
-                    break;
                 case Static.UsedScope.SmallSector:
                     ScopeDrawer.DrawSmallSector(
                         CurrentActor.DisplayObject.FirePosition,
@@ -248,10 +228,16 @@ namespace Battle
                     );
                     break;
                 case Static.UsedScope.SmallCircle:
+                    ScopeDrawer.DrawSmallCircle(
+                        CurrentActor.DisplayObject.FirePosition,
+                        CurrentTarget.DisplayObject.Position
+                    );
                     break;
                 case Static.UsedScope.BigCircle:
-                    break;
-                default:
+                    ScopeDrawer.DrawBigCircle(
+                        CurrentActor.DisplayObject.FirePosition,
+                        CurrentTarget.DisplayObject.Position
+                    );
                     break;
             }
         }

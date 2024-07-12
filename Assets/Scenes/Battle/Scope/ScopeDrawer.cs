@@ -10,9 +10,6 @@ namespace Battle
         private SpriteRenderer scopeRect;
 
         [SerializeField]
-        private SpriteRenderer scopeCircle;
-
-        [SerializeField]
         private SpriteMask maskRect0;
 
         [SerializeField]
@@ -26,10 +23,18 @@ namespace Battle
         private void Awake()
         {
             Instance = this;
+            scopeRect.color = new Color(1f, 0f, 0f, 0.25f);
+            scopeRect.transform.localScale = new Vector3(40f, 40f, 40f);
         }
 
         private void DrawSector(Vector2 point1, Vector2 point2, float sectorAngle)
         {
+            scopeRect.enabled = true;
+            scopeRect.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+
+            maskRect0.transform.position = point1;
+            maskRect1.transform.position = point1;
+
             // 计算直线斜率
             // float slope = (point2.y - point1.y) / (point2.x - point1.x);
 
@@ -51,40 +56,58 @@ namespace Battle
                 180f + angleDeg + sectorAngle / 2
             );
 
-            scopeRect.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
-            scopeRect.enabled = true;
-
-            this.transform.position = point1;
+            maskRect0.transform.localScale = new Vector3(100f, 100f, 1f);
+            maskRect1.transform.localScale = new Vector3(100f, 100f, 1f);
 
             //设置其它参数
-            this.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-            this.transform.localScale = new Vector3(100f, 100f, 1f);
-            scopeCircle.enabled = false;
+            maskRect0.enabled = true;
+            maskRect1.enabled = true;
+            maskCircle.enabled = false;
         }
 
         private void DrawRay(Vector2 point1, Vector2 point2, float rayWidth)
         {
+            scopeRect.enabled = true;
+            scopeRect.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            maskRect0.transform.position = point1;
+
             // DrawSector方法里有解释
             float angleDeg =
                 Mathf.Rad2Deg * Mathf.Atan((point2.y - point1.y) / (point2.x - point1.x));
 
             //设置矩形的角度
-            this.transform.localEulerAngles = new Vector3(0f, 0f, angleDeg);
+            maskRect0.transform.localEulerAngles = new Vector3(0f, 0f, angleDeg + 90f);
 
             //设置矩形的宽度
-            this.transform.localScale = new Vector3(
+            maskRect0.transform.localScale = new Vector3(
+                rayWidth / maskRect0.sprite.rect.height * (maskRect0.sprite.pixelsPerUnit / 32f),
                 100f,
-                rayWidth / scopeRect.sprite.rect.height * (scopeRect.sprite.pixelsPerUnit / 32f),
                 1f
             );
 
-            scopeRect.maskInteraction = SpriteMaskInteraction.None;
-            scopeRect.enabled = true;
+            maskRect0.enabled = true;
+            maskRect1.enabled = false;
+            maskCircle.enabled = false;
+        }
 
-            this.transform.position = point1;
+        private void DrawCircle(Vector2 point1, Vector2 point2, float circleRadius)
+        {
+            scopeRect.enabled = true;
+            scopeRect.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+
+            maskCircle.transform.position = point2;
+
+            float scale =
+                circleRadius
+                * 2f
+                / maskCircle.sprite.rect.width
+                * (maskCircle.sprite.pixelsPerUnit / 32f);
+            maskCircle.transform.localScale = new Vector3(scale, scale, 1f);
 
             //设置其它参数
-            scopeCircle.enabled = false;
+            maskRect0.enabled = false;
+            maskRect1.enabled = false;
+            maskCircle.enabled = true;
         }
 
         public static void Clear()
@@ -92,7 +115,6 @@ namespace Battle
             if (Instance != null)
             {
                 Instance.scopeRect.enabled = false;
-                Instance.scopeCircle.enabled = false;
             }
         }
 
@@ -118,6 +140,18 @@ namespace Battle
         {
             if (Instance != null)
                 Instance.DrawRay(point1, point2, BattleManager.BigRayWidth);
+        }
+
+        public static void DrawSmallCircle(Vector2 point1, Vector2 point2)
+        {
+            if (Instance != null)
+                Instance.DrawCircle(point1, point2, BattleManager.SmallCircleRadius);
+        }
+
+        public static void DrawBigCircle(Vector2 point1, Vector2 point2)
+        {
+            if (Instance != null)
+                Instance.DrawCircle(point1, point2, BattleManager.BigCircleRadius);
         }
     }
 }
