@@ -50,6 +50,7 @@ namespace Static
         public string addedEffect;
         public string ability;
         public string equipment;
+        public string durationState;
 
         #endregion
 

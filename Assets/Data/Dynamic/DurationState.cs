@@ -39,6 +39,7 @@ namespace Dynamic
 
         private Static.DurationState DataObject { get; set; }
         public int ID => DataObject.id;
+        public string Name => DataObject.Name;
         public BET EffectType0 => DataObject.type0;
         public int EffectType1 => DataObject.type1;
         public Static.ElementType ElementType => DataObject.elementType;

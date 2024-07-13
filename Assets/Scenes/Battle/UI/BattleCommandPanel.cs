@@ -27,6 +27,9 @@ namespace Battle
         [SerializeField]
         private GameObject itemPanelPrefab;
 
+        [SerializeField]
+        private GameObject statusPanelPrefab;
+
         private Actor CurrentActor { get; set; }
 
         private bool EnableSkill { get; set; }
@@ -126,6 +129,13 @@ namespace Battle
                             Static.ActorUsableItem.ItemType.RecoverItem,
                             false
                         );
+                    break;
+                case "status":
+                    canvasGroup.alpha = 0;
+                    UIManager
+                        .Instantiate(statusPanelPrefab)
+                        .GetComponent<ActorStatusPanel>()
+                        .Setup(CurrentActor, () => canvasGroup.alpha = 1);
                     break;
                 case "escape":
                     if (Random.value > 0.5f)

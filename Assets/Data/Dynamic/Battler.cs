@@ -30,6 +30,8 @@ namespace Dynamic
         /// </summary>
         protected List<DurationState> DurationStates { get; set; } = new();
 
+        public DurationState[] GetDurationStates() => DurationStates.ToArray();
+
         public abstract float GetElementRate(Static.ElementType elementType);
 
         /// <summary>

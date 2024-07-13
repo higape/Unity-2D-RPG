@@ -145,6 +145,7 @@ MonoBehaviour:
   weaponPanelPrefab: {fileID: 8412648750191902789, guid: 052cf92397aad194ca192b65abd51698, type: 3}
   skillPanelPrefab: {fileID: 7913826872265070601, guid: e557eaea88b7e184e99533bba4167ac5, type: 3}
   itemPanelPrefab: {fileID: 1094065591775292897, guid: a57b8a806f657344e905f3b5ded235f6, type: 3}
+  statusPanelPrefab: {fileID: 2288031733299338204, guid: 5aee2dae00626164f8efd3b8f9acaa45, type: 3}
 --- !u!114 &5455923312618626575
 MonoBehaviour:
   m_ObjectHideFlags: 0
