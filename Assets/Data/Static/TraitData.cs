@@ -10,21 +10,18 @@ namespace Static
     public class TraitData
     {
         [SerializeField]
-        private int effectID;
+        private int traitID;
 
-        public int effectValue;
+        public int traitValue;
 
         [NonSerialized]
-        private BattleEffect effect;
+        private Trait trait;
 
-        public BattleEffect Effect =>
-            effect ??= Root.ResourceManager.BattleEffect.GetItem(effectID);
+        public Trait Trait => trait ??= Root.ResourceManager.Trait.GetItem(traitID);
 
-        public string GetDescription() => string.Format(Effect.Description, effectValue.ToString());
-
-        public bool EqualType(BattleEffect.EffectType type0, int type1)
+        public string GetStatement()
         {
-            return Effect.type0 == type0 && Effect.type1 == type1;
+            return string.Format(Trait.Statement, traitValue.ToString());
         }
     }
 }

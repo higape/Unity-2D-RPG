@@ -32,7 +32,7 @@ namespace Dynamic
         /// <summary>
         /// 战斗金钱比例
         /// </summary>
-        public static float BattleGoldRate => ITrait.GoldRate;
+        public static float BattleGoldRate => Static.Trait.GoldRate;
 
         /// <summary>
         /// 卖价比例，通常与原价相乘的结果作为卖价

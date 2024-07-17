@@ -31,6 +31,7 @@ namespace Root
         public static GameInfo GameInfo { get; private set; }
         public static Term Term { get; private set; }
         public static BattleEffectList BattleEffect { get; private set; }
+        public static TraitList Trait { get; private set; }
         public static DurationStateList DurationState { get; private set; }
         public static WeaponUsageList WeaponUsage { get; private set; }
         public static ActorList Actor { get; private set; }
@@ -232,6 +233,9 @@ namespace Root
         private BattleEffectList battleEffect;
 
         [SerializeField]
+        private TraitList trait;
+
+        [SerializeField]
         private DurationStateList durationState;
 
         [SerializeField]
@@ -294,6 +298,7 @@ namespace Root
             GameInfo = gameInfo;
             Term = term;
             BattleEffect = battleEffect;
+            Trait = trait;
             DurationState = durationState;
             WeaponUsage = weaponUsage;
             Actor = actor;

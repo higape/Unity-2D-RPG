@@ -7,7 +7,7 @@ using BET = Static.BattleEffect.EffectType;
 
 namespace Dynamic
 {
-    public sealed class Enemy : Battler, ITrait
+    public sealed class Enemy : Battler
     {
         public Enemy(int id, int level)
         {
@@ -134,10 +134,11 @@ namespace Dynamic
 
         public List<EnemyAction> Actions { get; private set; }
 
-        public IEnumerable<Static.TraitData> Traits => DataObject.traits;
+        public Static.TraitData[] Traits => DataObject.traits;
 
         private int GetAbility(BET type0, int type1) =>
-            (this as ITrait).GetValue(type0, type1) + ITrait.GetValue(DurationStates, type0, type1);
+            Static.Trait.GetValue(Traits, type0, type1)
+            + Static.Trait.GetValue(DurationStates, type0, type1);
 
         public override float GetElementRate(Static.ElementType elementType) =>
             DataObject.elementGroup.GetRate(elementType);

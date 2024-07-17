@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Root;
@@ -38,6 +39,12 @@ namespace UI
 
         [SerializeField]
         private GameObject equipablePrefab;
+
+        [SerializeField]
+        private TextMeshProUGUI traitLabel;
+
+        [SerializeField]
+        private ListBox traitListBox;
 
         [SerializeField]
         private TextMeshProUGUI sellingPriceLabel;
@@ -86,7 +93,10 @@ namespace UI
 
             elementLabel.text = ResourceManager.Term.elementResistance;
             equipableLabel.text = ResourceManager.Term.equipable;
+            traitLabel.text = ResourceManager.Term.trait;
             sellingPriceLabel.text = ResourceManager.Term.sellingPrice;
+
+            traitListBox.Initialize(1, 3, RefreshTraitItem);
         }
 
         public void Refresh(Dynamic.ActorArmor item)
@@ -124,6 +134,19 @@ namespace UI
                     ImageItems[i].sprite = equipableActors[i].BattleSkin.idle;
                 else
                     ImageItems[i].sprite = null;
+            }
+
+            traitListBox.SetSource(item.Traits);
+        }
+
+        private void RefreshTraitItem(ListBoxItem arg0, object arg1)
+        {
+            if (arg0 is TextItem c)
+            {
+                if (arg1 is Static.TraitData traitData)
+                    c.textComponent.text = traitData.GetStatement();
+                else
+                    c.textComponent.text = " ";
             }
         }
     }

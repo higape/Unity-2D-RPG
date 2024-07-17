@@ -30,10 +30,7 @@ namespace Dynamic
             WeaponEffectRate = weaponEffectRate;
             LastTurn = duration;
 
-            if (
-                EffectType0 == BET.AdditionType
-                && EffectType1 == (int)Static.BattleEffect.ActorType.Skill
-            )
+            if (EqualType(BET.AdditionType, (int)Static.BattleEffect.ActorType.Skill))
                 Skill = new Skill(EffectValue);
         }
 
@@ -65,6 +62,8 @@ namespace Dynamic
         /// 此实例的来源
         /// </summary>
         public Weapon SourceWeapon { get; private set; }
+
+        public bool EqualType(BET type0, int type1) => DataObject.EqualType(type0, type1);
 
         public bool IsStrongerThan(DurationState state) =>
             DataObject.IsStrongerThan(state.DataObject);

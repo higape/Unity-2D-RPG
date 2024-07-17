@@ -233,8 +233,17 @@ namespace Dynamic
             }
         }
 
-        private int GetAbility(BET type0, int type1) =>
-            ITrait.GetValue(Armors, AllSkills, DurationStates, type0, type1);
+        private int GetAbility(BET type0, int type1)
+        {
+            int sum = Static.Trait.GetValue(DurationStates, type0, type1);
+            foreach (object item in Armors)
+                if (item is ActorArmor armor)
+                    sum += Static.Trait.GetValue(armor.Traits, type0, type1);
+            foreach (object item in AllSkills)
+                if (item is Skill skill)
+                    sum += Static.Trait.GetValue(skill.Traits, type0, type1);
+            return sum;
+        }
 
         public override float GetElementRate(Static.ElementType elementType)
         {
@@ -437,8 +446,8 @@ namespace Dynamic
             if (Armors[slotIndex] != null)
             {
                 list.GainItem(Armors[slotIndex].ID, 1);
-                if (Armors[slotIndex] is ITrait t)
-                    t.RemoveGlobalEffect();
+                if (Armors[slotIndex] is ActorArmor armor)
+                    Static.Trait.RemoveGlobalEffect(armor.Traits);
             }
 
             if (id == 0)
@@ -449,8 +458,8 @@ namespace Dynamic
             {
                 list.LoseItem(id, 1);
                 Armors[slotIndex] = new ActorArmor(slotIndex, id);
-                if (Armors[slotIndex] is ITrait t)
-                    t.AddGlobalEffect();
+                if (Armors[slotIndex] is ActorArmor armor)
+                    Static.Trait.AddGlobalEffect(armor.Traits);
             }
         }
 

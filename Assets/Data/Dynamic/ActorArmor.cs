@@ -4,7 +4,7 @@ using Root;
 
 namespace Dynamic
 {
-    public class ActorArmor : ITrait, ICommodity
+    public class ActorArmor : ICommodity
     {
         public ActorArmor(int slotIndex, int id)
         {
@@ -26,7 +26,7 @@ namespace Dynamic
         public int Hit => DataObject.hit;
         public int Eva => DataObject.eva;
         public Static.ElementGroup ElementGroup => DataObject.elementGroup;
-        public IEnumerable<Static.TraitData> Traits => DataObject.TraitList;
+        public Static.TraitData[] Traits => DataObject.traits;
         public List<Skill> Skills { get; private set; }
         public int Price => DataObject.price;
         public int SellingPrice => (int)(Price * Party.SellingPriceRate);
@@ -37,10 +37,12 @@ namespace Dynamic
             foreach (var item in Traits)
             {
                 if (
-                    item.Effect.type0 == Static.BattleEffect.EffectType.AdditionType
-                    && item.Effect.type1 == (int)Static.BattleEffect.ActorType.Skill
+                    item.Trait.EqualType(
+                        Static.BattleEffect.EffectType.AdditionType,
+                        (int)Static.BattleEffect.ActorType.Skill
+                    )
                 )
-                    Skills.Add(new Skill(item.effectValue));
+                    Skills.Add(new Skill(item.traitValue));
             }
         }
 

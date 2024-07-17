@@ -228,5 +228,14 @@ namespace Static
 
         public EffectType type0;
         public int type1;
+
+        [SerializeField]
+        private string statement;
+        public string Statement => statement;
+
+        public bool EqualType(EffectType type0, int type1)
+        {
+            return this.type0 == type0 && this.type1 == type1;
+        }
     }
 }

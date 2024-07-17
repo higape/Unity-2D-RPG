@@ -33,3 +33,25 @@ MonoBehaviour:
     price: 200
     equipable: 
     traits: []
+  - id: 2
+    name: "\u62DB\u8D22\u732B"
+    hp: 0
+    atk: 0
+    def: 0
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 1000
+    equipable: 
+    traits:
+    - traitID: 1
+      traitValue: 10

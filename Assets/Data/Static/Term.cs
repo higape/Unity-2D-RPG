@@ -25,6 +25,7 @@ namespace Static
         public string hit;
         public string eva;
         public string elementResistance;
+        public string trait;
         public string currencyUnit;
         public string price;
         public string sellingPrice;

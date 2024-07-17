@@ -24,27 +24,7 @@ namespace Static
         [Tooltip("可装备角色的ID")]
         public int[] equipable;
 
-        [SerializeField]
-        private TraitData[] traits;
-
-        [NonSerialized]
-        private List<TraitData> traitList;
-
-        public List<TraitData> TraitList
-        {
-            get
-            {
-                if (traitList == null)
-                {
-                    traitList = new(traits.Length);
-                    foreach (var data in traits)
-                    {
-                        traitList.Add(data);
-                    }
-                }
-                return traitList;
-            }
-        }
+        public TraitData[] traits;
 
         public bool CanEquip(Dynamic.Actor actor) =>
             equipable.Length == 0 || equipable.Contains(actor.ID);

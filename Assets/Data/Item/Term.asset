@@ -23,6 +23,7 @@ MonoBehaviour:
   hit: "\u547D\u4E2D"
   eva: "\u56DE\u907F"
   elementResistance: "\u6297\u6027"
+  trait: "\u7279\u6027"
   currencyUnit: G
   price: "\u4EF7\u683C"
   sellingPrice: "\u552E\u4EF7"

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Dynamic
 {
-    public class Skill : Weapon, ITrait
+    public class Skill : Weapon
     {
         public delegate bool BoolFunction();
 
@@ -71,7 +71,7 @@ namespace Dynamic
 
         public Static.BattleEffectData[] AddedEffects => DataObject.addedEffects;
 
-        public IEnumerable<Static.TraitData> Traits => DataObject.traits;
+        public Static.TraitData[] Traits => DataObject.traits;
 
         public bool UsedInMenu => DataObject.UsedInMenu;
 
