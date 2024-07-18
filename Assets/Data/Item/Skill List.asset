@@ -45,3 +45,19 @@ MonoBehaviour:
       duration: 1
       targetType: 0
     traits: []
+  - id: 3
+    name: "\u8D22\u8FD0"
+    description: 
+    skinID: 0
+    occasion: 0
+    skillType: 0
+    usageID: 0
+    selectionLimit: 0
+    itemQuantity: 0
+    itemUsedCount: 0
+    effectRatePercentage: 0
+    waitTime: 0
+    addedEffects: []
+    traits:
+    - traitID: 1
+      traitValue: 10

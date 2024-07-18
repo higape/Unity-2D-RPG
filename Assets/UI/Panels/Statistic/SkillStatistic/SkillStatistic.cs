@@ -19,19 +19,22 @@ namespace UI
         private TextMeshProUGUI occasionContent;
 
         [SerializeField]
-        private UsageStatistic usageStatistic;
+        private TraitStatistic traitStat;
 
         [SerializeField]
-        private SkillSelectionStatistic selectionStatistic;
+        private UsageStatistic usageStat;
+
+        [SerializeField]
+        private SkillSelectionStatistic selectionStat;
 
         private void Awake()
         {
             occasionLabel.text = ResourceManager.Term.usedOccasion;
         }
 
-        public void EffectListPageUp() => usageStatistic.EffectListPageUp();
+        public void EffectListPageUp() => usageStat.EffectListPageUp();
 
-        public void EffectListPageDown() => usageStatistic.EffectListPageDown();
+        public void EffectListPageDown() => usageStat.EffectListPageDown();
 
         public void Refresh(Dynamic.Skill item)
         {
@@ -63,23 +66,28 @@ namespace UI
             switch (item.SkillType)
             {
                 case Static.Skill.SkillType.Passivity:
-                    usageStatistic.gameObject.SetActive(false);
-                    selectionStatistic.gameObject.SetActive(false);
+                    traitStat.Refresh(item.Traits);
+                    traitStat.gameObject.SetActive(true);
+                    usageStat.gameObject.SetActive(false);
+                    selectionStat.gameObject.SetActive(false);
                     break;
                 case Static.Skill.SkillType.Usage:
-                    usageStatistic.Refresh(item.Usage);
-                    usageStatistic.gameObject.SetActive(true);
-                    selectionStatistic.gameObject.SetActive(false);
+                    usageStat.Refresh(item.Usage);
+                    traitStat.gameObject.SetActive(false);
+                    usageStat.gameObject.SetActive(true);
+                    selectionStat.gameObject.SetActive(false);
                     break;
                 case Static.Skill.SkillType.SelectActorWeapon:
                 case Static.Skill.SkillType.SelectActorItem:
-                    selectionStatistic.Refresh(item);
-                    usageStatistic.gameObject.SetActive(false);
-                    selectionStatistic.gameObject.SetActive(true);
+                    selectionStat.Refresh(item);
+                    traitStat.gameObject.SetActive(false);
+                    usageStat.gameObject.SetActive(false);
+                    selectionStat.gameObject.SetActive(true);
                     break;
                 default:
-                    usageStatistic.gameObject.SetActive(false);
-                    selectionStatistic.gameObject.SetActive(false);
+                    traitStat.gameObject.SetActive(false);
+                    usageStat.gameObject.SetActive(false);
+                    selectionStat.gameObject.SetActive(false);
                     break;
             }
         }
