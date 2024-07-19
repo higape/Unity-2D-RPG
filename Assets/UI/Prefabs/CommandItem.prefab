@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 311713185330365761}
   - component: {fileID: 3139820900803181571}
   m_Layer: 0
-  m_Name: Command Item
+  m_Name: CommandItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
