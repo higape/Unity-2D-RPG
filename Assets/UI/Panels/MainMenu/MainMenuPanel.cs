@@ -18,7 +18,10 @@ namespace UI
         private ListBox listBox;
 
         [SerializeField]
-        private ActorStatusItem[] actorStatusItems;
+        private GameObject statusItemGroup;
+
+        [SerializeField]
+        private GameObject statusItemPrefab;
 
         [SerializeField]
         private GameObject itemTypePrefab;
@@ -42,6 +45,7 @@ namespace UI
         private TextMeshProUGUI goldContent;
 
         private UnityAction Callback { get; set; }
+        private List<ActorStatusItem> ActorStatusItems { get; set; }
         private int SelectedIndex { get; set; }
         private bool IsSelectActor { get; set; }
         private InputCommand[] InputCommands { get; set; }
@@ -80,6 +84,14 @@ namespace UI
             };
             listBox.Initialize(1, texts.Length, Refresh, texts);
 
+            ActorStatusItems = new();
+            for (int i = 0; i < Party.MaxBattleMembers; i++)
+            {
+                ActorStatusItems.Add(
+                    Instantiate(statusItemPrefab, statusItemGroup.transform)
+                        .GetComponent<ActorStatusItem>()
+                );
+            }
             RebindAllActor();
             Party.RegisterMemberSortCallback(RebindAllActor);
 
@@ -98,16 +110,6 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(MainMenuPanel));
         }
 
-        private void Start()
-        {
-#if UNITY_EDITOR
-            if (actorStatusItems.Length != Party.MaxBattleMembers)
-            {
-                Debug.Log("ActorStatusItem 数量错误，应等于最大参战人员数量。");
-            }
-#endif
-        }
-
         private void OnDestroy()
         {
             Party.UnregisterMemberSortCallback(RebindAllActor);
@@ -121,12 +123,12 @@ namespace UI
         private void RebindAllActor()
         {
             var list = Party.GetBattleActorList();
-            for (int i = 0; i < actorStatusItems.Length; i++)
+            for (int i = 0; i < ActorStatusItems.Count; i++)
             {
                 if (i < list.Count)
-                    actorStatusItems[i].Rebind(list[i]);
+                    ActorStatusItems[i].Rebind(list[i]);
                 else
-                    actorStatusItems[i].Rebind(null);
+                    ActorStatusItems[i].Rebind(null);
             }
         }
 
@@ -147,7 +149,7 @@ namespace UI
                 case "status":
                     SelectedIndex = 0;
                     IsSelectActor = true;
-                    actorStatusItems[0].Selected = true;
+                    ActorStatusItems[0].Selected = true;
                     InputManagementSystem.AddCommands(
                         nameof(MainMenuPanel) + "Status",
                         StatusCommands
@@ -197,7 +199,7 @@ namespace UI
         {
             if (IsSelectActor)
             {
-                actorStatusItems[SelectedIndex].Selected = false;
+                ActorStatusItems[SelectedIndex].Selected = false;
             }
             InputManagementSystem.RemoveCommands(nameof(MainMenuPanel) + "Status");
         }
@@ -206,9 +208,9 @@ namespace UI
         {
             if (SelectedIndex > 0)
             {
-                actorStatusItems[SelectedIndex].Selected = false;
+                ActorStatusItems[SelectedIndex].Selected = false;
                 SelectedIndex--;
-                actorStatusItems[SelectedIndex].Selected = true;
+                ActorStatusItems[SelectedIndex].Selected = true;
             }
         }
 
@@ -216,9 +218,9 @@ namespace UI
         {
             if (SelectedIndex < Party.GetBattleActorCount() - 1)
             {
-                actorStatusItems[SelectedIndex].Selected = false;
+                ActorStatusItems[SelectedIndex].Selected = false;
                 SelectedIndex++;
-                actorStatusItems[SelectedIndex].Selected = true;
+                ActorStatusItems[SelectedIndex].Selected = true;
             }
         }
 
