@@ -1,11 +1,15 @@
 using Dynamic;
 using Root;
+using TMPro;
 using UnityEngine;
 
 namespace UI
 {
     public class ActorArmorPanel : MonoBehaviour
     {
+        [SerializeField]
+        private TextMeshProUGUI header;
+
         [SerializeField]
         private ListBox itemListBox;
 
@@ -19,6 +23,7 @@ namespace UI
         public void Setup(int slotIndex)
         {
             SlotIndex = slotIndex;
+            header.text = ResourceManager.Term.GetActorArmorText(slotIndex);
             var list = Party.GetActorArmorList(SlotIndex);
             itemListBox.SetSource(list);
         }

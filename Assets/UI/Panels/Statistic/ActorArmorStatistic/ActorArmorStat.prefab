@@ -44,7 +44,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 348, y: 603}
+  m_SizeDelta: {x: 348, y: 603.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906656946302890782
 MonoBehaviour:
@@ -60,13 +60,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4840729261038243877}
   nameContent: {fileID: 5776697839844969722}
-  abilityPiece: {fileID: 2394018579214075279}
+  abilityGroup: {fileID: 2394018579214075279}
   abilityPrefab: {fileID: 8724665517648963588, guid: 7af15b03e9adbd9498bbd5611950e2e4, type: 3}
   elementLabel: {fileID: 161687747769217533}
-  elementPiece: {fileID: 5277151956949698713}
+  elementGroup: {fileID: 5277151956949698713}
   elementPrefab: {fileID: 6047678595669484257, guid: 0feab5ab40d20e943bddde7c247a0f9e, type: 3}
   equipableLabel: {fileID: 6691787893362075090}
-  equipablePiece: {fileID: 6631733632998692945}
+  equipableGroup: {fileID: 6631733632998692945}
   equipablePrefab: {fileID: 6723007858706116278, guid: 9f9dbaff9711574408278ea26d3be7ba, type: 3}
   traitStat: {fileID: 8359796504526257517}
   sellingPriceLabel: {fileID: 567342211631780580}
@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 3518169042022899804}
   - component: {fileID: 645270696798524596}
   - component: {fileID: 161687747769217533}
+  - component: {fileID: 357373782059809537}
   m_Layer: 0
   m_Name: ElementLabel
   m_TagString: Untagged
@@ -281,6 +282,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &357373782059809537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414497284335888621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 240
+  m_PreferredHeight: 24
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &599391645286098317
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +536,7 @@ GameObject:
   - component: {fileID: 8203011978920130511}
   - component: {fileID: 1730853898527134977}
   m_Layer: 0
-  m_Name: AbilityPiece
+  m_Name: AbilityGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,6 +598,7 @@ GameObject:
   - component: {fileID: 6633452868336307440}
   - component: {fileID: 3144253799277636065}
   - component: {fileID: 5776697839844969722}
+  - component: {fileID: 3111125762878483226}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -700,6 +722,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3111125762878483226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742045376751438782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 240
+  m_PreferredHeight: 24
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &5277151956949698713
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +753,7 @@ GameObject:
   - component: {fileID: 4215510634323087586}
   - component: {fileID: 8758602629670071111}
   m_Layer: 0
-  m_Name: ElementPiece
+  m_Name: ElementGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -937,6 +979,7 @@ GameObject:
   - component: {fileID: 1934900679399466661}
   - component: {fileID: 8208014701597066177}
   - component: {fileID: 6691787893362075090}
+  - component: {fileID: 2476752027668908687}
   m_Layer: 0
   m_Name: EquipableLabel
   m_TagString: Untagged
@@ -1060,6 +1103,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2476752027668908687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679499883729418820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 240
+  m_PreferredHeight: 24
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1001 &2787768021300663191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1068,10 +1131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2837757241060603617}
     m_Modifications:
-    - target: {fileID: 8724665517648963588, guid: 0cc8eec0df99a384291d5e22a5a97031, type: 3}
-      propertyPath: m_Name
-      value: AbilityItem
-      objectReference: {fileID: 0}
     - target: {fileID: 855121575445865497, guid: 7af15b03e9adbd9498bbd5611950e2e4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1196,6 +1255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Price
       objectReference: {fileID: 0}
+    - target: {fileID: 8724665517648963588, guid: 0cc8eec0df99a384291d5e22a5a97031, type: 3}
+      propertyPath: m_Name
+      value: AbilityItem
+      objectReference: {fileID: 0}
     - target: {fileID: 3263852619935170937, guid: bffd4b79d7b114647949865b36616b81, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1282,6 +1345,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 342233363386385745, guid: abed9799ba7ebb644b478a6712ecabfb, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 342233363386385745, guid: abed9799ba7ebb644b478a6712ecabfb, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 342233363386385745, guid: abed9799ba7ebb644b478a6712ecabfb, type: 3}
@@ -1382,6 +1449,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4236586869343362453, guid: abed9799ba7ebb644b478a6712ecabfb, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236586869343362453, guid: abed9799ba7ebb644b478a6712ecabfb, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4236586869343362453, guid: abed9799ba7ebb644b478a6712ecabfb, type: 3}

@@ -227,6 +227,17 @@ namespace Static
                 _ => " "
             };
 
+        public string GetActorArmorText(int slotIndex) =>
+            slotIndex switch
+            {
+                0 => headArmor,
+                1 => bodyArmor,
+                2 => handArmor,
+                3 => footArmor,
+                4 => ornamentArmor,
+                _ => " "
+            };
+
 #if UNITY_EDITOR
         /// <summary>
         /// 检查数组的索引是否超出数组范围，true为超出

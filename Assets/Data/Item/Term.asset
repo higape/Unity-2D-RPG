@@ -60,7 +60,7 @@ MonoBehaviour:
   bodyArmor: "\u8EAB\u4F53\u9632\u5177"
   handArmor: "\u624B\u90E8\u9632\u5177"
   footArmor: "\u8DB3\u90E8\u9632\u5177"
-  ornamentArmor: "\u9970\u54C1\u9632\u5177"
+  ornamentArmor: "\u9970\u54C1"
   elementNormal: "\u901A\u5E38"
   elementCorrosion: "\u4FB5\u8680"
   elementFire: "\u706B\u7130"

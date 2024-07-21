@@ -17,7 +17,7 @@ namespace UI
         private TextMeshProUGUI nameContent;
 
         [SerializeField]
-        private GameObject abilityPiece;
+        private GameObject abilityGroup;
 
         [SerializeField]
         private GameObject abilityPrefab;
@@ -26,7 +26,7 @@ namespace UI
         private TextMeshProUGUI elementLabel;
 
         [SerializeField]
-        private GameObject elementPiece;
+        private GameObject elementGroup;
 
         [SerializeField]
         private GameObject elementPrefab;
@@ -35,7 +35,7 @@ namespace UI
         private TextMeshProUGUI equipableLabel;
 
         [SerializeField]
-        private GameObject equipablePiece;
+        private GameObject equipableGroup;
 
         [SerializeField]
         private GameObject equipablePrefab;
@@ -59,7 +59,7 @@ namespace UI
             for (int i = 0; i < 6; i++)
             {
                 AbilityItems.Add(
-                    Instantiate(abilityPrefab, abilityPiece.transform).GetComponent<TextItem2>()
+                    Instantiate(abilityPrefab, abilityGroup.transform).GetComponent<TextItem2>()
                 );
             }
             AbilityItems[0].textComponent0.text = ResourceManager.Term.hp;
@@ -73,7 +73,7 @@ namespace UI
             for (int i = 0; i < 8; i++)
             {
                 ElementItems.Add(
-                    Instantiate(elementPrefab, elementPiece.transform).GetComponent<ImageTextItem>()
+                    Instantiate(elementPrefab, elementGroup.transform).GetComponent<ImageTextItem>()
                 );
                 ElementItems[i].image.sprite = ResourceManager.GetElementSprite(
                     (Static.ElementType)i
@@ -84,7 +84,7 @@ namespace UI
             for (int i = 0; i < 8; i++)
             {
                 ImageItems.Add(
-                    Instantiate(equipablePrefab, equipablePiece.transform).GetComponent<Image>()
+                    Instantiate(equipablePrefab, equipableGroup.transform).GetComponent<Image>()
                 );
             }
 
