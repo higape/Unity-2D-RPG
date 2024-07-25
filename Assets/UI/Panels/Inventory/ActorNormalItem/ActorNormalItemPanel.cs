@@ -1,11 +1,15 @@
 using Dynamic;
 using Root;
+using TMPro;
 using UnityEngine;
 
 namespace UI
 {
     public class ActorNormalItemPanel : MonoBehaviour
     {
+        [SerializeField]
+        private TextMeshProUGUI header;
+
         [SerializeField]
         private ListBox itemListBox;
 
@@ -23,6 +27,7 @@ namespace UI
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
+            header.text = ResourceManager.Term.normalItem;
             itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
             itemListBox.Initialize(1, 8, RefreshItem, Party.ActorNormalItem);
         }
