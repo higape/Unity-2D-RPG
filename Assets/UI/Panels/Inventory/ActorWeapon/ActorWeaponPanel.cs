@@ -1,11 +1,15 @@
 using Dynamic;
 using Root;
+using TMPro;
 using UnityEngine;
 
 namespace UI
 {
     public class ActorWeaponPanel : MonoBehaviour
     {
+        [SerializeField]
+        private TextMeshProUGUI header;
+
         [SerializeField]
         private ListBox itemListBox;
 
@@ -20,9 +24,14 @@ namespace UI
             {
                 new(InputCommand.ButtonUp, ButtonType.Press, itemListBox.SelectUp),
                 new(InputCommand.ButtonDown, ButtonType.Press, itemListBox.SelectDown),
+                new(InputCommand.ButtonLeft, ButtonType.Press, itemListBox.PageUp),
+                new(InputCommand.ButtonRight, ButtonType.Press, itemListBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, itemListBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, itemListBox.PageDown),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
+            header.text = ResourceManager.Term.weapon;
             itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
             itemListBox.Initialize(1, 8, RefreshItem, Party.ActorWeapon);
         }
