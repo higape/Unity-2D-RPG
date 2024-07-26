@@ -1,5 +1,6 @@
 using Dynamic;
 using Root;
+using TMPro;
 using UnityEngine;
 using UIT = Static.ActorUsableItem.ItemType;
 
@@ -10,7 +11,7 @@ namespace UI
         private delegate ActorUsableItem MakeCommodity(int id);
 
         [SerializeField]
-        private ListBox typeListBox;
+        private TextMeshProUGUI header;
 
         [SerializeField]
         private ListBox itemListBox;
@@ -29,17 +30,13 @@ namespace UI
 
         private ActorUsableItem CurrentItem { get; set; }
 
-        private (string, UIT)[] TextTypePairs { get; set; }
-
         private InputCommand[] InputCommands { get; set; }
 
         public void Setup(UIT itemType)
         {
-            int index = -1;
-            for (int i = 0; i < TextTypePairs.Length; i++)
-                if (TextTypePairs[i].Item2 == itemType)
-                    index = i;
-            typeListBox.Select(index);
+            header.text = ResourceManager.Term.GetText(itemType);
+            CurrentAction = (id) => new ActorUsableItem(itemType, id);
+            itemListBox.SetSource(Party.GetActorItemList(itemType));
         }
 
         private void Awake()
@@ -48,24 +45,16 @@ namespace UI
             {
                 new(InputCommand.ButtonUp, ButtonType.Press, itemListBox.SelectUp),
                 new(InputCommand.ButtonDown, ButtonType.Press, itemListBox.SelectDown),
+                new(InputCommand.ButtonLeft, ButtonType.Down, itemListBox.PageUp),
+                new(InputCommand.ButtonRight, ButtonType.Down, itemListBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, itemListBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, itemListBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
-                new(InputCommand.ButtonPrevious, ButtonType.Down, typeListBox.SelectLeft),
-                new(InputCommand.ButtonNext, ButtonType.Down, typeListBox.SelectRight),
-            };
-
-            TextTypePairs = new (string, UIT)[]
-            {
-                (ResourceManager.Term.recoverItem, UIT.RecoverItem),
-                (ResourceManager.Term.attackItem, UIT.AttackItem),
-                (ResourceManager.Term.auxiliaryItem, UIT.AuxiliaryItem)
             };
 
             itemListBox.Initialize(1, 8, RefreshItem);
             itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
-
-            typeListBox.Initialize(TextTypePairs.Length, 1, RefreshType, TextTypePairs);
-            typeListBox.RegisterSelectedItemChangeCallback(OnTypeChange);
         }
 
         private void OnEnable()
@@ -76,13 +65,6 @@ namespace UI
         private void OnDisable()
         {
             InputManagementSystem.RemoveCommands(nameof(ActorUsableItemPanel));
-        }
-
-        private void OnTypeChange(object data, int index)
-        {
-            UIT itemType = (((string, UIT))typeListBox.SelectedItem).Item2;
-            CurrentAction = (id) => new ActorUsableItem(itemType, id);
-            itemListBox.SetSource(Party.GetActorItemList(itemType));
         }
 
         private void OnSelectedItemChange(object data, int index)
@@ -147,17 +129,6 @@ namespace UI
         private void Cancel()
         {
             Destroy(gameObject);
-        }
-
-        private void RefreshType(ListBoxItem listItem, object data)
-        {
-            if (listItem is TextItem c)
-            {
-                if (data != null)
-                    c.textComponent.text = (((string, UIT))data).Item1;
-                else
-                    c.textComponent.text = " ";
-            }
         }
 
         private void RefreshItem(ListBoxItem listItem, object data)
