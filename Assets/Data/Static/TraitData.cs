@@ -21,7 +21,12 @@ namespace Static
 
         public string GetStatement()
         {
-            return string.Format(Trait.Statement, traitValue.ToString());
+            string text;
+            if (traitValue < 0)
+                text = '-' + traitValue.ToString();
+            else
+                text = '+' + traitValue.ToString();
+            return string.Format(Trait.Statement, text);
         }
     }
 }
