@@ -53,7 +53,12 @@ namespace Static
             }
             else
             {
-                return string.Format(GetDurationState().Statement, effectValue.ToString());
+                return string.Format(
+                    ResourceManager.Term.durationStateStatement,
+                    GetDurationState().Name,
+                    effectValue.ToString(),
+                    duration.ToString()
+                );
             }
         }
     }

@@ -52,6 +52,7 @@ namespace Static
         public string ability;
         public string equipment;
         public string durationState;
+        public string durationStateStatement;
 
         #endregion
 

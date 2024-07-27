@@ -8,8 +8,12 @@ namespace Static
     /// 周期效果（持续效果）
     /// </summary>
     [Serializable]
-    public class DurationState : BattleEffect
+    public class DurationState : DescriptionItem
     {
+        public BattleEffect.EffectType type0;
+
+        public int type1;
+
         /// <summary>
         /// 元素类型
         /// </summary>
@@ -68,6 +72,11 @@ namespace Static
                 }
                 return weaknessList;
             }
+        }
+
+        public bool EqualType(BattleEffect.EffectType type0, int type1)
+        {
+            return this.type0 == type0 && this.type1 == type1;
         }
 
         public bool IsStrongerThan(DurationState effect)
