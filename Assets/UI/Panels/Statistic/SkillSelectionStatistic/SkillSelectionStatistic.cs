@@ -95,20 +95,9 @@ namespace UI
             if (listItem is TextItem c)
             {
                 if (data is Static.BattleEffectData item)
-                {
-                    if (item.duration > 0)
-                    {
-                        c.textComponent.text = item.GetDurationState().Name;
-                    }
-                    else
-                    {
-                        c.textComponent.text = item.GetBattleEffect().Name;
-                    }
-                }
+                    c.textComponent.text = item.GetStatement();
                 else
-                {
                     c.textComponent.text = " ";
-                }
             }
         }
     }

@@ -19,10 +19,19 @@ namespace UI
         private TextMeshProUGUI occasionContent;
 
         [SerializeField]
+        private GameObject traitPiece;
+
+        [SerializeField]
         private TraitStatistic traitStat;
 
         [SerializeField]
+        private GameObject usagePiece;
+
+        [SerializeField]
         private UsageStatistic usageStat;
+
+        [SerializeField]
+        private GameObject selectionPiece;
 
         [SerializeField]
         private SkillSelectionStatistic selectionStat;
@@ -60,34 +69,34 @@ namespace UI
             }
             else
             {
-                occasionContent.text = "";
+                occasionContent.text = " ";
             }
 
             switch (item.SkillType)
             {
                 case Static.Skill.SkillType.Passivity:
                     traitStat.Refresh(item.Traits);
-                    traitStat.gameObject.SetActive(true);
-                    usageStat.gameObject.SetActive(false);
-                    selectionStat.gameObject.SetActive(false);
+                    traitPiece.SetActive(true);
+                    usagePiece.SetActive(false);
+                    selectionPiece.SetActive(false);
                     break;
                 case Static.Skill.SkillType.Usage:
                     usageStat.Refresh(item.Usage);
-                    traitStat.gameObject.SetActive(false);
-                    usageStat.gameObject.SetActive(true);
-                    selectionStat.gameObject.SetActive(false);
+                    traitPiece.SetActive(false);
+                    usagePiece.SetActive(true);
+                    selectionPiece.SetActive(false);
                     break;
                 case Static.Skill.SkillType.SelectActorWeapon:
                 case Static.Skill.SkillType.SelectActorItem:
                     selectionStat.Refresh(item);
-                    traitStat.gameObject.SetActive(false);
-                    usageStat.gameObject.SetActive(false);
-                    selectionStat.gameObject.SetActive(true);
+                    traitPiece.SetActive(false);
+                    usagePiece.SetActive(false);
+                    selectionPiece.SetActive(true);
                     break;
                 default:
-                    traitStat.gameObject.SetActive(false);
-                    usageStat.gameObject.SetActive(false);
-                    selectionStat.gameObject.SetActive(false);
+                    traitPiece.SetActive(false);
+                    usagePiece.SetActive(false);
+                    selectionPiece.SetActive(false);
                     break;
             }
         }
