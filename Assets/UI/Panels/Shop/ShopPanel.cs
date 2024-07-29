@@ -11,6 +11,9 @@ namespace UI
     public class ShopPanel : MonoBehaviour
     {
         [SerializeField]
+        private CanvasGroup canvasGroup;
+
+        [SerializeField]
         private TextMeshProUGUI goldLabel;
 
         [SerializeField]
@@ -44,8 +47,8 @@ namespace UI
         {
             InputCommands = new InputCommand[]
             {
-                new(InputCommand.ButtonLeft, ButtonType.Press, commandListBox.SelectLeft),
-                new(InputCommand.ButtonRight, ButtonType.Press, commandListBox.SelectRight),
+                new(InputCommand.ButtonUp, ButtonType.Press, commandListBox.SelectUp),
+                new(InputCommand.ButtonDown, ButtonType.Press, commandListBox.SelectDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
@@ -58,9 +61,10 @@ namespace UI
             {
                 (ResourceManager.Term.buy, "buy"),
                 (ResourceManager.Term.sell, "sell"),
+                (ResourceManager.Term.back, "back"),
             };
 
-            commandListBox.Initialize(commandTexts.Length, 1, RefreshCommand, commandTexts);
+            commandListBox.Initialize(1, commandTexts.Length, RefreshCommand, commandTexts);
         }
 
         private void OnEnable()
@@ -91,13 +95,18 @@ namespace UI
                 switch ((((string, string))commandListBox.SelectedItem).Item2)
                 {
                     case "buy":
+                        canvasGroup.alpha = 0;
                         UIManager
                             .Instantiate(buyingPanelPrefab)
                             .GetComponent<ShopBuyingPanel>()
-                            .Setup(DataObject);
+                            .Setup(DataObject, () => canvasGroup.alpha = 1);
                         break;
                     case "sell":
+                        canvasGroup.alpha = 0;
                         UIManager.Instantiate(itemTypePanelPrefab);
+                        break;
+                    case "back":
+                        Cancel();
                         break;
                 }
             }

@@ -122,7 +122,7 @@ MonoBehaviour:
   attack: "\u653B\u51FB"
   guard: "\u9632\u5FA1"
   escape: "\u9003\u8DD1"
-  buy: "\u4E70"
-  sell: "\u5356"
+  buy: "\u8D2D\u4E70"
+  sell: "\u51FA\u552E"
   bgm: BGM
   se: SE
