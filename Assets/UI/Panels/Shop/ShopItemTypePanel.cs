@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Root;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using SIT = Static.CommonItemType;
 
 namespace UI
@@ -13,12 +14,22 @@ namespace UI
         private TextMeshProUGUI heading;
 
         [SerializeField]
+        private CanvasGroup canvasGroup;
+
+        [SerializeField]
         private ListBox listBox;
 
         [SerializeField]
         private GameObject sellingPanelPrefab;
 
+        private UnityAction Callback { get; set; }
+
         private InputCommand[] InputCommands { get; set; }
+
+        public void Setup(UnityAction callback)
+        {
+            Callback = callback;
+        }
 
         private void Awake()
         {
@@ -50,7 +61,7 @@ namespace UI
                 (ResourceManager.Term.ornamentArmor, SIT.ActorOrnamentArmor),
             };
 
-            listBox.Initialize(1, 5, Refresh, texts);
+            listBox.Initialize(1, 10, Refresh, texts);
         }
 
         private void OnEnable()
@@ -68,11 +79,12 @@ namespace UI
             UIManager
                 .Instantiate(sellingPanelPrefab)
                 .GetComponent<ShopSellingPanel>()
-                .Setup((((string, SIT))listBox.SelectedItem).Item2);
+                .Setup((((string, SIT))listBox.SelectedItem).Item2, () => canvasGroup.alpha = 1);
         }
 
         private void Cancel()
         {
+            Callback?.Invoke();
             Destroy(gameObject);
         }
 

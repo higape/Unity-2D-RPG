@@ -103,7 +103,10 @@ namespace UI
                         break;
                     case "sell":
                         canvasGroup.alpha = 0;
-                        UIManager.Instantiate(itemTypePanelPrefab);
+                        UIManager
+                            .Instantiate(itemTypePanelPrefab)
+                            .GetComponent<ShopItemTypePanel>()
+                            .Setup(() => canvasGroup.alpha = 1);
                         break;
                     case "back":
                         Cancel();

@@ -16,9 +16,7 @@ namespace UI
     public class ShopSellingPanel : MonoBehaviour
     {
         private delegate ICommodity MakeCommodity(int id);
-
-        [SerializeField]
-        private TextMeshProUGUI heading;
+        private delegate void RefreshStat(object item);
 
         [SerializeField]
         private ListBox listBox;
@@ -26,14 +24,34 @@ namespace UI
         [SerializeField]
         private GameObject quantityPanelPrefab;
 
+        [SerializeField]
+        private ActorUsableItemStatistic usableItemStatistic;
+
+        [SerializeField]
+        private ActorNormalItemStatistic normalItemStatistic;
+
+        [SerializeField]
+        private ActorWeaponStatistic weaponStatistic;
+
+        [SerializeField]
+        private ActorArmorStatistic armorStatistic;
+
         private SIT ItemType { get; set; }
+
+        private UnityAction Callback { get; set; }
+
         private List<(ICommodity, int)> Commodities { get; set; } = new();
-        private MakeCommodity CurrentAction { get; set; }
+
+        private MakeCommodity ItemAction { get; set; }
+
+        private RefreshStat StatAction { get; set; }
+
         private InputCommand[] InputCommands { get; set; }
 
-        public void Setup(SIT itemType)
+        public void Setup(SIT itemType, UnityAction callback)
         {
             ItemType = itemType;
+            Callback = callback;
             MakeItemList();
         }
 
@@ -50,8 +68,6 @@ namespace UI
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
-
-            heading.text = ResourceManager.Term.sell;
         }
 
         private void OnEnable()
@@ -67,80 +83,63 @@ namespace UI
         private void MakeItemList()
         {
             const int col = 1;
-            const int row = 8;
+            const int row = 6;
+
+            listBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
 
             switch (ItemType)
             {
                 case SIT.ActorNormalItem:
-                    CurrentAction = (id) => new ActorNormalItem(id);
+                    ItemAction = (id) => new ActorNormalItem(id);
+                    StatAction = ShowNormalItemStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorNormalItem);
                     break;
                 case SIT.ActorRecoverItem:
-                    CurrentAction = (id) => new ActorUsableItem(UIT.RecoverItem, id);
+                    ItemAction = (id) => new ActorUsableItem(UIT.RecoverItem, id);
+                    StatAction = ShowUsableItemStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorRecoverItem);
                     break;
                 case SIT.ActorAttackItem:
-                    CurrentAction = (id) => new ActorUsableItem(UIT.AttackItem, id);
+                    ItemAction = (id) => new ActorUsableItem(UIT.AttackItem, id);
+                    StatAction = ShowUsableItemStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorAttackItem);
                     break;
                 case SIT.ActorAuxiliaryItem:
-                    CurrentAction = (id) => new ActorUsableItem(UIT.AuxiliaryItem, id);
+                    ItemAction = (id) => new ActorUsableItem(UIT.AuxiliaryItem, id);
+                    StatAction = ShowUsableItemStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorAuxiliaryItem);
                     break;
                 case SIT.ActorWeapon:
-                    CurrentAction = (id) => new ActorWeapon(id);
+                    ItemAction = (id) => new ActorWeapon(id);
+                    StatAction = ShowWeaponStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorWeapon);
                     break;
                 case SIT.ActorHeadArmor:
-                    CurrentAction = (id) => new ActorArmor(0, id);
+                    ItemAction = (id) => new ActorArmor(0, id);
+                    StatAction = ShowArmorStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorHeadArmor);
                     break;
                 case SIT.ActorBodyArmor:
-                    CurrentAction = (id) => new ActorArmor(1, id);
+                    ItemAction = (id) => new ActorArmor(1, id);
+                    StatAction = ShowArmorStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorBodyArmor);
                     break;
                 case SIT.ActorHandArmor:
-                    CurrentAction = (id) => new ActorArmor(2, id);
+                    ItemAction = (id) => new ActorArmor(2, id);
+                    StatAction = ShowArmorStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorHandArmor);
                     break;
                 case SIT.ActorFootArmor:
-                    CurrentAction = (id) => new ActorArmor(3, id);
+                    ItemAction = (id) => new ActorArmor(3, id);
+                    StatAction = ShowArmorStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorFootArmor);
                     break;
                 case SIT.ActorOrnamentArmor:
-                    CurrentAction = (id) => new ActorArmor(4, id);
+                    ItemAction = (id) => new ActorArmor(4, id);
+                    StatAction = ShowArmorStat;
                     listBox.Initialize(col, row, RefreshItem, Party.ActorOrnamentArmor);
                     break;
             }
-        }
-
-        private void Interact()
-        {
-            if (listBox.SelectedItem is QuantityList.ListItem item)
-            {
-                //打开数量面板并传递回调
-                UIManager
-                    .Instantiate(quantityPanelPrefab)
-                    .GetComponent<QuantityPanel>()
-                    .Setup(CurrentAction(item.id).SellingPrice, item.quantity, QuantityCallback);
-            }
-        }
-
-        private void QuantityCallback(int quantity)
-        {
-            //执行卖出
-            if (listBox.SelectedItem is QuantityList.ListItem item)
-            {
-                CurrentAction(item.id).Sell(quantity);
-            }
-
-            listBox.Refresh();
-            listBox.Reselect();
-        }
-
-        private void Cancel()
-        {
-            Destroy(gameObject);
         }
 
         private void RefreshBlank(TextItem7 c)
@@ -158,9 +157,9 @@ namespace UI
             {
                 if (data is QuantityList.ListItem item)
                 {
-                    var d = CurrentAction(item.id);
+                    var d = ItemAction(item.id);
                     c.textComponent0.text = d.Name;
-                    c.textComponent1.text = ResourceManager.Term.unitPrice + ':';
+                    c.textComponent1.text = ResourceManager.Term.currencyUnit + ':';
                     c.textComponent2.text = d.SellingPrice.ToString();
                     c.textComponent3.text = ResourceManager.Term.holdingQuantity + ':';
                     c.textComponent4.text = item.quantity.ToString();
@@ -170,6 +169,93 @@ namespace UI
                     RefreshBlank(c);
                 }
             }
+        }
+
+        private void OnSelectedItemChange(object data, int index)
+        {
+            if (data != null)
+            {
+                var info = (QuantityList.ListItem)data;
+                StatAction(ItemAction(info.id));
+            }
+            else
+            {
+                HideAllStat();
+            }
+        }
+
+        private void HideAllStat()
+        {
+            usableItemStatistic.gameObject.SetActive(false);
+            normalItemStatistic.gameObject.SetActive(false);
+            weaponStatistic.gameObject.SetActive(false);
+            armorStatistic.gameObject.SetActive(false);
+        }
+
+        private void ShowUsableItemStat(object item)
+        {
+            usableItemStatistic.gameObject.SetActive(true);
+            normalItemStatistic.gameObject.SetActive(false);
+            weaponStatistic.gameObject.SetActive(false);
+            armorStatistic.gameObject.SetActive(false);
+            usableItemStatistic.Refresh(item as ActorUsableItem);
+        }
+
+        private void ShowNormalItemStat(object item)
+        {
+            usableItemStatistic.gameObject.SetActive(false);
+            normalItemStatistic.gameObject.SetActive(true);
+            weaponStatistic.gameObject.SetActive(false);
+            armorStatistic.gameObject.SetActive(false);
+            normalItemStatistic.Refresh(item as ActorNormalItem);
+        }
+
+        private void ShowWeaponStat(object item)
+        {
+            usableItemStatistic.gameObject.SetActive(false);
+            normalItemStatistic.gameObject.SetActive(false);
+            weaponStatistic.gameObject.SetActive(true);
+            armorStatistic.gameObject.SetActive(false);
+            weaponStatistic.Refresh(item as ActorWeapon);
+        }
+
+        private void ShowArmorStat(object item)
+        {
+            usableItemStatistic.gameObject.SetActive(false);
+            normalItemStatistic.gameObject.SetActive(false);
+            weaponStatistic.gameObject.SetActive(false);
+            armorStatistic.gameObject.SetActive(true);
+            armorStatistic.Refresh(item as ActorArmor);
+        }
+
+        private void Interact()
+        {
+            if (listBox.SelectedItem is QuantityList.ListItem item)
+            {
+                //打开数量面板并传递回调
+                UIManager
+                    .Instantiate(quantityPanelPrefab)
+                    .GetComponent<QuantityPanel>()
+                    .Setup(ItemAction(item.id).SellingPrice, item.quantity, QuantityCallback);
+            }
+        }
+
+        private void QuantityCallback(int quantity)
+        {
+            //执行卖出
+            if (listBox.SelectedItem is QuantityList.ListItem item)
+            {
+                ItemAction(item.id).Sell(quantity);
+            }
+
+            listBox.Refresh();
+            listBox.Reselect();
+        }
+
+        private void Cancel()
+        {
+            Callback?.Invoke();
+            Destroy(gameObject);
         }
     }
 }
