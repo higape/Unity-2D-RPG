@@ -10,88 +10,23 @@ namespace UI
 {
     public class ActorEquipmentPanel : MonoBehaviour
     {
-        #region Prefab & List
+        [SerializeField]
+        private TextMeshProUGUI heading;
 
         [SerializeField]
-        private GameObject iconPrefab;
-
-        [SerializeField]
-        private GameObject labelLayer;
+        private CanvasGroup equippedLayer;
 
         [SerializeField]
         private ListBox itemListBox;
+
+        [SerializeField]
+        private ActorEquipmentStatusPanel statusPanel;
 
         [SerializeField]
         private GameObject weaponPanelPrefab;
 
         [SerializeField]
         private GameObject armorPanelPrefab;
-
-        #endregion
-
-        #region Status UI
-
-        [SerializeField]
-        private Image displayObject;
-
-        [SerializeField]
-        private TextMeshProUGUI nameContent;
-
-        [SerializeField]
-        private TextMeshProUGUI lvLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI lvContent;
-
-        [SerializeField]
-        private TextMeshProUGUI hpLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI hpContent;
-
-        [SerializeField]
-        private TextMeshProUGUI atkLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI atkContent;
-
-        [SerializeField]
-        private TextMeshProUGUI defLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI defContent;
-
-        [SerializeField]
-        private TextMeshProUGUI agiLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI agiContent;
-
-        [SerializeField]
-        private TextMeshProUGUI hitLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI hitContent;
-
-        [SerializeField]
-        private TextMeshProUGUI evaLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI evaContent;
-
-        [SerializeField]
-        private TextMeshProUGUI expLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI expContent;
-
-        [SerializeField]
-        private TextMeshProUGUI nextExpLabel;
-
-        [SerializeField]
-        private TextMeshProUGUI nextExpContent;
-
-        #endregion
 
         [SerializeField]
         private ActorWeaponStatistic weaponStatistic;
@@ -113,35 +48,7 @@ namespace UI
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
-            lvLabel.text = ResourceManager.Term.lv;
-            hpLabel.text = ResourceManager.Term.hp;
-            atkLabel.text = ResourceManager.Term.atk;
-            defLabel.text = ResourceManager.Term.def;
-            agiLabel.text = ResourceManager.Term.agi;
-            hitLabel.text = ResourceManager.Term.hit;
-            evaLabel.text = ResourceManager.Term.eva;
-            expLabel.text = ResourceManager.Term.exp;
-            nextExpLabel.text = ResourceManager.Term.nextExp;
-
-            Sprite[] iconSprites = new Sprite[Actor.WeaponCount + Actor.ArmorCount]
-            {
-                ResourceManager.GetActorWeaponSprite(),
-                ResourceManager.GetActorWeaponSprite(),
-                ResourceManager.GetActorWeaponSprite(),
-                ResourceManager.GetActorArmorSprite(0),
-                ResourceManager.GetActorArmorSprite(1),
-                ResourceManager.GetActorArmorSprite(2),
-                ResourceManager.GetActorArmorSprite(3),
-                ResourceManager.GetActorArmorSprite(4),
-            };
-
-            foreach (var iconSprite in iconSprites)
-            {
-                Instantiate(iconPrefab, labelLayer.transform)
-                    .GetComponentInChildren<ImageItem>()
-                    .image
-                    .sprite = iconSprite;
-            }
+            heading.text = ResourceManager.Term.equipment;
 
             itemListBox.Initialize(1, Actor.WeaponCount + Actor.ArmorCount, RefreshItem);
             itemListBox.RegisterSelectedItemChangeCallback((o, i) => RefreshBySelectedItem());
@@ -165,52 +72,45 @@ namespace UI
 
         private void Refresh()
         {
-            RefreshEquipment();
-            RefreshStatus();
+            //为装备栏添加图标
+            var es = CurrentActor.GetAllEquipments();
+            List<(Sprite, object)> list = new();
+            for (int i = 0; i < es.Count; i++)
+            {
+                if (i < Actor.WeaponCount)
+                    list.Add((ResourceManager.GetActorWeaponSprite(), es[i]));
+                else
+                    list.Add((ResourceManager.GetActorArmorSprite(i - Actor.WeaponCount), es[i]));
+            }
+            itemListBox.SetSource(list);
+
             RefreshBySelectedItem();
-        }
-
-        private void RefreshEquipment()
-        {
-            var items = CurrentActor.GetAllEquipments();
-            itemListBox.SetSource(items);
-        }
-
-        private void RefreshStatus()
-        {
-            displayObject.sprite = CurrentActor.BattleSkin.idle;
-            nameContent.text = CurrentActor.Name;
-            lvContent.text = CurrentActor.Level.ToString();
-            hpContent.text = CurrentActor.Hp.ToString() + '/' + CurrentActor.Mhp.ToString();
-            // don't refresh atk
-            defContent.text = CurrentActor.Def.ToString();
-            agiContent.text = CurrentActor.Agi.ToString();
-            hitContent.text = CurrentActor.Hit.ToString();
-            evaContent.text = CurrentActor.Eva.ToString();
-            expContent.text = CurrentActor.Exp.ToString();
-            nextExpContent.text = CurrentActor.NextExp.ToString();
         }
 
         private void RefreshBySelectedItem()
         {
-            if (itemListBox.SelectedItem is ActorWeapon aw)
+            statusPanel.Refresh(CurrentActor, itemListBox.SelectedItem as ActorWeapon);
+            RefreshStat(itemListBox.SelectedItem);
+        }
+
+        private void RefreshStat(object item)
+        {
+            if (item == null)
+                return;
+
+            var statItem = (((Sprite, object))item).Item2;
+            if (statItem is ActorWeapon aw)
             {
-                atkContent.color = Color.green;
-                atkContent.text = (CurrentActor.Atk + aw.Attack).ToString();
                 weaponStatistic.Refresh(aw);
                 armorStatistic.Refresh(null);
             }
-            else if (itemListBox.SelectedItem is ActorArmor aa)
+            else if (statItem is ActorArmor aa)
             {
-                atkContent.color = Color.white;
-                atkContent.text = CurrentActor.Atk.ToString();
                 weaponStatistic.Refresh(null);
                 armorStatistic.Refresh(aa);
             }
             else
             {
-                atkContent.color = Color.white;
-                atkContent.text = CurrentActor.Atk.ToString();
                 weaponStatistic.Refresh(null);
                 armorStatistic.Refresh(null);
             }
@@ -232,6 +132,8 @@ namespace UI
             {
                 Refresh();
             }
+
+            equippedLayer.alpha = 1;
         }
 
         private void ArmorListCallback(object listObject)
@@ -250,10 +152,13 @@ namespace UI
             {
                 Refresh();
             }
+
+            equippedLayer.alpha = 1;
         }
 
         private void Interact()
         {
+            equippedLayer.alpha = 0;
             if (itemListBox.SelectedIndex < Actor.WeaponCount)
                 UIManager
                     .Instantiate(weaponPanelPrefab)
@@ -276,27 +181,18 @@ namespace UI
             Destroy(gameObject);
         }
 
-        private void RefreshLabel(ListBoxItem listItem, object data)
-        {
-            if (listItem is TextItem c)
-            {
-                if (data is string s)
-                    c.textComponent.text = s;
-                else
-                    c.textComponent.text = " ";
-            }
-        }
-
         private void RefreshItem(ListBoxItem listItem, object data)
         {
-            if (listItem is TextItem c)
+            if (listItem is ImageTextItem c)
             {
-                if (data is ActorWeapon weapon)
-                    c.textComponent.text = weapon.Name;
-                else if (data is ActorArmor armor)
-                    c.textComponent.text = armor.Name;
+                var item = ((Sprite, object))data;
+                c.image.sprite = item.Item1;
+                if (item.Item2 is ActorWeapon weapon)
+                    c.text.text = weapon.Name;
+                else if (item.Item2 is ActorArmor armor)
+                    c.text.text = armor.Name;
                 else
-                    c.textComponent.text = " ";
+                    c.text.text = " ";
             }
         }
     }
