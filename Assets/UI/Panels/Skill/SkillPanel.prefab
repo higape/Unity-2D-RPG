@@ -132,9 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: {fileID: 9219515867765641801}
-  fitter: {fileID: 1641940067454592968}
   itemListBox: {fileID: 8961998873185256865}
   itemStatistic: {fileID: 2826962775452469459}
+  actorListPrefab: {fileID: 5626243272871760219, guid: d3cf77724bef2f548b9c91d725ebacce, type: 3}
 --- !u!222 &7074160746103080623
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ namespace UI
             }
             else
             {
-                occasionContent.text = " ";
+                occasionContent.text = ResourceManager.Term.none;
             }
 
             switch (item.SkillType)

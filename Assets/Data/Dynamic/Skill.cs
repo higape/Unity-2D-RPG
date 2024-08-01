@@ -87,6 +87,9 @@ namespace Dynamic
         /// </summary>
         public int MaxUsageCount { get; set; }
 
+        /// <summary>
+        /// 当前剩余使用次数，仅在有次数限制的情况下提供正常值
+        /// </summary>
         public int CurrentCount => MaxUsageCount - ConsumeCount;
 
         /// <summary>

@@ -61,3 +61,35 @@ MonoBehaviour:
     traits:
     - traitID: 1
       traitValue: 10
+  - id: 4
+    name: "\u5C0F\u6CBB\u7597"
+    description: 
+    skinID: 1
+    occasion: -1
+    skillType: 1
+    usageID: 7
+    selectionLimit: 0
+    itemQuantity: 0
+    itemUsedCount: 0
+    effectRatePercentage: 0
+    waitTime: 0
+    addedEffects: []
+    traits:
+    - traitID: 1
+      traitValue: 10
+  - id: 5
+    name: "\u5927\u6CBB\u7597"
+    description: 
+    skinID: 1
+    occasion: -1
+    skillType: 1
+    usageID: 8
+    selectionLimit: 0
+    itemQuantity: 0
+    itemUsedCount: 0
+    effectRatePercentage: 0
+    waitTime: 0
+    addedEffects: []
+    traits:
+    - traitID: 1
+      traitValue: 10

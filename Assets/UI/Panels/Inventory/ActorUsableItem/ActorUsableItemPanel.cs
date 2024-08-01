@@ -91,7 +91,7 @@ namespace UI
                     ActorListInstance = UIManager
                         .Instantiate(actorListPrefab)
                         .GetComponent<SimpleActorStatusList>();
-                    ActorListInstance.SetCallback(OnActorInteract);
+                    ActorListInstance.Setup(Party.PartyActorList, OnActorInteract);
                 }
                 else
                 {

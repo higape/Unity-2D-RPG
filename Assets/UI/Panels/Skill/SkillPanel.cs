@@ -18,6 +18,13 @@ namespace UI
         [SerializeField]
         private SkillStatistic itemStatistic;
 
+        [SerializeField]
+        private GameObject actorListPrefab;
+
+        private Skill CurrentSkill { get; set; }
+
+        private SimpleActorStatusList ActorListInstance { get; set; }
+
         private InputCommand[] InputCommands { get; set; }
 
         public void Setup(Actor actor)
@@ -31,6 +38,11 @@ namespace UI
             {
                 new(InputCommand.ButtonUp, ButtonType.Press, itemListBox.SelectUp),
                 new(InputCommand.ButtonDown, ButtonType.Press, itemListBox.SelectDown),
+                new(InputCommand.ButtonLeft, ButtonType.Down, itemListBox.PageUp),
+                new(InputCommand.ButtonRight, ButtonType.Down, itemListBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, itemListBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, itemListBox.PageDown),
+                new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
@@ -47,16 +59,6 @@ namespace UI
         private void OnDisable()
         {
             InputManagementSystem.RemoveCommands(nameof(SkillPanel));
-        }
-
-        private void OnSelectedItemChange(object data, int index)
-        {
-            itemStatistic.Refresh(data as Skill);
-        }
-
-        private void Cancel()
-        {
-            Destroy(gameObject);
         }
 
         private void RefreshItem(ListBoxItem listItem, object data)
@@ -78,6 +80,60 @@ namespace UI
                     c.textComponent1.text = " ";
                 }
             }
+        }
+
+        private void OnSelectedItemChange(object data, int index)
+        {
+            itemStatistic.Refresh(data as Skill);
+        }
+
+        private void Interact()
+        {
+            if (itemListBox.SelectedItem is Skill skill)
+            {
+                CurrentSkill = skill;
+                if (skill.UsedInMenu)
+                {
+                    //打开角色面板并传递回调
+                    ActorListInstance = UIManager
+                        .Instantiate(actorListPrefab)
+                        .GetComponent<SimpleActorStatusList>();
+                    ActorListInstance.Setup(Party.PartyActorList, OnActorInteract);
+                }
+                else
+                {
+                    //提示无法使用
+                    UIManager.StartMessage(ResourceManager.Term.promptCannotUseSkillInMenu, null);
+                }
+            }
+        }
+
+        private void OnActorInteract(Battler actor)
+        {
+            var item = CurrentSkill;
+            if (item.CanUse && item.UsedInMenu && item.Usage != null)
+            {
+                var result = Mathc.ProcessItemEffect(
+                    item.Usage,
+                    actor,
+                    actor,
+                    actor.Atk + item.Attack,
+                    actor.Hit,
+                    1f
+                );
+                //在生效的情况下消耗使用次数
+                if (result.Item1 > 0 || result.Item2 > 0)
+                {
+                    item.Cost();
+                    itemListBox.Refresh();
+                }
+                ActorListInstance.Refresh();
+            }
+        }
+
+        private void Cancel()
+        {
+            Destroy(gameObject);
         }
     }
 }

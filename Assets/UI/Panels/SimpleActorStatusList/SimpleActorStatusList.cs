@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Dynamic;
 using Root;
 using UnityEngine;
@@ -10,7 +11,9 @@ namespace UI
         [SerializeField]
         private ListBox listBox;
 
-        private UnityAction<Battler> Callback { get; set; }
+        private List<Actor> Actors { get; set; }
+
+        private UnityAction<Actor> Callback { get; set; }
 
         private InputCommand[] InputCommands { get; set; }
 
@@ -23,9 +26,6 @@ namespace UI
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
-
-            var actors = Party.GetBattleActorList();
-            listBox.Initialize(1, actors.Count, RefreshItem, actors);
         }
 
         private void OnEnable()
@@ -38,9 +38,11 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(SimpleActorStatusList));
         }
 
-        public void SetCallback(UnityAction<Battler> callback)
+        public void Setup(List<Actor> actors, UnityAction<Actor> callback)
         {
+            Actors = actors;
             Callback = callback;
+            listBox.Initialize(1, Mathf.Min(6, actors.Count), RefreshItem, actors);
         }
 
         public void Refresh()
@@ -50,7 +52,7 @@ namespace UI
 
         private void Interact()
         {
-            Callback.Invoke(listBox.SelectedItem as Battler);
+            Callback.Invoke(listBox.SelectedItem as Actor);
         }
 
         private void Cancel()

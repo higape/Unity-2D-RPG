@@ -12,6 +12,8 @@ namespace Static
     [CreateAssetMenu(menuName = "CustomizedData/" + nameof(Term))]
     public class Term : ScriptableObject
     {
+        public string none;
+
         #region Ability
 
         public string lv;
@@ -133,6 +135,7 @@ namespace Static
         public string selectQuantity;
         public string confirmBuy;
         public string promptCannotUseItemInMenu;
+        public string promptCannotUseSkillInMenu;
         public string promptNoSelectableTarget;
 
         public string skillUseItem;
