@@ -93,7 +93,7 @@ namespace UI
             AbilityItems[0].textComponent1.text = actor.Level.ToString();
             AbilityItems[1].textComponent1.text = actor.Exp.ToString();
             AbilityItems[2].textComponent1.text = actor.NextExp.ToString();
-            AbilityItems[3].textComponent1.text = actor.Hp.ToString();
+            AbilityItems[3].textComponent1.text = actor.Hp.ToString() + '/' + actor.Mhp.ToString();
             //ignore atk here
             AbilityItems[5].textComponent1.text = actor.Def.ToString();
             AbilityItems[6].textComponent1.text = actor.Agi.ToString();

@@ -426,6 +426,8 @@ namespace Dynamic
                 Party.ActorWeapon.LoseItem(id, 1);
                 Weapons[slotIndex] = new ActorWeapon(id);
             }
+
+            anyChanged.Invoke(this);
         }
 
         /// <summary>
@@ -461,6 +463,8 @@ namespace Dynamic
                 if (Armors[slotIndex] is ActorArmor armor)
                     Static.Trait.AddGlobalEffect(armor.Traits);
             }
+
+            anyChanged.Invoke(this);
         }
 
         /// <summary>
