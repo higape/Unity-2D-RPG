@@ -160,7 +160,7 @@ namespace Root
             return Resources.Load<T>(filepath);
         }
 
-        public static void SaveNewFile(SaveData saveData)
+        public static bool SaveNewFile(SaveData saveData)
         {
             try
             {
@@ -184,14 +184,33 @@ namespace Root
                     }
                     if (result)
                     {
+                        saveData.name = current.Remove(10);
                         SaveJson(Path.Combine(dirpath, current), saveData);
-                        return;
+                        return true;
                     }
                 }
             }
             catch (Exception e)
             {
                 Debug.LogError(e.Message);
+            }
+            return false;
+        }
+
+        public static bool SaveFile(SaveData saveData)
+        {
+            try
+            {
+                var dirpath = SaveDirectory;
+                if (!Directory.Exists(dirpath))
+                    CheckAndCreatePath();
+                SaveJson(Path.Combine(dirpath, saveData.name + ".save"), saveData);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                return false;
             }
         }
 

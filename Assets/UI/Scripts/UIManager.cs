@@ -29,11 +29,11 @@ namespace UI
                 .StartMessage(texts, callback);
         }
 
-        public static void StartChoice(string text, IList data, UnityAction<int> callback)
+        public static void StartChoice(string message, IList choiceTexts, UnityAction<int> callback)
         {
             Instantiate(Instance.choiceListPanelPrefab, Instance.transform)
                 .GetComponent<ChoiceListPanel>()
-                .StartChoice(text, data, callback);
+                .StartChoice(message, choiceTexts, callback);
         }
 
         public static void OpenShop(int id, UnityAction callback)

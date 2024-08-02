@@ -41,11 +41,11 @@ namespace UI
             InputManagementSystem.RemoveCommands(nameof(ChoiceListPanel));
         }
 
-        public void StartChoice(string text, IList data, UnityAction<int> callback)
+        public void StartChoice(string message, IList choiceTexts, UnityAction<int> callback)
         {
-            textComponent.text = text;
+            textComponent.text = message;
             Callback = callback;
-            listBox.Initialize(1, data.Count, RefreshItem, data);
+            listBox.Initialize(1, choiceTexts.Count, RefreshItem, choiceTexts);
         }
 
         private void Interact()

@@ -120,6 +120,10 @@ namespace Static
 
         #region Log
 
+        public string confirmOverwriteSaveFile;
+        public string saveFileSucceed;
+        public string saveFileFail;
+
         public string gainItemFromTreasure;
 
         public string battleVictory;
@@ -133,7 +137,6 @@ namespace Static
         public string promptPanicState;
 
         public string selectQuantity;
-        public string confirmBuy;
         public string promptCannotUseItemInMenu;
         public string promptCannotUseSkillInMenu;
         public string promptNoSelectableTarget;
@@ -153,6 +156,7 @@ namespace Static
         public string loadFile;
         public string createFile;
 
+        public string confirm;
         public string cancel;
         public string back;
 
@@ -241,21 +245,6 @@ namespace Static
                 4 => ornamentArmor,
                 _ => " "
             };
-
-#if UNITY_EDITOR
-        /// <summary>
-        /// 检查数组的索引是否超出数组范围，true为超出
-        /// </summary>
-        public bool CheckOutOfRange(int index, int length)
-        {
-            if (index < 0 || index >= length)
-            {
-                Debug.Log("索引值超出范围。");
-                return true;
-            }
-            return false;
-        }
-#endif
 
         #endregion
     }

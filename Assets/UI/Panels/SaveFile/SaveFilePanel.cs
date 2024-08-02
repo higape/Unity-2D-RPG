@@ -23,20 +23,21 @@ namespace UI
         private void Awake()
         {
             heading.text = ResourceManager.Term.saveFile;
-            SaveData = ResourceManager.LoadSaveInfo();
+
             InputCommands = new InputCommand[]
             {
                 new(InputCommand.ButtonUp, ButtonType.Press, listBox.SelectUp),
                 new(InputCommand.ButtonDown, ButtonType.Press, listBox.SelectDown),
                 new(InputCommand.ButtonLeft, ButtonType.Press, listBox.SelectLeft),
                 new(InputCommand.ButtonRight, ButtonType.Press, listBox.SelectRight),
-                new(InputCommand.ButtonPrevious, ButtonType.Press, listBox.PageUp),
-                new(InputCommand.ButtonNext, ButtonType.Press, listBox.PageDown),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, listBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, listBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
 
             List<object> list = new();
+            SaveData = ResourceManager.LoadSaveInfo();
             if (SaveData != null)
             {
                 if (SaveData.Length < 100)
@@ -63,11 +64,49 @@ namespace UI
 
         private void Interact()
         {
-            if (listBox.SelectedIndex >= 0)
+            if (listBox.SelectedItem is Static.SaveData oldSave)
             {
-                ResourceManager.SaveNewFile(Party.CreateSaveData());
-                Destroy(gameObject);
+                List<string> texts =
+                    new() { ResourceManager.Term.confirm, ResourceManager.Term.cancel };
+                UIManager.StartChoice(
+                    ResourceManager.Term.confirmOverwriteSaveFile,
+                    texts,
+                    (index) =>
+                    {
+                        if (index == 0)
+                        {
+                            var data = Party.CreateSaveData();
+                            data.name = oldSave.name;
+                            if (ResourceManager.SaveFile(data))
+                                OnSaveSucceeded(data);
+                            else
+                                OnSaveFailed();
+                        }
+                    }
+                );
             }
+            else if (listBox.SelectedItem is int)
+            {
+                var data = Party.CreateSaveData();
+                if (ResourceManager.SaveNewFile(data))
+                    OnSaveSucceeded(data);
+                else
+                    OnSaveFailed();
+            }
+        }
+
+        private void OnSaveSucceeded(Static.SaveData data)
+        {
+            //刷新窗口的存档信息
+            listBox.ItemsSource[listBox.SelectedIndex] = data;
+            listBox.Refresh();
+            //弹出存档成功消息
+            UIManager.StartMessage(ResourceManager.Term.saveFileSucceed, () => Destroy(gameObject));
+        }
+
+        private void OnSaveFailed()
+        {
+            UIManager.StartMessage(ResourceManager.Term.saveFileFail, null);
         }
 
         private void Cancel()
