@@ -14,10 +14,13 @@ namespace Battle
     public class WeaponSelectionPanel : MonoBehaviour
     {
         [SerializeField]
+        private CanvasGroup canvasGroup;
+
+        [SerializeField]
         private ListBox listBox;
 
         [SerializeField]
-        private CanvasGroup canvasGroup;
+        private ActorWeaponStatistic itemStatistic;
 
         [SerializeField]
         private GameObject enemyPanelPrefab;
@@ -40,6 +43,10 @@ namespace Battle
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
+
+            listBox.RegisterSelectedItemChangeCallback(
+                (data, index) => itemStatistic.Refresh(data as ActorWeapon)
+            );
         }
 
         private void OnEnable()
@@ -58,7 +65,7 @@ namespace Battle
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
             var wl = actor.GetBattleWeapons();
-            listBox.Initialize(1, Mathf.Min(8, wl.Count), RefreshItem, wl);
+            listBox.Initialize(1, wl.Count, RefreshItem, wl);
         }
 
         private void Interact()
