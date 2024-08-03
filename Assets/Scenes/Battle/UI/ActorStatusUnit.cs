@@ -58,7 +58,10 @@ namespace Battle
             {
                 canvasGroup.alpha = 1f;
                 nameContent.text = battler.Name;
-                hpContent.text = battler.Hp.ToString();
+                hpContent.text =
+                    battler.Hp.ToString().PadLeft(4, ' ')
+                    + '/'
+                    + battler.Mhp.ToString().PadLeft(4, ' ');
                 var controlInfo = battler.ControlInfo;
                 if (controlInfo.Item2 > 0)
                 {
