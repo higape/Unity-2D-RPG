@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Dynamic;
 using Root;
+using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,13 +21,13 @@ namespace Battle
         private CanvasGroup canvasGroup;
 
         [SerializeField]
-        private ListBox typeListBox;
+        private TextMeshProUGUI heading;
 
         [SerializeField]
         private ListBox itemListBox;
 
         [SerializeField]
-        private ActorUsableItemStatistic itemStatistic;
+        private ActorUsableItemStatistic itemStat;
 
         [SerializeField]
         private GameObject actorPanelPrefab;
@@ -42,10 +43,6 @@ namespace Battle
 
         private UnityAction FinishCallback { get; set; }
 
-        private (string, UIT)[] TextTypePairs { get; set; }
-
-        private bool TypeLimit { get; set; }
-
         private InputCommand[] InputCommands { get; set; }
 
         private void Awake()
@@ -56,40 +53,14 @@ namespace Battle
                 new(InputCommand.ButtonDown, ButtonType.Press, itemListBox.SelectDown),
                 new(InputCommand.ButtonLeft, ButtonType.Press, itemListBox.SelectLeft),
                 new(InputCommand.ButtonRight, ButtonType.Press, itemListBox.SelectRight),
+                new(InputCommand.ButtonPrevious, ButtonType.Down, itemListBox.PageUp),
+                new(InputCommand.ButtonNext, ButtonType.Down, itemListBox.PageDown),
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
-                new(
-                    InputCommand.ButtonPrevious,
-                    ButtonType.Down,
-                    () =>
-                    {
-                        if (!TypeLimit)
-                            typeListBox.SelectLeft();
-                    }
-                ),
-                new(
-                    InputCommand.ButtonNext,
-                    ButtonType.Down,
-                    () =>
-                    {
-                        if (!TypeLimit)
-                            typeListBox.SelectRight();
-                    }
-                ),
-            };
-
-            TextTypePairs = new (string, UIT)[]
-            {
-                (ResourceManager.Term.recoverItem, UIT.RecoverItem),
-                (ResourceManager.Term.attackItem, UIT.AttackItem),
-                (ResourceManager.Term.auxiliaryItem, UIT.AuxiliaryItem)
             };
 
             itemListBox.Initialize(1, 8, RefreshItem);
             itemListBox.RegisterSelectedItemChangeCallback(OnSelectedItemChange);
-
-            typeListBox.Initialize(TextTypePairs.Length, 1, RefreshType, TextTypePairs);
-            typeListBox.RegisterSelectedItemChangeCallback(OnTypeChange);
         }
 
         private void OnEnable()
@@ -106,40 +77,45 @@ namespace Battle
             Actor actor,
             UnityAction cancelCallback,
             UnityAction finishCallback,
-            UIT itemType,
-            bool typeLimit
+            UIT itemType
         )
         {
             CurrentActor = actor;
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
-            TypeLimit = typeLimit;
-
-            int index = -1;
-            for (int i = 0; i < TextTypePairs.Length; i++)
-                if (TextTypePairs[i].Item2 == itemType)
-                    index = i;
-            typeListBox.Select(index);
-
+            CurrentAction = (id) => new ActorUsableItem(itemType, id);
+            heading.text = ResourceManager.Term.GetText(itemType);
+            itemListBox.SetSource(Party.GetActorItemListInBattle(itemType));
             BattleManager.CurrentCommand.SelectedItems = new();
         }
 
-        private void OnTypeChange(object data, int index)
+        private void RefreshItem(ListBoxItem listItem, object data)
         {
-            UIT itemType = (((string, UIT))typeListBox.SelectedItem).Item2;
-            CurrentAction = (id) => new ActorUsableItem(itemType, id);
-            itemListBox.SetSource(Party.GetActorItemListInBattle(itemType));
+            if (listItem is TextItem2 c)
+            {
+                if (data is QuantityList.ListItem item)
+                {
+                    var d = CurrentAction(item.id);
+                    c.textComponent0.text = d.Name;
+                    c.textComponent1.text = item.quantity.ToString();
+                }
+                else
+                {
+                    c.textComponent0.text = " ";
+                    c.textComponent1.text = " ";
+                }
+            }
         }
 
         private void OnSelectedItemChange(object data, int index)
         {
             if (data is QuantityList.ListItem item)
             {
-                itemStatistic.Refresh(CurrentAction(item.id));
+                itemStat.Refresh(CurrentAction(item.id));
             }
             else
             {
-                itemStatistic.Refresh(null);
+                itemStat.Refresh(null);
             }
         }
 
@@ -225,35 +201,6 @@ namespace Battle
             BattleManager.CurrentCommand.SelectedItems = null;
             CancelCallback?.Invoke();
             Destroy(gameObject);
-        }
-
-        private void RefreshType(ListBoxItem listItem, object data)
-        {
-            if (listItem is TextItem c)
-            {
-                if (data != null)
-                    c.textComponent.text = (((string, UIT))data).Item1;
-                else
-                    c.textComponent.text = " ";
-            }
-        }
-
-        private void RefreshItem(ListBoxItem listItem, object data)
-        {
-            if (listItem is TextItem2 c)
-            {
-                if (data is QuantityList.ListItem item)
-                {
-                    var d = CurrentAction(item.id);
-                    c.textComponent0.text = d.Name;
-                    c.textComponent1.text = item.quantity.ToString();
-                }
-                else
-                {
-                    c.textComponent0.text = " ";
-                    c.textComponent1.text = " ";
-                }
-            }
         }
     }
 }

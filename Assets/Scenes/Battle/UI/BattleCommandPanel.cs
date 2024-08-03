@@ -25,7 +25,7 @@ namespace Battle
         private GameObject skillPanelPrefab;
 
         [SerializeField]
-        private GameObject itemPanelPrefab;
+        private GameObject itemTypePanelPrefab;
 
         [SerializeField]
         private GameObject statusPanelPrefab;
@@ -120,15 +120,9 @@ namespace Battle
                 case "item":
                     canvasGroup.alpha = 0;
                     UIManager
-                        .Instantiate(itemPanelPrefab)
-                        .GetComponent<ItemSelectionPanel>()
-                        .Setup(
-                            CurrentActor,
-                            () => canvasGroup.alpha = 1,
-                            OnInputFinish,
-                            Static.ActorUsableItem.ItemType.RecoverItem,
-                            false
-                        );
+                        .Instantiate(itemTypePanelPrefab)
+                        .GetComponent<ItemTypeSelectionPanel>()
+                        .Setup(CurrentActor, () => canvasGroup.alpha = 1, OnInputFinish);
                     break;
                 case "status":
                     canvasGroup.alpha = 0;
