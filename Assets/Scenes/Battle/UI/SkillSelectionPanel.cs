@@ -17,7 +17,13 @@ namespace Battle
         private ListBox listBox;
 
         [SerializeField]
+        private SkillStatistic skillStat;
+
+        [SerializeField]
         private CanvasGroup canvasGroup;
+
+        [SerializeField]
+        private GameObject actorPanelPrefab;
 
         [SerializeField]
         private GameObject enemyPanelPrefab;
@@ -41,6 +47,10 @@ namespace Battle
                 new(InputCommand.ButtonInteract, ButtonType.Down, Interact),
                 new(InputCommand.ButtonCancel, ButtonType.Down, Cancel),
             };
+
+            listBox.RegisterSelectedItemChangeCallback(
+                (data, index) => skillStat.Refresh(data as Skill)
+            );
         }
 
         private void OnEnable()
@@ -87,7 +97,28 @@ namespace Battle
                 case Static.UsedScope.AllFriendExcludeSelf:
                 case Static.UsedScope.OneDeadFriend:
                 case Static.UsedScope.AllDeadFriend:
-                    Debug.LogWarning("未能选择友军");
+                    var actorTargets = BattleManager.GetActorToActorTargets(
+                        CurrentActor,
+                        usage.scope
+                    );
+                    if (actorTargets.Length > 0)
+                    {
+                        UIManager
+                            .Instantiate(actorPanelPrefab)
+                            .GetComponent<ActorSelectionPanel>()
+                            .Setup(
+                                CurrentActor,
+                                actorTargets,
+                                usage.scope,
+                                () => canvasGroup.alpha = 1,
+                                InvokeFinishCallback
+                            );
+                    }
+                    else
+                    {
+                        //提示没有可选目标
+                        UIManager.StartMessage(ResourceManager.Term.promptNoSelectableTarget, null);
+                    }
                     break;
                 case Static.UsedScope.OneEnemy:
                 case Static.UsedScope.AllEnemy:
@@ -138,7 +169,10 @@ namespace Battle
             {
                 var skill = data as Skill;
                 c.textComponent0.text = skill.Name;
-                c.textComponent1.text = skill.CurrentCount.ToString() + '/' + skill.MaxUsageCount;
+                c.textComponent1.text =
+                    skill.CurrentCount.ToString().PadLeft(2, ' ')
+                    + '/'
+                    + skill.MaxUsageCount.ToString().PadLeft(2, ' ');
             }
         }
     }
