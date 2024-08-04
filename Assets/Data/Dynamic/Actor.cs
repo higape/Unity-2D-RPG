@@ -154,11 +154,12 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.hp.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Life);
+                    DataObject.hp.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Life);
                 foreach (var item in Armors)
                     if (item != null)
                         sum += item.Hp;
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Life);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Life);
                 return Mathf.Max(Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0), 1);
             }
         }
@@ -168,11 +169,12 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.atk.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Attack);
+                    DataObject.atk.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Attack);
                 foreach (var item in Armors)
                     if (item != null)
                         sum += item.Atk;
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Attack);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Attack);
                 return Mathf.Max(Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0), 0);
             }
         }
@@ -182,11 +184,12 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.def.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Defence);
+                    DataObject.def.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Defence);
                 foreach (var item in Armors)
                     if (item != null)
                         sum += item.Def;
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Defence);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Defence);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -196,11 +199,12 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.agi.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Agility);
+                    DataObject.agi.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Agility);
                 foreach (var item in Armors)
                     if (item != null)
                         sum += item.Agi;
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Agility);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Agility);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -210,11 +214,12 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.hit.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Hit);
+                    DataObject.hit.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Hit);
                 foreach (var item in Armors)
                     if (item != null)
                         sum += item.Hit;
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Hit);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Hit);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -224,16 +229,27 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.eva.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Evasion);
+                    DataObject.eva.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Evasion);
                 foreach (var item in Armors)
                     if (item != null)
                         sum += item.Eva;
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Evasion);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Evasion);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
 
-        private int GetAbility(BET type0, int type1)
+        public override int Resistance
+        {
+            get
+            {
+                int sum = BaseResistance + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Resistance);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Resistance);
+                return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
+            }
+        }
+
+        private int GetAbilityOfTrait(BET type0, int type1)
         {
             int sum = Static.Trait.GetValue(DurationStates, type0, type1);
             foreach (object item in Armors)

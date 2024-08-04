@@ -63,8 +63,9 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.hp.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Life);
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Life);
+                    DataObject.hp.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Life);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Life);
                 return Mathf.Max(Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0), 1);
             }
         }
@@ -74,8 +75,9 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.atk.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Attack);
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Attack);
+                    DataObject.atk.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Attack);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Attack);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -85,8 +87,9 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.def.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Defence);
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Defence);
+                    DataObject.def.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Defence);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Defence);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -96,8 +99,9 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.agi.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Agility);
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Agility);
+                    DataObject.agi.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Agility);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Agility);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -107,8 +111,9 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.hit.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Hit);
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Hit);
+                    DataObject.hit.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Hit);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Hit);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -118,8 +123,19 @@ namespace Dynamic
             get
             {
                 int sum =
-                    DataObject.eva.GetValue(Level) + GetAbility(BET.AbilityConst, (int)BAT.Evasion);
-                int rateDelta = GetAbility(BET.AbilityRate, (int)BAT.Evasion);
+                    DataObject.eva.GetValue(Level)
+                    + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Evasion);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Evasion);
+                return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
+            }
+        }
+
+        public override int Resistance
+        {
+            get
+            {
+                int sum = BaseResistance + GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Resistance);
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Resistance);
                 return Mathf.Max((int)((rateDelta / 100f + 1f) * sum), 0);
             }
         }
@@ -136,7 +152,7 @@ namespace Dynamic
 
         public Static.TraitData[] Traits => DataObject.traits;
 
-        private int GetAbility(BET type0, int type1) =>
+        private int GetAbilityOfTrait(BET type0, int type1) =>
             Static.Trait.GetValue(Traits, type0, type1)
             + Static.Trait.GetValue(DurationStates, type0, type1);
 

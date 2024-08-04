@@ -12,6 +12,8 @@ namespace Dynamic
     /// </summary>
     public abstract class Battler
     {
+        public const int BaseResistance = 100;
+
         public Battle.DisplayBattler DisplayObject { get; set; }
         public string Name { get; protected set; }
         public abstract bool IsAlive { get; }
@@ -24,6 +26,7 @@ namespace Dynamic
         public abstract int Agi { get; }
         public abstract int Hit { get; }
         public abstract int Eva { get; }
+        public abstract int Resistance { get; }
 
         /// <summary>
         /// 持续效果
@@ -51,9 +54,9 @@ namespace Dynamic
             };
 
         /// <summary>
-        /// 获取效果值最大的状态以及状态值
+        /// 获取控制状态
         /// </summary>
-        public (Static.BattleEffect.ControlType, int) ControlInfo
+        public Static.BattleEffect.ControlType ControlState
         {
             get
             {
@@ -65,69 +68,25 @@ namespace Dynamic
                 {
                     if (state.EffectType0 == Static.BattleEffect.EffectType.Control)
                     {
-                        controlValues[state.EffectType1 - 1] +=
-                            state.EffectValue * GetElementRate(state.ElementType);
+#if UNITY_EDITOR
+                        if (state.EffectType1 >= 1 && state.EffectType1 <= 4)
+#endif
+                            controlValues[state.EffectType1 - 1] +=
+                                state.EffectValue * GetElementRate(state.ElementType);
                     }
                 }
-                //查找最大状态值以及对应的状态类型
-                float sum = controlValues[0];
-                int maxIndex = 0;
-                for (int i = 1; i < controlValues.Length; i++)
+
+                //根据优先级处理状态
+                for (int i = controlValues.Length - 1; i >= 0; i--)
                 {
-                    sum += controlValues[i];
-                    if (controlValues[i] >= controlValues[maxIndex])
+                    if (controlValues[i] >= Resistance)
                     {
-                        maxIndex = i;
+                        return (Static.BattleEffect.ControlType)(i + 1);
                     }
                 }
 
-                int controlValue = Mathf.RoundToInt(sum);
-                if (controlValue > 0)
-                    return ((Static.BattleEffect.ControlType)(maxIndex + 1), controlValue);
-                else
-                    return (Static.BattleEffect.ControlType.None, 0);
-            }
-        }
-
-        public Static.BattleEffect.ControlType ControlState
-        {
-            get
-            {
-                int controlType = (int)Static.BattleEffect.ControlType.None;
-                float controlValue = 0;
-
-                foreach (var state in DurationStates)
-                {
-                    if (state.EffectType0 == Static.BattleEffect.EffectType.Control)
-                    {
-                        controlValue += state.EffectValue * GetElementRate(state.ElementType);
-                        controlType = Mathf.Max(controlType, state.EffectType1);
-                    }
-                }
-
-                if (controlValue > 98f)
-                    return (Static.BattleEffect.ControlType)controlType;
-                else
-                    return Static.BattleEffect.ControlType.None;
-            }
-        }
-
-        public int ControlValue
-        {
-            get
-            {
-                float controlValue = 0;
-
-                foreach (var state in DurationStates)
-                    if (state.EffectType0 == Static.BattleEffect.EffectType.Control)
-                        controlValue += state.EffectValue * GetElementRate(state.ElementType);
-
-                if (controlValue > 98f)
-                    return 100;
-                else if (controlValue > 1f)
-                    return (int)controlValue;
-                else
-                    return 0;
+                //没有控制状态
+                return Static.BattleEffect.ControlType.None;
             }
         }
 

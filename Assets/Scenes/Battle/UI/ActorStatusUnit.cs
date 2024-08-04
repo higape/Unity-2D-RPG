@@ -62,18 +62,7 @@ namespace Battle
                     battler.Hp.ToString().PadLeft(4, ' ')
                     + '/'
                     + battler.Mhp.ToString().PadLeft(4, ' ');
-                var controlInfo = battler.ControlInfo;
-                if (controlInfo.Item2 > 0)
-                {
-                    stateContent.text =
-                        ResourceManager.Term.GetText(controlInfo.Item1)
-                        + controlInfo.Item2.ToString()
-                        + '%';
-                }
-                else
-                {
-                    stateContent.text = " ";
-                }
+                stateContent.text = ResourceManager.Term.GetText(battler.ControlState);
             }
         }
     }

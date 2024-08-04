@@ -619,31 +619,28 @@ namespace Battle
                 return;
             }
 
-            var controlInfo = ActionableBattlers[0].ControlInfo;
+            var controlState = ActionableBattlers[0].ControlState;
 
             if (ActionableBattlers[0] is Actor actor)
             {
                 bool enableSkill = true;
 
-                if (controlInfo.Item2 >= 100)
+                switch (controlState)
                 {
-                    switch (controlInfo.Item1)
-                    {
-                        case Static.BattleEffect.ControlType.Charm:
-                            Debug.Log($"未实现魅惑，跳过角色{actor.Name}的行动");
-                            ActionEnd();
-                            return;
-                        case Static.BattleEffect.ControlType.Confusion:
-                            Debug.Log($"未实现混乱，跳过角色{actor.Name}的行动");
-                            ActionEnd();
-                            return;
-                        case Static.BattleEffect.ControlType.Fetter:
-                            ActionEnd();
-                            return;
-                        case Static.BattleEffect.ControlType.Panic:
-                            enableSkill = false;
-                            break;
-                    }
+                    case Static.BattleEffect.ControlType.Charm:
+                        Debug.LogWarning($"未实现魅惑，跳过角色{actor.Name}的行动");
+                        ActionEnd();
+                        return;
+                    case Static.BattleEffect.ControlType.Confusion:
+                        Debug.LogWarning($"未实现混乱，跳过角色{actor.Name}的行动");
+                        ActionEnd();
+                        return;
+                    case Static.BattleEffect.ControlType.Fetter:
+                        ActionEnd();
+                        return;
+                    case Static.BattleEffect.ControlType.Panic:
+                        enableSkill = false;
+                        break;
                 }
 
                 (actor.DisplayObject as DisplayActor).MoveToLeft();
@@ -658,25 +655,22 @@ namespace Battle
                 var enemy = ActionableBattlers[0] as Enemy;
                 enemy.ResetActionCount();
 
-                if (controlInfo.Item2 >= 100)
+                switch (controlState)
                 {
-                    switch (controlInfo.Item1)
-                    {
-                        case Static.BattleEffect.ControlType.Charm:
-                            Debug.Log($"未实现魅惑，跳过敌人{enemy.Name}的行动");
-                            ActionEnd();
-                            return;
-                        case Static.BattleEffect.ControlType.Confusion:
-                            Debug.Log($"未实现混乱，跳过敌人{enemy.Name}的行动");
-                            ActionEnd();
-                            return;
-                        case Static.BattleEffect.ControlType.Fetter:
-                            ActionEnd();
-                            return;
-                        case Static.BattleEffect.ControlType.Panic:
-                            // do nothing
-                            break;
-                    }
+                    case Static.BattleEffect.ControlType.Charm:
+                        Debug.LogWarning($"未实现魅惑，跳过敌人{enemy.Name}的行动");
+                        ActionEnd();
+                        return;
+                    case Static.BattleEffect.ControlType.Confusion:
+                        Debug.LogWarning($"未实现混乱，跳过敌人{enemy.Name}的行动");
+                        ActionEnd();
+                        return;
+                    case Static.BattleEffect.ControlType.Fetter:
+                        ActionEnd();
+                        return;
+                    case Static.BattleEffect.ControlType.Panic:
+                        // do nothing
+                        break;
                 }
 
                 ProcessEnemyAction();
