@@ -49,9 +49,9 @@ namespace Dynamic
 
         public override bool CostAndCool()
         {
-            if (CurrentWaitTime > 0)
+            if (IsCooling)
                 return false;
-            CurrentWaitTime += CurrentUsage.waitTime;
+            CurrentCoolingTime += CurrentUsage.coolingTime;
             return true;
         }
 

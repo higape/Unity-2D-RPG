@@ -92,7 +92,7 @@ namespace UI
             if (itemListBox.SelectedItem is Skill skill)
             {
                 CurrentSkill = skill;
-                if (skill.UsedInMenu)
+                if (skill.UsedInMenu && skill.CanUse)
                 {
                     //打开角色面板并传递回调
                     ActorListInstance = UIManager

@@ -22,7 +22,7 @@ namespace Static
         /// </summary>
         public int attackCount;
 
-        public int waitTime;
+        public int coolingTime;
 
         public BattleEffectData[] effects;
 

@@ -55,7 +55,7 @@ namespace Static
         /// <summary>
         /// 冷却时间
         /// </summary>
-        public int waitTime;
+        public int coolingTime;
 
         /// <summary>
         /// 在武器道具基础上附加效果。

@@ -176,6 +176,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 3629351926019666463}
   listBox: {fileID: 7171955038187235547}
   itemStatistic: {fileID: 4801149570231569049}
+  actorPanelPrefab: {fileID: 7065445997134698047, guid: 57cacd2884d84d7409bc18af5fd6a50c, type: 3}
   enemyPanelPrefab: {fileID: 2118798767288504559, guid: 795b4c8457a1ae04e871bcaf94302541, type: 3}
 --- !u!225 &3629351926019666463
 CanvasGroup:

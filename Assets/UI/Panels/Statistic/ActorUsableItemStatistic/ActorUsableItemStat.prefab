@@ -473,8 +473,8 @@ MonoBehaviour:
   elementContent: {fileID: 7865333718638963876}
   scopeLabel: {fileID: 8852748266265354389}
   scopeContent: {fileID: 7354066409683265426}
-  waitTimeLabel: {fileID: 7250741831127842482}
-  waitTimeContent: {fileID: 8667859784886565301}
+  coolingTimeLabel: {fileID: 7250741831127842482}
+  coolingTimeContent: {fileID: 8667859784886565301}
   effectLabel: {fileID: 8576659079865023608}
   effectListBox: {fileID: 6147790805301596524}
 --- !u!225 &1028954092351472505
@@ -1385,7 +1385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724665517648963588, guid: 7af15b03e9adbd9498bbd5611950e2e4, type: 3}
       propertyPath: m_Name
-      value: Wait
+      value: CoolingTime
       objectReference: {fileID: 0}
     - target: {fileID: 3263852619935170937, guid: 3e3f1293f2156e741bdb97b597821814, type: 3}
       propertyPath: m_AnchorMax.y

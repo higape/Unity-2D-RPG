@@ -39,10 +39,10 @@ namespace UI
         private TextMeshProUGUI scopeContent;
 
         [SerializeField]
-        private TextMeshProUGUI waitTimeLabel;
+        private TextMeshProUGUI coolingTimeLabel;
 
         [SerializeField]
-        private TextMeshProUGUI waitTimeContent;
+        private TextMeshProUGUI coolingTimeContent;
 
         [SerializeField]
         private TextMeshProUGUI equipableLabel;
@@ -63,7 +63,7 @@ namespace UI
             sellingPriceLabel.text = ResourceManager.Term.sellingPrice;
             elementLabel.text = ResourceManager.Term.element;
             scopeLabel.text = ResourceManager.Term.scope;
-            waitTimeLabel.text = ResourceManager.Term.waitTime;
+            coolingTimeLabel.text = ResourceManager.Term.coolingTime;
             effectLabel.text = ResourceManager.Term.effect;
         }
 
@@ -94,7 +94,7 @@ namespace UI
             {
                 scopeContent.text = ResourceManager.Term.GetText(usage.scope);
             }
-            waitTimeContent.text = usage.waitTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = usage.coolingTime.ToString() + ResourceManager.Term.round;
 
             var equipableActors = item.GetEquipableActorList();
             equipableListBox.Initialize(

@@ -8,10 +8,10 @@ namespace UI
 {
     public class ActorUsableItemPanel : MonoBehaviour
     {
-        private delegate ActorUsableItem MakeCommodity(int id);
+        private delegate ActorUsableItem MakeItemByID(int id);
 
         [SerializeField]
-        private TextMeshProUGUI header;
+        private TextMeshProUGUI heading;
 
         [SerializeField]
         private ListBox itemListBox;
@@ -22,7 +22,7 @@ namespace UI
         [SerializeField]
         private GameObject actorListPrefab;
 
-        private MakeCommodity CurrentAction { get; set; }
+        private MakeItemByID CurrentAction { get; set; }
 
         private SimpleActorStatusList ActorListInstance { get; set; }
 
@@ -34,7 +34,7 @@ namespace UI
 
         public void Setup(UIT itemType)
         {
-            header.text = ResourceManager.Term.GetText(itemType);
+            heading.text = ResourceManager.Term.GetText(itemType);
             CurrentAction = (id) => new ActorUsableItem(itemType, id);
             itemListBox.SetSource(Party.GetActorItemList(itemType));
         }
@@ -84,7 +84,7 @@ namespace UI
             if (itemListBox.SelectedItem != null)
             {
                 CurrentQuantityItem = (QuantityList.ListItem)itemListBox.SelectedItem;
-                CurrentItem = CurrentAction(((QuantityList.ListItem)itemListBox.SelectedItem).id);
+                CurrentItem = CurrentAction(CurrentQuantityItem.id);
                 if (CurrentItem.UsedInMenu)
                 {
                     //打开角色面板并传递回调

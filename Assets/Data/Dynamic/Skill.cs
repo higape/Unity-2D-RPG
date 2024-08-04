@@ -58,14 +58,14 @@ namespace Dynamic
 
         public override float SkillEffectRate => DataObject.effectRatePercentage / 100f;
 
-        public int WaitTime
+        public int CoolingTime
         {
             get
             {
                 if (SkillType == Static.Skill.SkillType.Usage)
-                    return Usage.waitTime;
+                    return Usage.coolingTime;
                 else
-                    return DataObject.waitTime;
+                    return DataObject.coolingTime;
             }
         }
 
@@ -129,7 +129,7 @@ namespace Dynamic
 
         public override bool CostAndCool()
         {
-            if (CurrentWaitTime > 0)
+            if (IsCooling)
                 return false;
 
             if (IsCountLimit)
@@ -138,7 +138,7 @@ namespace Dynamic
                     return false;
                 ConsumeCount++;
             }
-            CurrentWaitTime = WaitTime;
+            CurrentCoolingTime += CoolingTime;
             return true;
         }
 

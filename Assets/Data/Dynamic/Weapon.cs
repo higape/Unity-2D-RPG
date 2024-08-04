@@ -57,7 +57,12 @@ namespace Dynamic
         /// <summary>
         /// 冷却时间
         /// </summary>
-        public int CurrentWaitTime { get; protected set; } = 0;
+        public int CurrentCoolingTime { get; protected set; } = 0;
+
+        /// <summary>
+        /// 判断武器是否正在冷却
+        /// </summary>
+        public bool IsCooling => CurrentCoolingTime > 0;
 
         /// <summary>
         /// 缓存技能效果和武器效果
@@ -78,7 +83,9 @@ namespace Dynamic
         /// 用于判断子弹是否完成飞行
         /// </summary>
         private int HitCount { get; set; }
+
         private int MaxHitCount { get; set; }
+
         private int DamageCount { get; set; }
 
         /// <summary>
@@ -233,7 +240,7 @@ namespace Dynamic
 
         public void OnBattleStart()
         {
-            CurrentWaitTime = 0;
+            CurrentCoolingTime = 0;
         }
     }
 }

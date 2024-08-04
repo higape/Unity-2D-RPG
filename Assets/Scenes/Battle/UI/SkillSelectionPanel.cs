@@ -79,7 +79,20 @@ namespace Battle
 
         private void Interact()
         {
-            var skill = listBox.SelectedItem as Skill;
+            if (listBox.SelectedItem is not Skill skill)
+                return;
+
+            if (skill.IsCooling)
+            {
+                UIManager.StartMessage(ResourceManager.Term.promptSkillIsCooling, null);
+                return;
+            }
+
+            if (!skill.CanUse)
+            {
+                return;
+            }
+
             var usage = skill.Usage;
             if (usage == null)
             {

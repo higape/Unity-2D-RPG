@@ -18,7 +18,7 @@ namespace Dynamic
         public Static.WeaponUsage Usage => DataObject.Usage;
         protected override Vector3 FirePosition =>
             DataObject.firePosition + Owner.DisplayObject.Position;
-        public bool CanUse => CurrentWaitTime <= 0 && !(this as IDurability).IsZeroDurability;
+        public bool CanUse => !IsCooling && !(this as IDurability).IsZeroDurability;
         public int Damage { get; set; }
         public int MaxDurability => DataObject.durability;
 
@@ -29,9 +29,9 @@ namespace Dynamic
 
         public override bool CostAndCool()
         {
-            if (CurrentWaitTime > 0)
+            if (IsCooling)
                 return false;
-            CurrentWaitTime += CurrentUsage.waitTime;
+            CurrentCoolingTime += CurrentUsage.coolingTime;
             return true;
         }
     }

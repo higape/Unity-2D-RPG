@@ -123,9 +123,17 @@ namespace Battle
         {
             if (itemListBox.SelectedItem is not QuantityList.ListItem quantityItem)
                 return;
+
             var weapon = CurrentAction(quantityItem.id);
             if (weapon == null)
                 return;
+
+            if (weapon.IsCooling)
+            {
+                UIManager.StartMessage(ResourceManager.Term.promptItemIsCooling, null);
+                return;
+            }
+
             var usage = weapon.Usage;
             BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, usage));
 

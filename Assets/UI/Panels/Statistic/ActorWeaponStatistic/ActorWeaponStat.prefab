@@ -67,8 +67,8 @@ MonoBehaviour:
   elementContent: {fileID: 8609958853258210894}
   scopeLabel: {fileID: 4762698387042905690}
   scopeContent: {fileID: 6831154940455070045}
-  waitTimeLabel: {fileID: 3293123273215849603}
-  waitTimeContent: {fileID: 3559574199601476484}
+  coolingTimeLabel: {fileID: 3293123273215849603}
+  coolingTimeContent: {fileID: 3559574199601476484}
   equipableLabel: {fileID: 448795414118664060}
   equipableListBox: {fileID: 1591760232872453856}
   effectLabel: {fileID: 1825084151092343072}
@@ -1203,7 +1203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724665517648963588, guid: 7af15b03e9adbd9498bbd5611950e2e4, type: 3}
       propertyPath: m_Name
-      value: Wait
+      value: CoolingTime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

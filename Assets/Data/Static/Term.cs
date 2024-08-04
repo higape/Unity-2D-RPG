@@ -41,7 +41,7 @@ namespace Static
         public string element;
         public string scope;
         public string scopeStatement;
-        public string waitTime;
+        public string coolingTime;
         public string round;
         public string effect;
         public string menu;
@@ -140,6 +140,9 @@ namespace Static
         public string promptCannotUseItemInMenu;
         public string promptCannotUseSkillInMenu;
         public string promptNoSelectableTarget;
+        public string promptItemIsCooling;
+        public string promptWeaponIsCooling;
+        public string promptSkillIsCooling;
 
         public string skillUseItem;
 

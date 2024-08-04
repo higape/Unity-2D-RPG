@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34fb91713b1f184cb50232a7cd18de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: {fileID: 766360864991131817}
+  heading: {fileID: 766360864991131817}
   itemListBox: {fileID: 99391215945229933}
   itemStatistic: {fileID: 378009809997039181}
   actorListPrefab: {fileID: 5626243272871760219, guid: d3cf77724bef2f548b9c91d725ebacce, type: 3}

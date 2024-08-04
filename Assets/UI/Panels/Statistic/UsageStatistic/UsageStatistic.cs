@@ -27,10 +27,10 @@ namespace UI
         private TextMeshProUGUI scopeContent;
 
         [SerializeField]
-        private TextMeshProUGUI waitTimeLabel;
+        private TextMeshProUGUI coolingTimeLabel;
 
         [SerializeField]
-        private TextMeshProUGUI waitTimeContent;
+        private TextMeshProUGUI coolingTimeContent;
 
         [SerializeField]
         private TextMeshProUGUI effectLabel;
@@ -42,7 +42,7 @@ namespace UI
         {
             elementLabel.text = ResourceManager.Term.element;
             scopeLabel.text = ResourceManager.Term.scope;
-            waitTimeLabel.text = ResourceManager.Term.waitTime;
+            coolingTimeLabel.text = ResourceManager.Term.coolingTime;
             effectLabel.text = ResourceManager.Term.effect;
         }
 
@@ -73,7 +73,7 @@ namespace UI
             {
                 scopeContent.text = ResourceManager.Term.GetText(item.scope);
             }
-            waitTimeContent.text = item.waitTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = item.coolingTime.ToString() + ResourceManager.Term.round;
             effectListBox.Initialize(1, 3, RefreshEffectItem, item.effects);
             effectListBox.Unselect();
         }

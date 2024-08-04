@@ -33,10 +33,10 @@ namespace UI
         private TextMeshProUGUI effectRateContent;
 
         [SerializeField]
-        private TextMeshProUGUI waitTimeLabel;
+        private TextMeshProUGUI coolingTimeLabel;
 
         [SerializeField]
-        private TextMeshProUGUI waitTimeContent;
+        private TextMeshProUGUI coolingTimeContent;
 
         [SerializeField]
         private TextMeshProUGUI addedEffectLabel;
@@ -49,7 +49,7 @@ namespace UI
             quantityLabel.text = ResourceManager.Term.quantity;
             usedCountLabel.text = ResourceManager.Term.usedCount;
             effectRateLabel.text = ResourceManager.Term.effectRate;
-            waitTimeLabel.text = ResourceManager.Term.waitTime;
+            coolingTimeLabel.text = ResourceManager.Term.coolingTime;
             addedEffectLabel.text = ResourceManager.Term.addedEffect;
         }
 
@@ -85,7 +85,7 @@ namespace UI
             quantityContent.text = item.ItemQuantity.ToString();
             usedCountContent.text = item.ItemUsedCount.ToString();
             effectRateContent.text = item.SkillEffectRatePercentage.ToString() + '%';
-            waitTimeContent.text = item.WaitTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = item.CoolingTime.ToString() + ResourceManager.Term.round;
             effectListBox.Initialize(1, 3, RefreshEffectItem, item.AddedEffects);
             effectListBox.Unselect();
         }

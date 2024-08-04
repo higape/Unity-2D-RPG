@@ -23,6 +23,9 @@ namespace Battle
         private ActorWeaponStatistic itemStatistic;
 
         [SerializeField]
+        private GameObject actorPanelPrefab;
+
+        [SerializeField]
         private GameObject enemyPanelPrefab;
 
         private Actor CurrentActor { get; set; }
@@ -70,7 +73,15 @@ namespace Battle
 
         private void Interact()
         {
-            var weapon = listBox.SelectedItem as ActorWeapon;
+            if (listBox.SelectedItem is not ActorWeapon weapon)
+                return;
+
+            if (weapon.IsCooling)
+            {
+                UIManager.StartMessage(ResourceManager.Term.promptWeaponIsCooling, null);
+                return;
+            }
+
             var usage = weapon.GetUsage(0);
             BattleManager.CurrentCommand.SelectedItems = new() { new(weapon, usage) };
 
@@ -82,7 +93,28 @@ namespace Battle
                 case Static.UsedScope.AllFriendExcludeSelf:
                 case Static.UsedScope.OneDeadFriend:
                 case Static.UsedScope.AllDeadFriend:
-                    Debug.LogWarning("未能选择友军");
+                    var actorTargets = BattleManager.GetActorToActorTargets(
+                        CurrentActor,
+                        usage.scope
+                    );
+                    if (actorTargets.Length > 0)
+                    {
+                        UIManager
+                            .Instantiate(actorPanelPrefab)
+                            .GetComponent<ActorSelectionPanel>()
+                            .Setup(
+                                CurrentActor,
+                                actorTargets,
+                                usage.scope,
+                                () => canvasGroup.alpha = 1,
+                                InvokeFinishCallback
+                            );
+                    }
+                    else
+                    {
+                        //提示没有可选目标
+                        UIManager.StartMessage(ResourceManager.Term.promptNoSelectableTarget, null);
+                    }
                     break;
                 case Static.UsedScope.OneEnemy:
                 case Static.UsedScope.AllEnemy:
