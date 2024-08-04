@@ -91,18 +91,26 @@ namespace Battle
 
         private void RefreshItem(ListBoxItem listItem, object data)
         {
-            if (listItem is TextItem2 c)
+            if (listItem is TextItem3 c)
             {
-                if (data is QuantityList.ListItem item)
+                if (data is QuantityList.ListItem quantityItem)
                 {
-                    var d = CurrentAction(item.id);
-                    c.textComponent0.text = d.Name;
-                    c.textComponent1.text = item.quantity.ToString();
+                    var item = CurrentAction(quantityItem.id);
+                    c.textComponent0.text = item.Name;
+                    c.textComponent1.text = quantityItem.quantity.ToString();
+                    if (item.IsCooling)
+                        c.textComponent2.text = string.Format(
+                            ResourceManager.Term.coolingTimeStatement,
+                            item.CurrentCoolingTime
+                        );
+                    else
+                        c.textComponent2.text = string.Empty;
                 }
                 else
                 {
                     c.textComponent0.text = " ";
                     c.textComponent1.text = " ";
+                    c.textComponent2.text = string.Empty;
                 }
             }
         }

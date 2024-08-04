@@ -71,6 +71,29 @@ namespace Battle
             listBox.Initialize(1, wl.Count, RefreshItem, wl);
         }
 
+        private void RefreshItem(ListBoxItem listItem, object data)
+        {
+            if (listItem is TextItem2 c)
+            {
+                if (data is ActorWeapon item)
+                {
+                    c.textComponent0.text = item.Name;
+                    if (item.IsCooling)
+                        c.textComponent1.text = string.Format(
+                            ResourceManager.Term.coolingTimeStatement,
+                            item.CurrentCoolingTime
+                        );
+                    else
+                        c.textComponent1.text = string.Empty;
+                }
+                else
+                {
+                    c.textComponent0.text = " ";
+                    c.textComponent1.text = string.Empty;
+                }
+            }
+        }
+
         private void Interact()
         {
             if (listBox.SelectedItem is not ActorWeapon weapon)
@@ -157,14 +180,6 @@ namespace Battle
         {
             FinishCallback?.Invoke();
             Destroy(gameObject);
-        }
-
-        private void RefreshItem(ListBoxItem listItem, object data)
-        {
-            if (listItem is TextItem c)
-            {
-                c.textComponent.text = (data as ActorWeapon).Name;
-            }
         }
     }
 }

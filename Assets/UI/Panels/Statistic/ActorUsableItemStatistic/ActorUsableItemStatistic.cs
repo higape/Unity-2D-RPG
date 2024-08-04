@@ -107,7 +107,10 @@ namespace UI
             {
                 scopeContent.text = ResourceManager.Term.GetText(usage.scope);
             }
-            coolingTimeContent.text = usage.coolingTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = string.Format(
+                ResourceManager.Term.coolingTimeStatement,
+                usage.coolingTime
+            );
             effectListBox.Initialize(
                 1,
                 Mathf.Max(usage.effects.Length, 3),

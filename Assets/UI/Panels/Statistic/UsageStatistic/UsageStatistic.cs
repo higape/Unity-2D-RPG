@@ -73,7 +73,10 @@ namespace UI
             {
                 scopeContent.text = ResourceManager.Term.GetText(item.scope);
             }
-            coolingTimeContent.text = item.coolingTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = string.Format(
+                ResourceManager.Term.coolingTimeStatement,
+                item.coolingTime
+            );
             effectListBox.Initialize(1, 3, RefreshEffectItem, item.effects);
             effectListBox.Unselect();
         }

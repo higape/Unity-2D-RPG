@@ -94,7 +94,10 @@ namespace UI
             {
                 scopeContent.text = ResourceManager.Term.GetText(usage.scope);
             }
-            coolingTimeContent.text = usage.coolingTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = string.Format(
+                ResourceManager.Term.coolingTimeStatement,
+                usage.coolingTime
+            );
 
             var equipableActors = item.GetEquipableActorList();
             equipableListBox.Initialize(

@@ -42,7 +42,7 @@ namespace Static
         public string scope;
         public string scopeStatement;
         public string coolingTime;
-        public string round;
+        public string coolingTimeStatement;
         public string effect;
         public string menu;
         public string battle;

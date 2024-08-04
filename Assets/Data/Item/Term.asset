@@ -39,7 +39,7 @@ MonoBehaviour:
   scope: "\u8303\u56F4"
   scopeStatement: "{0}{1}\u8FDE"
   coolingTime: "\u51B7\u5374\u65F6\u95F4"
-  round: "\u56DE\u5408"
+  coolingTimeStatement: "{0}\u56DE\u5408"
   effect: "\u6548\u679C"
   menu: "\u83DC\u5355"
   battle: "\u6218\u6597"

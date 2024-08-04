@@ -77,6 +77,34 @@ namespace Battle
             listBox.Initialize(1, Mathf.Min(8, Skills.Count), RefreshItem, Skills);
         }
 
+        private void RefreshItem(ListBoxItem listItem, object data)
+        {
+            if (listItem is TextItem3 c)
+            {
+                if (data is Skill item)
+                {
+                    c.textComponent0.text = item.Name;
+                    c.textComponent1.text =
+                        item.CurrentCount.ToString().PadLeft(2, ' ')
+                        + '/'
+                        + item.MaxUsageCount.ToString().PadLeft(2, ' ');
+                    if (item.IsCooling)
+                        c.textComponent2.text = string.Format(
+                            ResourceManager.Term.coolingTimeStatement,
+                            item.CurrentCoolingTime
+                        );
+                    else
+                        c.textComponent2.text = string.Empty;
+                }
+                else
+                {
+                    c.textComponent0.text = " ";
+                    c.textComponent1.text = " ";
+                    c.textComponent2.text = string.Empty;
+                }
+            }
+        }
+
         private void Interact()
         {
             if (listBox.SelectedItem is not Skill skill)
@@ -174,19 +202,6 @@ namespace Battle
         {
             FinishCallback?.Invoke();
             Destroy(gameObject);
-        }
-
-        private void RefreshItem(ListBoxItem listItem, object data)
-        {
-            if (listItem is TextItem2 c)
-            {
-                var skill = data as Skill;
-                c.textComponent0.text = skill.Name;
-                c.textComponent1.text =
-                    skill.CurrentCount.ToString().PadLeft(2, ' ')
-                    + '/'
-                    + skill.MaxUsageCount.ToString().PadLeft(2, ' ');
-            }
         }
     }
 }

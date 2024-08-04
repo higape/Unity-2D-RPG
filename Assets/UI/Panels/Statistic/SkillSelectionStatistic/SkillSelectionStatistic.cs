@@ -85,7 +85,10 @@ namespace UI
             quantityContent.text = item.ItemQuantity.ToString();
             usedCountContent.text = item.ItemUsedCount.ToString();
             effectRateContent.text = item.SkillEffectRatePercentage.ToString() + '%';
-            coolingTimeContent.text = item.CoolingTime.ToString() + ResourceManager.Term.round;
+            coolingTimeContent.text = string.Format(
+                ResourceManager.Term.coolingTimeStatement,
+                item.CoolingTime
+            );
             effectListBox.Initialize(1, 3, RefreshEffectItem, item.AddedEffects);
             effectListBox.Unselect();
         }

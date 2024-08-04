@@ -149,7 +149,10 @@ namespace Battle
                 if (data is DurationState item)
                 {
                     c.textComponent0.text = item.Name;
-                    c.textComponent1.text = item.LastTurn.ToString() + ResourceManager.Term.round;
+                    c.textComponent1.text = string.Format(
+                        ResourceManager.Term.coolingTimeStatement,
+                        item.LastTurn
+                    );
                 }
                 else
                 {
