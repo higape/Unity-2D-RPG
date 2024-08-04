@@ -776,18 +776,25 @@ namespace Battle
             int goldTotal = 0;
             int expTotal = 0;
             List<string> messages = new();
+
+            //统计战利品
             foreach (var e in DeadEnemies)
             {
                 goldTotal += e.Gold;
                 expTotal += e.Exp;
             }
+
+            //金钱乘上比例
+            goldTotal = Mathf.FloorToInt(goldTotal * Party.BattleGoldRate);
+            //获得金钱
+            Party.GainGold(goldTotal);
+
+            //添加各种消息
             messages.Add(
                 string.Format(ResourceManager.Term.gainGoldInBattle, goldTotal)
                     + '\n'
                     + string.Format(ResourceManager.Term.gainExpInBattle, expTotal)
             );
-            //获得金钱
-            Party.GainGold(goldTotal);
             foreach (var a in Party.GetBattleActorList())
             {
                 //角色获得经验并检查升级
