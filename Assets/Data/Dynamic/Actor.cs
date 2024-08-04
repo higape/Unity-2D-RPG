@@ -127,15 +127,12 @@ namespace Dynamic
         {
             get
             {
-                var list = new List<Skill>(AllSkills);
-                int i = 0;
-
-                while (i < list.Count)
-                    if (!list[i].UsedInBattle)
-                        list.RemoveAt(i);
-                    else
-                        i++;
-
+                var list = new List<Skill>();
+                foreach (var skill in AllSkills)
+                {
+                    if (skill.UsedInBattle)
+                        list.Add(skill);
+                }
                 return list;
             }
         }
@@ -249,6 +246,23 @@ namespace Dynamic
             }
         }
 
+        public int ExtraExpInBattle
+        {
+            get
+            {
+                int sum = GetAbilityOfTrait(BET.AbilityConst, (int)BAT.Exp);
+                return Mathf.Max(sum, 0);
+            }
+        }
+        public float ExpRateInBattle
+        {
+            get
+            {
+                int rateDelta = GetAbilityOfTrait(BET.AbilityRate, (int)BAT.Exp);
+                return Mathf.Max(rateDelta / 100f + 1f, 0f);
+            }
+        }
+
         private int GetAbilityOfTrait(BET type0, int type1)
         {
             int sum = Static.Trait.GetValue(DurationStates, type0, type1);
@@ -308,14 +322,14 @@ namespace Dynamic
         }
 
         /// <summary>
-        /// 获得经验值并检查升级
+        /// 获得经验值，并检查升级
         /// </summary>
         /// <returns>是否升级</returns>
-        public bool GainExp(int value)
+        public bool GainExpInBattle(int value)
         {
             if (value > 0)
             {
-                Exp += value;
+                Exp += ExtraExpInBattle + Mathf.FloorToInt(value * ExpRateInBattle);
                 return UpdateLevel();
             }
             return false;

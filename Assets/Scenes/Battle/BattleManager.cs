@@ -791,7 +791,7 @@ namespace Battle
             foreach (var a in Party.GetBattleActorList())
             {
                 //角色获得经验并检查升级
-                if (a.GainExp(expTotal))
+                if (a.GainExpInBattle(expTotal))
                 {
                     messages.Add(string.Format(ResourceManager.Term.actorLevelUp, a.Name));
                 }

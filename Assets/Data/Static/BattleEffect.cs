@@ -213,9 +213,6 @@ namespace Static
             [InspectorName("经验值")]
             Exp = 1001,
 
-            [InspectorName("受到伤害")]
-            ReceivedDamage = 1002,
-
             [InspectorName("抵抗力")]
             Resistance = 1003,
 
