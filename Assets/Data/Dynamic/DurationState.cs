@@ -73,10 +73,11 @@ namespace Dynamic
         public void OnEffect()
         {
             Root.Mathc.ProcessItemEffect(
-                DataObject,
+                EffectType0,
+                EffectType1,
+                EffectValue,
                 Owner,
                 Target,
-                EffectValue,
                 ElementType,
                 Attack,
                 Hit,

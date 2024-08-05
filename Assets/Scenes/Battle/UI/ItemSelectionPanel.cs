@@ -166,7 +166,7 @@ namespace Battle
                                 CurrentActor,
                                 actorTargets,
                                 usage.scope,
-                                () => canvasGroup.alpha = 1,
+                                OnTargetPanelCancel,
                                 InvokeFinishCallback
                             );
                     }
@@ -190,7 +190,7 @@ namespace Battle
                         .Setup(
                             CurrentActor,
                             usage.scope,
-                            () => canvasGroup.alpha = 1,
+                            OnTargetPanelCancel,
                             InvokeFinishCallback
                         );
                     break;
@@ -199,6 +199,7 @@ namespace Battle
                         CurrentActor,
                         usage.scope
                     );
+                    BattleManager.CommandInputEnd();
                     InvokeFinishCallback();
                     break;
             }
@@ -206,16 +207,22 @@ namespace Battle
             canvasGroup.alpha = 0;
         }
 
-        public void InvokeFinishCallback()
+        private void OnTargetPanelCancel()
         {
-            FinishCallback?.Invoke();
-            Destroy(gameObject);
+            BattleManager.CurrentCommand.SelectedItems.Clear();
+            canvasGroup.alpha = 1;
         }
 
         public void Cancel()
         {
-            BattleManager.CurrentCommand.SelectedItems = null;
+            BattleManager.CurrentCommand.SelectedItems.Clear();
             CancelCallback?.Invoke();
+            Destroy(gameObject);
+        }
+
+        public void InvokeFinishCallback()
+        {
+            FinishCallback?.Invoke();
             Destroy(gameObject);
         }
     }

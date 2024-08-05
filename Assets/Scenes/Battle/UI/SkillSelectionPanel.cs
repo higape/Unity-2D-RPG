@@ -75,6 +75,7 @@ namespace Battle
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
             listBox.Initialize(1, Mathf.Min(8, Skills.Count), RefreshItem, Skills);
+            BattleManager.CurrentCommand.SelectedItems = new();
         }
 
         private void RefreshItem(ListBoxItem listItem, object data)
@@ -121,14 +122,27 @@ namespace Battle
                 return;
             }
 
+            switch (skill.SkillType)
+            {
+                case Static.Skill.SkillType.Passivity:
+                    Debug.LogWarning("被动技能不该出现在战斗技能列表里");
+                    return;
+                case Static.Skill.SkillType.SelectActorWeapon:
+                    Debug.LogWarning("暂时不能使用选择类技能");
+                    return;
+                case Static.Skill.SkillType.SelectActorItem:
+                    Debug.LogWarning("暂时不能使用选择类技能");
+                    return;
+            }
+
             var usage = skill.Usage;
             if (usage == null)
             {
-                Debug.LogWarning("暂时不能使用选择类技能");
+                Debug.LogWarning($"找不到技能[{skill.Name}]的Usage, 技能ID: " + skill.ID);
                 return;
             }
-
-            BattleManager.CurrentCommand.SelectedItems = new() { new(skill, usage) };
+            BattleManager.CurrentCommand.SelectedSkill = null;
+            BattleManager.CurrentCommand.SelectedItems.Add(new(skill, usage));
 
             switch (usage.scope)
             {
@@ -151,7 +165,7 @@ namespace Battle
                                 CurrentActor,
                                 actorTargets,
                                 usage.scope,
-                                () => canvasGroup.alpha = 1,
+                                OnTargetPanelCancel,
                                 InvokeFinishCallback
                             );
                     }
@@ -175,7 +189,7 @@ namespace Battle
                         .Setup(
                             CurrentActor,
                             usage.scope,
-                            () => canvasGroup.alpha = 1,
+                            OnTargetPanelCancel,
                             InvokeFinishCallback
                         );
                     break;
@@ -184,6 +198,7 @@ namespace Battle
                         CurrentActor,
                         usage.scope
                     );
+                    BattleManager.CommandInputEnd();
                     InvokeFinishCallback();
                     break;
             }
@@ -191,9 +206,16 @@ namespace Battle
             canvasGroup.alpha = 0;
         }
 
+        private void OnTargetPanelCancel()
+        {
+            BattleManager.CurrentCommand.SelectedItems.Clear();
+            canvasGroup.alpha = 1;
+        }
+
         private void Cancel()
         {
-            BattleManager.CurrentCommand.SelectedItems = null;
+            BattleManager.CurrentCommand.SelectedSkill = null;
+            BattleManager.CurrentCommand.SelectedItems.Clear();
             CancelCallback?.Invoke();
             Destroy(gameObject);
         }

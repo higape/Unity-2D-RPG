@@ -249,66 +249,7 @@ namespace Root
         }
 
         /// <summary>
-        /// 处理道具效果
-        /// </summary>
-        /// <returns>伤害量,治疗量</returns>
-        public static (int, int) ProcessItemEffect(
-            Static.WeaponUsage usage,
-            Battler owner,
-            Battler target,
-            int attack,
-            int hit,
-            float weaponEffectRate
-        )
-        {
-            return ProcessItemEffect(
-                usage.effects,
-                owner,
-                target,
-                usage.element,
-                attack,
-                hit,
-                weaponEffectRate
-            );
-        }
-
-        /// <summary>
-        /// 处理道具效果
-        /// </summary>
-        /// <returns>伤害量,治疗量</returns>
-        public static (int, int) ProcessItemEffect(
-            Static.DurationState state,
-            Battler owner,
-            Battler target,
-            int effectValue,
-            Static.ElementType elementType,
-            int attack,
-            int hit,
-            float weaponEffectRate
-        )
-        {
-            var edl = new List<Static.BattleEffectData>()
-            {
-                new()
-                {
-                    effectID = state.id,
-                    effectValue = effectValue,
-                    duration = 0
-                }
-            };
-            return ProcessItemEffect(
-                edl,
-                owner,
-                target,
-                elementType,
-                attack,
-                hit,
-                weaponEffectRate
-            );
-        }
-
-        /// <summary>
-        /// 处理道具效果
+        /// 处理多个道具效果
         /// </summary>
         /// <returns>伤害量,治疗量</returns>
         public static (int, int) ProcessItemEffect(
@@ -326,7 +267,7 @@ namespace Root
 
             foreach (var ed in effectDatas)
             {
-                //过滤菲目标种族的效果
+                //过滤非目标种族的效果
                 if (ed.targetType != 0 && (ed.targetType | target.BattlerType) == 0)
                     continue;
 
@@ -351,127 +292,157 @@ namespace Root
                     {
                         Debug.LogWarning("忽略了持续效果");
                     }
+                    continue;
                 }
-                else
-                {
-                    var be = ed.GetBattleEffect();
-                    switch (be.type0)
+
+                var be = ed.GetBattleEffect();
+                var pair = ProcessItemEffect(
+                    be.type0,
+                    be.type1,
+                    ed.effectValue,
+                    owner,
+                    target,
+                    elementType,
+                    attack,
+                    hit,
+                    weaponEffectRate
+                );
+                damageCount += pair.Item1;
+                recoverCount += pair.Item2;
+            }
+
+            return (damageCount, recoverCount);
+        }
+
+        /// <summary>
+        /// 处理一个道具效果
+        /// </summary>
+        /// <returns>伤害量,治疗量</returns>
+        public static (int, int) ProcessItemEffect(
+            BET type0,
+            int type1,
+            int effectValue,
+            Battler owner,
+            Battler target,
+            Static.ElementType elementType,
+            int attack,
+            int hit,
+            float weaponEffectRate
+        )
+        {
+            int damageCount = 0;
+            int recoverCount = 0;
+            switch (type0)
+            {
+                case BET.Damage:
+                    switch ((BE.DamageType)type1)
                     {
-                        case BET.Damage:
-                            switch ((BE.DamageType)be.type1)
-                            {
-                                case BE.DamageType.Rate:
-                                    damageCount += target.LoseHp(
-                                        ComputeDamage(
-                                            attack - target.Def / 2,
-                                            (hit - target.Eva) / 100f + 1f,
-                                            target.GetElementRate(elementType),
-                                            ed.effectValue / 100f * weaponEffectRate,
-                                            RandomCft()
-                                        )
-                                    );
-                                    break;
-                                case BE.DamageType.Constant:
-                                    damageCount += target.LoseHp(
-                                        ComputeDamage(
-                                            ed.effectValue,
-                                            (hit - target.Eva) / 100f + 1f,
-                                            target.GetElementRate(elementType),
-                                            weaponEffectRate,
-                                            RandomCft()
-                                        )
-                                    );
-                                    break;
-                                case BE.DamageType.AttackRate:
-                                    damageCount += target.LoseHp(
-                                        ComputeDamage(
-                                            attack * (ed.effectValue / 100f) - target.Def / 2,
-                                            (hit - target.Eva) / 100f + 1f,
-                                            target.GetElementRate(elementType),
-                                            weaponEffectRate,
-                                            RandomCft()
-                                        )
-                                    );
-                                    break;
-                                case BE.DamageType.NonDefenceRate:
-                                    damageCount += target.LoseHp(
-                                        ComputeDamage(
-                                            attack - target.Def * (1f - ed.effectValue / 100f) / 2,
-                                            (hit - target.Eva) / 100f + 1f,
-                                            target.GetElementRate(elementType),
-                                            weaponEffectRate,
-                                            RandomCft()
-                                        )
-                                    );
-                                    break;
-                                case BE.DamageType.Durability:
-                                    damageCount += target.LoseDp(ed.effectValue);
-                                    break;
-                                case BE.DamageType.DefenceRate:
-                                    damageCount += target.LoseHp(
-                                        ComputeDamage(
-                                            owner.Def * (ed.effectValue / 100f) - target.Def / 2,
-                                            (hit - target.Eva) / 100f + 1f,
-                                            target.GetElementRate(elementType),
-                                            weaponEffectRate,
-                                            RandomCft()
-                                        )
-                                    );
-                                    break;
-                            }
+                        case BE.DamageType.Rate:
+                            damageCount += target.LoseHp(
+                                ComputeDamage(
+                                    attack - target.Def / 2,
+                                    (hit - target.Eva) / 100f + 1f,
+                                    target.GetElementRate(elementType),
+                                    effectValue / 100f * weaponEffectRate,
+                                    RandomCft()
+                                )
+                            );
                             break;
-                        case BET.Recover:
-                            switch ((BE.RecoverType)be.type1)
-                            {
-                                case BE.RecoverType.LifeRate:
-                                    recoverCount += target.GainHp(
-                                        (int)(ed.effectValue / 100f * target.Mhp)
-                                    );
-                                    break;
-                                case BE.RecoverType.LifeConst:
-                                    recoverCount += target.GainHp(ed.effectValue);
-                                    break;
-                                case BE.RecoverType.LifeLevel:
-                                    recoverCount += target.GainHp(ed.effectValue * owner.Level);
-                                    break;
-                                case BE.RecoverType.RebornRate:
-                                    recoverCount += target.Reborn(
-                                        (int)(ed.effectValue / 100f * target.Mhp)
-                                    );
-                                    break;
-                                case BE.RecoverType.RebornConst:
-                                    recoverCount += target.Reborn(ed.effectValue);
-                                    break;
-                                case BE.RecoverType.RebornLevel:
-                                    recoverCount += target.Reborn(ed.effectValue * owner.Level);
-                                    break;
-                                case BE.RecoverType.Durability:
-                                    recoverCount += target.GainDp(ed.effectValue);
-                                    break;
-                            }
+                        case BE.DamageType.Constant:
+                            damageCount += target.LoseHp(
+                                ComputeDamage(
+                                    effectValue,
+                                    (hit - target.Eva) / 100f + 1f,
+                                    target.GetElementRate(elementType),
+                                    weaponEffectRate,
+                                    RandomCft()
+                                )
+                            );
                             break;
-                        case BET.RemoveState:
-                            target.RemoveState((BE.StateType)be.type1, ed.effectValue);
+                        case BE.DamageType.AttackRate:
+                            damageCount += target.LoseHp(
+                                ComputeDamage(
+                                    attack * (effectValue / 100f) - target.Def / 2,
+                                    (hit - target.Eva) / 100f + 1f,
+                                    target.GetElementRate(elementType),
+                                    weaponEffectRate,
+                                    RandomCft()
+                                )
+                            );
                             break;
-                        case BET.Special:
-                            switch ((BE.SpecialType)be.type1)
-                            {
-                                case BE.SpecialType.Escape:
-                                    Debug.Log("暂无此功能");
-                                    break;
-                                case BE.SpecialType.Protect:
-                                    Debug.Log("暂无此功能");
-                                    break;
-                                case BE.SpecialType.Suicide:
-                                    owner.GoToDie();
-                                    break;
-                                case BE.SpecialType.CallHelper:
-                                    Debug.Log("暂无此功能");
-                                    break;
-                            }
+                        case BE.DamageType.NonDefenceRate:
+                            damageCount += target.LoseHp(
+                                ComputeDamage(
+                                    attack - target.Def * (1f - effectValue / 100f) / 2,
+                                    (hit - target.Eva) / 100f + 1f,
+                                    target.GetElementRate(elementType),
+                                    weaponEffectRate,
+                                    RandomCft()
+                                )
+                            );
+                            break;
+                        case BE.DamageType.Durability:
+                            damageCount += target.LoseDp(effectValue);
+                            break;
+                        case BE.DamageType.DefenceRate:
+                            damageCount += target.LoseHp(
+                                ComputeDamage(
+                                    owner.Def * (effectValue / 100f) - target.Def / 2,
+                                    (hit - target.Eva) / 100f + 1f,
+                                    target.GetElementRate(elementType),
+                                    weaponEffectRate,
+                                    RandomCft()
+                                )
+                            );
                             break;
                     }
-                }
+                    break;
+                case BET.Recover:
+                    switch ((BE.RecoverType)type1)
+                    {
+                        case BE.RecoverType.LifeRate:
+                            recoverCount += target.GainHp((int)(effectValue / 100f * target.Mhp));
+                            break;
+                        case BE.RecoverType.LifeConst:
+                            recoverCount += target.GainHp(effectValue);
+                            break;
+                        case BE.RecoverType.LifeLevel:
+                            recoverCount += target.GainHp(effectValue * owner.Level);
+                            break;
+                        case BE.RecoverType.RebornRate:
+                            recoverCount += target.Reborn((int)(effectValue / 100f * target.Mhp));
+                            break;
+                        case BE.RecoverType.RebornConst:
+                            recoverCount += target.Reborn(effectValue);
+                            break;
+                        case BE.RecoverType.RebornLevel:
+                            recoverCount += target.Reborn(effectValue * owner.Level);
+                            break;
+                        case BE.RecoverType.Durability:
+                            recoverCount += target.GainDp(effectValue);
+                            break;
+                    }
+                    break;
+                case BET.RemoveState:
+                    target.RemoveState((BE.StateType)type1, effectValue);
+                    break;
+                case BET.Special:
+                    switch ((BE.SpecialType)type1)
+                    {
+                        case BE.SpecialType.Escape:
+                            Debug.Log("暂无此功能");
+                            break;
+                        case BE.SpecialType.Protect:
+                            Debug.Log("暂无此功能");
+                            break;
+                        case BE.SpecialType.Suicide:
+                            owner.GoToDie();
+                            break;
+                        case BE.SpecialType.CallHelper:
+                            Debug.Log("暂无此功能");
+                            break;
+                    }
+                    break;
             }
 
             return (damageCount, recoverCount);

@@ -106,10 +106,12 @@ namespace UI
             if (CurrentQuantityItem.quantity > 0)
             {
                 var item = CurrentItem;
+                var usage = item.Usage;
                 var result = Mathc.ProcessItemEffect(
-                    item.Usage,
+                    usage.effects,
                     actor,
                     actor,
+                    usage.element,
                     actor.Atk + item.Attack,
                     actor.Hit,
                     1f

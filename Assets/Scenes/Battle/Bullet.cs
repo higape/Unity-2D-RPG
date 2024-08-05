@@ -13,7 +13,7 @@ namespace Root
         /// <summary>
         /// 子弹移动速度，单位: Unity单位/秒
         /// </summary>
-        public const float BulletSpeed = 20;
+        public const float BulletSpeed = 30;
         private Vector3 StartPosition { get; set; }
         private Vector3 EndPosition { get; set; }
         private UnityAction Callback { get; set; }

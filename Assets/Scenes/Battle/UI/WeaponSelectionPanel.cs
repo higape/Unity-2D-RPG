@@ -69,6 +69,7 @@ namespace Battle
             FinishCallback = finishCallback;
             var wl = actor.GetBattleWeapons();
             listBox.Initialize(1, wl.Count, RefreshItem, wl);
+            BattleManager.CurrentCommand.SelectedItems = new();
         }
 
         private void RefreshItem(ListBoxItem listItem, object data)
@@ -106,7 +107,7 @@ namespace Battle
             }
 
             var usage = weapon.GetUsage(0);
-            BattleManager.CurrentCommand.SelectedItems = new() { new(weapon, usage) };
+            BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, usage));
 
             switch (usage.scope)
             {
@@ -129,7 +130,7 @@ namespace Battle
                                 CurrentActor,
                                 actorTargets,
                                 usage.scope,
-                                () => canvasGroup.alpha = 1,
+                                OnTargetPanelCancel,
                                 InvokeFinishCallback
                             );
                     }
@@ -153,7 +154,7 @@ namespace Battle
                         .Setup(
                             CurrentActor,
                             usage.scope,
-                            () => canvasGroup.alpha = 1,
+                            OnTargetPanelCancel,
                             InvokeFinishCallback
                         );
                     break;
@@ -162,6 +163,7 @@ namespace Battle
                         CurrentActor,
                         usage.scope
                     );
+                    BattleManager.CommandInputEnd();
                     InvokeFinishCallback();
                     break;
             }
@@ -169,9 +171,15 @@ namespace Battle
             canvasGroup.alpha = 0;
         }
 
+        private void OnTargetPanelCancel()
+        {
+            BattleManager.CurrentCommand.SelectedItems.Clear();
+            canvasGroup.alpha = 1;
+        }
+
         public void Cancel()
         {
-            BattleManager.CurrentCommand.SelectedItems = null;
+            BattleManager.CurrentCommand.SelectedItems.Clear();
             CancelCallback?.Invoke();
             Destroy(gameObject);
         }

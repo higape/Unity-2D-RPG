@@ -110,6 +110,8 @@ namespace Dynamic
             DamageCount = 0;
             if (CostAndCool())
                 StartBullet();
+            else
+                Callback?.Invoke();
         }
 
         public abstract bool CostAndCool();

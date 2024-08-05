@@ -111,12 +111,14 @@ namespace UI
         private void OnActorInteract(Battler actor)
         {
             var item = CurrentSkill;
-            if (item.CanUse && item.UsedInMenu && item.Usage != null)
+            var usage = item.Usage;
+            if (item.CanUse && item.UsedInMenu && usage != null)
             {
                 var result = Mathc.ProcessItemEffect(
-                    item.Usage,
+                    usage.effects,
                     actor,
                     actor,
+                    usage.element,
                     actor.Atk + item.Attack,
                     actor.Hit,
                     1f

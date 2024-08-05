@@ -286,14 +286,21 @@ namespace Dynamic
         /// </summary>
         public void UpdateDurationState()
         {
+            bool hasChange = false;
+
             for (int i = 0; i < DurationStates.Count; i++)
             {
                 DurationState state = DurationStates[i];
                 state.OnEffect();
                 if (--state.LastTurn <= 0)
+                {
                     DurationStates.RemoveAt(i);
+                    hasChange = true;
+                }
             }
 
+            if (hasChange)
+                DisplayObject.RefreshDurationState(DurationStates);
             anyChanged.Invoke(this);
         }
 
