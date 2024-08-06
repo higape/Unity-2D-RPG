@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Root;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -19,6 +20,9 @@ namespace UI
 
         [SerializeField]
         private TextMeshProUGUI elementContent;
+
+        [SerializeField]
+        private Image elementImage;
 
         [SerializeField]
         private TextMeshProUGUI scopeLabel;
@@ -61,6 +65,7 @@ namespace UI
             canvasGroup.alpha = 1;
             nameContent.text = item.Name;
             elementContent.text = ResourceManager.Term.GetText(item.element);
+            elementImage.sprite = ResourceManager.Spriteset.GetElementSprite(item.element);
             if (item.attackCount > 1)
             {
                 scopeContent.text = string.Format(

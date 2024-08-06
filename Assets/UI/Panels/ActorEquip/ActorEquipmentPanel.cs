@@ -78,9 +78,14 @@ namespace UI
             for (int i = 0; i < es.Count; i++)
             {
                 if (i < Actor.WeaponCount)
-                    list.Add((ResourceManager.GetActorWeaponSprite(), es[i]));
+                    list.Add((ResourceManager.Spriteset.GetActorWeaponSprite(), es[i]));
                 else
-                    list.Add((ResourceManager.GetActorArmorSprite(i - Actor.WeaponCount), es[i]));
+                    list.Add(
+                        (
+                            ResourceManager.Spriteset.GetActorArmorSprite(i - Actor.WeaponCount),
+                            es[i]
+                        )
+                    );
             }
             itemListBox.SetSource(list);
 

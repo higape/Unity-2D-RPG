@@ -1433,6 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameInfo: {fileID: 11400000, guid: 9dca61b6a7fd1e7468b6e4642f6f9a46, type: 2}
   term: {fileID: 11400000, guid: ccc0558ae2270d64d9cf67d86472ed92, type: 2}
+  spriteset: {fileID: 11400000, guid: 0dd1f563df9e1204bbdb9bfcceaec0cd, type: 2}
   battleEffect: {fileID: 11400000, guid: 057bbe2361ff87946ab6f548ca0a4974, type: 2}
   trait: {fileID: 11400000, guid: 80a6de30b9b5c7c409b9d48910a3ff3e, type: 2}
   durationState: {fileID: 11400000, guid: 1b5f26ca1e40132418f399d3fc168062, type: 2}

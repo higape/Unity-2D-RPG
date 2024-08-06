@@ -36,6 +36,7 @@ namespace Dynamic
         public string Name => DataObject.Name;
         public Static.ActorWeaponSkin Skin => DataObject.Skin;
         public bool Consumable => DataObject.consumable;
+        public Static.UsedOccasion Occasion => DataObject.occasion;
         public bool UsedInMenu => DataObject.UsedInMenu;
         public bool UsedInBattle => DataObject.UsedInBattle;
         public override int Attack => 0;

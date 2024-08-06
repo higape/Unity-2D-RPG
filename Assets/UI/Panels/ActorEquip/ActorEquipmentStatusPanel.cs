@@ -68,9 +68,9 @@ namespace UI
                 ElementItems.Add(
                     Instantiate(elementPrefab, elementGroup.transform).GetComponent<ImageTextItem>()
                 );
-                ElementItems[i].image.sprite = ResourceManager.GetElementSprite(
-                    (Static.ElementType)i
-                );
+                ElementItems[i].image.sprite = ResourceManager
+                    .Spriteset
+                    .GetElementSprite((Static.ElementType)i);
             }
         }
 
@@ -93,7 +93,7 @@ namespace UI
             AbilityItems[0].textComponent1.text = actor.Level.ToString();
             AbilityItems[1].textComponent1.text = actor.Exp.ToString();
             AbilityItems[2].textComponent1.text = actor.NextExp.ToString();
-            AbilityItems[3].textComponent1.text = actor.Hp.ToString() + '/' + actor.Mhp.ToString();
+            AbilityItems[3].textComponent1.text = UIManager.CreateHpText(actor.Hp, actor.Mhp);
             //ignore atk here
             AbilityItems[5].textComponent1.text = actor.Def.ToString();
             AbilityItems[6].textComponent1.text = actor.Agi.ToString();

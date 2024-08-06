@@ -90,9 +90,9 @@ namespace Battle
                 ElementItems.Add(
                     Instantiate(elementPrefab, elementGroup.transform).GetComponent<ImageTextItem>()
                 );
-                ElementItems[i].image.sprite = ResourceManager.GetElementSprite(
-                    (Static.ElementType)i
-                );
+                ElementItems[i].image.sprite = ResourceManager
+                    .Spriteset
+                    .GetElementSprite((Static.ElementType)i);
             }
 
             stateListBox.Initialize(1, 8, RefreshStateItem);
@@ -121,8 +121,10 @@ namespace Battle
             nameContent.text = CurrentActor.Name;
             lvContent.text = CurrentActor.Level.ToString();
 
-            AbilityItems[0].textComponent1.text =
-                CurrentActor.Hp.ToString() + '/' + CurrentActor.Mhp.ToString();
+            AbilityItems[0].textComponent1.text = UIManager.CreateHpText(
+                CurrentActor.Hp,
+                CurrentActor.Mhp
+            );
             AbilityItems[1].textComponent1.text = CurrentActor.Atk.ToString();
             AbilityItems[2].textComponent1.text = CurrentActor.Def.ToString();
             AbilityItems[3].textComponent1.text = CurrentActor.Agi.ToString();

@@ -39,7 +39,7 @@ namespace UI
             {
                 displayObject.sprite = CurrentActor.BattleSkin.idle;
                 nameContent.text = CurrentActor.Name;
-                hpContent.text = CurrentActor.Hp.ToString() + '/' + CurrentActor.Mhp.ToString();
+                hpContent.text = UIManager.CreateHpText(CurrentActor.Hp, CurrentActor.Mhp);
             }
             else
             {

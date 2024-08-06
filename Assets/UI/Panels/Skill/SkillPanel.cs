@@ -69,8 +69,10 @@ namespace UI
                 {
                     c.textComponent0.text = item.Name;
                     if (item.IsCountLimit)
-                        c.textComponent1.text =
-                            item.CurrentCount.ToString() + '/' + item.MaxUsageCount;
+                        c.textComponent1.text = UIManager.CreateSkillCountText(
+                            item.CurrentCount,
+                            item.MaxUsageCount
+                        );
                     else
                         c.textComponent1.text = "∞";
                 }

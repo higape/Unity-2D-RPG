@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Dynamic;
 using Root;
 using TMPro;
+using UI;
 using UnityEngine;
 
 namespace Battle
@@ -58,10 +59,7 @@ namespace Battle
             {
                 canvasGroup.alpha = 1f;
                 nameContent.text = battler.Name;
-                hpContent.text =
-                    battler.Hp.ToString().PadLeft(4, ' ')
-                    + '/'
-                    + battler.Mhp.ToString().PadLeft(4, ' ');
+                hpContent.text = UIManager.CreateHpText(battler.Hp, battler.Mhp);
                 stateContent.text = ResourceManager.Term.GetText(battler.ControlState);
             }
         }

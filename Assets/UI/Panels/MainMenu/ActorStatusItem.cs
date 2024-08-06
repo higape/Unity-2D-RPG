@@ -60,10 +60,7 @@ namespace UI
                 canvasGroup.alpha = 1f;
                 displayObject.sprite = (battler as Actor).BattleSkin.idle;
                 nameContent.text = battler.Name;
-                hpContent.text =
-                    battler.Hp.ToString().PadLeft(4, ' ')
-                    + '/'
-                    + battler.Mhp.ToString().PadLeft(4, ' ');
+                hpContent.text = UIManager.CreateHpText(battler.Hp, battler.Mhp);
             }
         }
     }

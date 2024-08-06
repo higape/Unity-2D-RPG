@@ -55,22 +55,7 @@ namespace UI
 
             canvasGroup.alpha = 1;
             nameContent.text = item.Name;
-            if (item.UsedInMenu)
-            {
-                occasionContent.text = ResourceManager.Term.menu;
-                if (item.UsedInBattle)
-                {
-                    occasionContent.text += '/' + ResourceManager.Term.battle;
-                }
-            }
-            else if (item.UsedInBattle)
-            {
-                occasionContent.text = ResourceManager.Term.battle;
-            }
-            else
-            {
-                occasionContent.text = ResourceManager.Term.none;
-            }
+            occasionContent.text = UIManager.CreateOccasionText(item.Occasion);
 
             switch (item.SkillType)
             {

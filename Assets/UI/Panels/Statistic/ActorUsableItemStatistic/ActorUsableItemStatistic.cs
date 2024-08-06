@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Root;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -34,6 +35,9 @@ namespace UI
 
         [SerializeField]
         private TextMeshProUGUI elementContent;
+
+        [SerializeField]
+        private Image elementImage;
 
         [SerializeField]
         private TextMeshProUGUI scopeLabel;
@@ -76,25 +80,11 @@ namespace UI
             consumableContent.text = item.Consumable
                 ? ResourceManager.Term.consumable
                 : ResourceManager.Term.notConsume;
-            if (item.UsedInMenu)
-            {
-                occasionContent.text = ResourceManager.Term.menu;
-                if (item.UsedInBattle)
-                {
-                    occasionContent.text += '/' + ResourceManager.Term.battle;
-                }
-            }
-            else if (item.UsedInBattle)
-            {
-                occasionContent.text = ResourceManager.Term.battle;
-            }
-            else
-            {
-                occasionContent.text = "";
-            }
+            occasionContent.text = UIManager.CreateOccasionText(item.Occasion);
             sellingPriceContent.text = item.SellingPrice.ToString();
             var usage = item.Usage;
             elementContent.text = ResourceManager.Term.GetText(usage.element);
+            elementImage.sprite = ResourceManager.Spriteset.GetElementSprite(usage.element);
             if (usage.attackCount > 1)
             {
                 scopeContent.text = string.Format(

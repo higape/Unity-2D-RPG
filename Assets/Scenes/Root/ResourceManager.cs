@@ -30,6 +30,7 @@ namespace Root
 
         public static GameInfo GameInfo { get; private set; }
         public static Term Term { get; private set; }
+        public static Spriteset Spriteset { get; set; }
         public static BattleEffectList BattleEffect { get; private set; }
         public static TraitList Trait { get; private set; }
         public static DurationStateList DurationState { get; private set; }
@@ -49,8 +50,6 @@ namespace Root
         public static SkillList Skill { get; private set; }
         public static EnemyList Enemy { get; private set; }
         public static ShopList Shop { get; private set; }
-        public static Sprite[] ElementSprite { get; set; }
-        public static Sprite[] EquipmentSprite { get; set; }
 
         public static ActorUsableItemList GetActorUsableItemList(ActorUsableItem.ItemType type) =>
             type switch
@@ -71,12 +70,6 @@ namespace Root
                 4 => ActorOrnamentArmor,
                 _ => null,
             };
-
-        public static Sprite GetElementSprite(ElementType type) => ElementSprite[(int)type];
-
-        public static Sprite GetActorWeaponSprite() => EquipmentSprite[0];
-
-        public static Sprite GetActorArmorSprite(int slotIndex) => EquipmentSprite[slotIndex + 1];
 
         public static string GetItemName(CommonItemType itemType, int itemID) =>
             itemType switch
@@ -249,6 +242,9 @@ namespace Root
         private Term term;
 
         [SerializeField]
+        private Spriteset spriteset;
+
+        [SerializeField]
         private BattleEffectList battleEffect;
 
         [SerializeField]
@@ -305,17 +301,12 @@ namespace Root
         [SerializeField]
         private ShopList shop;
 
-        [SerializeField]
-        private Sprite[] elementSprite;
-
-        [SerializeField]
-        private Sprite[] equipmentSprite;
-
         private void Awake()
         {
             CheckAndCreatePath();
             GameInfo = gameInfo;
             Term = term;
+            Spriteset = spriteset;
             BattleEffect = battleEffect;
             Trait = trait;
             DurationState = durationState;
@@ -335,8 +326,6 @@ namespace Root
             Skill = skill;
             Enemy = enemy;
             Shop = shop;
-            ElementSprite = elementSprite;
-            EquipmentSprite = equipmentSprite;
         }
     }
 }

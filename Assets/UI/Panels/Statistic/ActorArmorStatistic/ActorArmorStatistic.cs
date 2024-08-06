@@ -75,9 +75,9 @@ namespace UI
                 ElementItems.Add(
                     Instantiate(elementPrefab, elementGroup.transform).GetComponent<ImageTextItem>()
                 );
-                ElementItems[i].image.sprite = ResourceManager.GetElementSprite(
-                    (Static.ElementType)i
-                );
+                ElementItems[i].image.sprite = ResourceManager
+                    .Spriteset
+                    .GetElementSprite((Static.ElementType)i);
             }
 
             ImageItems = new();

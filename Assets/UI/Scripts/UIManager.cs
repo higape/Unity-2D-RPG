@@ -1,16 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Root;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace UI
 {
     /// <summary>
-    /// 管理地图场景的UI。
+    /// 管理UI的类。
     /// </summary>
     public class UIManager : MonoBehaviour
     {
         private static UIManager Instance { get; set; }
+
+        public static string CreateHpText(int hp, int mhp)
+        {
+            StringBuilder sb = new();
+            sb.AppendJoin('/', hp.ToString().PadLeft(4, ' '), mhp.ToString().PadLeft(4, ' '));
+            return sb.ToString();
+        }
+
+        public static string CreateSkillCountText(int current, int max)
+        {
+            StringBuilder sb = new();
+            sb.AppendJoin('/', current.ToString().PadLeft(2, ' '), max.ToString().PadLeft(2, ' '));
+            return sb.ToString();
+        }
+
+        public static string CreateOccasionText(Static.UsedOccasion occasion)
+        {
+            StringBuilder sb = new();
+            if ((occasion & Static.UsedOccasion.Menu) != 0)
+            {
+                if (sb.Length > 0)
+                    sb.Append('/');
+                sb.Append(ResourceManager.Term.menu);
+            }
+            if ((occasion & Static.UsedOccasion.Battle) != 0)
+            {
+                if (sb.Length > 0)
+                    sb.Append('/');
+                sb.Append(ResourceManager.Term.battle);
+            }
+            return sb.ToString();
+        }
 
         public static GameObject Instantiate(GameObject original) =>
             Instantiate(original, Instance.transform);

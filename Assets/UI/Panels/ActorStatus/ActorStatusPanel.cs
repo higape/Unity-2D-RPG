@@ -116,9 +116,9 @@ namespace UI
                 ElementItems.Add(
                     Instantiate(elementPrefab, elementGroup.transform).GetComponent<ImageTextItem>()
                 );
-                ElementItems[i].image.sprite = ResourceManager.GetElementSprite(
-                    (Static.ElementType)i
-                );
+                ElementItems[i].image.sprite = ResourceManager
+                    .Spriteset
+                    .GetElementSprite((Static.ElementType)i);
             }
 
             EquipmentItems = new();
@@ -132,14 +132,14 @@ namespace UI
             //设置武器图标
             for (int i = 0; i < Actor.WeaponCount; i++)
             {
-                EquipmentItems[i].image.sprite = ResourceManager.GetActorWeaponSprite();
+                EquipmentItems[i].image.sprite = ResourceManager.Spriteset.GetActorWeaponSprite();
             }
             //设置防具图标
             for (int i = Actor.WeaponCount; i < Actor.WeaponCount + Actor.ArmorCount; i++)
             {
-                EquipmentItems[i].image.sprite = ResourceManager.GetActorArmorSprite(
-                    i - Actor.WeaponCount
-                );
+                EquipmentItems[i].image.sprite = ResourceManager
+                    .Spriteset
+                    .GetActorArmorSprite(i - Actor.WeaponCount);
             }
         }
 
@@ -168,8 +168,10 @@ namespace UI
             expContent.text = CurrentActor.Exp.ToString();
             nextExpContent.text = CurrentActor.NextExp.ToString();
 
-            AbilityItems[0].textComponent1.text =
-                CurrentActor.Hp.ToString() + '/' + CurrentActor.Mhp.ToString();
+            AbilityItems[0].textComponent1.text = UIManager.CreateHpText(
+                CurrentActor.Hp,
+                CurrentActor.Mhp
+            );
             AbilityItems[1].textComponent1.text = CurrentActor.Atk.ToString();
             AbilityItems[2].textComponent1.text = CurrentActor.Def.ToString();
             AbilityItems[3].textComponent1.text = CurrentActor.Agi.ToString();
