@@ -24,25 +24,25 @@ MonoBehaviour:
     itemQuantity: 0
     itemUsedCount: 0
     effectRatePercentage: 0
-    waitTime: 0
+    coolingTime: 0
     addedEffects: []
     traits: []
   - id: 2
-    name: "\u6295\u63B7\xB7\u9644\u52A0\u706B\u7130"
+    name: "\u9644\u9B54\u6295\u63B7\xB7\u706B\u7130"
     description: 
     skinID: 1
     occasion: 2
     skillType: 3
     usageID: 0
-    selectionLimit: 2
+    selectionLimit: 1
     itemQuantity: 1
     itemUsedCount: 1
     effectRatePercentage: 100
-    waitTime: 0
+    coolingTime: 0
     addedEffects:
     - effectID: 1
       effectValue: 100
-      duration: 1
+      duration: 2
       targetType: 0
     traits: []
   - id: 3
@@ -56,7 +56,7 @@ MonoBehaviour:
     itemQuantity: 0
     itemUsedCount: 0
     effectRatePercentage: 0
-    waitTime: 0
+    coolingTime: 0
     addedEffects: []
     traits:
     - traitID: 1
@@ -72,11 +72,9 @@ MonoBehaviour:
     itemQuantity: 0
     itemUsedCount: 0
     effectRatePercentage: 0
-    waitTime: 0
+    coolingTime: 0
     addedEffects: []
-    traits:
-    - traitID: 1
-      traitValue: 10
+    traits: []
   - id: 5
     name: "\u5927\u6CBB\u7597"
     description: 
@@ -88,8 +86,24 @@ MonoBehaviour:
     itemQuantity: 0
     itemUsedCount: 0
     effectRatePercentage: 0
-    waitTime: 0
+    coolingTime: 0
     addedEffects: []
-    traits:
-    - traitID: 1
-      traitValue: 10
+    traits: []
+  - id: 6
+    name: "\u9644\u9B54\u653B\u51FB\xB7\u706B\u7130"
+    description: 
+    skinID: 1
+    occasion: 2
+    skillType: 2
+    usageID: 0
+    selectionLimit: 0
+    itemQuantity: 1
+    itemUsedCount: 1
+    effectRatePercentage: 100
+    coolingTime: 2
+    addedEffects:
+    - effectID: 1
+      effectValue: 100
+      duration: 1
+      targetType: 0
+    traits: []

@@ -23,6 +23,12 @@ namespace Battle
         private CanvasGroup canvasGroup;
 
         [SerializeField]
+        private GameObject weaponPanelPrefab;
+
+        [SerializeField]
+        private GameObject itemPanelPrefab;
+
+        [SerializeField]
         private GameObject actorPanelPrefab;
 
         [SerializeField]
@@ -128,10 +134,31 @@ namespace Battle
                     Debug.LogWarning("被动技能不该出现在战斗技能列表里");
                     return;
                 case Static.Skill.SkillType.SelectActorWeapon:
-                    Debug.LogWarning("暂时不能使用选择类技能");
+                    canvasGroup.alpha = 0;
+                    BattleManager.CurrentCommand.SelectedSkill = skill;
+                    UIManager
+                        .Instantiate(weaponPanelPrefab)
+                        .GetComponent<WeaponSelectionPanel>()
+                        .Setup(
+                            CurrentActor,
+                            OnTargetPanelCancel,
+                            InvokeFinishCallback,
+                            skill.ItemQuantity
+                        );
                     return;
                 case Static.Skill.SkillType.SelectActorItem:
-                    Debug.LogWarning("暂时不能使用选择类技能");
+                    canvasGroup.alpha = 0;
+                    BattleManager.CurrentCommand.SelectedSkill = skill;
+                    UIManager
+                        .Instantiate(itemPanelPrefab)
+                        .GetComponent<ItemSelectionPanel>()
+                        .Setup(
+                            CurrentActor,
+                            OnTargetPanelCancel,
+                            InvokeFinishCallback,
+                            (Static.ActorUsableItem.ItemType)skill.SelectionLimit,
+                            skill.ItemQuantity
+                        );
                     return;
             }
 
@@ -208,6 +235,7 @@ namespace Battle
 
         private void OnTargetPanelCancel()
         {
+            BattleManager.CurrentCommand.SelectedSkill = null;
             BattleManager.CurrentCommand.SelectedItems.Clear();
             canvasGroup.alpha = 1;
         }

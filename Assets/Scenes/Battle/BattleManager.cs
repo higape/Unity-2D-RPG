@@ -58,7 +58,9 @@ namespace Battle
             /// <summary>
             /// SelectedItems 的索引，指示当前使用的武器、道具
             /// </summary>
-            public int ItemIndex { get; set; } = 0;
+            public int ItemIndex { get; private set; } = 0;
+
+            private int SkillItemCount { get; set; } = 0;
 
             /// <summary>
             /// 选择的目标，范围攻击以此目标为基础获取更多目标
@@ -81,6 +83,19 @@ namespace Battle
                     list.AddRange(ItemInfo.Usage.effects);
 
                     return list;
+                }
+            }
+
+            public void MoveToNext()
+            {
+                if (SelectedSkill == null)
+                {
+                    ItemIndex++;
+                }
+                else if (++SkillItemCount >= SelectedSkill.ItemUsedCount)
+                {
+                    SkillItemCount = 0;
+                    ItemIndex++;
                 }
             }
         }
@@ -147,7 +162,7 @@ namespace Battle
                 //复活死亡的角色
                 foreach (var battler in Party.GetBattleActorList())
                 {
-                    battler.QuiteBattle();
+                    battler.QuitBattle();
                     battler.Reborn(1);
                 }
                 SceneManager.UnloadSceneAsync("Battle");
@@ -679,22 +694,11 @@ namespace Battle
 
         private void TurnEnd()
         {
-            int i = 0;
-
-            while (i < Enemies.Count)
-            {
-                Enemy enemy = Enemies[i];
-                enemy.UpdateDurationState();
-
-                if (enemy.IsAlive)
-                {
-                    enemy.ResetActionCount();
-                    i++;
-                }
-            }
+            foreach (var enemy in Enemies)
+                enemy.TurnEnd();
 
             foreach (var actor in Party.GetBattleActorList())
-                actor.UpdateDurationState();
+                actor.TurnEnd();
 
             if (!CheckBattleEnd())
                 NewTurn();
@@ -760,7 +764,7 @@ namespace Battle
                 {
                     DeadEnemies.Add(e);
                     Destroy(e.DisplayObject);
-                    e.QuiteBattle();
+                    e.QuitBattle();
                     Enemies.RemoveAt(i);
                 }
                 else
@@ -868,7 +872,7 @@ namespace Battle
                     var itemInfo = CurrentCommand.ItemInfo;
                     var skillEffectRate = CurrentCommand.SkillEffectRate;
                     var battleEffectList = CurrentCommand.BattleEffectList;
-                    CurrentCommand.ItemIndex++;
+                    CurrentCommand.MoveToNext();
 
                     itemInfo
                         .Weapon
@@ -887,53 +891,6 @@ namespace Battle
                 }
             }
         }
-
-        // private void OnDrawGizmos()
-        // {
-        //     TestScope(new Vector3(9f, 8f, 0), new Vector3(-6f, 5.56f, 0));
-        // }
-
-        // //测试绘制攻击范围
-        // private void TestScope(Vector3 start, Vector3 end)
-        // {
-        //     var kbb = Mathc.GetRectangleParam(SmallRayWidth, start, end);
-
-        //     float k = kbb.x;
-        //     float b0,
-        //         b1;
-        //     if (kbb.y > kbb.z)
-        //     {
-        //         b0 = kbb.y;
-        //         b1 = kbb.z;
-        //     }
-        //     else
-        //     {
-        //         b0 = kbb.z;
-        //         b1 = kbb.y;
-        //     }
-
-        //     Vector4 border = new(-9f, -3f, 2.56f, 8.56f);
-
-        //     float leftUpY = k * border.x + b0;
-        //     float leftDownY = k * border.x + b1;
-        //     float rightUpY = k * border.y + b0;
-        //     float rightDownY = k * border.y + b1;
-
-        //     Gizmos.DrawWireCube(
-        //         new Vector3(-6f, 5.56f * k + (b0 + b1) / 2f),
-        //         new Vector3(3f, 3f, 3f)
-        //     );
-
-        //     Gizmos.DrawWireCube(new Vector3(border.x, border.w), new Vector3(0.25f, 0.25f, 0.25f));
-        //     Gizmos.DrawWireCube(new Vector3(border.y, border.w), new Vector3(0.25f, 0.25f, 0.25f));
-        //     Gizmos.DrawWireCube(new Vector3(border.y, border.z), new Vector3(0.25f, 0.25f, 0.25f));
-        //     Gizmos.DrawWireCube(new Vector3(border.x, border.z), new Vector3(0.25f, 0.25f, 0.25f));
-
-        //     Gizmos.DrawWireCube(new Vector3(border.x, leftUpY), new Vector3(0.5f, 0.5f, 0.5f));
-        //     Gizmos.DrawWireCube(new Vector3(border.y, rightUpY), new Vector3(0.5f, 0.5f, 0.5f));
-        //     Gizmos.DrawWireCube(new Vector3(border.y, rightDownY), new Vector3(0.5f, 0.5f, 0.5f));
-        //     Gizmos.DrawWireCube(new Vector3(border.x, leftDownY), new Vector3(0.5f, 0.5f, 0.5f));
-        // }
 
         #endregion
     }

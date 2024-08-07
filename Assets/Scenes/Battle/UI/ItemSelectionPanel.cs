@@ -35,9 +35,19 @@ namespace Battle
         [SerializeField]
         private GameObject enemyPanelPrefab;
 
+        [SerializeField]
+        private GameObject selectedLayer;
+
+        [SerializeField]
+        private ListBox selectedListBox;
+
         private GetItemByID CurrentAction { get; set; }
 
         private Actor CurrentActor { get; set; }
+
+        private int CurrentQuantity { get; set; }
+
+        private List<QuantityList.ListItem> SelectedItems { get; set; }
 
         private UnityAction CancelCallback { get; set; }
 
@@ -77,17 +87,32 @@ namespace Battle
             Actor actor,
             UnityAction cancelCallback,
             UnityAction finishCallback,
-            UIT itemType
+            UIT itemType,
+            int quantity = 1
         )
         {
             CurrentActor = actor;
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
+            CurrentQuantity = quantity;
             CurrentAction = (id) => new ActorUsableItem(itemType, id);
             heading.text = ResourceManager.Term.GetText(itemType);
             itemListBox.SetSource(Party.GetActorItemListInBattle(itemType));
+            SelectedItems = new();
             BattleManager.CurrentCommand.SelectedItems = new();
+
+            if (CurrentQuantity > 1)
+            {
+                selectedListBox.Initialize(1, CurrentQuantity, RefreshItem);
+                selectedLayer.SetActive(true);
+            }
+            else
+            {
+                selectedLayer.SetActive(false);
+            }
         }
+
+        private void Setup() { }
 
         private void RefreshItem(ListBoxItem listItem, object data)
         {
@@ -142,9 +167,18 @@ namespace Battle
                 return;
             }
 
-            var usage = weapon.Usage;
-            BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, usage));
+            SelectedItems.Add(quantityItem);
+            BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, weapon.Usage));
 
+            //选择的数量不够，先刷新列表
+            if (SelectedItems.Count < CurrentQuantity)
+            {
+                selectedListBox.SetSource(SelectedItems);
+                return;
+            }
+
+            //数量足够，开始选择目标
+            var usage = CurrentAction(SelectedItems[0].id).Usage;
             switch (usage.scope)
             {
                 case Static.UsedScope.OneFriend:
@@ -209,6 +243,8 @@ namespace Battle
 
         private void OnTargetPanelCancel()
         {
+            SelectedItems.Clear();
+            selectedListBox.SetSource(SelectedItems);
             BattleManager.CurrentCommand.SelectedItems.Clear();
             canvasGroup.alpha = 1;
         }

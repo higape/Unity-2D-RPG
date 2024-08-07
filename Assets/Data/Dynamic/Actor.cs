@@ -321,6 +321,45 @@ namespace Dynamic
             anyChanged.Invoke(this);
         }
 
+        public override void EnterBattle()
+        {
+            base.EnterBattle();
+            foreach (var w in Weapons)
+            {
+                w?.EnterBattle();
+            }
+            foreach (var s in BattleSkills)
+            {
+                s?.EnterBattle();
+            }
+        }
+
+        public override void QuitBattle()
+        {
+            base.QuitBattle();
+            foreach (var w in Weapons)
+            {
+                w?.QuitBattle();
+            }
+            foreach (var s in BattleSkills)
+            {
+                s?.QuitBattle();
+            }
+        }
+
+        public override void TurnEnd()
+        {
+            base.TurnEnd();
+            foreach (var w in Weapons)
+            {
+                w?.TurnEnd();
+            }
+            foreach (var s in BattleSkills)
+            {
+                s?.TurnEnd();
+            }
+        }
+
         /// <summary>
         /// 获得经验值，并检查升级
         /// </summary>

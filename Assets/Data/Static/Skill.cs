@@ -39,7 +39,7 @@ namespace Static
 
         /// <summary>
         /// 选项限制。
-        /// 技能为选择类型时，将此值可转换为对应的物品类型枚举值
+        /// 技能为选择类型时，此值作为对应的物品类型枚举值
         /// </summary>
         public int selectionLimit;
 

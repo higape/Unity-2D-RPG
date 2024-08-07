@@ -213,6 +213,12 @@ namespace Dynamic
             return 0;
         }
 
+        public override void TurnEnd()
+        {
+            base.TurnEnd();
+            ResetActionCount();
+        }
+
         /// <summary>
         /// 重置行动计数
         /// </summary>

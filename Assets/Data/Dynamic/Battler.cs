@@ -275,10 +275,15 @@ namespace Dynamic
         /// <summary>
         /// 退出战斗时清理各种数据
         /// </summary>
-        public virtual void QuiteBattle()
+        public virtual void QuitBattle()
         {
             DurationStates.Clear();
             DisplayObject = null;
+        }
+
+        public virtual void TurnEnd()
+        {
+            UpdateDurationState();
         }
 
         /// <summary>

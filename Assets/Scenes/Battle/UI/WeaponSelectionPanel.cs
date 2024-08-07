@@ -28,7 +28,15 @@ namespace Battle
         [SerializeField]
         private GameObject enemyPanelPrefab;
 
+        [SerializeField]
+        private GameObject selectedLayer;
+
+        [SerializeField]
+        private ListBox selectedListBox;
+
         private Actor CurrentActor { get; set; }
+        private int CurrentQuantity { get; set; }
+        private List<ActorWeapon> SelectedItems { get; set; }
         private UnityAction CancelCallback { get; set; }
         private UnityAction FinishCallback { get; set; }
         private InputCommand[] InputCommands { get; set; }
@@ -62,14 +70,31 @@ namespace Battle
             InputManagementSystem.RemoveCommands(nameof(WeaponSelectionPanel));
         }
 
-        public void Setup(Actor actor, UnityAction cancelCallback, UnityAction finishCallback)
+        public void Setup(
+            Actor actor,
+            UnityAction cancelCallback,
+            UnityAction finishCallback,
+            int quantity = 1
+        )
         {
             CurrentActor = actor;
             CancelCallback = cancelCallback;
             FinishCallback = finishCallback;
-            var wl = actor.GetBattleWeapons();
+            CurrentQuantity = quantity;
+            var wl = CurrentActor.GetBattleWeapons();
             listBox.Initialize(1, wl.Count, RefreshItem, wl);
+            SelectedItems = new();
             BattleManager.CurrentCommand.SelectedItems = new();
+
+            if (CurrentQuantity > 1)
+            {
+                selectedListBox.Initialize(1, CurrentQuantity, RefreshItem);
+                selectedLayer.SetActive(true);
+            }
+            else
+            {
+                selectedLayer.SetActive(false);
+            }
         }
 
         private void RefreshItem(ListBoxItem listItem, object data)
@@ -106,9 +131,18 @@ namespace Battle
                 return;
             }
 
-            var usage = weapon.GetUsage(0);
-            BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, usage));
+            SelectedItems.Add(weapon);
+            BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, weapon.GetUsage(0)));
 
+            //选择的数量不够，先刷新列表
+            if (SelectedItems.Count < CurrentQuantity)
+            {
+                selectedListBox.SetSource(SelectedItems);
+                return;
+            }
+
+            //数量足够，开始选择目标
+            var usage = SelectedItems[0].GetUsage(0);
             switch (usage.scope)
             {
                 case Static.UsedScope.OneFriend:
@@ -173,6 +207,8 @@ namespace Battle
 
         private void OnTargetPanelCancel()
         {
+            SelectedItems.Clear();
+            selectedListBox.SetSource(SelectedItems);
             BattleManager.CurrentCommand.SelectedItems.Clear();
             canvasGroup.alpha = 1;
         }

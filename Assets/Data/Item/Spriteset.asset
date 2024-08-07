@@ -12,5 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d5b2e9fd794564eb631c3ea1788b5a, type: 3}
   m_Name: Spriteset
   m_EditorClassIdentifier: 
-  elementSprite: []
-  equipmentSprite: []
+  elementSprite:
+  - {fileID: 21300000, guid: fb941073dd60ab142951b0a337e15b15, type: 3}
+  - {fileID: 21300000, guid: 60c9e67cd5573cb4fa6a945104a8a9d4, type: 3}
+  - {fileID: 21300000, guid: bc866b8cc1ebbcb489d2dfd55d05ce4a, type: 3}
+  - {fileID: 21300000, guid: 64eb2b5e09a17fd49a31c90fdc048071, type: 3}
+  - {fileID: 21300000, guid: 40e89d282da2c464585076f44aae3f69, type: 3}
+  - {fileID: 21300000, guid: 710db1c8295a42d47800fb9fc8e71ccd, type: 3}
+  - {fileID: 21300000, guid: aa90c60a0d9a1d445ae0c18dcd329ffe, type: 3}
+  - {fileID: 21300000, guid: 355c9fe05434d254db39004a0c9c493a, type: 3}
+  equipmentSprite:
+  - {fileID: -2117911337, guid: bab40ec8c3595fe4e886388a4e2c799a, type: 3}
+  - {fileID: -1136953014, guid: bab40ec8c3595fe4e886388a4e2c799a, type: 3}
+  - {fileID: 1746021137, guid: bab40ec8c3595fe4e886388a4e2c799a, type: 3}
+  - {fileID: -2135886525, guid: bab40ec8c3595fe4e886388a4e2c799a, type: 3}
+  - {fileID: 287667810, guid: bab40ec8c3595fe4e886388a4e2c799a, type: 3}
+  - {fileID: -1591063198, guid: bab40ec8c3595fe4e886388a4e2c799a, type: 3}

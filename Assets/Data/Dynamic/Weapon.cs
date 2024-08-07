@@ -107,6 +107,7 @@ namespace Dynamic
             Effects = effects;
             Callback = callback;
             EmitCount = 0;
+            HitCount = 0;
             DamageCount = 0;
             if (CostAndCool())
                 StartBullet();
@@ -175,6 +176,8 @@ namespace Dynamic
             }
             else
             {
+                EmitCount = 0;
+                HitCount = 0;
                 ProcessCostEffect();
                 Callback?.Invoke();
             }
@@ -240,9 +243,20 @@ namespace Dynamic
             }
         }
 
-        public void OnBattleStart()
+        public void EnterBattle()
         {
             CurrentCoolingTime = 0;
+        }
+
+        public void QuitBattle()
+        {
+            CurrentCoolingTime = 0;
+        }
+
+        public void TurnEnd()
+        {
+            if (IsCooling)
+                CurrentCoolingTime--;
         }
     }
 }
