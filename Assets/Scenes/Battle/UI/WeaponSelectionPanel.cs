@@ -88,7 +88,7 @@ namespace Battle
 
             if (CurrentQuantity > 1)
             {
-                selectedListBox.Initialize(1, CurrentQuantity, RefreshItem);
+                selectedListBox.Initialize(1, CurrentQuantity, RefreshSelectedItem, SelectedItems);
                 selectedLayer.SetActive(true);
             }
             else
@@ -120,6 +120,12 @@ namespace Battle
             }
         }
 
+        private void RefreshSelectedItem(ListBoxItem listItem, object data)
+        {
+            if (listItem is TextItem c)
+                c.textComponent.text = data is ActorWeapon item ? item.Name : " ";
+        }
+
         private void Interact()
         {
             if (listBox.SelectedItem is not ActorWeapon weapon)
@@ -131,13 +137,19 @@ namespace Battle
                 return;
             }
 
+            //检查是否重复选择
+            foreach (var selected in SelectedItems)
+            {
+                if (selected.ID == weapon.ID)
+                    return;
+            }
             SelectedItems.Add(weapon);
             BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, weapon.GetUsage(0)));
 
             //选择的数量不够，先刷新列表
             if (SelectedItems.Count < CurrentQuantity)
             {
-                selectedListBox.SetSource(SelectedItems);
+                selectedListBox.Refresh();
                 return;
             }
 
@@ -208,13 +220,19 @@ namespace Battle
         private void OnTargetPanelCancel()
         {
             SelectedItems.Clear();
-            selectedListBox.SetSource(SelectedItems);
+            selectedListBox.Refresh();
             BattleManager.CurrentCommand.SelectedItems.Clear();
             canvasGroup.alpha = 1;
         }
 
         public void Cancel()
         {
+            if (SelectedItems.Count > 0)
+            {
+                SelectedItems.RemoveAt(SelectedItems.Count - 1);
+                selectedListBox.Refresh();
+                return;
+            }
             BattleManager.CurrentCommand.SelectedItems.Clear();
             CancelCallback?.Invoke();
             Destroy(gameObject);

@@ -47,7 +47,7 @@ namespace Battle
 
         private int CurrentQuantity { get; set; }
 
-        private List<QuantityList.ListItem> SelectedItems { get; set; }
+        private List<ActorUsableItem> SelectedItems { get; set; }
 
         private UnityAction CancelCallback { get; set; }
 
@@ -103,7 +103,7 @@ namespace Battle
 
             if (CurrentQuantity > 1)
             {
-                selectedListBox.Initialize(1, CurrentQuantity, RefreshItem);
+                selectedListBox.Initialize(1, CurrentQuantity, RefreshSelectedItem, SelectedItems);
                 selectedLayer.SetActive(true);
             }
             else
@@ -143,13 +143,15 @@ namespace Battle
         private void OnSelectedItemChange(object data, int index)
         {
             if (data is QuantityList.ListItem item)
-            {
                 itemStat.Refresh(CurrentAction(item.id));
-            }
             else
-            {
                 itemStat.Refresh(null);
-            }
+        }
+
+        private void RefreshSelectedItem(ListBoxItem listItem, object data)
+        {
+            if (listItem is TextItem c)
+                c.textComponent.text = data is ActorUsableItem item ? item.Name : " ";
         }
 
         private void Interact()
@@ -157,28 +159,34 @@ namespace Battle
             if (itemListBox.SelectedItem is not QuantityList.ListItem quantityItem)
                 return;
 
-            var weapon = CurrentAction(quantityItem.id);
-            if (weapon == null)
+            var item = CurrentAction(quantityItem.id);
+            if (item == null)
                 return;
 
-            if (weapon.IsCooling)
+            if (item.IsCooling)
             {
                 UIManager.StartMessage(ResourceManager.Term.promptItemIsCooling, null);
                 return;
             }
 
-            SelectedItems.Add(quantityItem);
-            BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, weapon.Usage));
+            //检查是否重复选择
+            foreach (var selected in SelectedItems)
+            {
+                if (selected.ID == item.ID)
+                    return;
+            }
+            SelectedItems.Add(item);
+            BattleManager.CurrentCommand.SelectedItems.Add(new(item, item.Usage));
 
             //选择的数量不够，先刷新列表
             if (SelectedItems.Count < CurrentQuantity)
             {
-                selectedListBox.SetSource(SelectedItems);
+                selectedListBox.Refresh();
                 return;
             }
 
             //数量足够，开始选择目标
-            var usage = CurrentAction(SelectedItems[0].id).Usage;
+            var usage = SelectedItems[0].Usage;
             switch (usage.scope)
             {
                 case Static.UsedScope.OneFriend:
@@ -244,13 +252,19 @@ namespace Battle
         private void OnTargetPanelCancel()
         {
             SelectedItems.Clear();
-            selectedListBox.SetSource(SelectedItems);
+            selectedListBox.Refresh();
             BattleManager.CurrentCommand.SelectedItems.Clear();
             canvasGroup.alpha = 1;
         }
 
         public void Cancel()
         {
+            if (SelectedItems.Count > 0)
+            {
+                SelectedItems.RemoveAt(SelectedItems.Count - 1);
+                selectedListBox.Refresh();
+                return;
+            }
             BattleManager.CurrentCommand.SelectedItems.Clear();
             CancelCallback?.Invoke();
             Destroy(gameObject);
