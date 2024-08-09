@@ -141,7 +141,7 @@ namespace Dynamic
                             new(
                                 bulletData,
                                 FirePosition,
-                                BattleManager.GetScopePivot(Target, CurrentUsage.scope),
+                                BattleManager.GetScopePivot(Target),
                                 targets,
                                 OnTargetHit
                             )

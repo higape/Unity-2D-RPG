@@ -20,7 +20,7 @@ MonoBehaviour:
     element: 0
     scope: 8
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -34,7 +34,7 @@ MonoBehaviour:
     element: 2
     scope: 8
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -48,7 +48,7 @@ MonoBehaviour:
     element: 2
     scope: 8
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -66,7 +66,7 @@ MonoBehaviour:
     element: 3
     scope: 8
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -84,7 +84,7 @@ MonoBehaviour:
     element: 0
     scope: 8
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -98,7 +98,7 @@ MonoBehaviour:
     element: 0
     scope: 9
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 50
@@ -112,7 +112,7 @@ MonoBehaviour:
     element: 0
     scope: 2
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 7
       effectValue: 10
@@ -126,7 +126,7 @@ MonoBehaviour:
     element: 0
     scope: 2
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 7
       effectValue: 50
@@ -140,7 +140,7 @@ MonoBehaviour:
     element: 0
     scope: 0
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects: []
     log: 
   - id: 10
@@ -150,7 +150,7 @@ MonoBehaviour:
     element: 0
     scope: 101
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -164,7 +164,7 @@ MonoBehaviour:
     element: 0
     scope: 102
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -178,7 +178,7 @@ MonoBehaviour:
     element: 0
     scope: 201
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -192,7 +192,7 @@ MonoBehaviour:
     element: 0
     scope: 202
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -202,11 +202,11 @@ MonoBehaviour:
   - id: 14
     name: "\u5C0F\u5706\u5F62\u666E\u901A\u653B\u51FB"
     bullets:
-    - {fileID: 11400000, guid: f5526bed8829a08439b18371e136b94b, type: 2}
+    - {fileID: 11400000, guid: fc840a25d8e24e441ab4cdf0acd0edbf, type: 2}
     element: 0
     scope: 301
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100
@@ -220,7 +220,7 @@ MonoBehaviour:
     element: 0
     scope: 302
     attackCount: 1
-    waitTime: 0
+    coolingTime: 0
     effects:
     - effectID: 1
       effectValue: 100

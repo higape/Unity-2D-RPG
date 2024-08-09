@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74528867c39e05f4090227ed0dfcdc75, type: 3}
+  m_Name: "\u97F3\u6CE2"
+  m_EditorClassIdentifier: 
+  readyAnimation: {fileID: 0}
+  flyingAnimation: {fileID: 11400000, guid: 3377b62a29c1da64ba8f6c2eca8e30a9, type: 2}
+  collideAnimation: {fileID: 0}
+  createType: 1

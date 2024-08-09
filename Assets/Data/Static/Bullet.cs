@@ -48,6 +48,6 @@ namespace Static
         /// </summary>
         public FrameAnimation collideAnimation;
 
-        public CreateType createType;
+        public CreateType createType = CreateType.Every;
     }
 }

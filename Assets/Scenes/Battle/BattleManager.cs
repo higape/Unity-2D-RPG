@@ -211,28 +211,12 @@ namespace Battle
             return list.ToArray();
         }
 
-        public static Vector3 GetScopePivot(Battler battler, Static.UsedScope scope)
+        public static Vector3 GetScopePivot(Battler target)
         {
-            switch (scope)
-            {
-                case Static.UsedScope.None:
-                case Static.UsedScope.Self:
-                case Static.UsedScope.OneFriend:
-                case Static.UsedScope.OneFriendExcludeSelf:
-                case Static.UsedScope.AllFriend:
-                case Static.UsedScope.AllFriendExcludeSelf:
-                case Static.UsedScope.OneDeadFriend:
-                case Static.UsedScope.AllDeadFriend:
-                    if (battler is Enemy)
-                        return Instance.enemyPivot.transform.position;
-                    else
-                        return Instance.actorPivot.transform.position;
-                default:
-                    if (battler is Enemy)
-                        return Instance.actorPivot.transform.position;
-                    else
-                        return Instance.enemyPivot.transform.position;
-            }
+            if (target is Enemy)
+                return Instance.enemyPivot.transform.position;
+            else
+                return Instance.actorPivot.transform.position;
         }
 
         public static GameObject CreateBullet(Vector3 position)

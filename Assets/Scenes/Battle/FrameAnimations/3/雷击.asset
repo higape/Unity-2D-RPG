@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beb660907c97e0240a6867b76d948c51, type: 3}
-  m_Name: "\u65CB\u8F6C\u706B\u7403"
+  m_Name: "\u96F7\u51FB"
   m_EditorClassIdentifier: 
   frames:
   - nextFrame: 6
-    sprite: {fileID: 2091703551, guid: 73eb4fa827eef314e8aa20bcc6959f68, type: 3}
+    sprite: {fileID: -552596146, guid: 9a55d6f1ffc737f418612b9c0e1bd1a6, type: 3}
   - nextFrame: 12
-    sprite: {fileID: 55945180, guid: 73eb4fa827eef314e8aa20bcc6959f68, type: 3}
-  callbackFrame: 0
+    sprite: {fileID: -1670668541, guid: 9a55d6f1ffc737f418612b9c0e1bd1a6, type: 3}
+  callbackFrame: 12
