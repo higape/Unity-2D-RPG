@@ -215,12 +215,15 @@ namespace Static
 
             [InspectorName("抵抗力")]
             Resistance = 1003,
+        }
 
+        public enum AdditionType
+        {
             /// <summary>
             /// 为角色附加技能
             /// </summary>
             [InspectorName("技能(ID)")]
-            Skill = 2001,
+            Skill = 1,
         }
 
         public EffectType type0;

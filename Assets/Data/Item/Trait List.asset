@@ -18,4 +18,106 @@ MonoBehaviour:
     description: 
     type0: 1001
     type1: 1
-    statement: "\u6218\u6597\u91D1\u94B1\u83B7\u5F97\u91CF{0}%"
+    statement: "\u6218\u6597\u91D1\u94B1{0}%"
+  - id: 1001
+    name: 
+    description: 
+    type0: 1002
+    type1: 1
+    statement: HP{0}
+  - id: 1002
+    name: 
+    description: 
+    type0: 1002
+    type1: 2
+    statement: "\u653B\u51FB\u529B{0}"
+  - id: 1003
+    name: 
+    description: 
+    type0: 1002
+    type1: 3
+    statement: "\u9632\u5FA1\u529B{0}"
+  - id: 1004
+    name: 
+    description: 
+    type0: 1002
+    type1: 4
+    statement: "\u901F\u5EA6{0}"
+  - id: 1005
+    name: 
+    description: 
+    type0: 1002
+    type1: 5
+    statement: "\u547D\u4E2D{0}"
+  - id: 1006
+    name: 
+    description: 
+    type0: 1002
+    type1: 6
+    statement: "\u56DE\u907F{0}"
+  - id: 1007
+    name: 
+    description: 
+    type0: 1002
+    type1: 1001
+    statement: "\u6218\u6597\u7ECF\u9A8C{0}"
+  - id: 1008
+    name: 
+    description: 
+    type0: 1002
+    type1: 1003
+    statement: "\u62B5\u6297\u529B{0}"
+  - id: 2001
+    name: 
+    description: 
+    type0: 1003
+    type1: 1
+    statement: HP{0}%
+  - id: 2002
+    name: 
+    description: 
+    type0: 1003
+    type1: 2
+    statement: "\u653B\u51FB\u529B{0}%"
+  - id: 2003
+    name: 
+    description: 
+    type0: 1003
+    type1: 3
+    statement: "\u9632\u5FA1\u529B{0}%"
+  - id: 2004
+    name: 
+    description: 
+    type0: 1003
+    type1: 4
+    statement: "\u901F\u5EA6{0}%"
+  - id: 2005
+    name: 
+    description: 
+    type0: 1003
+    type1: 5
+    statement: "\u547D\u4E2D{0}%"
+  - id: 2006
+    name: 
+    description: 
+    type0: 1003
+    type1: 6
+    statement: "\u56DE\u907F{0}%"
+  - id: 2007
+    name: 
+    description: 
+    type0: 1003
+    type1: 1001
+    statement: "\u6218\u6597\u7ECF\u9A8C{0}%"
+  - id: 2008
+    name: 
+    description: 
+    type0: 1003
+    type1: 1003
+    statement: "\u62B5\u6297\u529B{0}%"
+  - id: 3001
+    name: 
+    description: 
+    type0: 1005
+    type1: 1
+    statement: "\u6280\u80FD[{0}]"

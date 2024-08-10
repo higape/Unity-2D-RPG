@@ -39,7 +39,7 @@ namespace Dynamic
                 if (
                     item.Trait.EqualType(
                         Static.BattleEffect.EffectType.AdditionType,
-                        (int)Static.BattleEffect.ActorType.Skill
+                        (int)Static.BattleEffect.AdditionType.Skill
                     )
                 )
                     Skills.Add(new Skill(item.traitValue));

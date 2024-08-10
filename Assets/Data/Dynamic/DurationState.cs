@@ -30,7 +30,7 @@ namespace Dynamic
             WeaponEffectRate = weaponEffectRate;
             LastTurn = duration;
 
-            if (EqualType(BET.AdditionType, (int)Static.BattleEffect.ActorType.Skill))
+            if (EqualType(BET.AdditionType, (int)Static.BattleEffect.AdditionType.Skill))
                 Skill = new Skill(EffectValue);
         }
 
