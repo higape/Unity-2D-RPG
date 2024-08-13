@@ -51,7 +51,7 @@ MonoBehaviour:
   ability: "\u80FD\u529B\u503C"
   equipment: "\u88C5\u5907"
   durationState: "\u72B6\u6001"
-  durationStateStatement: "\u8D4B\u4E88[{1}%{0}]{2}\u56DE\u5408"
+  durationStateStatement: "\u8D4B\u4E88[{0}]{1}\u56DE\u5408"
   all: "\u5168\u90E8"
   recoverItem: "\u56DE\u590D\u9053\u5177"
   attackItem: "\u653B\u51FB\u9053\u5177"

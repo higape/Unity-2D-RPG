@@ -327,5 +327,53 @@ namespace Root
             Enemy = enemy;
             Shop = shop;
         }
+
+#if UNITY_EDITOR
+        //生成在开发期间用于查找数据的文本，并写入剪贴板
+        [ContextMenu("Make ItemList To String To CopyBuffer")]
+        private void MakeText()
+        {
+            var sb = new StringBuilder();
+            sb.Append(MakeText(battleEffect.ItemList));
+            sb.Append(MakeText(trait.ItemList));
+            sb.Append(MakeText(durationState.ItemList));
+            sb.Append(MakeText(weaponUsage.ItemList));
+            sb.Append(MakeText(skill.ItemList));
+            sb.Append(MakeText(actor.ItemList));
+            sb.Append(MakeText(actorWeapon.ItemList));
+            sb.Append(MakeText(actorWeaponSkin.ItemList));
+            sb.Append(MakeText(actorHeadArmor.ItemList));
+            sb.Append(MakeText(actorBodyArmor.ItemList));
+            sb.Append(MakeText(actorHandArmor.ItemList));
+            sb.Append(MakeText(actorFootArmor.ItemList));
+            sb.Append(MakeText(actorOrnamentArmor.ItemList));
+            sb.Append(MakeText(actorRecoverItem.ItemList));
+            sb.Append(MakeText(actorAttackItem.ItemList));
+            sb.Append(MakeText(actorAuxiliaryItem.ItemList));
+            sb.Append(MakeText(actorNormalItem.ItemList));
+            sb.Append(MakeText(enemy.ItemList));
+            sb.Append(MakeText(shop.ItemList));
+            GUIUtility.systemCopyBuffer = sb.ToString();
+        }
+
+        private StringBuilder MakeText(System.Collections.IList list)
+        {
+            var sb = new StringBuilder();
+            sb.Append(list.GetType().Name);
+            sb.Append('\n');
+            foreach (var item in list)
+            {
+                if (item is NameItem nameItem)
+                {
+                    sb.Append(nameItem.id.ToString().PadLeft(10));
+                    sb.Append(':');
+                    sb.Append(nameItem.Name);
+                    sb.Append('\n');
+                }
+            }
+            sb.Append('\n');
+            return sb;
+        }
+#endif
     }
 }

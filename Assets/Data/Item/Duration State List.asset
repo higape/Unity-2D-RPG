@@ -15,27 +15,26 @@ MonoBehaviour:
   itemList:
   - id: 1
     name: "\u71C3\u70E7"
-    itemName: 
     description: 
     type0: 1
     type1: 1
-    elementType: 0
+    elementType: 2
     strengthIDs: 02000000
     weaknessIDs: 02000000
     displayObject: {fileID: 11400000, guid: b5afb13da673aa747927475b66ad5fb7, type: 2}
+    statement: "{0}%\u71C3\u70E7"
   - id: 2
     name: "\u51B0\u51BB"
-    itemName: 
     description: 
     type0: 1
     type1: 1
-    elementType: 0
+    elementType: 3
     strengthIDs: 01000000
     weaknessIDs: 01000000
     displayObject: {fileID: 11400000, guid: 5792b30252b2a9243bfc135863c3c140, type: 2}
+    statement: "{0}%\u51B0\u51BB"
   - id: 3
     name: "\u614C\u4E71"
-    itemName: 
     description: 
     type0: 7
     type1: 1
@@ -43,9 +42,9 @@ MonoBehaviour:
     strengthIDs: 
     weaknessIDs: 
     displayObject: {fileID: 11400000, guid: 7cd1fbcf06b5a9449a0c131c1eddf36f, type: 2}
+    statement: "{0}%\u614C\u4E71"
   - id: 4
     name: "\u9B45\u60D1"
-    itemName: 
     description: 
     type0: 7
     type1: 2
@@ -53,9 +52,9 @@ MonoBehaviour:
     strengthIDs: 
     weaknessIDs: 
     displayObject: {fileID: 11400000, guid: 05d1046cb7f08bc409c246bdbc1c8544, type: 2}
+    statement: "{0}%\u9B45\u60D1"
   - id: 5
     name: "\u6DF7\u4E71"
-    itemName: 
     description: 
     type0: 7
     type1: 3
@@ -63,9 +62,9 @@ MonoBehaviour:
     strengthIDs: 
     weaknessIDs: 
     displayObject: {fileID: 11400000, guid: 2b583ea06b281f64f9101f7054c618e6, type: 2}
+    statement: "{0}%\u6DF7\u4E71"
   - id: 6
     name: "\u9759\u9ED8"
-    itemName: 
     description: 
     type0: 7
     type1: 4
@@ -73,3 +72,64 @@ MonoBehaviour:
     strengthIDs: 
     weaknessIDs: 
     displayObject: {fileID: 11400000, guid: 60d5bdeb221c9764c8d2fe46d75ee07d, type: 2}
+    statement: "{0}%\u9759\u9ED8"
+  - id: 7
+    name: "\u6BD2"
+    description: 
+    type0: 1
+    type1: 1
+    elementType: 1
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 11400000, guid: df52c59acd9a920418bbb170dbfde94d, type: 2}
+    statement: "{0}%\u6BD2"
+  - id: 8
+    name: "\u6062\u590D\u751F\u547D"
+    description: 
+    type0: 2
+    type1: 1
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 11400000, guid: 0973b5ec2658176468c3a86a9e353a26, type: 2}
+    statement: "\u6062\u590D{0}%HP"
+  - id: 9
+    name: "\u653B\u51FB\u529B"
+    description: 
+    type0: 1003
+    type1: 2
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 0}
+    statement: "\u653B\u51FB\u529B{0}%"
+  - id: 10
+    name: "\u9632\u5FA1\u529B"
+    description: 
+    type0: 1003
+    type1: 3
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 0}
+    statement: "\u9632\u5FA1\u529B{0}%"
+  - id: 11
+    name: "\u901F\u5EA6"
+    description: 
+    type0: 1003
+    type1: 4
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 0}
+    statement: "\u901F\u5EA6{0}%"
+  - id: 12
+    name: "\u9EBB\u75F9"
+    description: 
+    type0: 7
+    type1: 4
+    elementType: 4
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 0}
+    statement: "{0}%\u9EBB\u75F9"

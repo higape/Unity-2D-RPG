@@ -21,65 +21,121 @@ MonoBehaviour:
     price: 0
     equipable: 
   - id: 1
-    name: "\u5355\u4F53\u666E\u653B\u6B66\u5668"
+    name: "\u7834\u65E7\u7684\u67AA"
     skinID: 1
     usageIDs: 05000000
     atk: 1
     price: 10
-    equipable: 
+    equipable: 01000000
   - id: 2
-    name: "\u706B\u6B66\u5668"
+    name: "\u6BD2\u67AA"
     skinID: 1
-    usageIDs: 02000000
+    usageIDs: 0a000000
     atk: 5
     price: 50
-    equipable: 
+    equipable: 01000000
   - id: 3
-    name: "\u51B0\u6B66\u5668"
+    name: "\u706B\u7130\u67AA"
+    skinID: 1
+    usageIDs: 03000000
+    atk: 8
+    price: 80
+    equipable: 01000000
+  - id: 4
+    name: "\u51B0\u51BB\u67AA"
+    skinID: 1
+    usageIDs: 04000000
+    atk: 10
+    price: 100
+    equipable: 01000000
+  - id: 5
+    name: "\u96F7\u7535\u67AA"
+    skinID: 1
+    usageIDs: 0d000000
+    atk: 12
+    price: 200
+    equipable: 01000000
+  - id: 6
+    name: "\u97F3\u6CE2\u67AA"
+    skinID: 1
+    usageIDs: 0e000000
+    atk: 6
+    price: 300
+    equipable: 01000000
+  - id: 7
+    name: "\u66B4\u98CE\u67AA"
+    skinID: 1
+    usageIDs: 0f000000
+    atk: 15
+    price: 400
+    equipable: 01000000
+  - id: 8
+    name: "\u524A\u7532\u67AA"
+    skinID: 1
+    usageIDs: 11000000
+    atk: 10
+    price: 500
+    equipable: 01000000
+  - id: 9
+    name: "\u7A7F\u7532\u67AA"
+    skinID: 1
+    usageIDs: 10000000
+    atk: 15
+    price: 600
+    equipable: 01000000
+  - id: 10
+    name: "\u7279\u79CD\u7A7F\u7532\u67AA"
+    skinID: 1
+    usageIDs: 12000000
+    atk: 16
+    price: 1000
+    equipable: 01000000
+  - id: 11
+    name: "\u706B\u7130\u6756"
+    skinID: 1
+    usageIDs: 03000000
+    atk: 5
+    price: 50
+    equipable: 02000000
+  - id: 12
+    name: "\u51B0\u51BB\u6756"
     skinID: 1
     usageIDs: 04000000
     atk: 8
     price: 80
-    equipable: 
-  - id: 4
-    name: "\u5C0F\u6247\u5F62\u666E\u901A\u6B66\u5668"
-    skinID: 1
-    usageIDs: 0a000000
-    atk: 8
-    price: 200
-    equipable: 
-  - id: 5
-    name: "\u5927\u6247\u5F62\u666E\u901A\u6B66\u5668"
-    skinID: 1
-    usageIDs: 0b000000
-    atk: 2
-    price: 300
-    equipable: 
-  - id: 6
-    name: "\u5C0F\u8D2F\u7A7F\u666E\u901A\u6B66\u5668"
-    skinID: 1
-    usageIDs: 0c000000
-    atk: 2
-    price: 300
-    equipable: 
-  - id: 7
-    name: "\u5927\u8D2F\u7A7F\u666E\u901A\u6B66\u5668"
+    equipable: 02000000
+  - id: 13
+    name: "\u96F7\u7535\u6756"
     skinID: 1
     usageIDs: 0d000000
-    atk: 2
-    price: 300
-    equipable: 
-  - id: 8
-    name: "\u5C0F\u5706\u5F62\u666E\u901A\u6B66\u5668"
+    atk: 10
+    price: 100
+    equipable: 02000000
+  - id: 14
+    name: "\u6DF7\u6C8C\u9B54\u6756"
     skinID: 1
-    usageIDs: 0e000000
-    atk: 2
-    price: 300
-    equipable: 
-  - id: 9
-    name: "\u5927\u5706\u5F62\u666E\u901A\u6B66\u5668"
+    usageIDs: 12000000
+    atk: 16
+    price: 1000
+    equipable: 02000000
+  - id: 15
+    name: "\u6BD2\u9488"
     skinID: 1
-    usageIDs: 0f000000
-    atk: 2
+    usageIDs: 1d000000
+    atk: 5
+    price: 100
+    equipable: 03000000
+  - id: 16
+    name: "\u9EBB\u9189\u9488"
+    skinID: 1
+    usageIDs: 1e000000
+    atk: 8
+    price: 200
+    equipable: 03000000
+  - id: 17
+    name: "\u566C\u8840\u9488"
+    skinID: 1
+    usageIDs: 1f000000
+    atk: 10
     price: 300
-    equipable: 
+    equipable: 03000000

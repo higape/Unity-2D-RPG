@@ -55,9 +55,8 @@ namespace Static
             {
                 return string.Format(
                     ResourceManager.Term.durationStateStatement,
-                    GetDurationState().Name,
-                    effectValue.ToString(),
-                    duration.ToString()
+                    GetDurationState().GetStatement(effectValue),
+                    duration
                 );
             }
         }

@@ -24,10 +24,10 @@ namespace Static
             string text;
             if (Trait.EqualType(BattleEffect.EffectType.AdditionType, 1))
                 text = Root.ResourceManager.Skill.GetItem(traitValue).Name;
-            else if (traitValue < 0)
-                text = '-' + traitValue.ToString();
-            else
+            else if (traitValue >= 0)
                 text = '+' + traitValue.ToString();
+            else
+                text = traitValue.ToString();
             return string.Format(Trait.Statement, text);
         }
     }

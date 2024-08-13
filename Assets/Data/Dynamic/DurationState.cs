@@ -70,6 +70,8 @@ namespace Dynamic
 
         public bool IsWeakerThan(DurationState state) => DataObject.IsWeakerThan(state.DataObject);
 
+        public string GetStatement(int effectValue) => DataObject.GetStatement(effectValue);
+
         public void OnEffect()
         {
             Root.Mathc.ProcessItemEffect(

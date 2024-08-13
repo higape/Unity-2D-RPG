@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using BET = Static.BattleEffect.EffectType;
 
 namespace Static
 {
@@ -35,6 +36,21 @@ namespace Static
         /// 视觉对象
         /// </summary>
         public FrameAnimation displayObject;
+
+        [SerializeField]
+        private string statement;
+
+        public string GetStatement(int effectValue)
+        {
+            string text;
+            if (type0 != BET.AbilityConst && type0 != BET.AbilityRate)
+                text = effectValue.ToString();
+            else if (effectValue >= 0)
+                text = '+' + effectValue.ToString();
+            else
+                text = effectValue.ToString();
+            return string.Format(statement, text);
+        }
 
         [NonSerialized]
         private List<DurationState> strengthList;

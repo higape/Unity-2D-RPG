@@ -15,13 +15,11 @@ MonoBehaviour:
   itemList:
   - id: 1
     name: "\u7A7A\u76AE\u80A4"
-    itemName: 
     sprite: {fileID: 0}
     firePosition: {x: -2, y: 0, z: 0}
     motion: 1
   - id: 2
     name: "\u7A7A\u76AE\u80A42"
-    itemName: 
     sprite: {fileID: 0}
     firePosition: {x: -2, y: 0, z: 0}
     motion: 1

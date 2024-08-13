@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: "\u9759\u9ED8"
   m_EditorClassIdentifier: 
   frames:
-  - nextFrame: 0
+  - nextFrame: 12
     sprite: {fileID: -798935473, guid: bfdf60d9610501041b2d592b6b86d2b8, type: 3}
+  - nextFrame: 24
+    sprite: {fileID: -460895329, guid: bfdf60d9610501041b2d592b6b86d2b8, type: 3}
+  - nextFrame: 36
+    sprite: {fileID: 630746531, guid: bfdf60d9610501041b2d592b6b86d2b8, type: 3}
+  - nextFrame: 48
+    sprite: {fileID: -383150091, guid: bfdf60d9610501041b2d592b6b86d2b8, type: 3}
   callbackFrame: 0

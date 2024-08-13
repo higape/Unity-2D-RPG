@@ -36,7 +36,7 @@ MonoBehaviour:
     description: "\u65E0\u89C6\u4E00\u5B9A\u6BD4\u4F8B\u7684\u9632\u5FA1\u529B\u9020\u6210\u4F24\u5BB3"
     type0: 1
     type1: 4
-    statement: "{0}%\u7A7F\u900F\u4F24\u5BB3"
+    statement: "\u65E0\u89C6{0}%\u9632\u5FA1\u9020\u6210\u4F24\u5BB3"
   - id: 5
     name: "\u9632\u5FA1\u529B\u4F24\u5BB3"
     description: "\u4EE5\u4E00\u5B9A\u6BD4\u4F8B\u7684\u9632\u5FA1\u529B\u9020\u6210\u4F24\u5BB3"
@@ -108,7 +108,7 @@ MonoBehaviour:
     description: "\u4EE5\u9020\u6210\u7684\u4F24\u5BB3\u6062\u590D\u751F\u547D"
     type0: 4
     type1: 1
-    statement: "{0}%\u4F24\u5BB3\u6062\u590DHP"
+    statement: "\u4EE5\u4F24\u5BB3\u7684{0}%\u6062\u590D\u81EA\u8EABHP"
   - id: 17
     name: "\u6D88\u9664\u6548\u679C"
     description: "\u6D88\u9664\u6307\u5B9AID\u7684\u72B6\u6001"
