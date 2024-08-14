@@ -21,10 +21,17 @@ namespace UI
             return sb.ToString();
         }
 
-        public static string CreateSkillCountText(int current, int max)
+        public static string CreateSkillCountText(Dynamic.Skill item)
         {
+            if (!item.IsCountLimit)
+                return "∞";
+
             StringBuilder sb = new();
-            sb.AppendJoin('/', current.ToString().PadLeft(2, ' '), max.ToString().PadLeft(2, ' '));
+            sb.AppendJoin(
+                '/',
+                item.CurrentCount.ToString().PadLeft(2, ' '),
+                item.MaxUsageCount.ToString().PadLeft(2, ' ')
+            );
             return sb.ToString();
         }
 

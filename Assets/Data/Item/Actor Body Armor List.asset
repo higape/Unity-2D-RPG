@@ -15,21 +15,83 @@ MonoBehaviour:
   itemList:
   - id: 1
     name: "\u5E03\u8863\u670D"
-    hp: 1
-    atk: 1
-    def: 1
-    agi: 1
-    hit: 1
-    eva: 1
+    hp: 0
+    atk: 0
+    def: 3
+    agi: 0
+    hit: 0
+    eva: 0
     elementGroup:
-      Normal: 1
-      Corrosion: 1
-      Fire: 1
-      Ice: 1
-      Electricity: 1
-      Wave: 1
-      Ray: 1
-      Gas: 1
-    price: 22
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 30
     equipable: 
     traits: []
+  - id: 2
+    name: "\u957F\u888D"
+    hp: 0
+    atk: 0
+    def: 5
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 80
+    equipable: 
+    traits: []
+  - id: 3
+    name: "\u9B54\u6CD5\u957F\u888D"
+    hp: 0
+    atk: 0
+    def: 8
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 10
+      Fire: 10
+      Ice: 10
+      Electricity: 10
+      Wave: 10
+      Ray: 10
+      Gas: 10
+    price: 200
+    equipable: 
+    traits: []
+  - id: 4
+    name: "\u751F\u547D\u589E\u5E45\u8863\u670D"
+    hp: 50
+    atk: 0
+    def: 10
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 10
+      Fire: 10
+      Ice: 10
+      Electricity: 10
+      Wave: 10
+      Ray: 10
+      Gas: 10
+    price: 500
+    equipable: 
+    traits:
+    - traitID: 2001
+      traitValue: 20

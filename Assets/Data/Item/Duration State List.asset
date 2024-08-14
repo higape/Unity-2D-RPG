@@ -133,3 +133,13 @@ MonoBehaviour:
     weaknessIDs: 
     displayObject: {fileID: 0}
     statement: "{0}%\u9EBB\u75F9"
+  - id: 13
+    name: "\u547D\u4E2D"
+    description: 
+    type0: 1003
+    type1: 5
+    elementType: 0
+    strengthIDs: 
+    weaknessIDs: 
+    displayObject: {fileID: 0}
+    statement: "\u547D\u4E2D{0}%"

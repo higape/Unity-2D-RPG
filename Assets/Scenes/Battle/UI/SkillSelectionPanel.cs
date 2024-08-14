@@ -91,10 +91,7 @@ namespace Battle
                 if (data is Skill item)
                 {
                     c.textComponent0.text = item.Name;
-                    c.textComponent1.text = UIManager.CreateSkillCountText(
-                        item.CurrentCount,
-                        item.MaxUsageCount
-                    );
+                    c.textComponent1.text = UIManager.CreateSkillCountText(item);
                     if (item.IsCooling)
                         c.textComponent2.text = string.Format(
                             ResourceManager.Term.coolingTimeStatement,

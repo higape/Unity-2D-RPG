@@ -68,13 +68,16 @@ namespace UI
                 if (data is Skill item)
                 {
                     c.textComponent0.text = item.Name;
-                    if (item.IsCountLimit)
-                        c.textComponent1.text = UIManager.CreateSkillCountText(
-                            item.CurrentCount,
-                            item.MaxUsageCount
-                        );
+                    if (item.IsEnable)
+                    {
+                        c.textComponent0.color = Color.white;
+                        c.textComponent1.text = UIManager.CreateSkillCountText(item);
+                    }
                     else
-                        c.textComponent1.text = "∞";
+                    {
+                        c.textComponent0.color = Color.gray;
+                        c.textComponent1.text = " ";
+                    }
                 }
                 else
                 {

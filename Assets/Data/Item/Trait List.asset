@@ -14,109 +14,109 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - id: 1
-    name: 
+    name: "\u6218\u6597\u91D1\u94B1"
     description: 
     type0: 1001
     type1: 1
     statement: "\u6218\u6597\u91D1\u94B1{0}%"
   - id: 1001
-    name: 
+    name: HP
     description: 
     type0: 1002
     type1: 1
     statement: HP{0}
   - id: 1002
-    name: 
+    name: "\u653B\u51FB\u529B"
     description: 
     type0: 1002
     type1: 2
     statement: "\u653B\u51FB\u529B{0}"
   - id: 1003
-    name: 
+    name: "\u9632\u5FA1\u529B"
     description: 
     type0: 1002
     type1: 3
     statement: "\u9632\u5FA1\u529B{0}"
   - id: 1004
-    name: 
+    name: "\u901F\u5EA6"
     description: 
     type0: 1002
     type1: 4
     statement: "\u901F\u5EA6{0}"
   - id: 1005
-    name: 
+    name: "\u547D\u4E2D"
     description: 
     type0: 1002
     type1: 5
     statement: "\u547D\u4E2D{0}"
   - id: 1006
-    name: 
+    name: "\u56DE\u907F"
     description: 
     type0: 1002
     type1: 6
     statement: "\u56DE\u907F{0}"
   - id: 1007
-    name: 
+    name: "\u6218\u6597\u7ECF\u9A8C"
     description: 
     type0: 1002
     type1: 1001
     statement: "\u6218\u6597\u7ECF\u9A8C{0}"
   - id: 1008
-    name: 
+    name: "\u62B5\u6297\u529B"
     description: 
     type0: 1002
     type1: 1003
     statement: "\u62B5\u6297\u529B{0}"
   - id: 2001
-    name: 
+    name: HP{0}%
     description: 
     type0: 1003
     type1: 1
     statement: HP{0}%
   - id: 2002
-    name: 
+    name: "\u653B\u51FB\u529B{0}%"
     description: 
     type0: 1003
     type1: 2
     statement: "\u653B\u51FB\u529B{0}%"
   - id: 2003
-    name: 
+    name: "\u9632\u5FA1\u529B{0}%"
     description: 
     type0: 1003
     type1: 3
     statement: "\u9632\u5FA1\u529B{0}%"
   - id: 2004
-    name: 
+    name: "\u901F\u5EA6{0}%"
     description: 
     type0: 1003
     type1: 4
     statement: "\u901F\u5EA6{0}%"
   - id: 2005
-    name: 
+    name: "\u547D\u4E2D{0}%"
     description: 
     type0: 1003
     type1: 5
     statement: "\u547D\u4E2D{0}%"
   - id: 2006
-    name: 
+    name: "\u56DE\u907F{0}%"
     description: 
     type0: 1003
     type1: 6
     statement: "\u56DE\u907F{0}%"
   - id: 2007
-    name: 
+    name: "\u6218\u6597\u7ECF\u9A8C{0}%"
     description: 
     type0: 1003
     type1: 1001
     statement: "\u6218\u6597\u7ECF\u9A8C{0}%"
   - id: 2008
-    name: 
+    name: "\u62B5\u6297\u529B{0}%"
     description: 
     type0: 1003
     type1: 1003
     statement: "\u62B5\u6297\u529B{0}%"
   - id: 3001
-    name: 
+    name: "\u6280\u80FD[{0}]"
     description: 
     type0: 1005
     type1: 1

@@ -495,3 +495,203 @@ MonoBehaviour:
       duration: 0
       targetType: 0
     log: 
+  - id: 32
+    name: "\u5355\u4F53\u6D88\u9664\u706B\u7130"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 2
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 19
+      effectValue: 2
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 33
+    name: "\u5355\u4F53\u6D88\u9664\u51B0\u51BB"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 2
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 19
+      effectValue: 3
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 34
+    name: "\u5168\u4F53\u9632\u5FA1\u7F6910"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 4
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 10
+      effectValue: 10
+      duration: 2
+      targetType: 0
+    log: 
+  - id: 35
+    name: "\u81EA\u5DF1\u547D\u4E2D30"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 1
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 13
+      effectValue: 30
+      duration: 4
+      targetType: 0
+    log: 
+  - id: 36
+    name: "\u5355\u4F53\u5F3A\u706B\u7130"
+    bullets:
+    - {fileID: 11400000, guid: 520d3ac6209f3b44bb25ace522c3660c, type: 2}
+    element: 2
+    scope: 8
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 150
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 37
+    name: "\u5C0F\u6247\u5F62\u5F3A\u706B\u7130"
+    bullets:
+    - {fileID: 11400000, guid: 520d3ac6209f3b44bb25ace522c3660c, type: 2}
+    element: 2
+    scope: 101
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 150
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 38
+    name: "\u5168\u4F53\u5F3A\u706B\u7130"
+    bullets:
+    - {fileID: 11400000, guid: 520d3ac6209f3b44bb25ace522c3660c, type: 2}
+    element: 2
+    scope: 9
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 150
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 39
+    name: "\u5355\u4F533\u8FDE\u706B\u7130"
+    bullets:
+    - {fileID: 11400000, guid: 520d3ac6209f3b44bb25ace522c3660c, type: 2}
+    element: 2
+    scope: 8
+    attackCount: 3
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 40
+    name: "\u5355\u4F53\u5F3A\u51B0\u51BB"
+    bullets:
+    - {fileID: 11400000, guid: 668bce29783dda44181bdccd796ac412, type: 2}
+    element: 3
+    scope: 8
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 150
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 41
+    name: "\u5C0F\u6247\u5F62\u5F3A\u51B0\u51BB"
+    bullets:
+    - {fileID: 11400000, guid: 668bce29783dda44181bdccd796ac412, type: 2}
+    element: 3
+    scope: 101
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 150
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 42
+    name: "\u5168\u4F53\u5F3A\u51B0\u51BB"
+    bullets:
+    - {fileID: 11400000, guid: 668bce29783dda44181bdccd796ac412, type: 2}
+    element: 3
+    scope: 9
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 150
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 43
+    name: "\u5927\u5706\u5F62\u66B4\u98CE+\u51CF\u901F50"
+    bullets:
+    - {fileID: 11400000, guid: fc840a25d8e24e441ab4cdf0acd0edbf, type: 2}
+    element: 7
+    scope: 302
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    - effectID: 11
+      effectValue: 50
+      duration: 3
+      targetType: 0
+    log: 
+  - id: 44
+    name: "\u5355\u4F533\u8FDE\u51B0\u51BB"
+    bullets:
+    - {fileID: 11400000, guid: 668bce29783dda44181bdccd796ac412, type: 2}
+    element: 3
+    scope: 8
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 1
+      effectValue: 100
+      duration: 0
+      targetType: 0
+    log: 
+  - id: 45
+    name: "\u5355\u4F53\u56DE\u884010%5\u56DE\u5408"
+    bullets:
+    - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
+    element: 0
+    scope: 2
+    attackCount: 1
+    coolingTime: 0
+    effects:
+    - effectID: 8
+      effectValue: 10
+      duration: 5
+      targetType: 0
+    log: 

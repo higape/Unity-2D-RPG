@@ -55,20 +55,20 @@ MonoBehaviour:
     skills:
     - id: 1
       count:
-        basic: 1
-        power1: 0
+        basic: 2
+        power1: 0.5
         power2: 0
         power3: 0
     - id: 2
       count:
-        basic: 1
-        power1: 0
+        basic: 2
+        power1: 0.25
         power2: 0
         power3: 0
     - id: 3
       count:
         basic: 1
-        power1: 0
+        power1: 0.25
         power2: 0
         power3: 0
     - id: 4
@@ -80,16 +80,34 @@ MonoBehaviour:
     - id: 5
       count:
         basic: 1
-        power1: 0.2
+        power1: 0.5
         power2: 0
         power3: 0
     - id: 6
       count:
-        basic: 3
-        power1: 0.2
+        basic: 1
+        power1: 0.9
         power2: 0
         power3: 0
-    weaponIDs: 080000000900000005000000
+    - id: 7
+      count:
+        basic: 1
+        power1: 0.9
+        power2: 0
+        power3: 0
+    - id: 8
+      count:
+        basic: 1
+        power1: 0.9
+        power2: 0
+        power3: 0
+    - id: 9
+      count:
+        basic: 1
+        power1: 0
+        power2: 0
+        power3: 0
+    weaponIDs: 010000000000000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:
       idle: {fileID: -1664743668, guid: 56c9ff8d2dd69814f8e66ae3a04d5daa, type: 3}
@@ -137,8 +155,68 @@ MonoBehaviour:
       power2: 0
       power3: 0
     lv: 1
-    skills: []
-    weaponIDs: 060000000700000008000000
+    skills:
+    - id: 10
+      count:
+        basic: 3
+        power1: 0.9
+        power2: 0
+        power3: 0
+    - id: 11
+      count:
+        basic: 1
+        power1: 0.5
+        power2: 0
+        power3: 0
+    - id: 12
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 13
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 14
+      count:
+        basic: 1
+        power1: 0.9
+        power2: 0
+        power3: 0
+    - id: 15
+      count:
+        basic: 1
+        power1: 0.5
+        power2: 0
+        power3: 0
+    - id: 16
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 17
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 18
+      count:
+        basic: 1
+        power1: 0.4
+        power2: 0
+        power3: 0
+    - id: 19
+      count:
+        basic: 1
+        power1: 0.2
+        power2: 0
+        power3: 0
+    weaponIDs: 0b0000000000000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:
       idle: {fileID: 1426884576, guid: 4112f8109cd68a7439b70add0265ef1b, type: 3}
@@ -156,13 +234,13 @@ MonoBehaviour:
       power2: 0.8
       power3: 0
     hp:
-      basic: 95
-      power1: 5
+      basic: 80
+      power1: 4
       power2: 0.1
       power3: 0
     atk:
-      basic: 10
-      power1: 2
+      basic: 5
+      power1: 1.2
       power2: 0
       power3: 0
     def:
@@ -186,8 +264,50 @@ MonoBehaviour:
       power2: 0
       power3: 0
     lv: 1
-    skills: []
-    weaponIDs: 060000000700000009000000
+    skills:
+    - id: 20
+      count:
+        basic: 5
+        power1: 0.9
+        power2: 0
+        power3: 0
+    - id: 21
+      count:
+        basic: 1
+        power1: 0.3
+        power2: 0
+        power3: 0
+    - id: 22
+      count:
+        basic: 3
+        power1: 0.3
+        power2: 0
+        power3: 0
+    - id: 23
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 24
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 28
+      count:
+        basic: 1
+        power1: 0.25
+        power2: 0
+        power3: 0
+    - id: 29
+      count:
+        basic: 1
+        power1: 0.2
+        power2: 0
+        power3: 0
+    weaponIDs: 000000000000000000000000
     armorIDs: 0000000000000000000000000000000000000000
     battleSkin:
       idle: {fileID: -1925611698, guid: f93f3ae9486f857419cf3feee5fa2218, type: 3}

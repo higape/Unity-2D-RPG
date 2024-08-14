@@ -19,11 +19,25 @@ MonoBehaviour:
     usageID: 3
     consumable: 1
     occasion: 2
-    price: 12
+    price: 10
   - id: 2
     name: "\u51B0\u70B8\u5F39"
     skinID: 1
     usageID: 4
     consumable: 1
     occasion: 2
-    price: 12
+    price: 10
+  - id: 3
+    name: "\u5F3A\u529B\u706B\u70B8\u5F39"
+    skinID: 1
+    usageID: 11
+    consumable: 1
+    occasion: 2
+    price: 50
+  - id: 4
+    name: "\u5F3A\u529B\u51B0\u70B8\u5F39"
+    skinID: 1
+    usageID: 12
+    consumable: 1
+    occasion: 2
+    price: 50

@@ -14,16 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - id: 1
-    name: "\u8F85\u52A9\u9053\u51771"
+    name: "\u9632\u62A4\u7F69\u751F\u6210\u5668"
     skinID: 1
-    usageID: 5
+    usageID: 34
     consumable: 0
     occasion: 2
-    price: 30
+    price: 1000
   - id: 2
-    name: "\u8F85\u52A9\u9053\u51772"
+    name: "\u706B\u7130\u6D88\u9664\u5668"
     skinID: 1
-    usageID: 6
-    consumable: 0
+    usageID: 32
+    consumable: 1
+    occasion: 2
+    price: 60
+  - id: 3
+    name: "\u5BD2\u51B7\u6D88\u9664\u5668"
+    skinID: 1
+    usageID: 33
+    consumable: 1
     occasion: 2
     price: 60

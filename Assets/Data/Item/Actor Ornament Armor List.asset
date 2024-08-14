@@ -14,25 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - id: 1
-    name: "\u5168\u80FD\u62A4\u7B26"
-    hp: 10
+    name: "\u9B54\u5BFC\u589E\u5E45\u5668"
+    hp: 0
     atk: 10
-    def: 10
-    agi: 10
-    hit: 10
-    eva: 10
+    def: 0
+    agi: 0
+    hit: 0
+    eva: 0
     elementGroup:
-      Normal: 10
-      Corrosion: 10
-      Fire: 10
-      Ice: 10
-      Electricity: 10
-      Wave: 10
-      Ray: 10
-      Gas: 10
-    price: 200
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 600
     equipable: 
-    traits: []
+    traits:
+    - traitID: 2002
+      traitValue: 10
   - id: 2
     name: "\u62DB\u8D22\u732B"
     hp: 0
@@ -55,3 +57,69 @@ MonoBehaviour:
     traits:
     - traitID: 1
       traitValue: 10
+  - id: 3
+    name: "\u6025\u6551\u6307\u5357"
+    hp: 0
+    atk: 0
+    def: 0
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 1000
+    equipable: 
+    traits:
+    - traitID: 3001
+      traitValue: 27
+  - id: 4
+    name: "\u533B\u7597\u624B\u518C"
+    hp: 0
+    atk: 0
+    def: 0
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 300
+    equipable: 
+    traits:
+    - traitID: 3001
+      traitValue: 26
+  - id: 5
+    name: "\u62B5\u6297\u529B\u589E\u5E45\u5668"
+    hp: 0
+    atk: 0
+    def: 0
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 300
+    equipable: 
+    traits:
+    - traitID: 1008
+      traitValue: 50

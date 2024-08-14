@@ -16,20 +16,62 @@ MonoBehaviour:
   - id: 1
     name: "\u76AE\u624B\u5957"
     hp: 0
-    atk: 1
+    atk: 0
     def: 1
     agi: 0
     hit: 0
     eva: 0
     elementGroup:
-      Normal: 1
-      Corrosion: 1
-      Fire: 1
-      Ice: 1
-      Electricity: 1
-      Wave: 1
-      Ray: 1
-      Gas: 1
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
     price: 5
     equipable: 
     traits: []
+  - id: 2
+    name: "\u529B\u91CF\u624B\u73AF"
+    hp: 0
+    atk: 5
+    def: 2
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 100
+    equipable: 
+    traits: []
+  - id: 3
+    name: "\u9886\u609F\u624B\u5957"
+    hp: 0
+    atk: 0
+    def: 1
+    agi: 0
+    hit: 0
+    eva: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: 0
+      Ice: 0
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    price: 200
+    equipable: 
+    traits:
+    - traitID: 2007
+      traitValue: 20

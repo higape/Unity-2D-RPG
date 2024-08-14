@@ -214,8 +214,8 @@ namespace Dynamic
                 }
             }
 
+            DisplayObject?.RefreshDurationState(DurationStates);
             anyChanged.Invoke(this);
-            DisplayObject.RefreshDurationState(DurationStates);
         }
 
         public void RemoveState(Static.BattleEffect.StateType type0, int type1)
@@ -259,7 +259,7 @@ namespace Dynamic
                     break;
             }
 
-            DisplayObject.RefreshDurationState(DurationStates);
+            DisplayObject?.RefreshDurationState(DurationStates);
             anyChanged.Invoke(this);
         }
 
