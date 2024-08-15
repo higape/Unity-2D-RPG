@@ -673,7 +673,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 668bce29783dda44181bdccd796ac412, type: 2}
     element: 3
     scope: 8
-    attackCount: 1
+    attackCount: 3
     coolingTime: 0
     effects:
     - effectID: 1

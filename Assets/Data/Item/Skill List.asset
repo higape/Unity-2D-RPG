@@ -133,7 +133,7 @@ MonoBehaviour:
     skinID: 1
     occasion: 2
     skillType: 1
-    usageID: 34
+    usageID: 35
     selectionLimit: 0
     itemQuantity: 0
     itemUsedCount: 0

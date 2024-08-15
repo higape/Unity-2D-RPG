@@ -36,7 +36,14 @@ namespace Static
         /// <param name="emitCount">此参数允许连续发射不同外观的子弹</param>
         public Bullet GetBullet(int emitCount)
         {
-            while (emitCount > bullets.Length)
+#if UNITY_EDITOR
+            if (bullets.Length == 0)
+            {
+                Debug.LogError($"{nameof(WeaponUsage)}未设置{nameof(Bullet)}, ItemID:{id}");
+                return null;
+            }
+#endif
+            while (emitCount >= bullets.Length)
                 emitCount -= bullets.Length;
             if (emitCount >= 0)
                 return bullets[emitCount];
