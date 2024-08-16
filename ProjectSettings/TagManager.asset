@@ -38,7 +38,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Floor
+  - name: Tile Floor
     uniqueID: 4012016797
     locked: 0
   - name: Default
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1309566445
+    locked: 0
+  - name: Tile Ceiling
+    uniqueID: 3291107001
     locked: 0
   - name: Battle Background
     uniqueID: 3977839945

@@ -78,12 +78,12 @@ namespace Root
                 CommonItemType.ActorRecoverItem => ActorRecoverItem.GetItem(itemID).Name,
                 CommonItemType.ActorAttackItem => ActorAttackItem.GetItem(itemID).Name,
                 CommonItemType.ActorAuxiliaryItem => ActorAuxiliaryItem.GetItem(itemID).Name,
-                CommonItemType.ActorWeapon => ActorNormalItem.GetItem(itemID).Name,
-                CommonItemType.ActorHeadArmor => ActorNormalItem.GetItem(itemID).Name,
-                CommonItemType.ActorBodyArmor => ActorNormalItem.GetItem(itemID).Name,
-                CommonItemType.ActorHandArmor => ActorNormalItem.GetItem(itemID).Name,
-                CommonItemType.ActorFootArmor => ActorNormalItem.GetItem(itemID).Name,
-                CommonItemType.ActorOrnamentArmor => ActorNormalItem.GetItem(itemID).Name,
+                CommonItemType.ActorWeapon => ActorWeapon.GetItem(itemID).Name,
+                CommonItemType.ActorHeadArmor => ActorHeadArmor.GetItem(itemID).Name,
+                CommonItemType.ActorBodyArmor => ActorBodyArmor.GetItem(itemID).Name,
+                CommonItemType.ActorHandArmor => ActorHandArmor.GetItem(itemID).Name,
+                CommonItemType.ActorFootArmor => ActorFootArmor.GetItem(itemID).Name,
+                CommonItemType.ActorOrnamentArmor => ActorOrnamentArmor.GetItem(itemID).Name,
                 _ => string.Empty,
             };
 
