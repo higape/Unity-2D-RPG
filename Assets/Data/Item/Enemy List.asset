@@ -27,8 +27,8 @@ MonoBehaviour:
       power2: 0
       power3: 0
     atk:
-      basic: 20
-      power1: 5
+      basic: 10
+      power1: 2.5
       power2: 0
       power3: 0
     def:
@@ -60,7 +60,7 @@ MonoBehaviour:
       Wave: 0
       Ray: 0
       Gas: 0
-    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    skin: {fileID: 21300000, guid: a43275ad33461144b866beedc157030d, type: 3}
     gold:
       basic: 90
       power1: 10
@@ -89,8 +89,8 @@ MonoBehaviour:
       power2: 0
       power3: 0
     atk:
-      basic: 20
-      power1: 10
+      basic: 10
+      power1: 2.5
       power2: 0
       power3: 0
     def:
@@ -116,13 +116,13 @@ MonoBehaviour:
     elementGroup:
       Normal: 0
       Corrosion: 0
-      Fire: 0
-      Ice: 0
+      Fire: 50
+      Ice: -50
       Electricity: 0
       Wave: 0
       Ray: 0
       Gas: 0
-    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    skin: {fileID: 21300000, guid: 0d550966d73638c41a0453d388e943d1, type: 3}
     gold:
       basic: 90
       power1: 10
@@ -181,7 +181,7 @@ MonoBehaviour:
       Wave: 0
       Ray: 0
       Gas: 0
-    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    skin: {fileID: 21300000, guid: a43275ad33461144b866beedc157030d, type: 3}
     gold:
       basic: 1000
       power1: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
       Wave: 0
       Ray: 0
       Gas: 0
-    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    skin: {fileID: 21300000, guid: a43275ad33461144b866beedc157030d, type: 3}
     gold:
       basic: 1
       power1: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
       Wave: 0
       Ray: 0
       Gas: 0
-    skin: {fileID: -1040490514, guid: 4a17bb46b9aaf204fa025709ce7a6b12, type: 3}
+    skin: {fileID: 21300000, guid: a43275ad33461144b866beedc157030d, type: 3}
     gold:
       basic: 1
       power1: 0
@@ -308,6 +308,183 @@ MonoBehaviour:
     actionCount: 1
     actions:
     - usageID: 9
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
+  - id: 6
+    name: "\u51B0\u51BB\u53F2\u83B1\u59C6"
+    type: 0
+    exp:
+      basic: 8
+      power1: 2
+      power2: 0
+      power3: 0
+    hp:
+      basic: 20
+      power1: 12
+      power2: 0
+      power3: 0
+    atk:
+      basic: 10
+      power1: 2.5
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.5
+      power2: 0
+      power3: 0
+    agi:
+      basic: 9
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: -50
+      Ice: 50
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: 21300000, guid: b07c438429b6cae45a4b2b2c3fbe0d54, type: 3}
+    gold:
+      basic: 90
+      power1: 10
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 4
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
+  - id: 7
+    name: "\u96F7\u7535\u53F2\u83B1\u59C6"
+    type: 0
+    exp:
+      basic: 8
+      power1: 2
+      power2: 0
+      power3: 0
+    hp:
+      basic: 20
+      power1: 12
+      power2: 0
+      power3: 0
+    atk:
+      basic: 10
+      power1: 2.5
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.5
+      power2: 0
+      power3: 0
+    agi:
+      basic: 9
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: -50
+      Ice: 50
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: 21300000, guid: 6a01db5094bef9a44912374705a0a6bb, type: 3}
+    gold:
+      basic: 90
+      power1: 10
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 13
+      durability: 0
+      firePosition: {x: 0, y: 0, z: 0}
+    traits: []
+  - id: 8
+    name: "\u6BD2\u53F2\u83B1\u59C6"
+    type: 0
+    exp:
+      basic: 8
+      power1: 2
+      power2: 0
+      power3: 0
+    hp:
+      basic: 20
+      power1: 12
+      power2: 0
+      power3: 0
+    atk:
+      basic: 10
+      power1: 2.5
+      power2: 0
+      power3: 0
+    def:
+      basic: 1
+      power1: 0.5
+      power2: 0
+      power3: 0
+    agi:
+      basic: 9
+      power1: 0
+      power2: 0
+      power3: 0
+    hit:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    eva:
+      basic: 0
+      power1: 0
+      power2: 0
+      power3: 0
+    elementGroup:
+      Normal: 0
+      Corrosion: 0
+      Fire: -50
+      Ice: 50
+      Electricity: 0
+      Wave: 0
+      Ray: 0
+      Gas: 0
+    skin: {fileID: 21300000, guid: 0a32ca2e3220cc249aae1e8566c8c8d1, type: 3}
+    gold:
+      basic: 90
+      power1: 10
+      power2: 0
+      power3: 0
+    actionCount: 1
+    actions:
+    - usageID: 10
       durability: 0
       firePosition: {x: 0, y: 0, z: 0}
     traits: []
