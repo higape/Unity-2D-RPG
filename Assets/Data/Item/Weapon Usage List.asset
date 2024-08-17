@@ -376,7 +376,7 @@ MonoBehaviour:
     bullets:
     - {fileID: 11400000, guid: 91d1c6d6a85b6ab46b81775b5e1e25ce, type: 2}
     element: 0
-    scope: 2
+    scope: 6
     attackCount: 1
     coolingTime: 0
     effects:
@@ -663,7 +663,7 @@ MonoBehaviour:
       duration: 0
       targetType: 0
     - effectID: 11
-      effectValue: 50
+      effectValue: -50
       duration: 3
       targetType: 0
     log: 
