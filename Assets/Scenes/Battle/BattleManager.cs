@@ -747,7 +747,6 @@ namespace Battle
                 if (!e.IsAlive)
                 {
                     DeadEnemies.Add(e);
-                    Destroy(e.DisplayObject);
                     e.QuitBattle();
                     Enemies.RemoveAt(i);
                 }

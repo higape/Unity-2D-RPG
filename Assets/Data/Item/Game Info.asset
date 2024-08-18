@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Game Info
   m_EditorClassIdentifier: 
   gameName: RPG Project
-  startMapName: Town1
-  startPosition: {x: 2, y: -5}
+  startMapName: TestMap
+  startPosition: {x: 0, y: 3}

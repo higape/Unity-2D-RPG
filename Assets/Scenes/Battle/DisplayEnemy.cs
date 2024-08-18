@@ -41,11 +41,13 @@ namespace Battle
         private IEnumerator Fade()
         {
             Color c = spriteRenderer.color;
-            for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
+            float alpha = 1f;
+            while (alpha > 0)
             {
+                alpha -= Time.deltaTime * 2;
                 c.a = alpha;
                 spriteRenderer.color = c;
-                yield return new WaitForSeconds(.1f);
+                yield return null;
             }
             Destroy(gameObject);
         }
