@@ -23,7 +23,7 @@ namespace Map
 
             // InputName,
 
-            [InspectorName("战斗[文件名]")]
+            [InspectorName("战斗[文件名],接收结果的变量ID或名称]")]
             Battle = 300,
 
             [InspectorName("商店[ID]")]

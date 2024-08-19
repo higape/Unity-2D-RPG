@@ -7400,10 +7400,17 @@ MonoBehaviour:
   commandSet:
     playerWaiting: 0
     gameObjects: []
-    texts: []
+    texts:
+    - "\u6218\u6597\u7ED3\u679C\u4E3A\u80DC\u5229"
     commands:
     - code: 300
-      parameter: TestBattleMoreReward
+      parameter: TestBattleMoreReward,a
+    - code: 2000
+      parameter: 1,a,=,0,1
+    - code: 100
+      parameter: 0
+    - code: 2003
+      parameter: 
 --- !u!114 &2014579467
 MonoBehaviour:
   m_ObjectHideFlags: 0

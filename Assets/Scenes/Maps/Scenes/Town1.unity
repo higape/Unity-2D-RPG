@@ -16224,7 +16224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowRemote: 0
-  boolID: 45838
+  boolID: -77896
   itemType: 100
   itemID: 4
   spriteRenderer: {fileID: 904108800}

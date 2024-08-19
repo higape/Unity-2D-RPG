@@ -321,8 +321,17 @@ namespace Map
         {
             Pause = true;
             var data = ResourceManager.LoadFixedEncounter(CurrentTexts[0]);
-            Battle.BattleManager.StartBattle(data.MakeBattleData(), () => Pause = false);
+            Battle.BattleManager.StartBattle(data.MakeBattleData(), BattleCallback);
             CurrentIndex++;
+        }
+
+        private void BattleCallback(Battle.BattleManager.EndMode endMode)
+        {
+            if (CurrentTexts.Length > 1)
+            {
+                SetIntVariable(CurrentTexts[1], (int)endMode);
+            }
+            Pause = false;
         }
 
         private void Shop()
@@ -477,12 +486,16 @@ namespace Map
 
         private void EnableObject()
         {
-            throw new NotImplementedException();
+            int objIndex = int.Parse(CurrentTexts[0]);
+            commandSet.gameObjects[objIndex].SetActive(true);
+            CurrentIndex++;
         }
 
         private void DisableObject()
         {
-            throw new NotImplementedException();
+            int objIndex = int.Parse(CurrentTexts[0]);
+            commandSet.gameObjects[objIndex].SetActive(false);
+            CurrentIndex++;
         }
 
         private bool MovementRoute()

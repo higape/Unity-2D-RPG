@@ -21,6 +21,13 @@ namespace Battle
         public const float SmallCircleRadius = 100f; // pixel unit
         public const float BigCircleRadius = 200f; // pixel unit
 
+        public enum EndMode
+        {
+            Break = 0,
+            Victory = 1,
+            Lose = 2,
+        }
+
         public class ItemInfo
         {
             public ItemInfo(Weapon weapon, Static.WeaponUsage usage)
@@ -122,9 +129,12 @@ namespace Battle
 
         public static GameObject BattlerStatePrefab => Instance?.battlerStatePrefab;
 
-        public static UnityEvent BattleEnded { get; set; } = new();
+        public static UnityEvent<EndMode> BattleEnded { get; set; } = new();
 
-        public static void StartBattle(List<(int, int, Vector2)> enemyData, UnityAction callback)
+        public static void StartBattle(
+            List<(int, int, Vector2)> enemyData,
+            UnityAction<EndMode> callback
+        )
         {
             if (!IsBattling)
             {
@@ -153,7 +163,7 @@ namespace Battle
             }
         }
 
-        private static void EndBattle()
+        private static void EndBattle(EndMode endMode)
         {
             IsBattling = false;
 
@@ -168,7 +178,7 @@ namespace Battle
                 SceneManager.UnloadSceneAsync("Battle");
                 ScreenManager.FadeIn(() =>
                 {
-                    BattleEnded.Invoke();
+                    BattleEnded.Invoke(endMode);
                     BattleEnded.RemoveAllListeners();
                 });
             });
@@ -176,7 +186,7 @@ namespace Battle
 
         public static void EscapeBattle()
         {
-            EndBattle();
+            EndBattle(EndMode.Break);
         }
 
         //获取一个包含可能的目标的数组
@@ -723,7 +733,10 @@ namespace Battle
             else if (AllActorDead())
             {
                 //战斗失败
-                UI.UIManager.StartMessage(ResourceManager.Term.battleDefeat, EndBattle);
+                UI.UIManager.StartMessage(
+                    ResourceManager.Term.battleDefeat,
+                    () => EndBattle(EndMode.Lose)
+                );
                 return true;
             }
 
@@ -790,7 +803,7 @@ namespace Battle
                     messages.Add(string.Format(ResourceManager.Term.actorLevelUp, a.Name));
                 }
             }
-            UI.UIManager.StartMessage(messages, () => EndBattle());
+            UI.UIManager.StartMessage(messages, () => EndBattle(EndMode.Victory));
         }
 
         /// <summary>
