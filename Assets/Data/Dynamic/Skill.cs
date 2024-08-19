@@ -56,7 +56,19 @@ namespace Dynamic
 
         public int SkillEffectRatePercentage => DataObject.effectRatePercentage;
 
-        public override float SkillEffectRate => DataObject.effectRatePercentage / 100f;
+        public override float SkillEffectRate
+        {
+            get
+            {
+                if (
+                    SkillType == Static.Skill.SkillType.SelectActorWeapon
+                    || SkillType == Static.Skill.SkillType.SelectActorItem
+                )
+                    return DataObject.effectRatePercentage / 100f;
+                else
+                    return 1;
+            }
+        }
 
         public int CoolingTime
         {
