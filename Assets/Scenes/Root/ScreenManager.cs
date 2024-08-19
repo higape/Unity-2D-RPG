@@ -63,6 +63,11 @@ namespace Root
         private void Awake()
         {
             Instance = this;
+            var rect = Screen.mainWindowDisplayInfo.workArea;
+            if (rect.width >= 1280 && rect.height >= 720)
+            {
+                Screen.SetResolution(1280, 720, false);
+            }
         }
 
         private void Update()
