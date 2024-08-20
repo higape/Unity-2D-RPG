@@ -27,7 +27,7 @@ MonoBehaviour:
   trait: "\u7279\u6027"
   currencyUnit: G
   price: "\u4EF7\u683C"
-  sellingPrice: "\u552E\u4EF7"
+  sellingPrice: "\u56DE\u6536\u4EF7"
   unitPrice: "\u5355\u4EF7"
   totalPrice: "\u603B\u4EF7"
   holdingQuantity: "\u6301\u6709\u6570\u91CF"

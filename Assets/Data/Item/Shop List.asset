@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - id: 1
-    name: "\u5E97\u94FA1"
-    description: "\u7528\u6765\u6D4B\u8BD5\u7684\u5546\u5E97"
+    name: "\u6742\u8D27\u5E97"
+    description: 
     items:
     - type: 0
       id: 1
@@ -23,12 +23,28 @@ MonoBehaviour:
       id: 1
     - type: 1
       id: 2
+    - type: 1
+      id: 3
+    - type: 1
+      id: 4
+    - type: 1
+      id: 5
+    - type: 1
+      id: 6
     - type: 2
       id: 1
     - type: 2
       id: 2
+    - type: 2
+      id: 3
+    - type: 2
+      id: 4
     - type: 3
       id: 1
+    - type: 3
+      id: 2
+    - type: 3
+      id: 3
     - type: 100
       id: 1
     - type: 100
@@ -45,3 +61,83 @@ MonoBehaviour:
       id: 1
     - type: 205
       id: 1
+  - id: 2
+    name: "\u6B66\u5668\u5E97"
+    description: 
+    items:
+    - type: 100
+      id: 1
+    - type: 100
+      id: 2
+    - type: 100
+      id: 3
+    - type: 100
+      id: 4
+    - type: 100
+      id: 5
+    - type: 100
+      id: 6
+    - type: 100
+      id: 7
+    - type: 100
+      id: 8
+    - type: 100
+      id: 9
+    - type: 100
+      id: 10
+    - type: 100
+      id: 11
+    - type: 100
+      id: 12
+    - type: 100
+      id: 13
+    - type: 100
+      id: 14
+    - type: 100
+      id: 15
+    - type: 100
+      id: 16
+    - type: 100
+      id: 17
+  - id: 3
+    name: "\u9632\u5177\u5E97"
+    description: 
+    items:
+    - type: 201
+      id: 1
+    - type: 201
+      id: 2
+    - type: 201
+      id: 3
+    - type: 202
+      id: 1
+    - type: 202
+      id: 2
+    - type: 202
+      id: 3
+    - type: 202
+      id: 4
+    - type: 203
+      id: 1
+    - type: 203
+      id: 2
+    - type: 203
+      id: 3
+    - type: 204
+      id: 1
+    - type: 204
+      id: 2
+    - type: 204
+      id: 3
+    - type: 204
+      id: 4
+    - type: 205
+      id: 1
+    - type: 205
+      id: 2
+    - type: 205
+      id: 3
+    - type: 205
+      id: 4
+    - type: 205
+      id: 5
