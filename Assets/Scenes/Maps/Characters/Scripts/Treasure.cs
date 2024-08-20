@@ -1,4 +1,5 @@
 using Dynamic;
+using Root;
 using UnityEngine;
 
 namespace Map
@@ -41,16 +42,25 @@ namespace Map
             //检查条件
             if (!Party.BoolVariables.GetValue(boolID))
             {
+                string itemName;
                 //打开宝箱
-                Party.GetItemList(itemType).GainItem(itemID, 1);
+                if (itemType == Static.CommonItemType.Gold)
+                {
+                    Party.GainGold(itemID);
+                    itemName = itemID.ToString() + ResourceManager.Term.currencyUnit;
+                }
+                else
+                {
+                    Party.GetItemList(itemType).GainItem(itemID, 1);
+                    itemName = ResourceManager.GetItemName(itemType, itemID);
+                }
                 Party.BoolVariables.SetValue(boolID, true);
                 spriteRenderer.sprite = spriteOpen;
 
                 //显示信息
-                string itemName = Root.ResourceManager.GetItemName(itemType, itemID);
                 PlayerController.WaitCount++;
                 UI.UIManager.StartMessage(
-                    string.Format(Root.ResourceManager.Term.gainItemFromTreasure, itemName),
+                    string.Format(ResourceManager.Term.gainItemFromTreasure, itemName),
                     MessageCallback
                 );
             }

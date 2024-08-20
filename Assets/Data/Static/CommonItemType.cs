@@ -34,5 +34,8 @@ namespace Static
 
         [InspectorName("饰品")]
         ActorOrnamentArmor = 205,
+
+        [InspectorName("金钱")]
+        Gold = 1000,
     }
 }
