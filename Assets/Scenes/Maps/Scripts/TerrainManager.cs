@@ -94,17 +94,6 @@ namespace Map
             };
         }
 
-        public static float GetInertiaSpeed(Vector3 position)
-        {
-            string terrainName = GetTerrainName(position);
-            return terrainName switch
-            {
-                // 滑行
-                "Skate" => 2f,
-                _ => 0,
-            };
-        }
-
         public static bool IsCounter(Vector3 position) => GetTerrainName(position) == "Counter";
 
         [SerializeField]

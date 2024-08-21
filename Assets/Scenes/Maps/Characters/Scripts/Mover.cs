@@ -450,8 +450,6 @@ namespace Map
             {
                 //应用地形效果
                 IsMoveContinue = TerrainManager.GetMoveContinue(Position);
-                InertiaSpeed = TerrainManager.GetInertiaSpeed(Position);
-
                 //触发踩踏
                 TreadleTriggerBase.Tread(Position, gameObject);
             }
@@ -569,7 +567,11 @@ namespace Map
         /// </summary>
         private bool InertiaMove()
         {
-            if (InertiaSpeed != 0 && !IsFollow)
+            if (IsFollow)
+                return false;
+
+            //由传送带添加的惯性
+            if (InertiaSpeed != 0)
             {
                 //控制角色动画
                 IsMoveContinue = true;
@@ -613,8 +615,32 @@ namespace Map
 
                 return true;
             }
+            //处理滑行
+            else if (IsMoveContinue == true)
+            {
+                //刷新角色方向
+                Direction = InertiaDirection;
+                //检查地形通行和碰撞
+                if (
+                    TerrainManager.CanPass(ForwardPosition, Collider.Type)
+                    && !Collider.Contact(ForwardPosition, true)
+                )
+                {
+                    ExecuteMove();
+                }
+                else
+                {
+                    //取消惯性和持续移动状态
+                    IsMoveContinue = false;
+                    InertiaSpeed = 0;
+                }
 
-            return false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
