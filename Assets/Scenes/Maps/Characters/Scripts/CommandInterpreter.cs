@@ -231,10 +231,10 @@ namespace Map
                         return;
                     case CT.FadeoutScreen:
                         FadeOutScreen();
-                        break;
+                        return;
                     case CT.FadeinScreen:
                         FadeInScreen();
-                        break;
+                        return;
                     case CT.PlayBGM:
                         PlayBGM();
                         break;
@@ -743,7 +743,11 @@ namespace Map
 
         private void RecoverAll()
         {
-            throw new NotImplementedException();
+            foreach (var a in Party.PartyActorList)
+            {
+                a.Recover();
+            }
+            CurrentIndex++;
         }
 
         private void Wait()
