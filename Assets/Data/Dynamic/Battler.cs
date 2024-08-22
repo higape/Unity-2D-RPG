@@ -108,7 +108,7 @@ namespace Dynamic
                 effective = Hp - old;
             }
 
-            if (Battle.BattleManager.IsBattling)
+            if (Battle.BattleManager.IsBattling && DisplayObject != null)
                 Battle
                     .BattleManager
                     .CreateDigit(
@@ -143,7 +143,7 @@ namespace Dynamic
                 damage = old - Hp;
             }
 
-            if (Battle.BattleManager.IsBattling)
+            if (DisplayObject != null)
                 Battle
                     .BattleManager
                     .CreateDigit(damage, Battle.PopDigit.DigitStyle.Damage, DisplayObject.Position);
@@ -165,7 +165,7 @@ namespace Dynamic
         {
             Hp = 0;
 
-            if (Battle.BattleManager.IsBattling)
+            if (DisplayObject != null)
             {
                 DisplayObject.GoToDie();
             }
