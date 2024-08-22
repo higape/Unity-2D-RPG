@@ -450,6 +450,7 @@ namespace Map
             {
                 //应用地形效果
                 IsMoveContinue = TerrainManager.GetMoveContinue(Position);
+                InertiaSpeed = 0;
                 //触发踩踏
                 TreadleTriggerBase.Tread(Position, gameObject);
             }
@@ -478,6 +479,12 @@ namespace Map
             if (CanMove && !IsFollow)
             {
                 Direction = direction;
+
+                //检查移动范围
+                if (enableMoveScope && !moveScope.Contains(ForwardPosition))
+                {
+                    return false;
+                }
 
                 //检查地形通行和碰撞
                 if (
@@ -511,6 +518,12 @@ namespace Map
             {
                 Direction = LastCommand.direction;
                 LastCommand = null;
+
+                //检查移动范围
+                if (enableMoveScope && !moveScope.Contains(ForwardPosition))
+                {
+                    return false;
+                }
 
                 //检查地形通行和碰撞
                 if (

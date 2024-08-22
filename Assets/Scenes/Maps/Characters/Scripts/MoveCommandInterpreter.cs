@@ -183,7 +183,7 @@ namespace Map
         private void MoveAtRandom()
         {
             var texts = CurrentTexts;
-            if (OwnerMover.MoveInNoTime(Mover.RandomDirection()))
+            if (OwnerMover.TryMove(Mover.RandomDirection()))
             {
                 if (!IsStepCountCalculate)
                 {
