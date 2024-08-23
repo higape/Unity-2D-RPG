@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Maps/Scenes/Town1_P2.unity
     guid: db8eea19c828d4f46811db4131e40206
+  - enabled: 1
+    path: Assets/Scenes/Maps/Scenes/Town1_P3.unity
+    guid: bbf664a3646f339488aacf34613ca56a
   m_configObjects: {}
