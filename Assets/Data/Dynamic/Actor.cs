@@ -32,8 +32,48 @@ namespace Dynamic
             Level = saveData.lv;
             Exp = saveData.exp;
 
-            CreateEquipment();
+#if UNITY_EDITOR
+            if (saveData.weaponIDs.Length != WeaponCount)
+                Debug.LogError($"角色[{Name}]的武器配置错误。");
+
+            if (saveData.armorIDs.Length != ArmorCount)
+                Debug.LogError($"角色[{Name}]的防具配置错误。");
+#endif
+
+            Weapons = new(saveData.weaponIDs.Length);
+
+            foreach (int id in saveData.weaponIDs)
+            {
+                if (id == 0)
+                    Weapons.Add(null);
+                else
+                    Weapons.Add(new(id));
+            }
+
+            Armors = new(saveData.armorIDs.Length);
+
+            for (int i = 0; i < saveData.armorIDs.Length; i++)
+            {
+                int id = saveData.armorIDs[i];
+                if (id == 0)
+                    Armors.Add(null);
+                else
+                    Armors.Add(new(i, id));
+            }
+
+#if UNITY_EDITOR
+            if (saveData.skillConsumeCounts.Length != DataObject.skills.Length)
+                Debug.LogError($"角色[{Name}]的技能配置错误。");
+#endif
+
             CreateOriginalSkill();
+
+            for (int i = 0; i < OriginalSkills.Count; i++)
+            {
+                Skill skill = OriginalSkills[i];
+                skill.ConsumeCount = saveData.skillConsumeCounts[i];
+            }
+
             Hp = saveData.hp;
         }
 
@@ -403,10 +443,10 @@ namespace Dynamic
         {
 #if UNITY_EDITOR
             if (DataObject.weaponIDs.Length != WeaponCount)
-                Debug.LogError($"角色{Name}的武器配置错误。");
+                Debug.LogError($"角色[{Name}]的武器配置错误。");
 
             if (DataObject.armorIDs.Length != ArmorCount)
-                Debug.LogError($"角色{Name}的防具配置错误。");
+                Debug.LogError($"角色[{Name}]的防具配置错误。");
 #endif
 
             Weapons = new(DataObject.weaponIDs.Length);
