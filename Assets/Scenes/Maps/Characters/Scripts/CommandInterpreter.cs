@@ -54,11 +54,11 @@ namespace Map
         {
             if (IsWaitingCallback)
             {
-                Debug.LogWarning($"{gameObject.name}在等待回调时结束命令");
+                Debug.LogWarning($"{gameObject.name} 在等待回调时结束命令");
             }
             else
             {
-                Debug.Log($"{gameObject.name}结束命令");
+                Debug.Log($"{gameObject.name} 结束命令");
             }
             CurrentIndex = 0;
             enabled = false;
