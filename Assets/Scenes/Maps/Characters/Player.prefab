@@ -79,7 +79,7 @@ MonoBehaviour:
   spriteSkin: {fileID: 0}
   step: 0
   direction: 6
-  speed: 4
+  speed: 6
   enableMoveScope: 0
   moveScope:
     serializedVersion: 2
