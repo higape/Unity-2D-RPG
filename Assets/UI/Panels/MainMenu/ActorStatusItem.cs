@@ -20,6 +20,12 @@ namespace UI
         private TextMeshProUGUI nameContent;
 
         [SerializeField]
+        private TextMeshProUGUI lvLabel;
+
+        [SerializeField]
+        private TextMeshProUGUI lvContent;
+
+        [SerializeField]
         private TextMeshProUGUI hpLabel;
 
         [SerializeField]
@@ -29,6 +35,7 @@ namespace UI
 
         private void Awake()
         {
+            lvLabel.text = ResourceManager.Term.lv;
             hpLabel.text = ResourceManager.Term.hp;
         }
 
@@ -60,6 +67,7 @@ namespace UI
                 canvasGroup.alpha = 1f;
                 displayObject.sprite = (battler as Actor).BattleSkin.idle;
                 nameContent.text = battler.Name;
+                lvContent.text = battler.Level.ToString();
                 hpContent.text = UIManager.CreateHpText(battler.Hp, battler.Mhp);
             }
         }
