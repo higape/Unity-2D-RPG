@@ -131,8 +131,10 @@ namespace Battle
             if (listBox.SelectedItem is not ActorWeapon weapon)
                 return;
 
+            //正在冷却
             if (weapon.IsCooling)
             {
+                //提示武器正在冷却
                 UIManager.StartMessage(ResourceManager.Term.promptWeaponIsCooling, null);
                 return;
             }
@@ -140,9 +142,15 @@ namespace Battle
             //检查是否重复选择
             foreach (var selected in SelectedItems)
             {
-                if (selected.ID == weapon.ID)
+                if (object.Equals(selected, weapon))
                     return;
             }
+
+            //多选模式下不能选择空手
+            if (CurrentQuantity > 1 && weapon.ID == Actor.DefaultWeaponID)
+                return;
+
+            //添加选中的项
             SelectedItems.Add(weapon);
             BattleManager.CurrentCommand.SelectedItems.Add(new(weapon, weapon.GetUsage(0)));
 

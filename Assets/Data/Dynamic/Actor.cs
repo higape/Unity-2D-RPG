@@ -11,7 +11,7 @@ namespace Dynamic
     {
         public const int WeaponCount = 3;
         public const int ArmorCount = 5;
-        private const int defaultWeaponID = -1;
+        public const int DefaultWeaponID = -1;
 
         public Actor(Static.Actor dataObject)
         {
@@ -512,7 +512,7 @@ namespace Dynamic
                 if (item != null)
                     list.Add(item);
                 else
-                    list.Add(new ActorWeapon(defaultWeaponID));
+                    list.Add(new ActorWeapon(DefaultWeaponID));
             return list;
         }
 
