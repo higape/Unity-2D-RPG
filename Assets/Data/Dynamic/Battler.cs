@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -278,7 +276,11 @@ namespace Dynamic
         public virtual void QuitBattle()
         {
             DurationStates.Clear();
-            DisplayObject = null;
+            if (DisplayObject != null)
+            {
+                Object.Destroy(DisplayObject.gameObject);
+                DisplayObject = null;
+            }
         }
 
         public virtual void TurnEnd()

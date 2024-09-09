@@ -36,7 +36,7 @@ namespace Battle
         }
 
         /// <summary>
-        /// 褪色结束后销毁对象
+        /// 逐渐消失
         /// </summary>
         private IEnumerator Fade()
         {
@@ -49,7 +49,6 @@ namespace Battle
                 spriteRenderer.color = c;
                 yield return null;
             }
-            Destroy(gameObject);
         }
     }
 }
