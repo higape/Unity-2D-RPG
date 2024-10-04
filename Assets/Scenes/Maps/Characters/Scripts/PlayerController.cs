@@ -41,6 +41,30 @@ namespace Map
         {
             if (!CommandInterpreter.Pause && WaitCount == 0)
             {
+                if (!PlayerMover.IsMoveContinue)
+                {
+                    if (Input.GetButtonDown("Interact"))
+                    {
+                        InteractHandler();
+                        return;
+                    }
+                    else if (Input.GetButtonDown("Cancel"))
+                    {
+                        CancelHandler();
+                        return;
+                    }
+                    else if (Input.GetButtonDown("MainMenu"))
+                    {
+                        MainMenuHandler();
+                        return;
+                    }
+                    else if (Input.GetButtonDown("SubMenu"))
+                    {
+                        SubMenuHandler();
+                        return;
+                    }
+                }
+
                 if (PlayerMover.CanMove)
                 {
                     float h = Input.GetAxis("Horizontal");
@@ -56,18 +80,6 @@ namespace Map
                         VerticalHandler(v);
                         return;
                     }
-                }
-
-                if (!PlayerMover.IsMoveContinue)
-                {
-                    if (Input.GetButtonDown("Interact"))
-                        InteractHandler();
-                    else if (Input.GetButtonDown("Cancel"))
-                        CancelHandler();
-                    else if (Input.GetButtonDown("MainMenu"))
-                        MainMenuHandler();
-                    else if (Input.GetButtonDown("SubMenu"))
-                        SubMenuHandler();
                 }
             }
         }
