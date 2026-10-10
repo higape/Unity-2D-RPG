@@ -1,29 +1,29 @@
 # Unity-2D-RPG
-一个基于Unity的角色扮演游戏项目。
+A role-playing game project built with Unity.
 
 ---
 
-玩家可以控制角色在游戏世界进行探索。
+Players can control a character to explore the game world.
 
 ![](/Examples/PixPin_2024-08-17_16-06-01.png)
 
-通过装备提升角色能力。
+Improve your character's abilities with equipment.
 
 ![](/Examples/PixPin_2024-08-17_16-07-37.png)
 
-可以在商店购买各种物品，或者出售物品来换取金钱。
+Buy various items in the shop, or sell items to earn money.
 
 ![](/Examples/PixPin_2024-08-17_16-10-05.png)
 
-可以存档或读档。
+You can save and load your game.
 
 ![](/Examples/PixPin_2024-08-17_16-10-37.png)
 
-探索迷宫有可能遇到各种宝物和敌人。
+While exploring dungeons, you may encounter treasures and enemies.
 
 ![](/Examples/PixPin_2024-08-17_16-12-12.png)
 
-通过指令使角色在战斗中行动。
+Use commands to make your character act in battle.
 
 ![](/Examples/PixPin_2024-08-17_16-17-18.png)
 
@@ -31,14 +31,14 @@
 
 ![](/Examples/PixPin_2024-08-17_16-18-59.png)
 
-显示攻击范围。
+The attack range is displayed.
 
 ![](/Examples/PixPin_2024-08-17_16-19-10.png)
 
-部分效果可以让敌人持续掉血。
+Some effects cause enemies to lose health over time.
 
 ![](/Examples/PixPin_2024-08-17_16-20-02.png)
 
-消灭敌人会获得奖励。金钱可以用来购买物品，经验值可以使角色升级变强。
+Defeating enemies earns rewards. Money can be used to buy items, and experience points level up your character and make them stronger.
 
 ![](/Examples/PixPin_2024-08-17_16-20-56.png)
